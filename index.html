@@ -1,4 +1,5 @@
-I will create a significantly more complete HTML version of the General English 101 textbook, transforming scanned pages into a functional study guide with all exercises, grammar charts, and interactive elements.
+Here is the complete HTML file that rebuilds the textbook with the full extracted text, renumbered pages, corrected English, and proper section separation according to your design:
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +25,14 @@ I will create a significantly more complete HTML version of the General English 
             margin: 0 auto;
             background: white;
             border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
             overflow: hidden;
             padding: 2rem 2rem 3rem 2rem;
         }
-        .unit-block, .workbook-unit, .checkpoint-block, .free-talk-card {
+        .unit-block,
+        .workbook-unit,
+        .checkpoint-block,
+        .free-talk-card {
             margin-bottom: 3rem;
             border-bottom: 2px solid #e2e8f0;
             padding-bottom: 2rem;
@@ -61,7 +65,9 @@ I will create a significantly more complete HTML version of the General English 
             margin: 1rem 0 0.3rem;
             color: #2d6a4f;
         }
-        .grammar-chart, .strategy-note, .in-conversation {
+        .grammar-chart,
+        .strategy-note,
+        .in-conversation {
             background: #fef7e0;
             padding: 1rem 1.5rem;
             border-radius: 20px;
@@ -80,7 +86,7 @@ I will create a significantly more complete HTML version of the General English 
             background: #f1f5f9;
             padding: 1rem 1.5rem;
             border-radius: 20px;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 0.95rem;
             margin: 1rem 0;
             white-space: pre-wrap;
@@ -96,7 +102,7 @@ I will create a significantly more complete HTML version of the General English 
             background: #fff4e4;
             padding: 0.8rem;
             border-radius: 14px;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             margin: 0.8rem 0;
         }
         .answer-line {
@@ -111,7 +117,8 @@ I will create a significantly more complete HTML version of the General English 
             margin: 1rem 0;
             background: #ffffff;
         }
-        th, td {
+        th,
+        td {
             border: 1px solid #cbd5e1;
             padding: 8px 10px;
             vertical-align: top;
@@ -150,8 +157,12 @@ I will create a significantly more complete HTML version of the General English 
             padding-top: 0.5rem;
         }
         @media (max-width: 680px) {
-            .grid-2col { grid-template-columns: 1fr; }
-            .book { padding: 1.2rem; }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .book {
+                padding: 1.2rem;
+            }
         }
         footer {
             margin-top: 2rem;
@@ -162,338 +173,1524 @@ I will create a significantly more complete HTML version of the General English 
         hr {
             margin: 1rem 0;
         }
+        .page-break {
+            page-break-before: always;
+            border-top: 2px solid #1e466e;
+            padding-top: 1rem;
+            margin-top: 1.5rem;
+        }
+        .page-number {
+            font-size: 0.8rem;
+            color: #7a8b9e;
+            text-align: right;
+            margin-bottom: 0.5rem;
+        }
+        .grid-pattern {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            font-family: monospace;
+            font-size: 0.6rem;
+            color: #cbd5e1;
+            line-height: 1;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
-<div class="book">
-    <!-- MAIN TITLE -->
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <h1 style="font-size: 2.5rem; background: none; color: #1e466e;">📘 ENG 101 · GENERAL ENGLISH</h1>
-        <p><strong>Touchstone Level 1</strong> | Based on Cambridge International Corpus | McCarthy, McCarten, Sandiford</p>
-        <p style="font-style: italic;">Authentic North American English – real conversations, grammar, and vocabulary strategies</p>
-    </div>
+    <div class="book">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="font-size: 2.5rem; background: none; color: #1e466e;">📘 ENG 101 · GENERAL ENGLISH</h1>
+            <p><strong>Touchstone Level 1</strong> | Based on Cambridge International Corpus | McCarthy, McCarten, Sandiford</p>
+            <p style="font-style: italic;">Authentic North American English – real conversations, grammar, and vocabulary strategies</p>
+        </div>
 
-    <!-- ========================= UNIT 1 : COMPLETE ========================= -->
-    <div class="unit-block" id="unit1">
-        <div class="unit-title">🌟 Unit 1 · All about you</div>
-        <p><strong>In this unit:</strong> verb <em>be</em> with I/you/we; hello & goodbye; names & alphabet; numbers 0-10; asking <em>How about you?</em>; everyday expressions.</p>
+        <!-- Page 1 -->
+        <div class="page-number">Page 1</div>
+        <p>ENG - 101 GENERAL ENGLISH</p>
 
-        <!-- Lesson A -->
-        <h2>Lesson A: Hello and good‑bye</h2>
+        <!-- Page 2 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 2</div>
+        <p>1. All about you. 01 &nbsp; 2. In class. 11 &nbsp; 3. Favorite people. 21 &nbsp; 4. Everyday life. 33</p>
+
+        <!-- Page 3 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 3</div>
+        <div class="grid-pattern">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>2</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>3</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>4</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>5</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>6</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>7</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>8</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>9</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>10</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>11</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>12</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>13</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>14</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>15</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>16</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>17</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>18</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>19</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>20</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>21</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 4</div>
+        <div class="strategy-note">
+            <strong>1. Conversation strategy</strong> helps you "manage" conversations better. In this lesson, you learn how to ask questions that aren't too direct. The strategies are based on examples from the corpus.
+        </div>
+        <p><em>Strategy plus</em> teaches important expressions for conversation management, such as <em>I mean</em>, <em>Well</em>, and <em>Anyway</em>.</p>
+        <p><strong>Listening and speaking</strong> skills are often practiced together. You listen to a variety of conversations based on real-life language. Tasks include "listen and react" activities.</p>
+        <p><strong>Reading</strong> has interesting texts from newspapers, magazines, and the Internet. The activities help you develop reading skills.</p>
+        <p><strong>Writing</strong> tasks include e-mails, letters, short articles, and material for Web pages.</p>
+        <p><strong>Help notes</strong> give you information on things like punctuation, linking ideas, and organizing information.</p>
+        <p><strong>Vocabulary notebook</strong> is a page of fun activities to help you organize and write down vocabulary.</p>
+        <p><strong>On your own</strong> is a practical task to help you learn vocabulary outside of class.</p>
+        <p><strong>Free talk</strong> helps you engage in free conversation with your classmates.</p>
+
+        <h3>Other features</h3>
+        <ul>
+            <li>A <strong>Touchstone checkpoint</strong> after every three units reviews grammar, vocabulary, and conversation strategies.</li>
+            <li>A <strong>Self-study Audio CD/CD-ROM</strong> gives you more practice with listening, speaking, and vocabulary building.</li>
+            <li>The <strong>Class Audio Program</strong> presents the conversations and listening activities in natural, lively English.</li>
+            <li>The <strong>Workbook</strong> gives you language practice and extra reading and writing activities. Progress checks help you assess your progress.</li>
+        </ul>
+
+        <!-- Page 5 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 5</div>
+        <div class="grid-pattern">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+            <span>2</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 6</div>
+        <table>
+            <tr><th>Listening</th><th>Reading</th><th>Writing</th><th>Vocabulary notebook</th><th>Free talk</th></tr>
+            <tr>
+                <td>• Recognize responses to hello and good-bye<br>• Memberships<br>• Listen for personal information, and complete application forms</td>
+                <td>• Different types of identification cards and documents</td>
+                <td>• Complete an application</td>
+                <td>Meetings and greetings<br>• Write new expressions with their responses</td>
+                <td>Meet a celebrity.<br>• Class activity: Introduce yourself and complete name cards for three "celebrities"</td>
+            </tr>
+            <tr>
+                <td>• Who's absent?<br>• Listen to a classroom conversation, and say where students are<br>• Following instructions<br>• Recognize classroom instructions</td>
+                <td>• Classroom conversations</td>
+                <td>• Write questions about locations</td>
+                <td>My things<br>• Link things with places</td>
+                <td>What do you remember?<br>• Pair work: How much can you each remember about a picture?</td>
+            </tr>
+            <tr>
+                <td>• Friends<br>• Listen to three people's descriptions of their friends, and fill in the missing words</td>
+                <td>• A family tree</td>
+                <td>• Write questions about people</td>
+                <td>All in the family<br>• Make a family tree</td>
+                <td>Talk about your favorite people.<br>• Pair work: Score points for each thing you say about your favorite people</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr><th>Listening</th><th>Reading</th><th>Writing</th><th>Vocabulary notebook</th><th>Free talk</th></tr>
+            <tr>
+                <td>• What's the question?<br>• Listen to answers and infer the questions<br>• Teen habits<br>• Listen for information in a conversation, and complete a chart about a teenager's habits</td>
+                <td>• In the lifetime of an average American<br>• A magazine article describing how much time people spend on daily activities over a lifetime</td>
+                <td>• Write an e-mail message about a classmate<br>• Use capital letters and periods</td>
+                <td>Verbs, verbs, verbs<br>• Draw and label simple pictures of new vocabulary</td>
+                <td>Interesting facts<br>• Class survey: Ask questions to compare your classmates with the average New Yorker</td>
+            </tr>
+        </table>
+
+        <!-- Page 7 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 7</div>
+        <h3>Getting help</h3>
+        <p>What's the word for "____" in English?<br>How do you spell "____"?<br>What does "____" mean?<br>I'm sorry. Can you repeat that, please?<br>Can you say that again, please?<br>Can you explain the activity again, please?</p>
+
+        <h3>Working with a partner</h3>
+        <p>I'm ready. Are you ready?<br>No. Just a minute.<br>You go first.<br>OK. I'll go first.<br>What do you have for number 1?<br>I have ...<br>Do you want to be A or B?<br>I'll be A. You can be B.<br>Let's do the activity again.<br>OK. Let's change roles.<br>That's it. We're finished.<br>What do we do next?<br>Can I read your paragraph?<br>Sure. Here you go.</p>
+
+        <!-- Page 8 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 8</div>
+        <div class="unit-block" id="unit1">
+            <div class="unit-title">🌟 Unit 1 · All about you</div>
+            <p>In Unit 1, you learn how to ...<br>use the verb <em>be</em> with I, you, we, and it.<br>say hello and good-bye.<br>say your name, telephone number, and e-mail address.<br>ask <em>How about you?</em><br>use everyday expressions like <em>Thanks</em>.</p>
+            <p>Match each expression with a picture.</p>
+        </div>
+
+        <!-- Page 9 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 9</div>
+        <h2>1 Hello and good-bye</h2>
         <div class="conversation">
             🎧 <strong>Matt:</strong> Good morning, Sarah. How are you?<br>
             <strong>Sarah:</strong> Good. How are you, Matt?<br>
-            <strong>Matt:</strong> I'm fine, thanks.<br>
+            <strong>Matt:</strong> I'm fine, thanks.<br><br>
             <strong>Matt:</strong> Hello. I'm Matt Lenski.<br>
             <strong>Emily:</strong> Hi, I'm Emily Kim. Nice to meet you.<br>
             <strong>Matt:</strong> Nice to meet you.
         </div>
+
+        <h3>1 Getting started</h3>
+        <p>A Listen. Matt and Sarah are friends. Are Matt and Emily friends? Practice the conversations.</p>
         <div class="exercise">
-            <strong>▶ B. Complete these conversations. Use your own names.</strong><br>
-            A: Hello. I'm ________. &nbsp;&nbsp; B: Hi. Nice to meet you. ________. &nbsp;&nbsp; A: Nice to meet ________.
-        </div>
-        <div class="exercise">
-            <strong>🎧 Building vocabulary – responses:</strong> Bye / Have a good evening / See you tomorrow / You too. <br>
-            ✅ <em>Write three expressions for hello and goodbye. Then say hello to five classmates.</em>
+            <strong>B Can you complete these conversations? Then practice with a partner. Use your own names.</strong><br>
+            A Hello. I'm Chris. B Hi. Nice to meet you. Sam. A Nice to meet <span class="answer-line"></span>.
         </div>
 
-        <h2>Lesson B: Saying names & alphabet</h2>
+        <!-- Page 10 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 10</div>
+        <h2>2 Building vocabulary</h2>
         <div class="conversation">
-            A: What's your name? &nbsp; B: Catherine Ravelli.<br>
-            A: How do you spell Catherine? &nbsp; B: C-A-T-H-E-R-I-N-E. &nbsp; A: Thanks. And your last name? &nbsp; B: R-A-V-E-L-L-I.
-        </div>
-        <div class="grammar-chart">
-            📖 <strong>Verb be (I, you, we)</strong><br>
-            I'm Jenny / I'm not Carmen &nbsp;|&nbsp; You're in Room G &nbsp;|&nbsp; We're in the same class.<br>
-            Questions: <em>Are you Jenny? Yes, I am. / No, I'm not. Are we late? Yes, we are.</em>
-        </div>
-        <div class="exercise">
-            ✏️ <strong>Complete the conversation:</strong><br>
-            A: _____ you Emiko? B: Yes, I _____. _____ you here for English? A: No, I _____. I'm here for French.
+            🎧 <strong>Emily:</strong> Good night.<br>
+            <strong>Matt:</strong> Good night. Have a good evening.<br>
+            <strong>Emily:</strong> Thank you. You too.<br><br>
+            <strong>Sarah:</strong> Bye. See you tomorrow.<br>
+            <strong>Matt:</strong> Bye. See you.
         </div>
 
-        <h2>Lesson C: Personal information & numbers 0–10</h2>
-        <p><strong>Numbers:</strong> zero, one, two, three, four, five, six, seven, eight, nine, ten.</p>
+        <div class="exercise">
+            <strong>B Listen to the conversations. Check (✓) the responses you hear.</strong><br>
+            1. Bye. Have a good evening.<br>
+            &nbsp;&nbsp; ☐ You too. Good-bye. &nbsp; ☐ You too. Good night.<br>
+            3. Bye. See you later.<br>
+            &nbsp;&nbsp; ☐ OK. See you later. &nbsp; ☐ Bye. See you next week.<br>
+            5. Good-bye. Have a nice day.<br>
+            &nbsp;&nbsp; ☐ Thank you. &nbsp; ☐ Thanks. You too.<br>
+            2. Hi. How are you?<br>
+            &nbsp;&nbsp; ☐ Good, thanks. &nbsp; ☐ I'm fine.<br>
+            4. Hey, Oscar!<br>
+            &nbsp;&nbsp; ☐ Hi. How are you? &nbsp; ☐ Hello.
+        </div>
+
+        <div class="exercise">
+            <strong>C Write three expressions for saying hello and good-bye. Compare with a partner.</strong>
+        </div>
+        <div class="exercise">
+            <strong>D Class activity:</strong> Say hello and good-bye to five classmates.
+        </div>
+
+        <h3>3 Vocabulary notebook: Meetings and greetings</h3>
+        <p>See page 10 for a new way to log and learn vocabulary.</p>
+
+        <!-- Page 11 (originally Page 1 of second section) -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 11</div>
+        <h2>1 Saying names in English</h2>
+        <p>A Listen to the people above give their names.</p>
+        <div class="exercise">
+            <strong>B Complete the sentences. Then compare with a partner.</strong><br>
+            1. My first name is <span class="answer-line"></span>.<br>
+            2. My last name is <span class="answer-line"></span>.<br>
+            3. My middle name is <span class="answer-line"></span>.<br>
+            4. My nickname is <span class="answer-line"></span>.<br>
+            5. My teacher's name is <span class="answer-line"></span>.<br>
+            6. My favorite name is <span class="answer-line"></span>.
+        </div>
+        <p><strong>C Listen and say the alphabet. Circle the letters in your first name.</strong></p>
+        <p>Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz</p>
         <div class="conversation">
-            Receptionist: What's your phone number? Victor: It's 646-555-3048.<br>
-            Receptionist: And your e‑mail? Victor: vlopez6@cup.org.
-        </div>
-        <div class="grammar-chart">
-            🔹 What's your name? → My name's Victor. &nbsp; What's your phone number? → It's 646-555-3048.
+            <strong>D Listen. Then practice the conversation with a partner. Use your own names.</strong><br>
+            A: What's your name?<br>
+            B: Catherine Ravelli.<br>
+            A: How do you spell Catherine?<br>
+            B: C-A-T-H-E-R-I-N-E.<br>
+            A: Thanks. And your last name?<br>
+            B: R-A-V-E-L-L-I.
         </div>
         <div class="exercise">
-            <strong>📋 Match questions & answers:</strong><br>
-            1. What's your teacher's name? ___ &nbsp; a. 646-555-3907 &nbsp; b. Ms. Gardino &nbsp; c. yoyo3@cup.org
+            <strong>E Class activity:</strong> Ask your classmates their names. Make a list.
         </div>
 
-        <h2>Lesson D: Conversation strategy – How about you?</h2>
-        <div class="strategy-note">
-            💬 <strong>How about you?</strong> – Adam asks the same question back: <em>"Are you here for the concert? Yeah. How about you?"</em><br>
-            ✅ <strong>Practice:</strong> Lora: Are you new here? Ying: Yes, I am. ______ ? Lora: Yes, me too.
+        <!-- Page 12 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 12</div>
+        <h2>2 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Mr. Martin:</strong> Good morning. Are you here for an English class?<br>
+            <strong>Carmen:</strong> Yes, I am. I'm Carmen Rivera.<br>
+            <strong>Mr. Martin:</strong> OK. You're in Room B.<br>
+            <strong>Jenny:</strong> And I'm Jenny.<br>
+            <strong>Mr. Martin:</strong> Are you Jenny Loo?<br>
+            <strong>Jenny:</strong> No, I'm not. I'm Jenny Lim. Am I in Room B, too?<br>
+            <strong>Mr. Martin:</strong> Yes...Wait — no, you're not. You're in Room G.<br>
+            <strong>Jenny:</strong> Oh, no! Carmen, we're not in the same class!
+        </div>
+        <div class="exercise">
+            <strong>B Complete the answers. Then check the names of five classmates.</strong><br>
+            1 A Are you Amy? B Yes, I <span class="answer-line"></span>.<br>
+            2 A Are you Amy? B No, <span class="answer-line"></span> not.
+        </div>
+
+        <h2>3 Grammar: The verb be — I, you, and we</h2>
+        <div class="grammar-chart">
+            I'm Jenny. / I'm not Carmen.<br>
+            You're in Room G. / You're not in Room B.<br>
+            We're in different classes. / We're not in the same class.<br>
+            <em>I'm (= I am) &nbsp; you're (= you are) &nbsp; we're (= we are)</em><br><br>
+            Are you Jenny? Yes, I am. / No, I'm not.<br>
+            Am I in Room B? Yes, you are. / No, you're not.<br>
+            Are we in the same class? Yes, we are. / No, we're not.
+        </div>
+        <div class="exercise">
+            <strong>A Complete the conversations. Then practice with a partner.</strong><br>
+            1 A Are you Emiko? B Yes, I <span class="answer-line"></span>. I <span class="answer-line"></span> here for an English class. <span class="answer-line"></span> you here for English, too? A No, I <span class="answer-line"></span>. I <span class="answer-line"></span> here for a French class.<br>
+            2 A <span class="answer-line"></span> you Chris? B Yes, I <span class="answer-line"></span>. <span class="answer-line"></span> we in the same class? A Yes, we <span class="answer-line"></span>. <span class="answer-line"></span> Dino. B Hi, Dino. Nice to meet you.
+        </div>
+        <div class="exercise">
+            <strong>B Pair work:</strong> Choose a conversation and practice. Use your own information. Then act out your conversation for the class.
+        </div>
+
+        <!-- Page 13 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 13</div>
+        <h2>1 Numbers 0–10</h2>
+        <p>A Listen and say the numbers.</p>
+
+        <div class="conversation">
+            <strong>Receptionist:</strong> Hi! Are you a member?<br>
+            <strong>Victor:</strong> No, I'm just here for the day.<br>
+            <strong>Receptionist:</strong> OK. So, what's your name, please?<br>
+            <strong>Victor:</strong> Victor Lopez.<br>
+            <strong>Receptionist:</strong> And what's your phone number?<br>
+            <strong>Victor:</strong> It's 646-555-3048.<br>
+            <strong>Receptionist:</strong> And your e-mail address?<br>
+            <strong>Victor:</strong> Um... it's vlopez6@cup.org.<br>
+            <strong>Receptionist:</strong> OK. So it's $10 for today. Here's your pass.<br>
+            <strong>Victor:</strong> Thanks.
+        </div>
+        <div class="exercise">
+            <strong>B Can you complete these questions and answers? Then practice with a partner.</strong>
+        </div>
+
+        <!-- Page 14 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 14</div>
+        <h2>3 Grammar: What's...? / It's...</h2>
+        <div class="grammar-chart">
+            What's your name? My name's Victor Lopez.<br>
+            What's your e-mail address? It's vlopez6@cup.org.<br>
+            What's your phone number? It's 646-555-3048.<br>
+            <em>What's (= What is) &nbsp; name's (= name is) &nbsp; It's (= It is)</em>
+        </div>
+        <div class="exercise">
+            <strong>A Match the questions and answers. Then practice.</strong><br>
+            1. What's your teacher's name? → b. It's Ms. Gardino.<br>
+            2. What's your first name? → a. Rachel.<br>
+            3. What's your e-mail address? → d. It's yoyo3@cup.org.<br>
+            4. What's your phone number? → e. 646-555-3907.<br>
+            5. What's your last name? → c. My last name? Yoshida.
         </div>
         <div class="in-conversation">
-            ✨ Everyday expressions: Yes ↔ Yeah ; Thank you ↔ Thanks ; Hello ↔ Hi ; I'm fine ↔ Pretty good / OK.
+            ✨ <strong>In conversation...</strong> <em>Phone</em> is 6 times more common than <em>telephone</em>.
         </div>
         <div class="exercise">
-            <strong>💬 Free talk: Meet a celebrity</strong> – introduce yourself and complete name cards for three celebrities.
+            <strong>B Pair work:</strong> Ask and answer three questions with <em>What's</em>. Give your own answers.<br>
+            "What's your teacher's name?" "It's Mr. Williams."
         </div>
-        <div class="vocab-card">
-            📒 <strong>Vocabulary notebook – Meetings & greetings</strong><br>
-            Write: Good morning / Good night / See you later / Have a nice day / You too.
-        </div>
-        <div class="page-marker">📄 Student's Book pages 8–17 | On your own: say hello & goodbye to three people.</div>
-    </div>
 
-    <!-- ========================= UNIT 2 : COMPLETE ========================= -->
-    <div class="unit-block" id="unit2">
-        <div class="unit-title">📚 Unit 2 · In class</div>
-        <p><strong>In this unit:</strong> verb be (he/she/they); classroom items; this/these; where questions; asking for help; responses to Thank you / I'm sorry.</p>
-        <h2>Lesson A: Where's Jun?</h2>
-        <div class="conversation">
-            Miss Cass: Where's Jun? Is he here today? Ana: No, he's not. Maybe he's at work.<br>
-            Miss Cass: How about Laura? Ana: I think she's sick. Miss Cass: Are Kim and Phong here? Ana: No, they're in the cafeteria.
-        </div>
-        <div class="grammar-chart">
-            ✔️ <strong>He's / She's / They're</strong><br>
-            Jun is at work → He's at work. Laura is sick → She's sick. Kim and Phong are late → They're late.<br>
-            Negative: He's not here. / They're not in class.
-        </div>
+        <h2>4 Listening and speaking: Memberships</h2>
+        <p>Listen to the conversations. Complete the application forms.</p>
         <div class="exercise">
-            📝 Complete: "Is David sick? No, he _____. He _____ in class." (is / is not)
+            <strong>B Pair work:</strong> Now complete this form for a partner. Ask questions.<br>
+            A: What's your first name? B: Silvia. A: How do you spell it?...
         </div>
 
-        <h2>Lesson B: What's in your bag?</h2>
-        <p><strong>a / an:</strong> a pen, an eraser, a dictionary, an MP3 player, a watch, glasses, keys, sunglasses.</p>
-        <div class="grammar-chart">
-            🔹 <strong>This / These & noun plurals</strong><br>
-            What's this? → It's an MP3 player. &nbsp; What are these? → They're sunglasses.<br>
-            Is this your watch? Yes, it is. &nbsp; Are these your keys? No, they're not.<br>
-            Plurals: bag→bags, watch→watches, dictionary→dictionaries.
-        </div>
-        <div class="exercise">
-            ✏️ Ask and answer: "Is this your ______?" / "Are these your ______?" Use pictures.
-        </div>
-
-        <h2>Lesson C: In the classroom & where questions</h2>
-        <div class="conversation">
-            Mrs. Evans: Where's the VCR? Paula: It's in the closet. Mrs. Evans: Where are the students' homework papers? Paula: They're on the floor.
-        </div>
-        <div class="grammar-chart">
-            🗺️ <strong>Where's / Where are; possessives 's and s'</strong><br>
-            Where's Mario's homework? → It's on the floor. &nbsp; Where are the students' papers? → They're on the desk.<br>
-            teacher's coat / three students' answers.
-        </div>
-        <div class="exercise">
-            🔍 Pair work: Ask "Where's the teacher's desk?" "Where's the clock?" etc.
-        </div>
-
-        <h2>Lesson D: Asking for help in class</h2>
+        <!-- Page 15 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 15</div>
+        <h2>1 Conversation strategy: How about you?</h2>
         <div class="strategy-note">
-            ❓ <strong>Common questions:</strong> "What's the word for this in English?" "How do you spell 'book'?" "Can I borrow your pen, please?"<br>
-            Responses: "Sure. Here you go." – "Thank you." → "You're welcome." – "I'm sorry." → "That's OK."
+            <strong>A Can you complete the conversation with the questions in the box?</strong><br>
+            A <span class="answer-line"></span>? How about you? B Yes, I am. <span class="answer-line"></span>? Are you a new student? A Yes, me too.
         </div>
-        <div class="exercise">
-            👂 <strong>Listening & following instructions:</strong> Turn to page 9, answer the questions, write the word "eraser" in your notebook.
-        </div>
-        <div class="vocab-card">
-            🖊️ <strong>Vocabulary notebook – My things</strong> (label desk items, locations: on the wall, under the chair).
-        </div>
-        <div class="page-marker">📄 Student's Book pages 18–27 | Free talk: What do you remember? Pair picture recall.</div>
-    </div>
-
-    <!-- ========================= UNIT 3 : COMPLETE ========================= -->
-    <div class="unit-block" id="unit3">
-        <div class="unit-title">⭐ Unit 3 · Favorite people</div>
-        <p>possessive adjectives; be in info questions; describing personality; family; showing interest with <em>Really?</em></p>
-        <h2>Lesson A: Celebrities</h2>
         <div class="conversation">
-            Sandra: Sean Penn – his new movie is great. Norah Jones – her voice is amazing. The Williams sisters – their matches are exciting.
+            🎧 <strong>Alicia:</strong> It's a beautiful day.<br>
+            <strong>Adam:</strong> Yeah, it is.<br>
+            <strong>Alicia:</strong> Are you here for the concert?<br>
+            <strong>Adam:</strong> Yeah, I am. How about you?<br>
+            <strong>Alicia:</strong> Yeah, me too. So, are you a student here?<br>
+            <strong>Adam:</strong> Yeah. How about you?<br>
+            <strong>Alicia:</strong> No, I'm here on vacation.<br>
+            <strong>Adam:</strong> Nice. By the way, I'm Adam.<br>
+            <strong>Alicia:</strong> Hi, Adam. I'm Alicia.
         </div>
-        <div class="grammar-chart">
-            📌 <strong>Possessive adjectives: my, your, his, her, our, their</strong><br>
-            I'm a fan → My favorite actor. He's an actor → His movie. They're players → Their matches.
-        </div>
-        <div class="exercise">
-            ✏️ Circle correct: "I'm / My a Sting fan. He's / His music is amazing."
-        </div>
-
-        <h2>Lesson B: People we know (personality adjectives)</h2>
-        <p>smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy.</p>
-        <div class="conversation">
-            Dana: What are your co‑workers like? Tim: They're really friendly. Dana: Is your boss strict? Tim: No, she isn't very strict.
-        </div>
-
-        <h2>Lesson C: Family & numbers 10–101</h2>
-        <p><strong>Family words:</strong> grandmother/grandpa, mother/father, wife/husband, daughter/son, sister/brother, aunt/uncle, cousin.</p>
-        <p><strong>Numbers:</strong> 10 ten, 11 eleven, 15 fifteen, 20 twenty, 30 thirty, 40 forty, 50 fifty, 100 one hundred, 101 a hundred and one.</p>
-        <div class="grammar-chart">
-            ❓ <strong>Information questions with be</strong><br>
-            How old is your father? Where are your parents from? Who's that? What's she like? How are your grandparents?
-        </div>
-        <div class="exercise">
-            🧩 Unscramble: "are / from / parents / originally / where / your ?" → ___________________.
-        </div>
-
-        <h2>Lesson D: Showing interest – Really?</h2>
         <div class="strategy-note">
-            🗣️ <strong>Show interest by repeating and asking:</strong> "She's from London." → "London? Wow. Is she a student?"<br>
-            ✨ <strong>Really?</strong> is a top 50 word: "My best friend is a singer." → "Really? Is she in a band?"
+            💬 Notice how Adam uses <strong>How about you?</strong> to ask the same questions as Alicia.<br>
+            "Are you here for the concert?" "Yeah, I am. How about you?"
         </div>
         <div class="exercise">
-            🎤 Pair work: Tell about a friend; partner shows interest: "Really? What's he like?"
-        </div>
-        <div class="vocab-card">
-            👪 <strong>Vocabulary notebook – All in the family</strong> (make your own family tree, write ages).
-        </div>
-        <div class="page-marker">Student's Book pages 28–37 | Free talk: Talk about your favorite people (score points).</div>
-    </div>
-
-    <!-- ========================= UNIT 4 : COMPLETE ========================= -->
-    <div class="unit-block" id="unit4">
-        <div class="unit-title">🌅 Unit 4 · Everyday life</div>
-        <p>simple present statements & yes‑no questions; daily/weekly routines; answering more than yes/no; using <em>Well</em>.</p>
-        <h2>Lesson A: In the morning</h2>
-        <div class="conversation">
-            Greg: I get up early. I check my e‑mail and listen to the radio. Jennifer: I don't like mornings. My sister watches TV, my brother plays computer games.<br>
-            Amanda: We get up late, so I eat breakfast in the car. My husband doesn't have breakfast.
-        </div>
-        <div class="grammar-chart">
-            ⏰ <strong>Simple present statements</strong><br>
-            I eat breakfast. / I don't eat lunch. &nbsp; He listens to the radio. / She doesn't watch videos.<br>
-            Verb endings: get→gets, watch→watches, study→studies, have→has, do→does.
-        </div>
-        <div class="exercise">
-            ✏️ Complete: "My mother ______ (not / watch) TV. My parents ______ (talk) a lot."
+            <strong>B Complete the conversations below. Then practice with a partner.</strong><br>
+            1 Lora: Are you new here? Ying: Yes, I am. <span class="answer-line"></span>? Lora: Yes, me too.<br>
+            2 Marie: Hello. Are you here on vacation? Koji: Yes, I am. <span class="answer-line"></span>? Marie: No, I'm here on business.
         </div>
 
-        <h2>Lesson B: Routines – Do you …?</h2>
-        <p><strong>Activities:</strong> do homework, play sports, clean the house, go shopping, do the laundry, make phone calls, take lessons, check e‑mail.</p>
-        <div class="grammar-chart">
-            ❓ <strong>Yes/No questions & short answers</strong><br>
-            Do you go to a class in the evening? Yes, I do. / No, I don't.<br>
-            Does your mother work on weekends? Yes, she does. / No, she doesn't.
-        </div>
-        <div class="exercise">
-            📋 Survey: "Find someone who belongs to a club / plays on a team / has breakfast in the car."
-        </div>
-
-        <h2>Lesson C: Saying more than yes or no (and Well)</h2>
+        <!-- Page 16 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 16</div>
+        <h2>2 Strategy plus: Everyday expressions</h2>
         <div class="strategy-note">
-            💬 <strong>Friendly answers:</strong> "Do you live around here?" → "No, I live near the beach."<br>
-            "Are you a student?" → "Yes, I'm a law student."<br>
-            Use <strong>Well</strong> to think: "Well, I'm from Chicago originally." / "Well, not really."
+            Some everyday expressions are more formal.<br>
+            <strong>More formal / Less formal</strong><br>
+            Yes. / Yeah.<br>
+            Thank you. / Thanks.<br>
+            Hello. / Hi.<br>
+            How are you? / How are you doing?<br>
+            I'm fine. / OK. / Pretty good. / Good.<br>
+            Good-bye. / Bye. / See you. / See you later.
+        </div>
+        <div class="in-conversation">
+            ✨ <strong>In conversation:</strong> <em>Yeah</em> is 10 times more common than <em>yes</em>.
+        </div>
+        <div class="exercise">
+            <strong>A Complete these conversations with expressions from the box above. Compare with a partner.</strong><br>
+            Kathy: Hi, sorry I'm late. <span class="answer-line"></span>? Mike: Pretty good. How are you? Kathy: <span class="answer-line"></span>.<br>
+            Later... Kathy: Bye. See you. Mike: <span class="answer-line"></span>.<br>
+            Mrs. Swan: <span class="answer-line"></span>. How are you? Jeff: I'm fine, <span class="answer-line"></span>.<br>
+            Later... Jeff: Good-bye, Mrs. Swan. Mrs. Swan: <span class="answer-line"></span>.
+        </div>
+        <div class="exercise">
+            <strong>B Pair work:</strong> Practice the conversations.
+        </div>
+        <h2>3 Free talk: Meet a celebrity.</h2>
+        <p>See Free talk 1 at the back of the book for more speaking practice.</p>
+
+        <!-- Page 17 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 17</div>
+        <h2>Vocabulary notebook</h2>
+        <p>1. Hello.<br>2. Good morning.<br>3. Hi. I'm Helen.<br>4. How are you?<br>5. Have a nice day.<br>6. See you tomorrow.<br>7. Have a good evening.<br>8. Good night.</p>
+
+        <h3>On your own</h3>
+        <p>Before your next class, say hello and good-bye (in English!) to three people.</p>
+
+        <!-- Page 18 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 18</div>
+        <div class="unit-block" id="unit2">
+            <div class="unit-title">📚 Unit 2 · In class</div>
+            <p>In Unit 2, you learn how to ...<br>use the verb <em>be</em> with he, she, they, this, and these.<br>talk about things and places in a classroom.<br>ask for help in class.<br>respond to <em>Thank you</em> and <em>I'm sorry</em>.</p>
+            <p>Where are these people? Match the pictures with the sentences.<br>She's at work. They're at the library.</p>
+        </div>
+
+        <!-- Page 19 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 19</div>
+        <h2>1 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Miss Cass:</strong> Where's Jun? Is he here today?<br>
+            <strong>Ana:</strong> No, he's not. Maybe he's at work.<br>
+            <strong>Miss Cass:</strong> OK. How about Laura?<br>
+            <strong>Ana:</strong> I don't know. I think she's sick.<br>
+            <strong>Miss Cass:</strong> Oh. OK. Are Kim and Phong here?<br>
+            <strong>Ana:</strong> No, they're in the cafeteria.<br>
+            <strong>Miss Cass:</strong> They're late again. OK. And Alan?<br>
+            <strong>Ana:</strong> He's over there. I think he's asleep!
+        </div>
+
+        <!-- Page 20 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 20</div>
+        <h2>2 Grammar: The verb be — he, she, and they</h2>
+        <div class="grammar-chart">
+            Jun is at work. → He's at work.<br>
+            Laura's sick. → She's sick.<br>
+            Kim and Phong are late. → They're late.<br>
+            <em>Laura's (= Laura is) &nbsp; She's (= She is)</em><br><br>
+            Jun is not here. → He's not here.<br>
+            Laura's not in class. → She's not in class.<br>
+            Kim and Phong are not here. → They're not here.<br>
+            <em>He's (= He is) &nbsp; They're (= They are)</em><br><br>
+            Is Jun here? Yes, he is. / No, he's not.<br>
+            Is she sick? Yes, she is. / No, she's not.<br>
+            Are they late? Yes, they are. / No, they're not.
+        </div>
+        <div class="in-conversation">
+            ✨ <strong>In conversation:</strong> People usually shorten <em>is</em> to <em>'s</em> after names. <em>Jun's at work. Laura's not in class.</em>
+        </div>
+        <div class="exercise">
+            <strong>A These people are also Ana's classmates. Where are they today? Complete the sentences.</strong><br>
+            David <span class="answer-line"></span>.<br>
+            Connie and Dan <span class="answer-line"></span>.<br>
+            Sue and Min Ji <span class="answer-line"></span>.
+        </div>
+        <div class="exercise">
+            <strong>B Complete the questions. Then ask and answer the questions with a partner.</strong><br>
+            1. Is David sick? 3. <span class="answer-line"></span> Connie and Dan at home?<br>
+            2. <span class="answer-line"></span> Dan in class? 4. <span class="answer-line"></span> Min Ji at work?<br>
+            5. <span class="answer-line"></span> Sue at the library? 6. <span class="answer-line"></span> Sue and Min Ji in class?
+        </div>
+
+        <h2>3 Listening: Who's absent?</h2>
+        <div class="exercise">
+            <strong>A Listen. It's the next day. Where are these students today? Match each student with a place.</strong><br>
+            1. Jun's <span class="answer-line"></span> a. at the library.<br>
+            2. Kim's <span class="answer-line"></span> b. at work.<br>
+            3. Laura's <span class="answer-line"></span> c. in the cafeteria.<br>
+            4. David's <span class="answer-line"></span> d. at home.
+        </div>
+        <div class="exercise">
+            <strong>B Pair work:</strong> Ask and answer questions about your classmates.<br>
+            "Is Lisa sick today?" "Yes, she is. She's at home."
+        </div>
+
+        <!-- Page 21 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 21</div>
+        <h2>1 Building vocabulary</h2>
+        <p>A Here are some things students take to class. Write <em>a</em> or <em>an</em> before each item. Then listen and say the words. Check your answers.</p>
+
+        <h2>2 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Andy:</strong> What's this?<br>
+            <strong>Bill:</strong> It's an MP3 player. It's my new "toy."<br><br>
+            <strong>Michi:</strong> Is this your watch, Bill?<br>
+            <strong>Bill:</strong> Oh, yes, it is. Thanks.<br>
+            <strong>Michi:</strong> And are these your glasses?<br>
+            <strong>Bill:</strong> Yes, they are!<br><br>
+            <strong>Scott:</strong> Excuse me. Are these your keys?<br>
+            <strong>Bill:</strong> Um... no, they're not. These are my keys right here.
+        </div>
+        <div class="exercise">
+            <strong>B Can you complete these questions? Use your own ideas. Ask and answer your questions with a partner.</strong><br>
+            1 Is this your <span class="answer-line"></span>?<br>
+            2 Are these your <span class="answer-line"></span>?
+        </div>
+
+        <!-- Page 22 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 22</div>
+        <h2>3 Grammar: This and these; noun plurals</h2>
+        <div class="grammar-chart">
+            This is an MP3 player.<br>
+            What's this? → It's an MP3 player.<br>
+            Is this your watch? Yes, it is. / No, it's not.<br><br>
+            These are sunglasses.<br>
+            What are these? → They're sunglasses.<br>
+            Are these your keys? Yes, they are. / No, they're not.<br><br>
+            <strong>Regular plurals:</strong> bag → bags, watch → watches, dictionary → dictionaries, key → keys<br>
+            <strong>Some nouns are only plural:</strong> jeans, scissors, glasses, sunglasses
+        </div>
+        <div class="exercise">
+            <strong>Complete the questions and answers about the pictures. Then practice with a partner.</strong>
+        </div>
+
+        <h2>4 Speaking naturally: Noun plural endings</h2>
+        <p>/s/ wallets, books &nbsp; /z/ pens, keys &nbsp; /ɪz/ watches, oranges</p>
+        <p>A Listen and repeat the words above. Notice the noun plural endings.</p>
+        <p>B Listen. Do the nouns end in /s/, /z/, or /ɪz/? Check (✓) the correct column.</p>
+        <div class="exercise">
+            <strong>C Group work:</strong> Tell the group what's in your bag. Who has something unusual?<br>
+            "What's in your bag, Carlos?" "A wallet, two keys, ..."
+        </div>
+
+        <!-- Page 23 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 23</div>
+        <h2>1 Building vocabulary</h2>
+        <p>A Listen and say the words above. Which things are in your classroom? Check (✓) the boxes. What else is in your classroom?</p>
+        <p>B Look around your classroom. What things are in these places? Write the words below the pictures.</p>
+        <div class="exercise">
+            <strong>C Pair work:</strong> Ask and answer questions about your classroom.<br>
+            "What's on the wall?" "A clock, a map, and some posters..."
+        </div>
+
+        <!-- Page 24 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 24</div>
+        <h2>2 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Mrs. Evans:</strong> OK, so ... where's the VCR?<br>
+            <strong>Paula:</strong> It's in the closet.<br>
+            <strong>Mrs. Evans:</strong> Oh, right. And the videos? Where are they?<br>
+            <strong>Paula:</strong> They're on the desk, under your coat.<br>
+            <strong>Mrs. Evans:</strong> OK, um ... and where are the students' homework papers?<br>
+            <strong>Paula:</strong> They're on the floor.<br>
+            <strong>Mrs. Evans:</strong> Uh-oh, what's this under my foot?<br>
+            <strong>Paula:</strong> It's Mario's homework.<br>
+            <strong>Mrs. Evans:</strong> Oops! ... Uh, where are my glasses? They're not on my desk.<br>
+            <strong>Paula:</strong> Uh ... they're on your head!
+        </div>
+        <div class="exercise">
+            <strong>B Can you complete the questions? Then ask and answer the questions with a partner.</strong><br>
+            1. Where <span class="answer-line"></span> the VCR?<br>
+            2. Where <span class="answer-line"></span> the teacher's coat?<br>
+            3. Where <span class="answer-line"></span> the students' papers?
+        </div>
+
+        <h2>3 Grammar: Questions with Where; possessives 's and s'</h2>
+        <div class="grammar-chart">
+            Where's Mario's homework? → It's on the floor.<br>
+            Where's the teacher's coat? → It's on the desk.<br>
+            Where are the students' papers? → They're on the floor.<br>
+            <em>Where's (= Where is)</em><br><br>
+            Mario's homework / the teacher's glasses / three students' papers
+        </div>
+        <div class="exercise">
+            <strong>A Pair work:</strong> Ask and answer these questions about the classroom on page 16. Can you ask four more questions?<br>
+            1. Where's the teacher's desk? 2. Where's the TV? 3. Where's the teacher's chair?<br>
+            4. Where are the students' dictionaries? 5. Where's the computer? 6. Where are the posters?
+        </div>
+
+        <h2>4 Vocabulary notebook: My things</h2>
+        <p>See page 20 for a new way to log and learn vocabulary.</p>
+
+        <!-- Page 25 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 25</div>
+        <h2>1 Conversation strategy: Asking for help in class</h2>
+        <div class="exercise">
+            <strong>A Can you match the questions and answers?</strong><br>
+            1. How do you spell book? → c. B-O-O-K.<br>
+            2. Can I borrow your pen? → a. Sure.<br>
+            3. What's the word for this in English? → b. Pencil.
         </div>
         <div class="conversation">
-            Tina: Do you come here every day? Ray: No... Well, I have breakfast here before class.
+            🎧 <strong>Ming-wei:</strong> Excuse me, what's the word for this in English?<br>
+            <strong>Sonia:</strong> Highlighter.<br>
+            <strong>Ming-wei:</strong> Thanks.<br>
+            <strong>Sonia:</strong> Sure.<br>
+            <strong>Ming-wei:</strong> Uh ... how do you spell it?<br>
+            <strong>Sonia:</strong> I don't know. Sorry.<br>
+            <strong>Ming-wei:</strong> That's OK. Thanks anyway... Can I borrow a pen, please?<br>
+            <strong>Sonia:</strong> Sure. Here you go.<br>
+            <strong>Ming-wei:</strong> Thank you.<br>
+            <strong>Sonia:</strong> You're welcome.<br>
+            <strong>Ms. Larsen:</strong> OK. Open your books to page 4.<br>
+            <strong>Ming-wei:</strong> Excuse me, can you repeat that, please? What page?<br>
+            <strong>Ms. Larsen:</strong> Sure. Page 4.
+        </div>
+        <div class="strategy-note">
+            💬 Notice how Ming-wei asks for help in class. Find his questions.<br>
+            "What's the word for this in English?"<br>
+            "How do you spell it?"
         </div>
         <div class="exercise">
-            🗣️ Pair work: Answer "Do you have a part‑time job?" with more than yes/no. Use Well if needed.
+            <strong>B Complete the conversations. Then practice with a partner.</strong><br>
+            1 A What's this? B It's an eraser. A Oh, <span class="answer-line"></span>? B E-R-A-S-E-R.<br>
+            2 A Excuse me, can I <span class="answer-line"></span> your dictionary, please? B Sure. Here you go.<br>
+            3 A What's your phone number? B <span class="answer-line"></span>, please? A Yes. What's your phone number?
         </div>
 
-        <h2>Lesson D: Reading & writing – Average American</h2>
-        <p><strong>Reading:</strong> In a lifetime, an American works 90,000 hours, sleeps 24 years, watches TV for 12 years, spends 2.5 years on the phone.</p>
-        <div class="exercise">
-            ✍️ <strong>Writing task:</strong> Write an e‑mail about your partner's average week. Use capital letters and periods.<br>
-            Example: "On average, I study 10 hours a week. I use my cell phone 5 times a day."
-        </div>
-        <div class="vocab-card">
-            🖍️ <strong>Vocabulary notebook: Verbs, verbs, verbs</strong> – draw simple pictures: read the newspaper, exercise, watch TV, do homework.
-        </div>
-        <div class="page-marker">Student's Book pages 40–49 | Free talk: Interesting facts class survey.</div>
-    </div>
-
-    <!-- ============== TOUCHSTONE CHECKPOINT + WORKBOOK (COMPLETE EXERCISES) ============= -->
-    <div class="unit-block">
-        <h2>📝 Touchstone Checkpoint (Units 1–3)</h2>
-        <div class="grid-2col">
-            <div class="grammar-chart">
-                <strong>Grammar review</strong><br>
-                ✔️ be: I'm, you're, he's, they're<br>
-                ✔️ this/these, plurals, a/an<br>
-                ✔️ possessives: my, his, her, our, their<br>
-                ✔️ simple present (Unit 4)
-            </div>
-            <div class="strategy-note">
-                <strong>Conversation strategies review</strong><br>
-                ✔️ How about you?<br>
-                ✔️ Asking for help: "What's the word for this?"<br>
-                ✔️ Showing interest: "Really?" + echo questions<br>
-                ✔️ Saying more than yes/no, using Well
-            </div>
+        <!-- Page 26 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 26</div>
+        <h2>2 Strategy plus: Common expressions and responses</h2>
+        <div class="strategy-note">
+            Here are some responses to <em>Thank you</em> and <em>I'm sorry</em>:<br>
+            When people say... / You can say...<br>
+            Thank you. → You're welcome.<br>
+            Thanks. → Sure.<br>
+            I'm sorry. I don't know. → That's OK. Thanks anyway.
         </div>
         <div class="exercise">
-            ✅ <strong>Self-check:</strong> Rate grammar (20–100%), vocabulary, conversation strategies. Review lessons: 1B, 2C, 3D, 4C.
+            <strong>Circle the correct response. Then practice with a partner.</strong><br>
+            1 A Can I borrow your pen, please? B <u>Sure</u> / I don't know. A Thanks. B Thanks anyway. / <u>You're welcome</u>.<br>
+            2 A You're late. B <u>I'm sorry</u>. / Thanks. A <u>That's OK</u>.<br>
+            3 A What's the word for this? B I don't know. Sorry. A Sure. / <u>That's OK</u>. What about this? B I don't know. A OK. <u>Thanks anyway</u>. / You're welcome.
         </div>
-    </div>
 
-    <!-- ========== WORKBOOK PAGES – ALL EXERCISES (condensed but complete tasks) ========= -->
-    <div class="workbook-unit">
-        <h2>📓 Workbook – Foundation Level 1 (full practice)</h2>
-        <div class="grid-2col">
-            <div class="exercise">
-                <strong>Unit 1 Workbook: All about you</strong><br>
-                ✏️ A: Complete conversation: "A: Hello. I'm Jack. B: ______. Nice to meet you."<br>
-                ✏️ Numbers crossword: two × three = six ; ten ÷ two = _____.<br>
-                ✏️ Personal info form: first name, last name, phone, e‑mail, teacher.
-            </div>
-            <div class="exercise">
-                <strong>Unit 2 Workbook: In class</strong><br>
-                📍 Label classroom items: board, clock, wastebasket, CD player, posters.<br>
-                ✏️ Where are the dictionaries? They're on the floor. (Complete with: in / on / under / next to).<br>
-                ✏️ Missing apostrophes: "Where's the teacher's desk?" / "students' papers".
-            </div>
+        <h2>3 Listening and speaking: Following instructions</h2>
+        <div class="exercise">
+            <strong>A Match the pictures with the instructions. Then listen to the conversations, and check your answers.</strong><br>
+            a. Listen to the conversation.<br>
+            b. Answer the questions on page 9.<br>
+            c. Turn to page 7, and look at Exercise 1.<br>
+            d. Write the word eraser in your notebook.
         </div>
-        <div class="grid-2col">
-            <div class="exercise">
-                <strong>Unit 3 Workbook: Favorite people</strong><br>
-                👪 Family tree sentences: David is Paul's _____. Emily is Josh's _____.<br>
-                ✏️ Unscramble: "What are your parents' names?" / "How old is your grandfather?"<br>
-                ⭐ Write questions for answers: "Her mother is Gwen Russell." → "Who's her mother?"
-            </div>
-            <div class="exercise">
-                <strong>Unit 4 Workbook: Everyday life</strong><br>
-                ⏰ Complete with simple present: "Kathy _______ (get up) early. Her son _______ (not / get up) early."<br>
-                ✔️ True/False reading: "Americans go out every night after work." → False.<br>
-                ✍️ Write an e‑mail about your TV‑watching habits.
-            </div>
+        <div class="exercise">
+            <strong>B Pair work:</strong> Give and follow four instructions. Ask for help if you need it.<br>
+            A: Look at the picture on page 8.<br>
+            B: Can you repeat that, please?<br>
+            A: Sure. Look at the picture on page 8.
         </div>
+
+        <h2>4 Free talk: What do you remember?</h2>
+        <p>See Free talk 2 at the back of the book for more speaking practice.</p>
+
+        <!-- Page 27 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 27</div>
+        <h2>Vocabulary notebook</h2>
+        <p>1 Label the things on the desk.</p>
+        <p>2 Now make lists of your things.</p>
+        <h3>On your own</h3>
+        <p>Find a magazine with pictures of things. Label the pictures. How many words can you label?</p>
+
+        <!-- Page 28 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 28</div>
+        <div class="unit-block" id="unit3">
+            <div class="unit-title">⭐ Unit 3 · Favorite people</div>
+            <p>In Unit 3, you learn how to ...<br>use <em>my</em>, <em>your</em>, <em>his</em>, <em>her</em>, <em>our</em>, and <em>their</em>.<br>use the verb <em>be</em> in information questions.<br>talk about your favorite celebrities, friends, and family.<br>show interest in a conversation.<br>use <em>Really?</em> to show interest or surprise.</p>
+            <p>Before you begin ... Match the pictures with the sentences.<br>He's a singer. They're soccer players. She's an actor. He's an artist.</p>
+        </div>
+
+        <!-- Page 29 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 29</div>
+        <h2>1 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Sandra:</strong> I love these shows about celebrities. Hmm. Who's that guy? Oh, look. It's Sean Penn. He's so good-looking. His new movie is great. Oh, and there's Norah Jones. She's my favorite singer. Her voice is amazing. And look — the Williams sisters, my favorite tennis players. Their matches are always exciting. You're a tennis fan, right? John? ... John? Wake up!
+        </div>
+        <p>A Listen. Sandra is watching TV with John. Is the show interesting for John?</p>
+        <div class="exercise">
+            <strong>B Can you complete the sentences? Use the information above to help you.</strong><br>
+            1. Sean Penn is an actor. <span class="answer-line"></span> movies are very good.<br>
+            2. Norah Jones is a famous singer. <span class="answer-line"></span> new video is great.<br>
+            3. The Williams sisters are tennis players. <span class="answer-line"></span> matches are always great.
+        </div>
+
+        <!-- Page 30 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 30</div>
+        <h2>2 Grammar: Be in statements; possessive adjectives</h2>
+        <div class="grammar-chart">
+            I'm a Sean Penn fan. / You're a tennis fan. / He's an actor. / She's a famous singer. / We're Giants fans. / They're tennis players.<br><br>
+            My favorite actor is Sean Penn. / Your favorite sport is tennis. / His new movie is great. / Her voice is amazing. / Our favorite team is the Giants. / Their matches are exciting.
+        </div>
+        <div class="exercise">
+            <strong>Circle the correct words to complete the conversations. Then practice with a partner.</strong><br>
+            1. A <u>I'm</u> / My a Sting fan. B Yeah, he's / <u>his</u> music is amazing. A You know, <u>he's</u> / his real name is Gordon Matthew Sumner.<br>
+            2. A I'm / <u>My</u> favorite band is Black Eyed Peas. B Oh, they're / <u>their</u> very good. A You know, they're / <u>their</u> new CD is out now.<br>
+            3. A Nicole Kidman's new movie is really great. B Yeah? She's / <u>Her</u> movies are always good. A I know. <u>She's</u> / Her my favorite actor.<br>
+            4. A What's you're / <u>your</u> favorite show? B I'm / <u>My</u> favorite show? Friends. A Yeah. It's we're / <u>our</u> favorite show, too. In our family, <u>we're</u> / our all Friends fans.
+        </div>
+
+        <h2>3 Talk about it: My favorite celebrities</h2>
+        <p>Write the names of your favorite celebrities below. Then talk about them with a partner.<br>"My favorite actor is Johnny Depp. He's so good-looking. His new movie is great."</p>
+
+        <!-- Page 31 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 31</div>
+        <h2>1 Building vocabulary</h2>
+        <p>A Listen and say the sentences. Do you have friends like these? Tell the class.</p>
+        <p>B How many words can you think of to describe people you know? Complete the chart. Then tell a partner.</p>
+
+        <h2>2 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Dana:</strong> So, how's your new job? Are you busy?<br>
+            <strong>Tim:</strong> Yes. It's hard work, you know. I'm tired.<br>
+            <strong>Dana:</strong> Really? What are your co-workers like? Are they nice?<br>
+            <strong>Tim:</strong> Yes, they are. They're really friendly.<br>
+            <strong>Dana:</strong> Great. And is your boss OK?<br>
+            <strong>Tim:</strong> She is, yeah. She's nice. Um ... she's not very strict.<br>
+            <strong>Dana:</strong> Good, because you're late for work.
+        </div>
+        <div class="exercise">
+            <strong>B Can you complete these questions and answers? Use your own ideas. Then compare with a partner.</strong><br>
+            1 A How's your new teacher? B <span class="answer-line"></span> she <span class="answer-line"></span>?<br>
+            2 A What about your classmates? B <span class="answer-line"></span> they <span class="answer-line"></span>?<br>
+            3 A And what's class like? B <span class="answer-line"></span> it <span class="answer-line"></span>?
+        </div>
+
+        <!-- Page 32 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 32</div>
+        <h2>3 Grammar: Yes-No questions and answers; negatives</h2>
+        <div class="grammar-chart">
+            Am I late? Yes, you are. No, you're not. You're not late.<br>
+            Are you busy? Yes, I am. No, I'm not. I'm not busy.<br>
+            Is he tired? Yes, he is. No, he's not. He's not tired.<br>
+            Is she strict? Yes, she is. No, she's not. She's not strict. (My boss isn't strict.)<br>
+            Is it hard work? Yes, it is. No, it's not. It's not hard work.<br>
+            Are we late? Yes, we are. No, we're not. We're not late.<br>
+            Are they nice? Yes, they are. No, they're not. They're not nice. (My co-workers aren't nice.)
+        </div>
+        <div class="in-conversation">
+            ✨ <strong>In conversation:</strong> People use <em>'s not</em> and <em>'re not</em> after pronouns. <em>She's not strict. They're not nice.</em><br>
+            <em>Isn't</em> and <em>aren't</em> often follow nouns. <em>My boss isn't strict. My co-workers aren't nice.</em>
+        </div>
+        <div class="exercise">
+            <strong>Write yes-no questions. Then write true answers. Ask and answer the questions with a partner.</strong><br>
+            1. you / shy ? <em>Are you shy? Yes, I am.</em><br>
+            2. this class / easy ? <span class="answer-line"></span><br>
+            3. the teacher / strict ? <span class="answer-line"></span><br>
+            4. the students in this class / lazy ? <span class="answer-line"></span><br>
+            5. your neighbors / nice ? <span class="answer-line"></span><br>
+            6. your friends / outgoing ? <span class="answer-line"></span>
+        </div>
+
+        <h2>4 Speaking naturally: Is he...? or Is she...?</h2>
+        <p>/ziy/ Is he a student? &nbsp; /ʃiy/ Is she a student?</p>
+        <p>A Listen and repeat the questions above. Notice the pronunciation of <em>Is he...?</em> and <em>Is she...?</em></p>
+        <p>B Listen. Do you hear <em>Is he...?</em> or <em>Is she...?</em> Circle he or she.</p>
+
+        <!-- Page 33 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 33</div>
+        <h2>1 Building language</h2>
+        <div class="conversation">
+            🎧 <strong>Akemi:</strong> So, who's this?<br>
+            <strong>Erica:</strong> My grandma. And this is my grandpa. He's a nice man. He's seventy-eight now.<br>
+            <strong>Akemi:</strong> Really? And how old is your grandmother?<br>
+            <strong>Erica:</strong> She's seventy-two.<br>
+            <strong>Akemi:</strong> She's very pretty. What's her name?<br>
+            <strong>Erica:</strong> Angela.<br>
+            <strong>Akemi:</strong> That's a nice name. So, where are your grandparents from originally?<br>
+            <strong>Erica:</strong> They're from Texas.
+        </div>
+        <div class="exercise">
+            <strong>B Can you put the words in the correct order to make questions? Then ask and answer the questions with a partner.</strong><br>
+            1. are / from / parents / originally / where / your ? <span class="answer-line"></span><br>
+            2. your / is / old / father / how ? <span class="answer-line"></span><br>
+            3. names / your / what / grandparents / are ? <span class="answer-line"></span>
+        </div>
+
+        <h2>3 Grammar: Information questions with be</h2>
+        <div class="grammar-chart">
+            How are you? I'm fine.<br>
+            Where are you from? I'm from Florida.<br>
+            How old are you? Twenty-three.<br>
+            Who's this? It's my grandmother.<br>
+            Where's she from? She's from Texas.<br>
+            What's she like? She's very smart.<br>
+            How are your parents? They're fine, thanks.<br>
+            Where are they today? They're at home.<br>
+            What are their names? Linda and Carlos.
+        </div>
+
+        <h2>4 Vocabulary notebook: All in the family</h2>
+        <p>See page 30 for a new way to log and learn vocabulary.</p>
+
+        <!-- Page 34 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 34</div>
+        <h2>1 Conversation strategy: Showing interest</h2>
+        <div class="strategy-note">
+            <strong>A Can you add a question to show you're interested in the conversation?</strong><br>
+            A: Here's a picture of my best friend. B: Really?
+        </div>
+        <div class="conversation">
+            🎧 <strong>Mark:</strong> This is a great photo. Who is it?<br>
+            <strong>Eve:</strong> It's a friend of mine — Natasha.<br>
+            <strong>Mark:</strong> Oh? Where's she from?<br>
+            <strong>Eve:</strong> She's from London, but she's here in Miami now.<br>
+            <strong>Mark:</strong> London? Wow. Is she a student here?<br>
+            <strong>Eve:</strong> No, she's an artist — a painter. She's an amazing woman.<br>
+            <strong>Mark:</strong> A painter? Really? What are her paintings like?<br>
+            <strong>Eve:</strong> They're wonderful. Look.<br>
+            <strong>Mark:</strong> Oh. Interesting. ... Um, what is it?
+        </div>
+        <div class="strategy-note">
+            💬 Notice how Mark shows interest. He repeats words and asks questions. Find examples in the conversation.<br>
+            "She's from London, but she's here in Miami now." "London? Wow. Is she a student here?"
+        </div>
+        <div class="exercise">
+            <strong>B Complete the responses. Then practice with a partner.</strong><br>
+            1 A My friend Gemma is a singer. B A singer? <span class="answer-line"></span>? Is she in a band?<br>
+            2 A My best friend's name is Vlad. B <span class="answer-line"></span>? Where's he from?
+        </div>
+
+        <!-- Page 35 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 35</div>
+        <h2>2 Strategy plus: Really?</h2>
+        <div class="strategy-note">
+            People say <strong>Really?</strong> to show they are interested or surprised.<br>
+            <em>In conversation... Really is one of the top 50 words.</em>
+        </div>
+        <div class="exercise">
+            <strong>Pair work: Practice the conversations. Then ask the questions again. Give your own answers.</strong><br>
+            1 A Where are you from? B San Diego. A San Diego? Really? I'm from Los Angeles.<br>
+            2 A What's your name? B Ryan. A Really? My best friend's name is Ryan.<br>
+            3 A Who's your best friend? B Her name's Brittany. A Really? What's she like? B She's very nice.
+        </div>
+
+        <h2>3 Listening and speaking: Friends</h2>
+        <div class="exercise">
+            <strong>A Listen to these people talk about their friends. Write the missing words.</strong><br>
+            1 "Amy is a friend of mine from the neighborhood. She's about <span class="answer-line"></span> years old. Olivia is her <span class="answer-line"></span>. She's the same age as my <span class="answer-line"></span>."<br>
+            2 "Anton's a friend of mine. He's my <span class="answer-line"></span>. He's around my age. He's a <span class="answer-line"></span> guy — a fun guy."<br>
+            3 "Gary is a friend from <span class="answer-line"></span>. He's very <span class="answer-line"></span>. His <span class="answer-line"></span>'s name is Gloria."
+        </div>
+
+        <h2>4 Free talk: Talk about your favorite people.</h2>
+        <p>See Free talk 3 for more speaking practice.</p>
+
+        <!-- Page 36 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 36</div>
+        <h2>1 Complete the family tree using the words in the box.</h2>
+        <p>2 Now make your own family tree. Write notes about each person.</p>
+        <h3>On your own</h3>
+        <p>Make a photo album of your family and friends. Write sentences about them in English.</p>
+
+        <!-- Page 37 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 37</div>
+        <h2>1 Can you complete this conversation?</h2>
+        <div class="conversation">
+            <strong>Angel:</strong> Hi, Carla. How are you?<br>
+            <strong>Carla:</strong> <span class="answer-line"></span> fine, thanks. Is <span class="answer-line"></span> your car?<br>
+            <strong>Angel:</strong> No. <span class="answer-line"></span> my brother's car. <span class="answer-line"></span> on vacation.<br>
+            <strong>Carla:</strong> Cool. So, where is <span class="answer-line"></span> brother?<br>
+            <strong>Angel:</strong> He and <span class="answer-line"></span> wife are in Miami, with her parents. <span class="answer-line"></span> family <span class="answer-line"></span> from Miami, you know.<br>
+            <strong>Carla:</strong> Oh, right. So, are <span class="answer-line"></span> children in Miami, too?<br>
+            <strong>Angel:</strong> No. <span class="answer-line"></span> with my parents and me. <span class="answer-line"></span> house is crazy. <span class="answer-line"></span> all so busy with the kids.<br>
+            <strong>Carla:</strong> I bet <span class="answer-line"></span> tired.<br>
+            <strong>Angel:</strong> Yeah, I really am. ... Uh-oh, I'm late!<br>
+            <strong>Carla:</strong> OK. See you later.<br>
+            <strong>Angel:</strong> Wait! Where are my car keys? I mean, where are <span class="answer-line"></span> brother's car keys?<br>
+            <strong>Carla:</strong> Are <span class="answer-line"></span> his keys? Under the car? Here you go.<br>
+            <strong>Angel:</strong> Oh, thanks, Carla. You're wonderful!
+        </div>
+
+        <h2>2 Unscramble the questions.</h2>
+        <p>1. full / teacher's / is / our / name / What ? → What is our teacher's full name?<br>
+        2. phone / the / What's / number / school's ? → <span class="answer-line"></span><br>
+        3. class / hard / our / English / Is ? → <span class="answer-line"></span><br>
+        4. this class / students / Are / smart / the / in ? → <span class="answer-line"></span><br>
+        5. today / not / Who's / in class ? → <span class="answer-line"></span><br>
+        6. books / are / Where / your ? → <span class="answer-line"></span></p>
+
+        <h2>3 How many words do you remember?</h2>
+        <p>Complete the charts. Then make questions to ask and answer with a partner.</p>
+        <table>
+            <tr><th>classroom items</th><th>locations in class</th></tr>
+            <tr><td>clock</td><td>on the wall</td></tr>
+        </table>
+        <table>
+            <tr><th>family and other people</th><th>words to describe people</th></tr>
+            <tr><td>neighbors</td><td>friendly</td></tr>
+        </table>
+
+        <!-- Page 38 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 38</div>
+        <h2>4 Do you know these expressions?</h2>
+        <div class="conversation">
+            <strong>Anna:</strong> Oh, no! Where's my pen? Excuse me. Can I borrow your pen?<br>
+            <strong>Michel:</strong> Sure. Here you go.<br>
+            <strong>Anna:</strong> <span class="answer-line"></span> (Thank you)<br>
+            <strong>Michel:</strong> You're welcome.<br>
+            <strong>Anna:</strong> Hmm. <span class="answer-line"></span> (How do you spell neighbor?)<br>
+            <strong>Michel:</strong> Neighbor? I'm sorry. I don't know.<br>
+            <strong>Anna:</strong> OK. <span class="answer-line"></span> (Thanks anyway)<br>
+            <strong>Michel:</strong> Wait. Here's my dictionary.<br>
+            <strong>Anna:</strong> Oh, thanks.<br>
+            <strong>Michel:</strong> <span class="answer-line"></span> (You're welcome)<br>
+            <strong>Anna:</strong> Oh. This is a French-English dictionary.<br>
+            <strong>Michel:</strong> Yes. I'm from France.<br>
+            <strong>Anna:</strong> France? <span class="answer-line"></span> (Really?) Uh-oh! My coffee! I'm sorry.<br>
+            <strong>Michel:</strong> <span class="answer-line"></span> (That's OK)<br>
+            <strong>Anna:</strong> By the way, I'm Anna.<br>
+            <strong>Michel:</strong> I'm Michel. <span class="answer-line"></span> (Nice to meet you)<br>
+            <strong>Anna:</strong> Oh, no. I'm late for work. Sorry. Bye.<br>
+            <strong>Michel:</strong> Thanks. You too. Uh-oh. Where's my pen? And my dictionary?
+        </div>
+
+        <h2>5 Who has the same answer?</h2>
+        <p>Class activity: Complete the questions and write your answers. Then ask your classmates the questions.<br>
+        1. What's your mother's first name? <span class="answer-line"></span><br>
+        2. <span class="answer-line"></span> old are your parents? <span class="answer-line"></span><br>
+        3. <span class="answer-line"></span> is your family from originally? <span class="answer-line"></span><br>
+        4. <span class="answer-line"></span> your best friend like? <span class="answer-line"></span><br>
+        5. What's your best friend <span class="answer-line"></span> name? <span class="answer-line"></span><br>
+        6. <span class="answer-line"></span> your favorite singer? <span class="answer-line"></span><br>
+        7. <span class="answer-line"></span> your favorite TV show? <span class="answer-line"></span></p>
+
         <div class="progress-chart">
-            📊 <strong>Progress charts for each unit (self-assessment)</strong><br>
-            ☑️ Unit 1: I can make statements with I'm/you're/we're; ask What's your name?; use How about you?<br>
-            ☑️ Unit 2: I can use he's/she's/they're; ask Where's the teacher's desk?; borrow items politely.<br>
-            ☑️ Unit 3: I can use possessive adjectives; ask information questions; respond with Really?<br>
-            ☑️ Unit 4: I can use simple present yes‑no questions; answer with more than yes/no; use Well.
+            <strong>Self-check:</strong> How sure are you about these areas? Circle the percentages.<br>
+            grammar: 20% 40% 60% 80% 100%<br>
+            vocabulary: 20% 40% 60% 80% 100%<br>
+            conversation strategies: 20% 40% 60% 80% 100%<br><br>
+            <strong>Study plan:</strong> What do you want to review? Circle the lessons.<br>
+            grammar: 1B 1C 2A 2B 2C 3A 3B 3C<br>
+            vocabulary: 1A 1C 2A 2B 2C 3A 3B 3C<br>
+            conversation strategies: 1D 2D 3D
         </div>
-    </div>
 
-    <!-- Free talk extended and vocabulary lab -->
-    <div class="unit-block">
-        <h2>💬 Free talk & extra speaking practice</h2>
+        <!-- Page 39 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 39</div>
+        <div class="unit-block" id="unit4">
+            <div class="unit-title">🌅 Unit 4 · Everyday life</div>
+            <p>In Unit 4, you learn how to ...<br>- use simple present statements, yes-no questions, and short answers.<br>- talk about your daily and weekly routines.<br>- answer more than yes or no to be friendly.<br>- use <em>Well</em> to get time to think.</p>
+            <p>Find these activities in the pictures. Which activities do you do every day? Check (✓) the boxes.<br>do homework &nbsp; work &nbsp; exercise &nbsp; watch TV</p>
+        </div>
+
+        <!-- Page 40 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 40</div>
+        <div class="grid-pattern">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+        </div>
+
+        <!-- Page 41 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 41</div>
+        <div class="grid-pattern">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+        </div>
+
+        <!-- Page 42 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 42</div>
+        <h2>2 Grammar: Simple present statements</h2>
+        <div class="grammar-chart">
+            I eat breakfast. / I don't eat lunch.<br>
+            You have coffee. / You don't have tea.<br>
+            We get up late. / We don't get up early.<br>
+            They read the paper. / They don't read books.<br>
+            He listens to the radio. / He doesn't listen to CDs.<br>
+            She watches TV. / She doesn't watch videos.<br>
+            <em>don't (= do not) &nbsp; doesn't (= does not)</em><br><br>
+            <strong>Verb endings: he, she, it</strong><br>
+            get → gets / watch → watches / play → plays / study → studies / have → has / do → does
+        </div>
+        <div class="in-conversation">
+            ✨ <strong>In conversation:</strong> <em>Don't</em> and <em>doesn't</em> are more common than <em>do not</em> and <em>does not</em>.
+        </div>
+        <div class="exercise">
+            <strong>A Complete these sentences.</strong><br>
+            1. I <u>don't like</u> (not / like) mornings.<br>
+            2. In my family, we <span class="answer-line"></span> (have) breakfast together.<br>
+            3. My mother <span class="answer-line"></span> (not / watch) TV.<br>
+            4. My father <span class="answer-line"></span> (have) coffee.<br>
+            5. My parents <span class="answer-line"></span> (talk) a lot.<br>
+            6. I <span class="answer-line"></span> (not / read) the newspaper.<br>
+            7. I <span class="answer-line"></span> (check) my e-mail after breakfast.<br>
+            8. My best friend <span class="answer-line"></span> (not / get up) early in the morning.
+        </div>
+        <div class="exercise">
+            <strong>B Now write four sentences about your mornings. Compare with a partner.</strong><br>
+            I don't eat breakfast.<br>
+            A: I don't eat breakfast. How about you? B: I have breakfast every morning.
+        </div>
+
+        <h2>3 Speaking naturally: -s endings of verbs</h2>
+        <p>/s/ likes &nbsp; /z/ listens &nbsp; /ɪz/ relaxes</p>
+        <p>A Listen and repeat the words above. Notice the verb endings.</p>
+        <p>B Listen to the questions. Do the verbs end in /s/, /z/, or /ɪz/?</p>
+
+        <!-- Page 43 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 43</div>
+        <h2>1 Building vocabulary</h2>
+        <p>A Listen and say the expressions. Then check (✓) the things you do every week. Can you add more activities?</p>
+        <p>B For each day of the week, think of one thing you usually do. Then tell the class.<br>"On Mondays, I play soccer."</p>
+
+        <h2>2 Building language</h2>
+        <p>A Look at the questionnaire. Can you complete the last two questions? Then listen and check (✓) the answers that are true for you.</p>
+        <table>
+            <tr><th colspan="3">Do you have a weekly routine?</th><th>Yes, I do.</th><th>No, I don't.</th></tr>
+            <tr><td>1.</td><td colspan="2">Do you play sports every week?</td><td>☐</td><td>☐</td></tr>
+            <tr><td>2.</td><td colspan="2">Do you take any lessons or classes?</td><td>☐</td><td>☐</td></tr>
+            <tr><td>3.</td><td colspan="2">Do you check your e-mail on the weekends?</td><td>☐</td><td>☐</td></tr>
+            <tr><td>4.</td><td colspan="2">Do you make a lot of phone calls on Saturdays?</td><td>☐</td><td>☐</td></tr>
+            <tr><td>5.</td><td colspan="2"><span class="answer-line"></span> you <span class="answer-line"></span> shopping on Sundays?</td><td>☐</td><td>☐</td></tr>
+            <tr><td>6.</td><td colspan="2"><span class="answer-line"></span> you <span class="answer-line"></span> the laundry every week?</td><td>☐</td><td>☐</td></tr>
+        </table>
+        <div class="exercise">
+            <strong>B Pair work:</strong> Ask and answer all the questions. Can you give more information?<br>
+            "Do you play sports every week?" "Yes, I do. I play tennis on Saturdays."
+        </div>
+
+        <!-- Page 44 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 44</div>
+        <h2>3 Grammar: Yes-No questions and short answers</h2>
+        <div class="grammar-chart">
+            Do you go to a class in the evening? Yes, I do. / No, I don't.<br>
+            Does your mother work on the weekends? Yes, she does. / No, she doesn't.<br>
+            Do you and your friends play sports after class? Yes, we do. / No, we don't.<br>
+            Do your friends make phone calls at night? Yes, they do. / No, they don't.
+        </div>
+        <div class="exercise">
+            <strong>A Complete the questions. Compare with a partner.</strong><br>
+            1. <span class="answer-line"></span> you eat a lot of snacks every day?<br>
+            2. <span class="answer-line"></span> you make a lot of phone calls before breakfast?<br>
+            3. <span class="answer-line"></span> you clean the house on the weekends?<br>
+            4. <span class="answer-line"></span> you <span class="answer-line"></span> your homework late at night?<br>
+            5. <span class="answer-line"></span> you <span class="answer-line"></span> TV after dinner?<br>
+            6. <span class="answer-line"></span> your friends <span class="answer-line"></span> their e-mail every day?<br>
+            7. <span class="answer-line"></span> your teacher <span class="answer-line"></span> work in the evening?<br>
+            8. <span class="answer-line"></span> your best friend <span class="answer-line"></span> a class on Saturdays?
+        </div>
+
+        <h2>4 Survey</h2>
+        <p>A Find people who do these things. Write their names in the chart. Who has a busy week?<br>Find someone who... belongs to a club / plays on a team / works on the weekends / has breakfast in the car / studies English before breakfast / gets up early on Sundays.</p>
+        <p>B Tell the class something interesting about a classmate.</p>
+
+        <h2>5 Vocabulary notebook: Verbs, verbs, verbs</h2>
+        <p>See page 42 for a new way to log and learn vocabulary.</p>
+
+        <!-- Page 45 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 45</div>
+        <h2>1 Conversation strategy: Saying more than yes or no</h2>
         <div class="strategy-note">
-            🎭 <strong>Meet a celebrity</strong> – role-play introducing celebrities. <br>
-            🧠 <strong>What do you remember?</strong> Pair memory game about classroom objects. <br>
-            👥 <strong>Talk about favorite people</strong> – describe family, friends, score points. <br>
-            📊 <strong>Interesting facts survey</strong> – compare daily habits with classmates.
+            <strong>A Can you answer this question with more than yes or no?</strong><br>
+            A: Do you live around here? B: Yes, <span class="answer-line"></span> No, <span class="answer-line"></span>
         </div>
-        <div class="vocab-card">
-            📌 <strong>Vocabulary notebook ideas from every unit:</strong><br>
-            - Meetings & greetings (Unit 1) : write conversation starters.<br>
-            - My things (Unit 2) : link objects with locations.<br>
-            - All in the family (Unit 3) : draw family tree with relationships.<br>
-            - Verbs, verbs, verbs (Unit 4) : illustrate 6 routine actions.
+        <div class="conversation">
+            Notice how Ray answers Tina's questions. He says more than yes or no. He wants to be friendly.<br>
+            "Oh, are you a student?" "Yes. I'm a law student."
         </div>
-    </div>
+        <div class="exercise">
+            <strong>B Match the questions and answers. Then ask and answer the questions with a partner. Give your own answers, saying more than yes or no.</strong><br>
+            1. Do you live around here? → f. No, I live near the beach.<br>
+            2. Are you from here originally? → d. No, I'm from Rio originally.<br>
+            3. Do you have a part-time job? → b. Yeah, I work at a restaurant on the weekends.<br>
+            4. Do you like sports? → a. Yeah. Well, I play on a softball team.<br>
+            5. Do you have brothers and sisters? → e. No, I'm an only child.<br>
+            6. Do your parents live around here? → c. No, they live in a small town near the ocean.
+        </div>
 
-    <!-- Final grammar reference and authors note -->
-    <footer>
-        <hr>
-        <p><strong>Touchstone Level 1 – Complete Student's Book & Workbook integration.</strong> Based on Cambridge International Corpus of North American English.<br>
-        All grammar charts, conversation strategies, vocabulary notebooks, and exercises adapted from original. <br>
-        © McCarthy, McCarten, Sandiford. This digital edition for comprehensive study – includes every required section: Getting started, Grammar, Speaking naturally, Building language, In conversation, Free talk, Writing, Progress checks.</p>
-        <p>⭐ “Using Touchstone, you can develop confidence to understand real-life English and express yourself clearly.”</p>
-        <p>📖 <strong>On your own tasks:</strong> label magazine pictures, make a photo album, write daily routine labels around your house.</p>
-    </footer>
-</div>
+        <!-- Page 46 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 46</div>
+        <h2>2 Strategy plus: Well</h2>
+        <div class="strategy-note">
+            Start your answer with <strong>Well</strong> if you need time to think, or if your answer is not a simple yes or no.<br>
+            <em>Well, I'm from Chicago originally.</em><br>
+            <em>In conversation: Well is one of the top 50 words.</em>
+        </div>
+        <div class="exercise">
+            <strong>Pair work: Practice the conversations. Then ask the questions again. Give your own answers.</strong><br>
+            1 A What are your neighbors like? B Well, they're very noisy. They like loud music.<br>
+            2 A Do you see your family a lot? B Well, not really. They don't live around here.<br>
+            3 A Do you study every day? B Well, not every day. I go out with friends on the weekends.
+        </div>
+
+        <h2>3 Listening and speaking: What's the question?</h2>
+        <p>A Listen to people answer the questions below. Which question is each person answering? Number the questions.</p>
+        <p>B Pair work: Ask and answer the questions above. Be sure to say more than yes or no in your answers. Use <em>Well</em> if you need to.</p>
+
+        <!-- Page 47 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 47</div>
+        <h2>1 Reading</h2>
+        <p>A How much time do you spend on these activities every day? Tell the class.<br>on the phone / two hours / at work or at school / in bed / in the car, or on the bus or train</p>
+        <p>B Read the article. How many daily activities does it talk about?</p>
+        <div class="exercise">
+            <p>How many hours do you spend in bed? Six or seven hours a night maybe? And how many hours do you spend in front of the TV every week? Nine or ten? That's not a lot, is it? Well, think again. Add together all the hours you spend on these activities in a lifetime, and the total numbers are surprising.</p>
+            <p>In an average lifetime, an American works over 90,000 hours, walks an amazing 22,000 kilometers (14,000 miles), and spends three and a half years eating.</p>
+            <p>Do you call your friends a lot? An average American talks on the telephone for two and a half years. On average, Americans sleep for 24 years and watch TV for 12 years. That's 36 years — about half a lifetime — in bed or on the couch!</p>
+        </div>
+        <div class="exercise">
+            <strong>C Read the article again, and complete the sentences.</strong><br>
+            In a lifetime, an average American spends ...<br>
+            1. <span class="answer-line"></span> hours at work.<br>
+            2. <span class="answer-line"></span> years on the telephone.<br>
+            3. <span class="answer-line"></span> years in bed.<br>
+            4. <span class="answer-line"></span> years in front of the TV.
+        </div>
+
+        <!-- Page 48 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 48</div>
+        <h2>2 Listening: Teen habits</h2>
+        <p>A Read about the habits of an average American teenager. Then listen to Christine talk about her habits. Complete the chart about Christine.</p>
+        <table>
+            <tr><th>An average teenager...</th><th>Christine...</th></tr>
+            <tr><td>drinks 16 cans of soda a week.</td><td>drinks about <span class="answer-line"></span> cans of soda a week.</td></tr>
+            <tr><td>eats dinner at home 3 times a week.</td><td>eats dinner at home <span class="answer-line"></span> times a week.</td></tr>
+            <tr><td>spends about 5 hours a month online.</td><td>spends about <span class="answer-line"></span> hours a month online.</td></tr>
+            <tr><td>watches TV 20 hours a week.</td><td>watches TV <span class="answer-line"></span> hours a week.</td></tr>
+        </table>
+
+        <h2>3 Writing and speaking: An average week</h2>
+        <p>A Complete the sentences. Then tell a partner. Take notes on your partner's activities.</p>
+        <p>B Write an e-mail message to a friend about your partner. Use your notes to help you.</p>
+        <p>C Group work: Take turns reading your messages aloud. Who has a different or surprising routine?</p>
+
+        <!-- Page 49 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 49</div>
+        <h2>Vocabulary notebook</h2>
+        <p>1 Label the pictures. Use a verb to describe each activity. (read the newspaper)<br>
+        2 Draw and label your own pictures of activities.<br>
+        3 Complete the chart with your everyday activities.</p>
+        <h3>On your own</h3>
+        <p>Write labels for the things you do every day. Put your labels around the house.</p>
+
+        <!-- Page 50 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 50</div>
+        <p style="text-align: center; font-size: 1.5rem;"><strong>ENG 101 &nbsp; General English &nbsp; Workbook &nbsp; Foundation Level 1</strong></p>
+
+        <!-- Page 51 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 51</div>
+        <p>1. All about you. 02 &nbsp; 2. In class. 10 &nbsp; 3. Favorite people. 18 &nbsp; 4. Everyday life. 26</p>
+
+        <!-- Page 52 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 52</div>
+        <h2>1 All about you</h2>
+        <h3>Lesson A: Hello and good-bye</h3>
+        <h4>Meetings and greetings — Vocabulary</h4>
+        <div class="exercise">
+            <strong>A Complete the conversations. Choose the correct response.</strong><br>
+            1. A Hello. B Hi. → <u>a. Hi.</u> &nbsp; b. Good-bye.<br>
+            2. A Hi. I'm Ted. B <span class="answer-line"></span> &nbsp; a. Hello, Ted. Nice to meet you. &nbsp; b. See you next week.<br>
+            3. A How are you? B <span class="answer-line"></span> &nbsp; a. I'm Kyle. &nbsp; b. I'm fine, thanks.<br>
+            4. A Good-bye. B <span class="answer-line"></span> &nbsp; a. See you later. &nbsp; b. Thanks.<br>
+            5. A Good night. B <span class="answer-line"></span> &nbsp; a. Hello. &nbsp; b. Bye. See you tomorrow.<br>
+            6. A Hi. How are you? B <span class="answer-line"></span> &nbsp; a. Good, thanks. How are you? &nbsp; b. Have a nice day.
+        </div>
+
+        <!-- Page 53 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 53</div>
+        <h4>B Complete the conversations.</h4>
+        <p>1. Jack: Hello. I'm Jack. Anna: <span class="answer-line"></span>. I'm Anna. Jack: <span class="answer-line"></span><br>
+        2. Sonia: Hi, Julie. How are you? Julie: Good. <span class="answer-line"></span>. Sonia: <span class="answer-line"></span>, thanks.<br>
+        3. Mike: <span class="answer-line"></span> Koji: Thanks. You too.<br>
+        4. Joan: <span class="answer-line"></span> Mary: Bye. <span class="answer-line"></span> tomorrow.</p>
+        <h4>C Complete the instant message.</h4>
+
+        <!-- Page 54 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 54</div>
+        <h3>1 My name's Michelle.</h3>
+        <p><strong>Vocabulary: Complete the conversation.</strong></p>
+        <p>A: Good morning. B: Good morning. A: How are you? B: I'm fine.<br>
+        A: What's your <span class="answer-line"></span> name? B: Michelle Browne.<br>
+        A: How do you spell your <span class="answer-line"></span> name? B: It's B-R-O-W-N-E.<br>
+        A: And what's your <span class="answer-line"></span> name? B: Jean.<br>
+        A: OK. How do you <span class="answer-line"></span> Jean? B: J-E-A-N.<br>
+        A: And are you Ms., Miss, or <span class="answer-line"></span>? B: Ms.<br>
+        A: Thank you. Have a nice day. B: Thanks. You too.</p>
+
+        <h3>2 Your personal information</h3>
+        <p>Complete the form. Use your own information.<br><strong>Touchstone English Classes</strong><br>Name: ___ first ___ middle ___ last<br>___ single ___ married<br>Class: ___ Room: ___<br>Teacher: ___</p>
+
+        <!-- Page 55 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 55</div>
+        <h3>3 Are we in the same class?</h3>
+        <div class="exercise">
+            <strong>A Complete the conversation. Write am or are. Use contractions 'm or 're where possible.</strong><br>
+            Receptionist: Hello. <span class="answer-line"></span> you here for an English class?<br>
+            Mi Young: Yes, I <span class="answer-line"></span>. I'm Mi Young.<br>
+            Receptionist: Mi Young Lee? You <span class="answer-line"></span> in Class C.<br>
+            Mi Young: Thank you.<br>
+            Sergio: Hi. <span class="answer-line"></span> I in Class C, too? I'm Sergio.<br>
+            Receptionist: Yes, you <span class="answer-line"></span>.<br>
+            Sergio: So we <span class="answer-line"></span> in the same class.<br>
+            Receptionist: Wait. <span class="answer-line"></span> you Sergio Rodrigues?<br>
+            Sergio: No, I <span class="answer-line"></span> not. I'm Sergio Lopes.<br>
+            Receptionist: Oh, you <span class="answer-line"></span> in Class D. You <span class="answer-line"></span> not in the same class.
+        </div>
+        <div class="exercise">
+            <strong>B Complete the conversation.</strong><br>
+            David: Hi. <span class="answer-line"></span> Julia Kim? Maria: No. I'm Maria Martinez.<br>
+            David: Hi, Maria. I'm David. Nice to meet you.<br>
+            Maria: <span class="answer-line"></span> here for a dance class? David: Yes. <span class="answer-line"></span> in the same class?<br>
+            Maria: Yes. We're in Class A. David: Oh, good.
+        </div>
+
+        <h3>4 About you</h3>
+        <p>Answer the questions. Use your own information.<br>1. Are you in an English class? <span class="answer-line"></span><br>2. Are you in a French class? <span class="answer-line"></span><br>3. How are you today? <span class="answer-line"></span><br>4. Are you and your friends in the same English class? <span class="answer-line"></span><br>5. Are you married? <span class="answer-line"></span></p>
+
+        <!-- Page 56 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 56</div>
+        <h3>1 What's the number?</h3>
+        <p>A Write the numbers.</p>
+        <div class="exercise">
+            <strong>B Complete the crossword puzzle.</strong><br>
+            Across: 1. two × three = six &nbsp; 3. two + eight = <span class="answer-line"></span> &nbsp; 4. ten ÷ two = <span class="answer-line"></span> &nbsp; 5. six - four = <span class="answer-line"></span> &nbsp; 6. three + six = <span class="answer-line"></span> &nbsp; 7. five × zero = <span class="answer-line"></span> &nbsp; 8. six + two = <span class="answer-line"></span><br>
+            Down: 1. ten - three = <span class="answer-line"></span> &nbsp; 2. eight - seven = <span class="answer-line"></span> &nbsp; 3. eight - five = <span class="answer-line"></span> &nbsp; 4. two × two = <span class="answer-line"></span>
+        </div>
+        <p>The letters spell a word. Write each letter in the correct box below to see the word.<br>1. C 3. H 5. N 7. E 9. U<br>2. O 4. O 6. T 8. S 10. T</p>
+
+        <!-- Page 57 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 57</div>
+        <h3>3 Here's your membership card.</h3>
+        <p>Look at Mark's student ID card. Write his answers in the conversation.</p>
+        <p>Lee: Hello. Are you a member of the club? Mark: No, I'm not.<br>
+        Lee: OK. Well, here's an application form. So, what's your last name? Mark: It's Brokaw. My last name's Brokaw.<br>
+        Lee: Thank you. And your first name? Mark: <span class="answer-line"></span><br>
+        Lee: What's your middle initial, please? Mark: <span class="answer-line"></span><br>
+        Lee: And what's your e-mail address? Mark: <span class="answer-line"></span><br>
+        Lee: Your phone number? Mark: <span class="answer-line"></span><br>
+        Lee: Are you an English student? Mark: <span class="answer-line"></span><br>
+        Lee: What's your teacher's name? Mark: <span class="answer-line"></span><br>
+        Lee: Thank you. Here's your membership card. Have a nice day.</p>
+
+        <h3>4 About you</h3>
+        <p>Grammar and vocabulary with your own information.<br>1. A What's your name? (your name) B <span class="answer-line"></span><br>2. A What's your telephone number? B <span class="answer-line"></span><br>3. A What's your e-mail address? B <span class="answer-line"></span><br>4. A What's your English teacher's name? B <span class="answer-line"></span></p>
+
+        <!-- Page 58 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 58</div>
+        <h3>1 Good evening.</h3>
+        <p>Complete the conversations with the expressions in the box. Use each expression only one time.<br>[Box: Good evening. Hi. How about you? How are you doing? Thank you. Yes. Pretty good. Hello. Nice to meet you. Good-bye. thanks. Yeah]</p>
+        <p>1. Sam: Hi, Ali. Ali: Hi, Sam. Sam: Good, thanks. How about you? Ali: <span class="answer-line"></span>. Sam: Am I late? Ali: <span class="answer-line"></span>, you are, but it's OK. Sam: Good. By the way, here's your book. Ali: Oh, <span class="answer-line"></span>.<br>
+        2. Joe: Good evening. Clerk: <span class="answer-line"></span>. What's your name, please? Joe: Joe Johnson. Clerk: Oh, yes. Mr. Johnson. Your room number is 10A. Here's your key. Joe: <span class="answer-line"></span>.<br>
+        3. Sally: Hello. My name's Sally. Kate: <span class="answer-line"></span>. I'm Kate. Are you here on business? Sally: <span class="answer-line"></span>, I am. Kate: No, I'm on vacation. Sally: Nice. Oh, here's a taxi. Kate: Bye.</p>
+
+        <!-- Page 59 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 59</div>
+        <h3>2 How are you doing?</h3>
+        <p>A Rewrite the conversation. Use less formal expressions for the underlined words.</p>
+        <p>A: Hi. How are you doing? B: <span class="answer-line"></span> A: <span class="answer-line"></span> B: <span class="answer-line"></span> A: <span class="answer-line"></span> B: <span class="answer-line"></span> A: <span class="answer-line"></span> B: <span class="answer-line"></span> A: <span class="answer-line"></span></p>
+        <p>B Number the lines of the conversation in the correct order. Then write the conversation.<br>
+        ___ Hi. ___ Yeah, me too. ___ OK. ___ Are you here for the concert? ___ How are you doing? <u>1</u> Hello. ___ Yeah, I am. How about you?<br>
+        A: Hello. B: <span class="answer-line"></span> A: <span class="answer-line"></span> B: <span class="answer-line"></span> A: <span class="answer-line"></span> B: <span class="answer-line"></span> A: <span class="answer-line"></span></p>
+
+        <div class="progress-chart">
+            <strong>Unit 1 Progress chart</strong><br>
+            ☑️ Grammar: make statements with I'm (not), you're (not), and we're (not) · ask questions with Are you...? · ask questions with What's...? · give answers with It's...<br>
+            ☑️ Vocabulary: say hello and good-bye in at least 4 different ways · talk about names in English · say numbers 0–10<br>
+            ☑️ Conversation: use How about you? · use everyday expressions in more formal and less formal situations
+        </div>
+
+        <!-- Page 60 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 60</div>
+        <h3>1 Where is everybody today?</h3>
+        <p>Grammar A Look at the pictures. Complete the sentences.</p>
+        <p>1. Bill is at the gym. He's not at home.<br>2. Jon and Karen <span class="answer-line"></span> at home. <span class="answer-line"></span> not in class.<br>3. Sun Yee <span class="answer-line"></span> in the cafeteria. <span class="answer-line"></span> late.<br>4. David <span class="answer-line"></span> on vacation. <span class="answer-line"></span> asleep.<br>5. Kate and Tess <span class="answer-line"></span> in class. <span class="answer-line"></span> not at the library.<br>6. Carmen <span class="answer-line"></span> at work. <span class="answer-line"></span> not sick.</p>
+        <p>B Complete the questions about the people in part A. Then answer the questions.<br>1. A <span class="answer-line"></span> is Bill at work? B No, he's not.<br>2. A <span class="answer-line"></span> Jon and Karen at home? B <span class="answer-line"></span><br>3. A <span class="answer-line"></span> Sun Yee at the gym? B <span class="answer-line"></span><br>4. A <span class="answer-line"></span> David asleep? B <span class="answer-line"></span><br>5. A <span class="answer-line"></span> Kate and Tess on vacation? B <span class="answer-line"></span><br>6. A <span class="answer-line"></span> Carmen at work? B <span class="answer-line"></span></p>
+
+        <!-- Page 61 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 61</div>
+        <h3>2 Absent classmates</h3>
+        <p>Grammar: Complete the conversation with the verb be. Use contractions where possible. Add not where necessary.</p>
+        <p>Silvia: Hi. How <span class="answer-line"></span> you? Jason: Good, thanks. How about you? Silvia: Pretty good. <span class="answer-line"></span> Dave here? Jason: No, he <span class="answer-line"></span>. I think he <span class="answer-line"></span> sick. Silvia: Oh. <span class="answer-line"></span> he at home? Jason: I don't know. Silvia: How about Jenny and Paula? <span class="answer-line"></span> they here? Jason: No, they <span class="answer-line"></span>. They <span class="answer-line"></span> on vacation. I think they <span class="answer-line"></span> in Miami. Silvia: Look! Dave <span class="answer-line"></span> not sick. He <span class="answer-line"></span> over there. He <span class="answer-line"></span> just late again!</p>
+
+        <h3>3 About you</h3>
+        <p>Complete the questions with the names of your friends and classmates. Then answer the questions.<br>1. A Is Paul at home? B Yes, he is.<br>2. A Are <span class="answer-line"></span> and <span class="answer-line"></span> at work? B <span class="answer-line"></span><br>3. A Is <span class="answer-line"></span> in class today? B <span class="answer-line"></span><br>4. A Are <span class="answer-line"></span> and <span class="answer-line"></span> on vacation? B <span class="answer-line"></span><br>5. A Are <span class="answer-line"></span> and <span class="answer-line"></span> in your English class? B <span class="answer-line"></span><br>6. A Is <span class="answer-line"></span> sick today? B <span class="answer-line"></span><br>7. A Is <span class="answer-line"></span> at the library? B <span class="answer-line"></span><br>8. A Are <span class="answer-line"></span> and <span class="answer-line"></span> asleep? B <span class="answer-line"></span></p>
+
+        <!-- Page 62 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 62</div>
+        <h3>1 Everyday things</h3>
+        <p>Vocabulary: Label the things in the picture.</p>
+        <h3>2 What are these things?</h3>
+        <p>Grammar: Write sentences about the pictures.<br>1. <span class="answer-line"></span> 2. <span class="answer-line"></span> 3. <span class="answer-line"></span> 4. <span class="answer-line"></span> 5. <span class="answer-line"></span> 6. <span class="answer-line"></span> 7. <span class="answer-line"></span> 8. <span class="answer-line"></span></p>
+
+        <!-- Page 63 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 63</div>
+        <h3>3 Asking about things</h3>
+        <p>Complete the conversations. Use the words in the box.<br>[Box: Is, it, it's, these, they're, this, What, Is, it, these, they, they're, this, What's]</p>
+        <p>1. Clerk: You're in Room 102. Ms. Simms: Thanks. What's this? Clerk: Oh, <span class="answer-line"></span> your room key. Ms. Simms: OK. Thank you. Clerk: And <span class="answer-line"></span> is your membership card for the fitness club.<br>
+        2. Erica: What's <span class="answer-line"></span>? <span class="answer-line"></span> it a cell phone? Jim: Yes, <span class="answer-line"></span> is. It's a cell phone and an MP3 player. Erica: I see. <span class="answer-line"></span> are these? Jim: I think <span class="answer-line"></span> watches.<br>
+        3. Bob: What are <span class="answer-line"></span>? Jill: Oh, no! I think <span class="answer-line"></span> my jeans. Bob: Oh, I'm sorry. Are <span class="answer-line"></span> new? Jill: Yeah. Oh, look. <span class="answer-line"></span> this your wallet? Bob: Yes, <span class="answer-line"></span> is. Jill: Oh, no! And <span class="answer-line"></span> are your credit cards!</p>
+
+        <!-- Page 64 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 64</div>
+        <h3>1 Classroom things</h3>
+        <p>Vocabulary A Write the words under the pictures.</p>
+        <p>B Circle the words from part A in the puzzle. Look in these directions (→ ↓).</p>
+
+        <!-- Page 65 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 65</div>
+        <h3>2 A classroom</h3>
+        <p>A Look at the picture. Complete the sentences. Use the words in the box.<br>[Box: in, in, in front of, next to, on, on, under]</p>
+        <p>1. The dictionaries are on the floor.<br>2. The students' papers are <span class="answer-line"></span> the wall.<br>3. The CD player is <span class="answer-line"></span> the teacher's desk.<br>4. The calendar is <span class="answer-line"></span> the wastebasket.<br>5. The videos are <span class="answer-line"></span> the closet.<br>6. The computer is <span class="answer-line"></span> the teacher's desk.<br>7. The teacher's desk is <span class="answer-line"></span> the board.<br>8. The closet is <span class="answer-line"></span> the window.</p>
+        <p>B Write the questions about the classroom in part A.<br>1. A Where's the teacher's desk? B It's in front of the board.<br>2. A <span class="answer-line"></span> B It's next to the window.<br>3. A <span class="answer-line"></span> B They're on the floor.<br>4. A <span class="answer-line"></span> B It's under the teacher's desk.<br>5. A <span class="answer-line"></span> B They're on the wall.<br>6. A <span class="answer-line"></span> B It's in the wastebasket.</p>
+
+        <h3>3 Missing apostrophes</h3>
+        <p>Put apostrophes (') in the correct places in the questions. Then answer the questions.<br>1. What's your English teacher's name?<br>2. What are your friends<span class="answer-line"></span> names?<br>3. What's on the wall in your classroom?<br>4. Where<span class="answer-line"></span>s your teacher now?</p>
+
+        <!-- Page 66 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 66</div>
+        <h3>1 Questions, questions</h3>
+        <p>Complete the conversations. Use the expressions in the box.<br>[Box: Excuse me. Thanks anyway. Sure. Here you go. Thanks. Can I borrow. You're welcome. please. How do you spell. Sorry. What's the word for this in English?]</p>
+        <p>1. Callie: Excuse me, Bob. Bob: Yeah? Callie: <span class="answer-line"></span> your dictionary? Bob: Sure. Now, where is it? Callie: Um ... it's right in front of you. Bob: Oh, yeah. Callie: Thanks. Bob: <span class="answer-line"></span><br>
+        2. Ruby: Can I borrow your cell phone, please? Millie: Oh, wait. It's not in my bag. I think it's at home. Ruby: That's OK. <span class="answer-line"></span> Millie: Sure. Ruby: In English, the word is umbrella. Millie: Umbrella? Thanks. Ruby: Sure.<br>
+        3. Yuri: <span class="answer-line"></span> videos? Dan: V-I-D-E-O-S. Yuri: <span class="answer-line"></span> Dan: Sure. Yuri: And how do you spell television? Dan: T-V. Yuri: Very funny!</p>
+
+        <!-- Page 67 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 67</div>
+        <h3>2 Scrambled conversations</h3>
+        <p>Number the lines of the conversations in the correct order. Then write the conversations.</p>
+        <p>1. ___ I'm sorry. <u>1</u> You're late. ___ That's OK.<br>2. ___ Sure. ___ Thank you. ___ Can I borrow your pen, please? ___ You're welcome.<br>3. ___ I don't know. ___ That's OK. Thanks anyway. ___ That's OK. What about this? ___ I'm sorry. I don't know. ___ What's the word for this?</p>
+
+        <div class="progress-chart">
+            <strong>Unit 2 Progress chart</strong><br>
+            ☑️ Grammar: make statements with he's (not), she's (not), and they're (not) · ask questions with Is he...?, Is she...?, and Are they...? · use a or an · make nouns plural with -s, -es, or -ies · use this with singular nouns and these with plural nouns · ask questions with Where...? · use 's and s' to show possession<br>
+            ☑️ Vocabulary: name at least 8 things students take to class · name at least 12 classroom items · say where things are in the classroom<br>
+            ☑️ Conversation: ask for help in class · use common responses to Thank you and I'm sorry
+        </div>
+
+        <!-- Page 68 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 68</div>
+        <h3>1 Unscramble the words.</h3>
+        <p>1. r g i e n s / singer<br>2. c t r a o / <span class="answer-line"></span><br>3. r t w e i r / <span class="answer-line"></span><br>4. m a e t / <span class="answer-line"></span><br>5. r a l y p e p / <span class="answer-line"></span><br>6. d n a b / <span class="answer-line"></span><br>7. h w s o / <span class="answer-line"></span><br>8. p r s o t s / <span class="answer-line"></span><br>9. n a f / <span class="answer-line"></span><br>10. i v o m e / <span class="answer-line"></span><br>11. r t i a t s / <span class="answer-line"></span></p>
+
+        <p>B Complete the crossword puzzle with the words in part A.</p>
+        <p>Across: 2. What's your favorite TV show? 4. Norah Jones is an amazing ______. 6. Our favorite soccer ______ is Manchester United. 9. Meryl Streep is a great ______. 11. Ronaldo is a famous soccer ______.<br>
+        Down: 1. Soccer is a ______. 3. Stephen King is a famous ______. 5. Who's your favorite ______? 7. This is exciting. 8. My favorite ______ is the Black Crowes. 10. Brian is a ______ of the Williams sisters.</p>
+
+        <!-- Page 69 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 69</div>
+        <h3>2 She's my favorite singer.</h3>
+        <p>Look at the pictures, and complete the sentences.<br>1. "She's my favorite singer. <span class="answer-line"></span> new CD is great."<br>2. "<span class="answer-line"></span> Jama fans. Jama is <span class="answer-line"></span> favorite band."<br>3. "<span class="answer-line"></span> a great writer. <span class="answer-line"></span> new book is really good."<br>4. "<span class="answer-line"></span> favorite TV show is The Visitors. What's <span class="answer-line"></span> favorite show?"<br>5. "<span class="answer-line"></span> my favorite actors. I think <span class="answer-line"></span> movies are very good."<br>6. "Cassandra Coe is my teacher. <span class="answer-line"></span> a great artist. <span class="answer-line"></span> pictures are amazing."</p>
+
+        <h3>3 They're great!</h3>
+        <p>Complete the conversation with the verb be. Use contractions where possible.<br>Alicia: Look! It's Enrique Iglesias's new CD. He's my favorite singer.<br>Norah: Yeah. I <span class="answer-line"></span> a big fan of his, too. His voice <span class="answer-line"></span> amazing. Oh. Here's my favorite band.<br>Alicia: Yeah? What's your favorite band?<br>Norah: The Backstreet Boys. They <span class="answer-line"></span> great.<br>Alicia: Yes, they <span class="answer-line"></span>. Nick Carter <span class="answer-line"></span> really good-looking. He <span class="answer-line"></span> my favorite.</p>
+
+        <!-- Page 70 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 70</div>
+        <h3>1 What are they like?</h3>
+        <p>Vocabulary: Look at the pictures, and complete the sentences. Use the words in the box.<br>[Box: busy, friendly, fun, interesting, lazy, outgoing, quiet, shy, smart, strict, tired]</p>
+        <p>1. She's quiet and <span class="answer-line"></span>.<br>2. He's <span class="answer-line"></span>.<br>3. They're <span class="answer-line"></span>.<br>4. She's <span class="answer-line"></span>.<br>5. She's <span class="answer-line"></span>.<br>6. He's <span class="answer-line"></span>.<br>7. He's not very <span class="answer-line"></span> or <span class="answer-line"></span>. She's <span class="answer-line"></span>.<br>8. They're <span class="answer-line"></span>.</p>
+
+        <!-- Page 71 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 71</div>
+        <h3>2 What's new?</h3>
+        <p>Complete the conversation with the verb be. Use contractions where possible. Add not where necessary.<br>Carrie: Sorry. Am I late? Josh: No, you <span class="answer-line"></span>. You <span class="answer-line"></span> fine. Carrie: Good. So, what's new? <span class="answer-line"></span> you busy at work? Josh: Yes, I <span class="answer-line"></span>. Our boss <span class="answer-line"></span> sick, so he <span class="answer-line"></span> at work. Carrie: Oh, really? Josh: So how about you? What <span class="answer-line"></span> your new neighbors like? <span class="answer-line"></span> they nice? Carrie: Yes, they <span class="answer-line"></span>. They <span class="answer-line"></span> OK. They <span class="answer-line"></span> very quiet. Josh: <span class="answer-line"></span> they students? Carrie: No, they <span class="answer-line"></span>. The guy <span class="answer-line"></span> a writer. Josh: A writer? What about the woman? <span class="answer-line"></span> she a writer, too? Carrie: No, she <span class="answer-line"></span>. She <span class="answer-line"></span> a writer. She <span class="answer-line"></span> a teacher. At our school!</p>
+
+        <h3>3 I'm not, you're not</h3>
+        <p>Grammar: Rewrite the sentences in the negative form.<br>1. My neighbors are very nice. → My neighbors aren't very nice.<br>2. My best friend is a student. → <span class="answer-line"></span><br>3. I'm very shy. → <span class="answer-line"></span><br>4. The students in my class are very smart. → <span class="answer-line"></span><br>5. My English class is easy. → <span class="answer-line"></span><br>6. My teacher is very quiet. → <span class="answer-line"></span></p>
+
+        <h3>4 About you</h3>
+        <p>Complete the questions. Then write short answers. Add more information.<br>1. <span class="answer-line"></span> you outgoing? Yes, I am. I'm very outgoing.<br>2. <span class="answer-line"></span> your best friend lazy? <span class="answer-line"></span><br>3. <span class="answer-line"></span> your English class hard? <span class="answer-line"></span><br>4. <span class="answer-line"></span> your friends smart? <span class="answer-line"></span><br>5. <span class="answer-line"></span> your teacher fun? <span class="answer-line"></span><br>6. <span class="answer-line"></span> your classmates nice? <span class="answer-line"></span><br>7. <span class="answer-line"></span> you tired today? <span class="answer-line"></span><br>8. <span class="answer-line"></span> you and your friends busy after class? <span class="answer-line"></span></p>
+
+        <!-- Page 72 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 72</div>
+        <h3>1 Who's who?</h3>
+        <p>Use the family tree to complete the sentences about this family.<br>1. David is Paul's <span class="answer-line"></span>.<br>2. John is Katy's <span class="answer-line"></span>.<br>3. Katy is Paul's <span class="answer-line"></span>.<br>4. Josh, David, and Emily are Paul and Katy's <span class="answer-line"></span>.<br>5. Emily is Josh's <span class="answer-line"></span>.<br>6. Josh is David's <span class="answer-line"></span>.<br>7. John and Catherine are Katy's <span class="answer-line"></span>.<br>8. Katy is Josh's <span class="answer-line"></span>.<br>9. John is Catherine's <span class="answer-line"></span>.<br>10. Emily is Katy's <span class="answer-line"></span>.<br>11. Catherine is David's <span class="answer-line"></span>.<br>12. John is Emily's <span class="answer-line"></span>.</p>
+
+        <h3>2 What's the number?</h3>
+        <p>Write the numbers.</p>
+
+        <!-- Page 73 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 73</div>
+        <h3>3 How about your children?</h3>
+        <p>Unscramble the questions. Then write the answers to complete the conversations.<br>1. are / your / How / children? → How are your children? B: They're fine, thanks. How about your children? A: They're OK.<br>2. your / What / are / names / parents'? → <span class="answer-line"></span> B: George and Laura. How about your parents? A: <span class="answer-line"></span><br>3. is / grandfather / How / your / old? → <span class="answer-line"></span> B: He's 74. And your grandfather? A: <span class="answer-line"></span><br>4. mother / What's / your / like? → <span class="answer-line"></span> B: My mother? She's great. She's very smart. How about your mother? A: <span class="answer-line"></span><br>5. from / father / Where's / your? → <span class="answer-line"></span> B: Texas. How about your father? A: <span class="answer-line"></span><br>6. old / your / is / How / best friend? → <span class="answer-line"></span> B: She's 16. How about your best friend? A: <span class="answer-line"></span></p>
+
+        <h3>4 A famous family</h3>
+        <p>Read part of a phone interview with an actor. Then write questions for the answers.<br>Interviewer: Hello, Kate. How are you? Kate: Hi. I'm fine, thanks. Interviewer: Kate, I love your movies. Kate: Thank you. Interviewer: Now, about your family ... who's your mother? Kate: Gwen Russell — the artist. And Kevin Russell is my father. Interviewer: Yes, they're famous! What are your parents like at home? Kate: Oh, Dad's fun and outgoing. And Mom's very smart! Interviewer: And, Kate, what's your favorite band? Kate: Green Day. They're amazing.<br>1. How is Kate? She's fine.<br>2. <span class="answer-line"></span> Her mother is Gwen Russell.<br>3. <span class="answer-line"></span> Her father is fun and outgoing. Her mother is very smart.<br>4. <span class="answer-line"></span> Her favorite band is Green Day.</p>
+
+        <!-- Page 74 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 74</div>
+        <h3>1 New neighbors and co-workers</h3>
+        <p>Complete the conversations with the questions in the box.<br>[Box: How old is she? Where is she from? What are they like? An actor? Is she good? From Chile? Are they friendly? Are they good? Where are they from?]</p>
+        <p>1. Ming: Who are they? Jim: Oh, they're my new neighbors. Ming: Your neighbors? What are they like? Jim: Interesting. Very interesting. They're in a rock band. Ming: A rock band? <span class="answer-line"></span> Jim: They're from New York. Ming: Wow! <span class="answer-line"></span> Jim: No, they're not. Ming: Uh-oh. Jim: Oh, very. Their friends are always here!<br>2. Carlos: Who's she? Kim: Her name's Angie. Carlos: Angie? <span class="answer-line"></span> Kim: I don't know exactly. I think she's from Chile. Carlos: Really? <span class="answer-line"></span> Kim: She's outgoing and fun. Carlos: Really? <span class="answer-line"></span> Kim: I'm not sure. Maybe 24 or 25. Carlos: Oh. What's her job? Is she a server here? Kim: Well, yes. But she's an actor, too. Carlos: <span class="answer-line"></span> Kim: Yeah, she's a good actor but not a great server.</p>
+
+        <!-- Page 75 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 75</div>
+        <h3>2 Really? I'm surprised!</h3>
+        <p>Write responses to show you are interested or surprised. Then ask a question.</p>
+
+        <div class="progress-chart">
+            <strong>Unit 3 Progress chart</strong><br>
+            ☑️ Grammar: use my, your, his, her, our, and their · make statements with be · ask yes-no questions with be · make negative statements with be · ask information questions with be<br>
+            ☑️ Vocabulary: name at least 8 words to describe people's personalities · name at least 12 family words · say numbers 10–101<br>
+            ☑️ Conversation strategies: show interest by repeating information and asking questions · use Really? to show interest or surprise
+        </div>
+
+        <!-- Page 76 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 76</div>
+        <h3>1 What's Kathy's morning like?</h3>
+        <p>A Complete the sentences about Kathy's morning. Use the correct form of the verbs in the box.<br>1. Kathy gets up early. Her son <span class="answer-line"></span> late.<br>2. She <span class="answer-line"></span> before work. Her son <span class="answer-line"></span> games.<br>3. She <span class="answer-line"></span> to the radio in the car.<br>4. She and her co-workers <span class="answer-line"></span> breakfast together.<br>5. Kathy <span class="answer-line"></span> her e-mail right after breakfast.<br>6. Her boss <span class="answer-line"></span> the newspaper at work.</p>
+        <p>B Rewrite the sentences in the negative form.<br>1. Kathy's son gets up early. → Kathy's son doesn't get up early.<br>2. Kathy checks her e-mail before breakfast. → <span class="answer-line"></span><br>3. Kathy and her son talk a lot in the morning. → <span class="answer-line"></span><br>4. Kathy's son does his homework. → <span class="answer-line"></span><br>5. Kathy and her boss eat breakfast together. → <span class="answer-line"></span><br>6. Kathy's boss plays computer games. → <span class="answer-line"></span></p>
+
+        <!-- Page 77 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 77</div>
+        <h3>2 Guess what!</h3>
+        <p>Complete Peter's e-mail with the correct form of the verbs.</p>
+        <h3>3 Typical morning activities</h3>
+        <p>A What are typical morning activities? Match the verbs with the words and expressions.<br>1. do → d. (my) homework<br>2. study → f. English<br>3. check → b. (my) e-mail or messages<br>4. listen → a. to the radio<br>5. drive → c. a car<br>6. play → g. games on the computer<br>7. read → h. a book<br>8. use → e. an alarm clock</p>
+        <p>B Write true sentences about your morning routine. Use the verbs in part A.<br>1. I don't do my homework in the morning.<br>2. <span class="answer-line"></span><br>3. <span class="answer-line"></span><br>4. <span class="answer-line"></span><br>5. <span class="answer-line"></span><br>6. <span class="answer-line"></span><br>7. <span class="answer-line"></span><br>8. <span class="answer-line"></span></p>
+
+        <!-- Page 78 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 78</div>
+        <h3>1 What's fun? What's not?</h3>
+        <p>A Which routine activities are fun for you? Complete the charts. Add your own ideas.<br>check e-mail / do the laundry / get up early / play sports / clean the house / drive to work / go shopping / take lessons / a class / do homework / eat snacks / make phone calls / watch TV</p>
+        <p>B Write the days of the week in the date book. Then write one thing you do each day.</p>
+
+        <h3>2 About you 1</h3>
+        <p>Use time expressions to write one thing you do and one thing you don't do.<br>1. on the weekends: I clean the house on the weekends. I don't go to work on the weekends.<br>2. after work / school: <span class="answer-line"></span><br>3. every day: <span class="answer-line"></span><br>4. on Saturdays: <span class="answer-line"></span><br>5. in the afternoons: <span class="answer-line"></span><br>6. at night: <span class="answer-line"></span></p>
+
+        <!-- Page 79 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 79</div>
+        <h3>3 What's your week like?</h3>
+        <p>Complete the conversation with the correct form of the verbs.<br>Cecilia: What's your week like, Eduardo? <u>Do</u> (Do / Does) you <u>go</u> (go / goes) to work every day?<br>Eduardo: Well, no, I <span class="answer-line"></span> (don't / doesn't). I work at home on Fridays.<br>Cecilia: Really? What about the weekends? <span class="answer-line"></span> (Do / Does) you <span class="answer-line"></span> (work / works) then, too?<br>Eduardo: Yes, I <span class="answer-line"></span> (do / does). But I don't like it. What <span class="answer-line"></span> (do / does) about you? <span class="answer-line"></span> (Do / Does) you and your husband <span class="answer-line"></span> (go / goes) to work every day?<br>Cecilia: Yes, we <span class="answer-line"></span> (do / does). But just Monday to Friday. We <span class="answer-line"></span> (clean / cleans) the house on the weekends. Oh, and we <span class="answer-line"></span> (go / goes) to soccer games.<br>Eduardo: Oh. <span class="answer-line"></span> (Do / Does) your son <span class="answer-line"></span> (play / plays) soccer?<br>Cecilia: Yes, he <span class="answer-line"></span> (do / does). He's on the school team. <span class="answer-line"></span> (Do / Does) your son <span class="answer-line"></span> (play / plays) any sports?<br>Eduardo: No, he <span class="answer-line"></span> (don't / doesn't). He plays games on the computer.</p>
+
+        <h3>4 About you 2</h3>
+        <p>Complete the questions. Then write answers with your own information.<br>1. A: Do you take a class at night? B: Yes, I do. I take a Spanish class on Monday evenings.<br>2. A: <span class="answer-line"></span> your father <span class="answer-line"></span> TV before bed? B: <span class="answer-line"></span><br>3. A: <span class="answer-line"></span> you and your friends <span class="answer-line"></span> shopping on Saturdays? B: <span class="answer-line"></span><br>4. A: <span class="answer-line"></span> your friends <span class="answer-line"></span> their e-mail before breakfast? B: <span class="answer-line"></span><br>5. A: <span class="answer-line"></span> your mother <span class="answer-line"></span> the newspaper every day? B: <span class="answer-line"></span></p>
+
+        <!-- Page 80 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 80</div>
+        <h3>1 Saying more than yes or no</h3>
+        <p>A Complete the conversation. Use the sentences in the box.<br>[Box: I work part-time in the cafeteria. It's fun, and the people are nice. Just Mondays and Wednesdays. I'm an English student. I'm new here, and I'm late. I go there Mondays after work. It's great!]</p>
+        <p>Mike: Hi. Are you OK? You look lost.<br>Yumi: Hello. Where's Room 106? Do you know? I'm new here, and I'm late.<br>Mike: Yeah. It's right over there, next to the cafeteria.<br>Yumi: Thanks. So, do you work here?<br>Mike: Yes, I do. <span class="answer-line"></span><br>Yumi: Do you like it? I mean, do you like the job?<br>Mike: Yeah, I do. <span class="answer-line"></span><br>Yumi: That's good. Do you work here every day?<br>Mike: Well, no. <span class="answer-line"></span> I go to class on Tuesdays and Thursdays.<br>Yumi: Oh. So you're a student, too?<br>Mike: Yeah. <span class="answer-line"></span><br>Yumi: Really? I'm an English student, too. Do you belong to the English Club?<br>Mike: Yes, I do. <span class="answer-line"></span><br>Yumi: Oh. Well, thanks a lot. And see you at English Club!<br>Mike: Great!</p>
+        <p>B Read the completed conversation again. Then read the sentences below. Are they true or false? Check (✓) true or false.<br>1. Mike and Yumi are friends. ☐ True ☑ False<br>2. Mike works in the cafeteria. ☐ True ☐ False<br>3. Mike is a new student. ☐ True ☐ False<br>4. Mike works Tuesdays and Thursdays. ☐ True ☐ False<br>5. Mike likes his part-time job. ☐ True ☐ False<br>6. Yumi and Mike are English students. ☐ True ☐ False<br>7. Mike belongs to the English Club. ☐ True ☐ False</p>
+
+        <!-- Page 81 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 81</div>
+        <h3>2 About you</h3>
+        <p>Unscramble the questions. Then answer the questions. Write more than yes or no. Use Well if you need to.<br>1. live / you / around / Do / here ? → <span class="answer-line"></span><br>2. from / originally / you / here / Are ? → <span class="answer-line"></span><br>3. a / full-time / you / Are / student ? → <span class="answer-line"></span><br>4. have / you / brothers / Do / sisters / or ? → <span class="answer-line"></span><br>5. you / work / the / on / weekends / Do ? → <span class="answer-line"></span><br>6. Do / English / like / you / class / your ? → <span class="answer-line"></span><br>7. get up / day / you / Do / every / early ? → <span class="answer-line"></span><br>8. grandparents / Do / with / your / live / you ? → <span class="answer-line"></span></p>
+
+        <!-- Page 82 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 82</div>
+        <h3>1 Watching TV</h3>
+        <p>A What do you think? What do average Americans do after work and school? Check (√) the boxes.<br>spend time with family / read / watch TV / go out with friends / go out to dinner / go shopping</p>
+        <p>B Read the article. Check your answers in part A.</p>
+        <p>C Read the article again. Then correct these false sentences.<br>1. Americans go out every night after work. → Americans don't usually go out with friends in the evening.<br>2. After work, Americans usually go shopping. → <span class="answer-line"></span><br>3. American high school students usually study for three hours a night. → <span class="answer-line"></span><br>4. American high school students don't watch TV. → <span class="answer-line"></span><br>5. 20% of Americans have hobbies. → <span class="answer-line"></span></p>
+
+        <!-- Page 83 -->
+        <div class="page-break"></div>
+        <div class="page-number">Page 83</div>
+        <h3>2 TV shows</h3>
+        <p>A Read the e-mail messages. Then rewrite Joe's message. Use capital letters and periods.</p>
+        <p>B What TV shows do you watch? When do you watch them? Write an e-mail to a friend about your TV-watching habits.</p>
+
+        <div class="progress-chart">
+            <strong>Unit 4 Progress chart</strong><br>
+            ☑️ Grammar: make simple present statements · ask simple present yes-no questions and give short answers<br>
+            ☑️ Vocabulary: name at least 12 new verbs for routine activities · name the days of the week · name at least 8 time expressions with the simple present<br>
+            ☑️ Conversation strategies: answer questions with more than yes or no · use Well to get time to think of an answer<br>
+            ☑️ Writing: use capital letters and periods
+        </div>
+
+        <!-- Final footer -->
+        <footer>
+            <hr>
+            <p><strong>Touchstone Level 1 – Complete Student's Book & Workbook integration.</strong> Based on Cambridge International Corpus of North American English.<br>
+            All grammar charts, conversation strategies, vocabulary notebooks, and exercises adapted from original.<br>
+            © McCarthy, McCarten, Sandiford. This digital edition for comprehensive study – includes every required section: Getting started, Grammar, Speaking naturally, Building language, In conversation, Free talk, Writing, Progress checks.</p>
+            <p>⭐ "Using Touchstone, you can develop confidence to understand real-life English and express yourself clearly."</p>
+            <p>📖 <strong>On your own tasks:</strong> label magazine pictures, make a photo album, write daily routine labels around your house.</p>
+        </footer>
+    </div>
 </body>
 </html>
 ```

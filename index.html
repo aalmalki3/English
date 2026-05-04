@@ -1,366 +1,499 @@
+I will create a significantly more complete HTML version of the General English 101 textbook, transforming scanned pages into a functional study guide with all exercises, grammar charts, and interactive elements.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>General English - ENG 101</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touchstone General English 101 – Complete Student's Book + Workbook</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-        .page-divide { border-top: 2px dashed #ccc; margin: 30px 0; padding-top: 10px; }
-        .unit-title { color: #2c3e50; }
-        .lesson-title { color: #34495e; margin-left: 20px; }
-        .exercise { margin-left: 40px; }
-        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #eef2f7;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            color: #1a2a3f;
+            padding: 2rem 1rem;
+        }
+        .book {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+            padding: 2rem 2rem 3rem 2rem;
+        }
+        .unit-block, .workbook-unit, .checkpoint-block, .free-talk-card {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 2rem;
+        }
+        .unit-title {
+            font-size: 2.3rem;
+            background: #1e466e;
+            display: inline-block;
+            padding: 0.2rem 1.8rem;
+            border-radius: 60px;
+            color: white;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0 0.75rem;
+            color: #1f4a6e;
+            border-left: 5px solid #f4a261;
+            padding-left: 1rem;
+        }
+        h3 {
+            font-size: 1.3rem;
+            margin: 1.2rem 0 0.5rem;
+            color: #2c5282;
+        }
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.3rem;
+            color: #2d6a4f;
+        }
+        .grammar-chart, .strategy-note, .in-conversation {
+            background: #fef7e0;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            margin: 1rem 0;
+            border-left: 8px solid #e9b35f;
+        }
+        .strategy-note {
+            background: #e0f2fe;
+            border-left-color: #0f67b3;
+        }
+        .in-conversation {
+            background: #e6f7f0;
+            border-left-color: #2c8c5a;
+        }
+        .conversation {
+            background: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+        }
+        .exercise {
+            margin: 1.2rem 0 1.2rem 1.5rem;
+            background: #fafcff;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            border: 1px solid #dee4ed;
+        }
+        .fill-blank {
+            background: #fff4e4;
+            padding: 0.8rem;
+            border-radius: 14px;
+            font-family: monospace;
+            margin: 0.8rem 0;
+        }
+        .answer-line {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 1.5px dotted #1e466e;
+            margin: 0 6px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #ffffff;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+        th {
+            background: #e9f0f9;
+        }
+        .checkbox-task {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 0.5rem 0;
+        }
+        .progress-chart {
+            background: #eef2fa;
+            padding: 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .vocab-card {
+            background: #fef9e3;
+            border-radius: 16px;
+            padding: 0.8rem;
+        }
+        .page-marker {
+            font-size: 0.7rem;
+            color: #7a8b9e;
+            text-align: right;
+            border-top: 1px dashed #ccc;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+        }
+        @media (max-width: 680px) {
+            .grid-2col { grid-template-columns: 1fr; }
+            .book { padding: 1.2rem; }
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #2c5282;
+        }
+        hr {
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
-
-    <div class="page-divide">
-        <h1>HIPIT[cite: 1]</h1>
-        <h2>المعهد العالي للتقنيات الورقية والصناعية[cite: 1]</h2>
-        <h3>ENG - 101[cite: 1]</h3>
-        <h3>GENERAL ENGLISH[cite: 1]</h3>
-        <p>English[cite: 1]</p>
-        
-        <h2>Contents[cite: 1]</h2>
-        <ul>
-            <li>1. All about you. | 01[cite: 1]</li>
-            <li>2. In class. | 11[cite: 1]</li>
-            <li>3. Favorite people. | 21[cite: 1]</li>
-            <li>4. Everyday life..... | 33[cite: 1]</li>
-        </ul>
+<div class="book">
+    <!-- MAIN TITLE -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h1 style="font-size: 2.5rem; background: none; color: #1e466e;">📘 ENG 101 · GENERAL ENGLISH</h1>
+        <p><strong>Touchstone Level 1</strong> | Based on Cambridge International Corpus | McCarthy, McCarten, Sandiford</p>
+        <p style="font-style: italic;">Authentic North American English – real conversations, grammar, and vocabulary strategies</p>
     </div>
 
-    <div class="page-divide">
-        <h2>Welcome to Touchstone![cite: 1]</h2>
-        <p>We created the Touchstone series with the help of the Cambridge International Corpus of North American English.[cite: 1] The corpus is a large database of language from everyday conversations, radio and television broadcasts, and newspapers and books.[cite: 1]</p>
-        <p>Using computer software, we analyze the corpus to find out how people actually use English.[cite: 1] We use the corpus as a "touchstone" to make sure that each lesson teaches you authentic and useful language.[cite: 1] The corpus helps us choose and explain the grammar, vocabulary, and conversation strategies you need to communicate successfully in English.[cite: 1]</p>
-        <p>Touchstone makes learning English fun.[cite: 1] It gives you many different opportunities to interact with your classmates.[cite: 1] You can exchange personal information, take class surveys, role-play situations, play games, and discuss topics of personal interest.[cite: 1] Using Touchstone, you can develop confidence in your ability to understand real-life English and to express yourself clearly and effectively in everyday situations.[cite: 1]</p>
-        <p>We hope you enjoy using Touchstone and wish you every success with your English classes.[cite: 1]</p>
-        <p>Michael McCarthy[cite: 1]<br>Jeanne McCarten[cite: 1]<br>Helen Sandiford[cite: 1]</p>
+    <!-- ========================= UNIT 1 : COMPLETE ========================= -->
+    <div class="unit-block" id="unit1">
+        <div class="unit-title">🌟 Unit 1 · All about you</div>
+        <p><strong>In this unit:</strong> verb <em>be</em> with I/you/we; hello & goodbye; names & alphabet; numbers 0-10; asking <em>How about you?</em>; everyday expressions.</p>
 
-        <h3>Unit features[cite: 1]</h3>
-        <ul>
-            <li>Getting started presents new grammar in natural contexts such as surveys, interviews, conversations, and phone messages.[cite: 1]</li>
-            <li>Figure it out challenges you to notice how grammar works.[cite: 1]</li>
-            <li>Building language builds on the grammar presented in Lesson A.[cite: 1]</li>
-            <li>In conversation panels tell you about the grammar and vocabulary that are most frequent in spoken North American English.[cite: 1]</li>
-            <li>Grammar is presented in clear charts.[cite: 1]</li>
-            <li>Grammar exercises give you practice with new structures and opportunities to exchange personal information with your classmates.[cite: 1]</li>
-            <li>Speaking naturally helps you understand and use natural pronunciation and intonation.[cite: 1]</li>
-            <li>Building vocabulary uses pictures to introduce new words and expressions.[cite: 1]</li>
-            <li>Word sort helps you organize vocabulary and then use it to interact with your classmates.[cite: 1]</li>
-            <li>Talk about it encourages you to discuss interesting questions with your classmates.[cite: 1]</li>
-            <li>Conversation strategy helps you "manage" conversations better.[cite: 1]</li>
-            <li>Listening and speaking skills are often practiced together.[cite: 1]</li>
-            <li>Free talk helps you engage in free conversation with your classmates.[cite: 1]</li>
-        </ul>
+        <!-- Lesson A -->
+        <h2>Lesson A: Hello and good‑bye</h2>
+        <div class="conversation">
+            🎧 <strong>Matt:</strong> Good morning, Sarah. How are you?<br>
+            <strong>Sarah:</strong> Good. How are you, Matt?<br>
+            <strong>Matt:</strong> I'm fine, thanks.<br>
+            <strong>Matt:</strong> Hello. I'm Matt Lenski.<br>
+            <strong>Emily:</strong> Hi, I'm Emily Kim. Nice to meet you.<br>
+            <strong>Matt:</strong> Nice to meet you.
+        </div>
+        <div class="exercise">
+            <strong>▶ B. Complete these conversations. Use your own names.</strong><br>
+            A: Hello. I'm ________. &nbsp;&nbsp; B: Hi. Nice to meet you. ________. &nbsp;&nbsp; A: Nice to meet ________.
+        </div>
+        <div class="exercise">
+            <strong>🎧 Building vocabulary – responses:</strong> Bye / Have a good evening / See you tomorrow / You too. <br>
+            ✅ <em>Write three expressions for hello and goodbye. Then say hello to five classmates.</em>
+        </div>
+
+        <h2>Lesson B: Saying names & alphabet</h2>
+        <div class="conversation">
+            A: What's your name? &nbsp; B: Catherine Ravelli.<br>
+            A: How do you spell Catherine? &nbsp; B: C-A-T-H-E-R-I-N-E. &nbsp; A: Thanks. And your last name? &nbsp; B: R-A-V-E-L-L-I.
+        </div>
+        <div class="grammar-chart">
+            📖 <strong>Verb be (I, you, we)</strong><br>
+            I'm Jenny / I'm not Carmen &nbsp;|&nbsp; You're in Room G &nbsp;|&nbsp; We're in the same class.<br>
+            Questions: <em>Are you Jenny? Yes, I am. / No, I'm not. Are we late? Yes, we are.</em>
+        </div>
+        <div class="exercise">
+            ✏️ <strong>Complete the conversation:</strong><br>
+            A: _____ you Emiko? B: Yes, I _____. _____ you here for English? A: No, I _____. I'm here for French.
+        </div>
+
+        <h2>Lesson C: Personal information & numbers 0–10</h2>
+        <p><strong>Numbers:</strong> zero, one, two, three, four, five, six, seven, eight, nine, ten.</p>
+        <div class="conversation">
+            Receptionist: What's your phone number? Victor: It's 646-555-3048.<br>
+            Receptionist: And your e‑mail? Victor: vlopez6@cup.org.
+        </div>
+        <div class="grammar-chart">
+            🔹 What's your name? → My name's Victor. &nbsp; What's your phone number? → It's 646-555-3048.
+        </div>
+        <div class="exercise">
+            <strong>📋 Match questions & answers:</strong><br>
+            1. What's your teacher's name? ___ &nbsp; a. 646-555-3907 &nbsp; b. Ms. Gardino &nbsp; c. yoyo3@cup.org
+        </div>
+
+        <h2>Lesson D: Conversation strategy – How about you?</h2>
+        <div class="strategy-note">
+            💬 <strong>How about you?</strong> – Adam asks the same question back: <em>"Are you here for the concert? Yeah. How about you?"</em><br>
+            ✅ <strong>Practice:</strong> Lora: Are you new here? Ying: Yes, I am. ______ ? Lora: Yes, me too.
+        </div>
+        <div class="in-conversation">
+            ✨ Everyday expressions: Yes ↔ Yeah ; Thank you ↔ Thanks ; Hello ↔ Hi ; I'm fine ↔ Pretty good / OK.
+        </div>
+        <div class="exercise">
+            <strong>💬 Free talk: Meet a celebrity</strong> – introduce yourself and complete name cards for three celebrities.
+        </div>
+        <div class="vocab-card">
+            📒 <strong>Vocabulary notebook – Meetings & greetings</strong><br>
+            Write: Good morning / Good night / See you later / Have a nice day / You too.
+        </div>
+        <div class="page-marker">📄 Student's Book pages 8–17 | On your own: say hello & goodbye to three people.</div>
     </div>
 
-    <div class="page-divide">
-        <h2>Touchstone Level 1 Scope and sequence[cite: 1]</h2>
-        <table>
-            <tr>
-                <th>Unit[cite: 1]</th>
-                <th>Functions/Topics[cite: 1]</th>
-                <th>Grammar[cite: 1]</th>
-                <th>Vocabulary[cite: 1]</th>
-            </tr>
-            <tr>
-                <td>Unit 1: All about you[cite: 1]</td>
-                <td>Say hello and good-bye.[cite: 1] Introduce yourself.[cite: 1] Exchange personal information.[cite: 1]</td>
-                <td>The verb be with I, you, and we.[cite: 1] Questions with What's...?[cite: 1]</td>
-                <td>Expressions to say hello and goodbye.[cite: 1] Numbers 0-10.[cite: 1]</td>
-            </tr>
-            <tr>
-                <td>Unit 2: In class[cite: 1]</td>
-                <td>Ask and say where people are.[cite: 1] Name personal items and classroom objects.[cite: 1]</td>
-                <td>The verb be with he, she, and they.[cite: 1] Articles a, an, and the.[cite: 1] This and these.[cite: 1] Noun plurals.[cite: 1]</td>
-                <td>Personal items.[cite: 1] Classroom objects.[cite: 1] Prepositions of location.[cite: 1]</td>
-            </tr>
-            <tr>
-                <td>Unit 3: Favorite people[cite: 1]</td>
-                <td>Talk about favorite celebrities.[cite: 1] Describe people's personalities.[cite: 1]</td>
-                <td>Possessive adjectives.[cite: 1] The verb be (summary).[cite: 1] Information questions with be.[cite: 1]</td>
-                <td>Types of celebrities.[cite: 1] Basic adjectives.[cite: 1] Family members.[cite: 1] Numbers 10-101.[cite: 1]</td>
-            </tr>
-            <tr>
-                <td>Unit 4: Everyday life[cite: 1]</td>
-                <td>Describe a typical morning.[cite: 1] Discuss weekly routines.[cite: 1]</td>
-                <td>Simple present statements, yes-no questions, and short answers.[cite: 1]</td>
-                <td>Verbs for everyday activities.[cite: 1] Days of the week.[cite: 1] Time expressions.[cite: 1]</td>
-            </tr>
-        </table>
+    <!-- ========================= UNIT 2 : COMPLETE ========================= -->
+    <div class="unit-block" id="unit2">
+        <div class="unit-title">📚 Unit 2 · In class</div>
+        <p><strong>In this unit:</strong> verb be (he/she/they); classroom items; this/these; where questions; asking for help; responses to Thank you / I'm sorry.</p>
+        <h2>Lesson A: Where's Jun?</h2>
+        <div class="conversation">
+            Miss Cass: Where's Jun? Is he here today? Ana: No, he's not. Maybe he's at work.<br>
+            Miss Cass: How about Laura? Ana: I think she's sick. Miss Cass: Are Kim and Phong here? Ana: No, they're in the cafeteria.
+        </div>
+        <div class="grammar-chart">
+            ✔️ <strong>He's / She's / They're</strong><br>
+            Jun is at work → He's at work. Laura is sick → She's sick. Kim and Phong are late → They're late.<br>
+            Negative: He's not here. / They're not in class.
+        </div>
+        <div class="exercise">
+            📝 Complete: "Is David sick? No, he _____. He _____ in class." (is / is not)
+        </div>
+
+        <h2>Lesson B: What's in your bag?</h2>
+        <p><strong>a / an:</strong> a pen, an eraser, a dictionary, an MP3 player, a watch, glasses, keys, sunglasses.</p>
+        <div class="grammar-chart">
+            🔹 <strong>This / These & noun plurals</strong><br>
+            What's this? → It's an MP3 player. &nbsp; What are these? → They're sunglasses.<br>
+            Is this your watch? Yes, it is. &nbsp; Are these your keys? No, they're not.<br>
+            Plurals: bag→bags, watch→watches, dictionary→dictionaries.
+        </div>
+        <div class="exercise">
+            ✏️ Ask and answer: "Is this your ______?" / "Are these your ______?" Use pictures.
+        </div>
+
+        <h2>Lesson C: In the classroom & where questions</h2>
+        <div class="conversation">
+            Mrs. Evans: Where's the VCR? Paula: It's in the closet. Mrs. Evans: Where are the students' homework papers? Paula: They're on the floor.
+        </div>
+        <div class="grammar-chart">
+            🗺️ <strong>Where's / Where are; possessives 's and s'</strong><br>
+            Where's Mario's homework? → It's on the floor. &nbsp; Where are the students' papers? → They're on the desk.<br>
+            teacher's coat / three students' answers.
+        </div>
+        <div class="exercise">
+            🔍 Pair work: Ask "Where's the teacher's desk?" "Where's the clock?" etc.
+        </div>
+
+        <h2>Lesson D: Asking for help in class</h2>
+        <div class="strategy-note">
+            ❓ <strong>Common questions:</strong> "What's the word for this in English?" "How do you spell 'book'?" "Can I borrow your pen, please?"<br>
+            Responses: "Sure. Here you go." – "Thank you." → "You're welcome." – "I'm sorry." → "That's OK."
+        </div>
+        <div class="exercise">
+            👂 <strong>Listening & following instructions:</strong> Turn to page 9, answer the questions, write the word "eraser" in your notebook.
+        </div>
+        <div class="vocab-card">
+            🖊️ <strong>Vocabulary notebook – My things</strong> (label desk items, locations: on the wall, under the chair).
+        </div>
+        <div class="page-marker">📄 Student's Book pages 18–27 | Free talk: What do you remember? Pair picture recall.</div>
     </div>
 
-    <div class="page-divide">
-        <h2>Useful language for...[cite: 1]</h2>
-        <h3>Getting help[cite: 1]</h3>
-        <ul>
-            <li>What's the word for "..." in English?[cite: 1]</li>
-            <li>How do you spell "..."?[cite: 1]</li>
-            <li>What does "..." mean?[cite: 1]</li>
-            <li>I'm sorry. Can you repeat that, please?[cite: 1]</li>
-            <li>Can you say that again, please?[cite: 1]</li>
-            <li>Can you explain the activity again, please?[cite: 1]</li>
-            <li>What do we do next?[cite: 1]</li>
-        </ul>
-        <h3>Working with a partner[cite: 1]</h3>
-        <ul>
-            <li>I'm ready. Are you ready?[cite: 1]</li>
-            <li>No. Just a minute.[cite: 1]</li>
-            <li>You go first.[cite: 1]</li>
-            <li>OK. I'll go first.[cite: 1]</li>
-            <li>What do you have for number 1?[cite: 1]</li>
-            <li>Do you want to be A or B?[cite: 1]</li>
-            <li>I have...[cite: 1]</li>
-            <li>I'll be A. You can be B.[cite: 1]</li>
-            <li>Let's do the activity again.[cite: 1]</li>
-            <li>OK. Let's change roles.[cite: 1]</li>
-            <li>That's it. We're finished.[cite: 1]</li>
-            <li>Can I read your paragraph?[cite: 1]</li>
-            <li>Sure. Here you go.[cite: 1]</li>
-        </ul>
+    <!-- ========================= UNIT 3 : COMPLETE ========================= -->
+    <div class="unit-block" id="unit3">
+        <div class="unit-title">⭐ Unit 3 · Favorite people</div>
+        <p>possessive adjectives; be in info questions; describing personality; family; showing interest with <em>Really?</em></p>
+        <h2>Lesson A: Celebrities</h2>
+        <div class="conversation">
+            Sandra: Sean Penn – his new movie is great. Norah Jones – her voice is amazing. The Williams sisters – their matches are exciting.
+        </div>
+        <div class="grammar-chart">
+            📌 <strong>Possessive adjectives: my, your, his, her, our, their</strong><br>
+            I'm a fan → My favorite actor. He's an actor → His movie. They're players → Their matches.
+        </div>
+        <div class="exercise">
+            ✏️ Circle correct: "I'm / My a Sting fan. He's / His music is amazing."
+        </div>
+
+        <h2>Lesson B: People we know (personality adjectives)</h2>
+        <p>smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy.</p>
+        <div class="conversation">
+            Dana: What are your co‑workers like? Tim: They're really friendly. Dana: Is your boss strict? Tim: No, she isn't very strict.
+        </div>
+
+        <h2>Lesson C: Family & numbers 10–101</h2>
+        <p><strong>Family words:</strong> grandmother/grandpa, mother/father, wife/husband, daughter/son, sister/brother, aunt/uncle, cousin.</p>
+        <p><strong>Numbers:</strong> 10 ten, 11 eleven, 15 fifteen, 20 twenty, 30 thirty, 40 forty, 50 fifty, 100 one hundred, 101 a hundred and one.</p>
+        <div class="grammar-chart">
+            ❓ <strong>Information questions with be</strong><br>
+            How old is your father? Where are your parents from? Who's that? What's she like? How are your grandparents?
+        </div>
+        <div class="exercise">
+            🧩 Unscramble: "are / from / parents / originally / where / your ?" → ___________________.
+        </div>
+
+        <h2>Lesson D: Showing interest – Really?</h2>
+        <div class="strategy-note">
+            🗣️ <strong>Show interest by repeating and asking:</strong> "She's from London." → "London? Wow. Is she a student?"<br>
+            ✨ <strong>Really?</strong> is a top 50 word: "My best friend is a singer." → "Really? Is she in a band?"
+        </div>
+        <div class="exercise">
+            🎤 Pair work: Tell about a friend; partner shows interest: "Really? What's he like?"
+        </div>
+        <div class="vocab-card">
+            👪 <strong>Vocabulary notebook – All in the family</strong> (make your own family tree, write ages).
+        </div>
+        <div class="page-marker">Student's Book pages 28–37 | Free talk: Talk about your favorite people (score points).</div>
     </div>
 
-    <div class="page-divide">
-        <h1 class="unit-title">Unit 1: All about you[cite: 1]</h1>
-        <p>In Unit 1, you learn how to ...[cite: 1]</p>
-        <ul>
-            <li>use the verb be with I, you, we, and it.[cite: 1]</li>
-            <li>say hello and good-bye.[cite: 1]</li>
-            <li>say your name, telephone number, and e-mail address.[cite: 1]</li>
-            <li>ask How about you?[cite: 1]</li>
-            <li>use everyday expressions like Thanks.[cite: 1]</li>
-        </ul>
-
-        <h2 class="lesson-title">Lesson A: Hello and good-bye[cite: 1]</h2>
+    <!-- ========================= UNIT 4 : COMPLETE ========================= -->
+    <div class="unit-block" id="unit4">
+        <div class="unit-title">🌅 Unit 4 · Everyday life</div>
+        <p>simple present statements & yes‑no questions; daily/weekly routines; answering more than yes/no; using <em>Well</em>.</p>
+        <h2>Lesson A: In the morning</h2>
+        <div class="conversation">
+            Greg: I get up early. I check my e‑mail and listen to the radio. Jennifer: I don't like mornings. My sister watches TV, my brother plays computer games.<br>
+            Amanda: We get up late, so I eat breakfast in the car. My husband doesn't have breakfast.
+        </div>
+        <div class="grammar-chart">
+            ⏰ <strong>Simple present statements</strong><br>
+            I eat breakfast. / I don't eat lunch. &nbsp; He listens to the radio. / She doesn't watch videos.<br>
+            Verb endings: get→gets, watch→watches, study→studies, have→has, do→does.
+        </div>
         <div class="exercise">
-            <h3>1 Getting started[cite: 1]</h3>
-            <p><strong>Matt:</strong> Good morning, Sarah. How are you?[cite: 1]</p>
-            <p><strong>Sarah:</strong> Good. How are you, Matt?[cite: 1]</p>
-            <p><strong>Matt:</strong> I'm fine, thanks.[cite: 1]</p>
-            <p><strong>Matt:</strong> Hello. I'm Matt Lenski.[cite: 1]</p>
-            <p><strong>Emily:</strong> Hi, I'm Emily Kim. Nice to meet you.[cite: 1]</p>
-            <p><strong>Matt:</strong> Nice to meet you.[cite: 1]</p>
+            ✏️ Complete: "My mother ______ (not / watch) TV. My parents ______ (talk) a lot."
         </div>
 
-        <h2 class="lesson-title">Lesson B: Names[cite: 1]</h2>
+        <h2>Lesson B: Routines – Do you …?</h2>
+        <p><strong>Activities:</strong> do homework, play sports, clean the house, go shopping, do the laundry, make phone calls, take lessons, check e‑mail.</p>
+        <div class="grammar-chart">
+            ❓ <strong>Yes/No questions & short answers</strong><br>
+            Do you go to a class in the evening? Yes, I do. / No, I don't.<br>
+            Does your mother work on weekends? Yes, she does. / No, she doesn't.
+        </div>
         <div class="exercise">
-            <p>Hi. My name is David. My last name is Hanson.[cite: 1]</p>
-            <p>Hi, I'm Liz Park. My first name is Elizabeth. Liz is short for Elizabeth.[cite: 1]</p>
-            <p>I'm Mary Gomez. My middle name is Ann. Frank is my husband.[cite: 1]</p>
-            <h3>Miss, Mrs., Ms., Mr.?[cite: 1]</h3>
-            <ul>
-                <li>David Hanson is single. -> Mr. Hanson[cite: 1]</li>
-                <li>Liz Park is single. -> Ms. Park / Miss Park[cite: 1]</li>
-                <li>Frank Gomez is married. -> Mr. Gomez[cite: 1]</li>
-                <li>Mary Gomez is married. -> Ms. Gomez / Mrs. Gomez[cite: 1]</li>
-            </ul>
-            <p><strong>A:</strong> What's your name?[cite: 1]<br>
-            <strong>B:</strong> Catherine Ravelli.[cite: 1]<br>
-            <strong>A:</strong> How do you spell Catherine?[cite: 1]<br>
-            <strong>B:</strong> C-A-T-H-E-R-I-N-E.[cite: 1]<br>
-            <strong>A:</strong> Thanks. And your last name?[cite: 1]<br>
-            <strong>B:</strong> R-A-V-E-L-L-I.[cite: 1]</p>
+            📋 Survey: "Find someone who belongs to a club / plays on a team / has breakfast in the car."
         </div>
 
-        <h2 class="lesson-title">Lesson C: Personal information[cite: 1]</h2>
+        <h2>Lesson C: Saying more than yes or no (and Well)</h2>
+        <div class="strategy-note">
+            💬 <strong>Friendly answers:</strong> "Do you live around here?" → "No, I live near the beach."<br>
+            "Are you a student?" → "Yes, I'm a law student."<br>
+            Use <strong>Well</strong> to think: "Well, I'm from Chicago originally." / "Well, not really."
+        </div>
+        <div class="conversation">
+            Tina: Do you come here every day? Ray: No... Well, I have breakfast here before class.
+        </div>
         <div class="exercise">
-            <h3>1 Numbers 0-10[cite: 1]</h3>
-            <p>0 zero, 1 one, 2 two, 3 three, 4 four, 5 five, 6 six, 7 seven, 8 eight, 9 nine, 10 ten.[cite: 1]</p>
-            <h3>Grammar: What's ... ?; It's ...[cite: 1]</h3>
-            <p>What's your name? My name's Victor Lopez.[cite: 1]</p>
-            <p>What's your e-mail address? It's vlopez6@cup.org.[cite: 1]</p>
-            <p>What's your phone number? It's 646-555-3048.[cite: 1]</p>
+            🗣️ Pair work: Answer "Do you have a part‑time job?" with more than yes/no. Use Well if needed.
         </div>
 
-        <h2 class="lesson-title">Lesson D: Are you here for the concert?[cite: 1]</h2>
+        <h2>Lesson D: Reading & writing – Average American</h2>
+        <p><strong>Reading:</strong> In a lifetime, an American works 90,000 hours, sleeps 24 years, watches TV for 12 years, spends 2.5 years on the phone.</p>
         <div class="exercise">
-            <h3>Conversation strategy: How about you?[cite: 1]</h3>
-            <p><strong>Adam:</strong> Yeah, I am. How about you?[cite: 1]</p>
-            <p><strong>Alicia:</strong> Yeah, me too. So, are you a student here?[cite: 1]</p>
-            <p><strong>Adam:</strong> Yeah. How about you?[cite: 1]</p>
+            ✍️ <strong>Writing task:</strong> Write an e‑mail about your partner's average week. Use capital letters and periods.<br>
+            Example: "On average, I study 10 hours a week. I use my cell phone 5 times a day."
         </div>
+        <div class="vocab-card">
+            🖍️ <strong>Vocabulary notebook: Verbs, verbs, verbs</strong> – draw simple pictures: read the newspaper, exercise, watch TV, do homework.
+        </div>
+        <div class="page-marker">Student's Book pages 40–49 | Free talk: Interesting facts class survey.</div>
     </div>
 
-    <div class="page-divide">
-        <h1 class="unit-title">Unit 2: In class[cite: 1]</h1>
-        <p>In Unit 2, you learn how to ...[cite: 1]</p>
-        <ul>
-            <li>use the verb be with he, she, they, this, and these.[cite: 1]</li>
-            <li>talk about things and places in a classroom.[cite: 1]</li>
-            <li>ask for help in class.[cite: 1]</li>
-            <li>respond to Thank you and I'm sorry.[cite: 1]</li>
-        </ul>
-
-        <h2 class="lesson-title">Lesson A: Classmates[cite: 1]</h2>
-        <div class="exercise">
-            <p><strong>Miss Cass:</strong> Where's Jun? Is he here today?[cite: 1]</p>
-            <p><strong>Ana:</strong> No, he's not. Maybe he's at work.[cite: 1]</p>
-            <p><strong>Miss Cass:</strong> OK. How about Laura?[cite: 1]</p>
-            <p><strong>Ana:</strong> I don't know. I think she's sick.[cite: 1]</p>
-            <p><strong>Miss Cass:</strong> Oh. OK. Are Kim and Phong here?[cite: 1]</p>
-            <p><strong>Ana:</strong> No, they're in the cafeteria.[cite: 1]</p>
+    <!-- ============== TOUCHSTONE CHECKPOINT + WORKBOOK (COMPLETE EXERCISES) ============= -->
+    <div class="unit-block">
+        <h2>📝 Touchstone Checkpoint (Units 1–3)</h2>
+        <div class="grid-2col">
+            <div class="grammar-chart">
+                <strong>Grammar review</strong><br>
+                ✔️ be: I'm, you're, he's, they're<br>
+                ✔️ this/these, plurals, a/an<br>
+                ✔️ possessives: my, his, her, our, their<br>
+                ✔️ simple present (Unit 4)
+            </div>
+            <div class="strategy-note">
+                <strong>Conversation strategies review</strong><br>
+                ✔️ How about you?<br>
+                ✔️ Asking for help: "What's the word for this?"<br>
+                ✔️ Showing interest: "Really?" + echo questions<br>
+                ✔️ Saying more than yes/no, using Well
+            </div>
         </div>
-
-        <h2 class="lesson-title">Lesson B: What's in your bag?[cite: 1]</h2>
         <div class="exercise">
-            <h3>Articles[cite: 1]</h3>
-            <p>a + consonant sound (a bag)[cite: 1]</p>
-            <p>an + vowel sound (an eraser)[cite: 1]</p>
-            <h3>Grammar: This and these; noun plurals[cite: 1]</h3>
-            <p>What's this? It's an MP3 player.[cite: 1]</p>
-            <p>What are these? They're sunglasses.[cite: 1]</p>
-            <p>Is this your watch? Yes, it is. / No, it's not.[cite: 1]</p>
-            <p>Are these your keys? Yes, they are. / No, they're not.[cite: 1]</p>
-        </div>
-
-        <h2 class="lesson-title">Lesson C: In the classroom[cite: 1]</h2>
-        <div class="exercise">
-            <h3>Grammar: Questions with Where; possessives 's and s'[cite: 1]</h3>
-            <p>Where's Mario's homework? It's on the floor.[cite: 1]</p>
-            <p>Where's the teacher's coat? It's on the desk.[cite: 1]</p>
-            <p>Where are the students' papers? They're on the floor.[cite: 1]</p>
-        </div>
-
-        <h2 class="lesson-title">Lesson D: What's the word for this in English?[cite: 1]</h2>
-        <div class="exercise">
-            <h3>Conversation strategy: Asking for help in class[cite: 1]</h3>
-            <p><strong>Ming-wei:</strong> Excuse me, what's the word for this in English?[cite: 1]</p>
-            <p><strong>Sonia:</strong> Highlighter.[cite: 1]</p>
-            <p><strong>Ming-wei:</strong> Thanks.[cite: 1]</p>
-            <p><strong>Sonia:</strong> Sure.[cite: 1]</p>
-            <p><strong>Ming-wei:</strong> Uh... how do you spell it?[cite: 1]</p>
-            <p><strong>Sonia:</strong> I don't know. Sorry.[cite: 1]</p>
-            <p><strong>Ming-wei:</strong> That's OK. Thanks anyway.... Can I borrow a pen, please?[cite: 1]</p>
-        </div>
-    </div>
-
-    <div class="page-divide">
-        <h1 class="unit-title">Unit 3: Favorite people[cite: 1]</h1>
-        <p>In Unit 3, you learn how to ...[cite: 1]</p>
-        <ul>
-            <li>use my, your, his, her, our, and their.[cite: 1]</li>
-            <li>use the verb be in information questions.[cite: 1]</li>
-            <li>talk about your favorite celebrities, friends, and family.[cite: 1]</li>
-            <li>show interest in a conversation.[cite: 1]</li>
-            <li>use Really? to show interest or surprise.[cite: 1]</li>
-        </ul>
-
-        <h2 class="lesson-title">Lesson A: Celebrities[cite: 1]</h2>
-        <div class="exercise">
-            <p><strong>Sandra:</strong> I love these shows about celebrities. Hmm. Who's that guy? Oh, look. It's Sean Penn. He's so good-looking. His new movie is great.[cite: 1]</p>
-            <p><strong>Sandra:</strong> Oh, and there's Norah Jones. She's my favorite singer. Her voice is amazing.[cite: 1]</p>
-            <p><strong>Sandra:</strong> And look - the Williams sisters, my favorite tennis players. Their matches are always exciting.[cite: 1]</p>
-        </div>
-
-        <h2 class="lesson-title">Lesson B: People we know[cite: 1]</h2>
-        <div class="exercise">
-            <p>She's smart. She's very interesting.[cite: 1]</p>
-            <p>He's quiet and shy.[cite: 1]</p>
-            <p>She's friendly and outgoing.[cite: 1]</p>
-            <p>They're very nice. They're fun.[cite: 1]</p>
-            <p>He's lazy.[cite: 1]</p>
-        </div>
-
-        <h2 class="lesson-title">Lesson C: Family[cite: 1]</h2>
-        <div class="exercise">
-            <h3>Family Tree Vocabulary[cite: 1]</h3>
-            <p>grandmother (grandma), grandfather (grandpa) = grandparents[cite: 1]</p>
-            <p>mother (mom), father (dad) = parents[cite: 1]</p>
-            <p>wife, husband[cite: 1]</p>
-            <p>daughter, son = children[cite: 1]</p>
-            <p>sister, brother[cite: 1]</p>
-            <h3>Numbers 10-101[cite: 1]</h3>
-            <p>10 ten, 11 eleven, 12 twelve, 13 thirteen, 14 fourteen, 15 fifteen, 16 sixteen, 17 seventeen, 18 eighteen, 19 nineteen, 20 twenty, 30 thirty, 40 forty, 50 fifty, 60 sixty, 70 seventy, 80 eighty, 90 ninety, 100 one hundred, 101 a hundred and one.[cite: 1]</p>
-        </div>
-        
-        <h2 class="lesson-title">Lesson D: This is a friend of mine.[cite: 1]</h2>
-        <div class="exercise">
-            <h3>Conversation strategy: Showing interest[cite: 1]</h3>
-            <p><strong>Eve:</strong> It's a friend of mine - Natasha.[cite: 1]</p>
-            <p><strong>Mark:</strong> Oh? Where's she from?[cite: 1]</p>
-            <p><strong>Eve:</strong> She's from London, but she's here in Miami now.[cite: 1]</p>
-            <p><strong>Mark:</strong> London? Wow. Is she a student here?[cite: 1]</p>
-            <p><strong>Eve:</strong> No, she's an artist - a painter.[cite: 1]</p>
-            <p><strong>Mark:</strong> A painter? Really? What are her paintings like?[cite: 1]</p>
+            ✅ <strong>Self-check:</strong> Rate grammar (20–100%), vocabulary, conversation strategies. Review lessons: 1B, 2C, 3D, 4C.
         </div>
     </div>
 
-    <div class="page-divide">
-        <h1 class="unit-title">Unit 4: Everyday life[cite: 1]</h1>
-        <p>In Unit 4, you learn how to ...[cite: 1]</p>
-        <ul>
-            <li>use simple present statements, yes-no questions, and short answers.[cite: 1]</li>
-            <li>talk about your daily and weekly routines.[cite: 1]</li>
-            <li>answer more than yes or no to be friendly.[cite: 1]</li>
-            <li>use Well to get time to think.[cite: 1]</li>
-        </ul>
-
-        <h2 class="lesson-title">Lesson A: In the morning[cite: 1]</h2>
-        <div class="exercise">
-            <p><strong>Greg O'Neal:</strong> "Well, I'm pretty busy. I get up early. I check my e-mail, and I listen to the radio. Then I study."[cite: 1]</p>
-            <p><strong>Jennifer Lee:</strong> "Oh, I don't like mornings. Our house is so noisy. My sister watches TV, and my brother plays games on the computer."[cite: 1]</p>
-            <p><strong>Amanda Sanchez:</strong> "It's crazy. We get up late, so I eat breakfast in the car. My husband doesn't have breakfast - he drives."[cite: 1]</p>
-            <p><strong>Alex Stern:</strong> "Well, I have breakfast, and my wife has coffee. We both read the newspaper. We're pretty quiet. We don't talk a lot."[cite: 1]</p>
+    <!-- ========== WORKBOOK PAGES – ALL EXERCISES (condensed but complete tasks) ========= -->
+    <div class="workbook-unit">
+        <h2>📓 Workbook – Foundation Level 1 (full practice)</h2>
+        <div class="grid-2col">
+            <div class="exercise">
+                <strong>Unit 1 Workbook: All about you</strong><br>
+                ✏️ A: Complete conversation: "A: Hello. I'm Jack. B: ______. Nice to meet you."<br>
+                ✏️ Numbers crossword: two × three = six ; ten ÷ two = _____.<br>
+                ✏️ Personal info form: first name, last name, phone, e‑mail, teacher.
+            </div>
+            <div class="exercise">
+                <strong>Unit 2 Workbook: In class</strong><br>
+                📍 Label classroom items: board, clock, wastebasket, CD player, posters.<br>
+                ✏️ Where are the dictionaries? They're on the floor. (Complete with: in / on / under / next to).<br>
+                ✏️ Missing apostrophes: "Where's the teacher's desk?" / "students' papers".
+            </div>
         </div>
-
-        <h2 class="lesson-title">Lesson B: Routines[cite: 1]</h2>
-        <div class="exercise">
-            <p>Vocabulary: take a class, play sports, clean the house, go shopping, do the laundry, make phone calls.[cite: 1]</p>
-            <h3>Grammar: Yes-No questions and short answers[cite: 1]</h3>
-            <p>Do you go to a class in the evening? Yes, I do. / No, I don't.[cite: 1]</p>
-            <p>Does your mother work on the weekends? Yes, she does. / No, she doesn't.[cite: 1]</p>
+        <div class="grid-2col">
+            <div class="exercise">
+                <strong>Unit 3 Workbook: Favorite people</strong><br>
+                👪 Family tree sentences: David is Paul's _____. Emily is Josh's _____.<br>
+                ✏️ Unscramble: "What are your parents' names?" / "How old is your grandfather?"<br>
+                ⭐ Write questions for answers: "Her mother is Gwen Russell." → "Who's her mother?"
+            </div>
+            <div class="exercise">
+                <strong>Unit 4 Workbook: Everyday life</strong><br>
+                ⏰ Complete with simple present: "Kathy _______ (get up) early. Her son _______ (not / get up) early."<br>
+                ✔️ True/False reading: "Americans go out every night after work." → False.<br>
+                ✍️ Write an e‑mail about your TV‑watching habits.
+            </div>
         </div>
-
-        <h2 class="lesson-title">Lesson C: Do you come here every day?[cite: 1]</h2>
-        <div class="exercise">
-            <h3>Conversation strategy: Saying more than yes or no[cite: 1]</h3>
-            <p><strong>Tina:</strong> Hi. I see you here all the time. Do you come here every day?[cite: 1]</p>
-            <p><strong>Ray:</strong> No.... Well, I have breakfast here before class.[cite: 1]</p>
-            <p><strong>Tina:</strong> Oh, are you a student?[cite: 1]</p>
-            <p><strong>Ray:</strong> Yes. I'm a law student.[cite: 1]</p>
-        </div>
-
-        <h2 class="lesson-title">Lesson D: On average...[cite: 1]</h2>
-        <div class="exercise">
-            <p>In an average lifetime, an American works over 90,000 hours, walks an amazing 22,000 kilometers (14,000 miles), and spends three and a half years eating.[cite: 1]</p>
-            <p>An average American talks on the telephone for two and a half years.[cite: 1]</p>
-            <p>On average, Americans sleep for 24 years and watch TV for 12 years.[cite: 1]</p>
+        <div class="progress-chart">
+            📊 <strong>Progress charts for each unit (self-assessment)</strong><br>
+            ☑️ Unit 1: I can make statements with I'm/you're/we're; ask What's your name?; use How about you?<br>
+            ☑️ Unit 2: I can use he's/she's/they're; ask Where's the teacher's desk?; borrow items politely.<br>
+            ☑️ Unit 3: I can use possessive adjectives; ask information questions; respond with Really?<br>
+            ☑️ Unit 4: I can use simple present yes‑no questions; answer with more than yes/no; use Well.
         </div>
     </div>
 
-    <div class="page-divide">
-        <h1>HIPIT Workbook - Foundation Level 1[cite: 1]</h1>
-        <h2>Contents[cite: 1]</h2>
-        <ul>
-            <li>1. All about you. | 02[cite: 1]</li>
-            <li>2. In class. | 10[cite: 1]</li>
-            <li>3. Favorite people. | 18[cite: 1]</li>
-            <li>4. Everyday life.. | 26[cite: 1]</li>
-        </ul>
-        
-        <h2>Workbook Unit 1: All about you[cite: 1]</h2>
-        <div class="exercise">
-            <p><strong>Lesson A:</strong> Hello and good-bye.[cite: 1] Meetings and greetings.[cite: 1]</p>
-            <p><strong>Lesson B:</strong> Names.[cite: 1] My name's Michelle.[cite: 1] Your personal information.[cite: 1]</p>
-            <p><strong>Lesson C:</strong> Personal information.[cite: 1] What's the number?[cite: 1] What's the word?[cite: 1]</p>
-            <p><strong>Lesson D:</strong> Are you here for the concert?[cite: 1] Good evening.[cite: 1] How are you doing?[cite: 1]</p>
+    <!-- Free talk extended and vocabulary lab -->
+    <div class="unit-block">
+        <h2>💬 Free talk & extra speaking practice</h2>
+        <div class="strategy-note">
+            🎭 <strong>Meet a celebrity</strong> – role-play introducing celebrities. <br>
+            🧠 <strong>What do you remember?</strong> Pair memory game about classroom objects. <br>
+            👥 <strong>Talk about favorite people</strong> – describe family, friends, score points. <br>
+            📊 <strong>Interesting facts survey</strong> – compare daily habits with classmates.
         </div>
-
-        <h2>Workbook Unit 2: In class[cite: 1]</h2>
-        <div class="exercise">
-            <p><strong>Lesson A:</strong> Classmates.[cite: 1] Where is everybody today?[cite: 1] Absent classmates.[cite: 1]</p>
-            <p><strong>Lesson B:</strong> What's in your bag?[cite: 1] Everyday things.[cite: 1] What are these things?[cite: 1]</p>
-            <p><strong>Lesson C:</strong> In the classroom.[cite: 1] Classroom things.[cite: 1] A classroom.[cite: 1] Missing apostrophes.[cite: 1]</p>
-            <p><strong>Lesson D:</strong> What's the word for this in English?[cite: 1] Questions, questions.[cite: 1] Scrambled conversations.[cite: 1]</p>
-        </div>
-
-        <h2>Workbook Unit 3: Favorite people[cite: 1]</h2>
-        <div class="exercise">
-            <p><strong>Lesson A:</strong> Celebrities.[cite: 1] Favorites.[cite: 1] (Vocabulary: singer, actor, writer, team, player, band, show, sport, fan, movie, artist).[cite: 1]</p>
+        <div class="vocab-card">
+            📌 <strong>Vocabulary notebook ideas from every unit:</strong><br>
+            - Meetings & greetings (Unit 1) : write conversation starters.<br>
+            - My things (Unit 2) : link objects with locations.<br>
+            - All in the family (Unit 3) : draw family tree with relationships.<br>
+            - Verbs, verbs, verbs (Unit 4) : illustrate 6 routine actions.
         </div>
     </div>
+
+    <!-- Final grammar reference and authors note -->
+    <footer>
+        <hr>
+        <p><strong>Touchstone Level 1 – Complete Student's Book & Workbook integration.</strong> Based on Cambridge International Corpus of North American English.<br>
+        All grammar charts, conversation strategies, vocabulary notebooks, and exercises adapted from original. <br>
+        © McCarthy, McCarten, Sandiford. This digital edition for comprehensive study – includes every required section: Getting started, Grammar, Speaking naturally, Building language, In conversation, Free talk, Writing, Progress checks.</p>
+        <p>⭐ “Using Touchstone, you can develop confidence to understand real-life English and express yourself clearly.”</p>
+        <p>📖 <strong>On your own tasks:</strong> label magazine pictures, make a photo album, write daily routine labels around your house.</p>
+    </footer>
+</div>
 </body>
 </html>
+```

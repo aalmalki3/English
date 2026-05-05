@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touchstone ENG 101 – Beginner Assessment Tool</title>
+    <title>Touchstone ENG 101 – Smart Assessment Tool</title>
     <script>
         (function() {
             const saved = localStorage.getItem('shfq-theme');
@@ -14,36 +14,39 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-peach: #fae8d4;
             --brand-apricot: #f2cdae;
             --brand-ice: #cde0e5;
             --brand-slate: #8f9ea6;
-            --brand-charcoal: #333333;
+            --brand-charcoal: #333;
             --brand-gold: #C9A84C;
             --brand-navy: #1E3A5F;
             --bg-page: #fdfcfb;
-            --surface: rgba(255, 255, 255, 0.85);
-            --surface-solid: #ffffff;
-            --text-main: #333333;
+            --surface: rgba(255, 255, 255, 0.88);
+            --surface-solid: #fff;
+            --text-main: #333;
             --text-muted: #5c6b73;
             --border-light: rgba(205, 224, 229, 0.5);
             --border-strong: rgba(143, 158, 166, 0.35);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
+            --radius-sm: 10px;
+            --radius-md: 18px;
+            --radius-lg: 26px;
+            --radius-xl: 34px;
+            --easy: #10b981;
+            --medium: #f59e0b;
+            --hard: #ef4444;
         }
         [data-theme="dark"] {
-            --bg-page: #1a1a1a;
-            --surface: rgba(40, 40, 40, 0.88);
-            --surface-solid: #2a2a2a;
+            --bg-page: #18181b;
+            --surface: rgba(35, 35, 40, 0.9);
+            --surface-solid: #252528;
             --text-main: #f0f0f0;
             --text-muted: #a0aab4;
-            --border-light: rgba(255, 255, 255, 0.08);
-            --border-strong: rgba(255, 255, 255, 0.14);
+            --border-light: rgba(255, 255, 255, 0.07);
+            --border-strong: rgba(255, 255, 255, 0.12);
         }
         *,
         *::before,
@@ -54,6 +57,7 @@
         }
         html {
             font-size: 16px;
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -63,98 +67,133 @@
             font-weight: 400;
             line-height: 1.7;
             min-height: 100vh;
-            padding: 2rem 1rem;
+            padding: 2rem 1rem 4rem;
             border-top: 6px solid;
             border-image: linear-gradient(to right, var(--brand-peach), var(--brand-apricot), var(--brand-ice), var(--brand-slate)) 1;
             position: relative;
             overflow-x: hidden;
+            transition: background 0.4s, color 0.4s;
         }
         .ambient-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(90px);
+            filter: blur(100px);
             z-index: -1;
-            animation: float 22s infinite alternate;
+            animation: float 20s infinite alternate;
+            pointer-events: none;
+            opacity: 0.55;
         }
-        .orb-1 { width: 480px;
-            height: 480px;
+        .orb-1 { width: 500px;
+            height: 500px;
             background: var(--brand-peach);
-            top: -120px;
-            right: -120px; }
-        .orb-2 { width: 380px;
-            height: 380px;
+            top: -140px;
+            right: -140px;
+            animation-delay: 0s; }
+        .orb-2 { width: 400px;
+            height: 400px;
             background: var(--brand-ice);
-            bottom: -100px;
-            left: -100px;
-            animation-delay: -7s; }
-        .orb-3 { width: 260px;
-            height: 260px;
+            bottom: -120px;
+            left: -120px;
+            animation-delay: -8s; }
+        .orb-3 { width: 280px;
+            height: 280px;
             background: var(--brand-apricot);
-            top: 45%;
-            left: 40%;
-            animation-delay: -14s; }
-        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(40px, -30px); } }
-        @keyframes toastIn { from { opacity: 0;
-                transform: translateY(20px); } to { opacity: 1;
+            top: 50%;
+            left: 35%;
+            animation-delay: -15s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(35px, -25px) scale(1.04); } }
+        @keyframes fadeUp { from { opacity: 0;
+                transform: translateY(24px); } to { opacity: 1;
                 transform: translateY(0); } }
-        @keyframes toastOut { from { opacity: 1;
-                transform: translateY(0); } to { opacity: 0;
-                transform: translateY(-10px); } }
         @keyframes pulse-dot { 0%,
         100% { opacity: 1;
-                transform: scale(1); } 50% { opacity: 0.4;
-                transform: scale(0.8); } }
-        .btn { font-family: inherit;
-            font-size: 0.95rem;
+                transform: scale(1); } 50% { opacity: 0.35;
+                transform: scale(0.75); } }
+        @keyframes toastIn { from { opacity: 0;
+                transform: translateY(16px); } to { opacity: 1;
+                transform: translateY(0); } }
+        @keyframes toastOut { to { opacity: 0;
+                transform: translateY(-12px); } }
+        @keyframes popIn { 0% { transform: scale(0.85);
+                opacity: 0; } 60% { transform: scale(1.04); } 100% { transform: scale(1);
+                opacity: 1; } }
+        @keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+        .btn {
+            font-family: inherit;
+            font-size: 0.9rem;
             font-weight: 600;
-            padding: 0.7rem 1.5rem;
+            padding: 0.65rem 1.4rem;
             border-radius: var(--radius-sm);
             border: none;
             cursor: pointer;
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            letter-spacing: 0.2px; }
-        .btn:active { transform: scale(0.96); }
+            letter-spacing: 0.15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+        .btn:active { transform: scale(0.95); }
         .btn:focus-visible { outline: 3px solid var(--brand-ice);
-            outline-offset: 2px; }
-        .btn::after { content: '';
+            outline-offset: 3px; }
+        .btn::after {
+            content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0%, transparent 65%);
             opacity: 0;
-            transition: opacity 0.15s; }
+            transition: opacity 0.18s;
+        }
         .btn:active::after { opacity: 1; }
         .btn-primary { background: var(--brand-charcoal);
-            color: white;
-            box-shadow: 0 4px 12px rgba(143, 158, 166, 0.1); }
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); }
         .btn-primary:hover { background: #1a1a1a;
-            box-shadow: 0 8px 28px rgba(143, 158, 166, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
             transform: translateY(-1px); }
         [data-theme="dark"] .btn-primary { background: var(--brand-gold);
-            color: #1a1a1a; }
-        [data-theme="dark"] .btn-primary:hover { background: #d4b04e; }
+            color: #1a1a1a;
+            box-shadow: 0 4px 18px rgba(201, 168, 76, 0.2); }
+        [data-theme="dark"] .btn-primary:hover { background: #d4b04e;
+            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.3); }
         .btn-secondary { background: transparent;
-            color: var(--brand-slate);
-            border: 2px solid var(--brand-slate); }
-        .btn-secondary:hover { background: var(--brand-ice);
-            border-color: var(--brand-charcoal);
-            color: var(--brand-charcoal); }
+            color: var(--text-main);
+            border: 2px solid var(--border-strong); }
+        .btn-secondary:hover { background: var(--border-light);
+            border-color: var(--brand-slate); }
         .btn-ghost { background: transparent;
             color: var(--text-muted);
             border: 2px solid transparent;
-            padding: 0.5rem 0.9rem; }
+            padding: 0.45rem 0.8rem; }
         .btn-ghost:hover { background: var(--border-light);
-            color: var(--text-main);
-            border-color: var(--border-strong); }
-        .card { background: var(--surface);
-            backdrop-filter: blur(10px);
+            color: var(--text-main); }
+        .btn-easy { background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1.5px solid rgba(16, 185, 129, 0.3);
+            font-size: 0.8rem;
+            padding: 0.35rem 0.9rem; }
+        .btn-medium { background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            font-size: 0.8rem;
+            padding: 0.35rem 0.9rem; }
+        .btn-hard { background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1.5px solid rgba(239, 68, 68, 0.3);
+            font-size: 0.8rem;
+            padding: 0.35rem 0.9rem; }
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
-            padding: 1.75rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s; }
-        .card:hover { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            padding: 1.6rem;
+            box-shadow: 0 3px 16px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
             border-color: var(--border-strong);
             transform: translateY(-2px); }
         .toast-container { position: fixed;
@@ -166,20 +205,20 @@
             flex-direction: column;
             gap: 0.5rem;
             pointer-events: none; }
-        .toast { padding: 0.85rem 1.4rem;
+        .toast { padding: 0.8rem 1.5rem;
             border-radius: var(--radius-md);
             background: var(--surface-solid);
             border: 1px solid var(--border-strong);
-            box-shadow: 0 8px 28px rgba(143, 158, 166, 0.15);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-main);
-            animation: toastIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), toastOut 0.3s ease 2.5s forwards;
+            animation: toastIn 0.3s ease, toastOut 0.3s ease 2.4s forwards;
             pointer-events: auto; }
         .toast.success { border-left: 4px solid #10b981; }
         .toast.warning { border-left: 4px solid #f59e0b; }
         .toast.error { border-left: 4px solid #ef4444; }
-        .progress-bar-track { height: 7px;
+        .progress-bar-track { height: 8px;
             background: var(--border-light);
             border-radius: 20px;
             overflow: hidden;
@@ -187,99 +226,198 @@
         .progress-bar-fill { height: 100%;
             border-radius: 20px;
             background: linear-gradient(90deg, var(--brand-slate), var(--brand-charcoal));
-            transition: width 0.5s; }
-        .theme-toggle { width: 50px;
-            height: 28px;
-            border-radius: 28px;
+            transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
+        [data-theme="dark"] .progress-bar-fill { background: linear-gradient(90deg, var(--brand-gold), #d4b04e); }
+        .theme-toggle { width: 52px;
+            height: 29px;
+            border-radius: 29px;
             border: 2px solid var(--border-strong);
             background: var(--border-light);
             position: relative;
             cursor: pointer;
-            transition: all 0.3s; }
+            transition: all 0.3s;
+            flex-shrink: 0; }
         .theme-toggle::after { content: '';
-            width: 18px;
-            height: 18px;
+            width: 19px;
+            height: 19px;
             border-radius: 50%;
             background: var(--brand-gold);
             position: absolute;
             top: 3px;
-            left: 3px;
+            left: 4px;
             transition: all 0.3s; }
         [data-theme="dark"] .theme-toggle::after { left: 25px;
             background: #fff; }
-        .data-ribbon { background: var(--surface);
-            border: 1px solid var(--border-light);
-            padding: 0.65rem 1.75rem;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem; }
-        .container { max-width: 1100px;
+        .container { max-width: 1140px;
             margin: 0 auto; }
         .header-row { display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem; }
-        .page-content { max-height: 420px;
+            margin-bottom: 1.8rem; }
+        .header-row h1 { font-size: clamp(1.7rem, 5vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.4px; }
+        .controls-card { display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.5rem; }
+        .controls-card input[type="number"] { width: 85px;
+            padding: 0.65rem 0.9rem;
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-family: inherit;
+            background: var(--surface-solid);
+            color: var(--text-main);
+            transition: all 0.2s; }
+        .controls-card input[type="number"]:focus { outline: none;
+            border-color: var(--brand-slate);
+            box-shadow: 0 0 0 4px rgba(143, 158, 166, 0.12); }
+        .page-content-display { max-height: 380px;
             overflow-y: auto;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            white-space: pre-wrap; }
-        .question-list { display: flex;
-            flex-direction: column;
-            gap: 1.25rem; }
-        .question-card-inner { display: flex;
-            flex-direction: column;
-            gap: 0.6rem; }
-        .question-number { display: inline-flex;
+            padding: 1.4rem;
+            margin-bottom: 1.8rem;
+            font-size: 0.93rem;
+            line-height: 1.75;
+            white-space: pre-wrap;
+            background: var(--surface-solid);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light); }
+        .section-title { font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2rem 0 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; }
+        .difficulty-badge { display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase; }
+        .badge-easy { background: rgba(16, 185, 129, 0.12);
+            color: #10b981; }
+        .badge-medium { background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b; }
+        .badge-hard { background: rgba(239, 68, 68, 0.12);
+            color: #ef4444; }
+        .question-card { animation: fadeUp 0.4s ease both; }
+        .question-card:nth-child(1) { animation-delay: 0s; }
+        .question-card:nth-child(2) { animation-delay: 0.08s; }
+        .question-card:nth-child(3) { animation-delay: 0.16s; }
+        .question-card:nth-child(4) { animation-delay: 0.22s; }
+        .question-card:nth-child(5) { animation-delay: 0.28s; }
+        .question-card:nth-child(6) { animation-delay: 0.34s; }
+        .question-number {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            color: #fff;
             background: var(--brand-charcoal);
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0; }
+        }
         [data-theme="dark"] .question-number { background: var(--brand-gold);
             color: #1a1a1a; }
-        .tag { display: inline-block;
-            padding: 0.2rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase; }
-        .tag-grammar { background: rgba(250, 232, 212, 0.4);
-            color: #8b6914; }
-        .tag-vocabulary { background: rgba(205, 224, 229, 0.4);
-            color: #1a5c3a; }
-        .hint-options { display: none;
-            margin-top: 0.4rem;
-            gap: 0.5rem;
-            flex-wrap: wrap; }
-        .hint-options.show { display: flex; }
-        .hint-option-btn { padding: 0.4rem 1rem;
+        .context-snippet { background: rgba(143, 158, 166, 0.06);
+            border: 1px dashed var(--border-strong);
             border-radius: var(--radius-sm);
-            border: 2px solid var(--brand-apricot);
-            background: rgba(250, 232, 212, 0.25);
+            padding: 0.7rem 1rem;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            margin: 0.5rem 0; }
+        .answer-input { flex: 1;
+            min-width: 160px;
+            padding: 0.6rem 0.9rem;
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            background: var(--surface-solid);
+            color: var(--text-main);
+            transition: all 0.2s; }
+        .answer-input:focus { outline: none;
+            border-color: var(--brand-slate);
+            box-shadow: 0 0 0 4px rgba(143, 158, 166, 0.08); }
+        .answer-input.correct { border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.04) !important; }
+        .answer-input.incorrect { border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.03) !important; }
+        .hint-chips { display: none;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem; }
+        .hint-chips.show { display: flex; }
+        .hint-chip { padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 2px solid var(--brand-ice);
+            background: rgba(205, 224, 229, 0.15);
             color: var(--text-main);
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.85rem;
             transition: all 0.15s; }
-        .hint-option-btn:hover { background: var(--brand-apricot);
-            color: #1a1a1a; }
-        .answer-reveal { display: none; }
+        .hint-chip:hover { background: var(--brand-ice);
+            color: #1a1a1a;
+            border-color: var(--brand-slate);
+            transform: scale(1.03); }
+        .answer-reveal { display: none;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            background: rgba(16, 185, 129, 0.07);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            font-weight: 700;
+            margin-top: 0.4rem;
+            animation: popIn 0.3s ease; }
         .answer-reveal.show { display: block; }
-        @media (max-width: 680px) { body { padding: 1rem 0.5rem; } }
+        .feedback-msg { font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none; }
+        .feedback-msg.show { display: block; }
+        .feedback-msg.correct { color: #10b981; }
+        .feedback-msg.incorrect { color: #ef4444; }
+        .results-panel { margin-top: 2rem;
+            text-align: center;
+            animation: fadeUp 0.5s ease; }
+        .score-ring { width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 6px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            font-size: 2rem;
+            font-weight: 900;
+            transition: border-color 0.5s; }
+        .page-nav { display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap; }
+        @media (max-width: 680px) {
+            body { padding: 1rem 0.6rem 3rem; }
+            .controls-card { flex-direction: column;
+                align-items: stretch; }
+            .page-content-display { max-height: 260px;
+                font-size: 0.85rem; }
+            .header-row h1 { font-size: 1.3rem; }
+        }
     </style>
 </head>
 <body>
@@ -289,39 +427,44 @@
     <div class="toast-container" id="toastContainer"></div>
     <div class="container">
         <div class="header-row">
-            <h1>📝 Beginner English Assessment</h1>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
+            <h1>📝 Smart Assessment</h1>
+            <div style="display:flex;align-items:center;gap:0.7rem;">
                 <button class="btn btn-ghost" onclick="switchLanguage()" id="langBtn">🌍 English</button>
                 <div class="theme-toggle" onclick="toggleTheme()"></div>
             </div>
         </div>
-        <div class="data-ribbon"><span class="status-dot" style="width:10px;height:10px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse-dot 2s infinite;"></span> <span id="ribbonText">Touchstone ENG 101 · Level 1 · Read, then fill in the blanks</span></div>
 
-        <div class="controls-bar" style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem;">
-            <label style="font-weight:700;">📄 <span data-key="pageLabel">Page</span>:</label>
-            <input type="number" id="pageInput" min="1" max="83" value="9" style="width:90px;padding:0.7rem;border-radius:8px;border:2px solid var(--border-strong);background:var(--surface-solid);color:var(--text-main);text-align:center;font-weight:600;">
-            <button class="btn btn-primary" onclick="generateAssessment()">🔍 <span data-key="generate">Start</span></button>
-            <button class="btn btn-secondary" onclick="randomPage()">🎲 <span data-key="random">Random</span></button>
-            <button class="btn btn-ghost" onclick="resetAll()">🔄 <span data-key="reset">Reset</span></button>
+        <div class="card controls-card">
+            <label style="font-weight:700;white-space:nowrap;">📄 Page:</label>
+            <input type="number" id="pageInput" min="1" max="83" value="9" placeholder="1–83">
+            <button class="btn btn-primary" onclick="navigateToPage()">🔍 Go</button>
+            <button class="btn btn-secondary" onclick="randomLessonPage()">🎲 Random</button>
+            <div class="page-nav">
+                <button class="btn btn-ghost" onclick="prevLessonPage()" title="Previous lesson">◀ Prev</button>
+                <button class="btn btn-ghost" onclick="nextLessonPage()" title="Next lesson">Next ▶</button>
+            </div>
+            <span id="pageStatus" style="font-size:0.82rem;color:var(--text-muted);margin-left:auto;"></span>
         </div>
 
-        <div class="card page-info-card" style="margin-bottom:1.5rem;padding:1rem 1.5rem;border-left:6px solid var(--brand-ice);" id="pageInfo">
-            <span data-key="enterPage">📌 Choose a page (1–83) and click Start.</span>
+        <div class="card page-content-display" id="pageContentDisplay">
+            <p style="text-align:center;color:var(--text-muted);padding:3rem 1rem;">📖 <strong>Pick a page to start</strong><br><small>Lesson text appears here — then answer below</small></p>
         </div>
-        <div class="card page-content" id="pageContentDisplay"></div>
 
-        <h2 style="font-size:1.5rem;font-weight:700;margin:1.5rem 0 0.75rem;" data-key="questionsTitle">📋 Practice Questions</h2>
-        <div class="question-list" id="questionsContainer"></div>
+        <div id="questionsArea">
+            <div class="section-title">📋 Questions <span id="difficultySummary" style="font-size:0.8rem;font-weight:500;color:var(--text-muted);"></span></div>
+            <div id="questionsContainer" style="display:flex;flex-direction:column;gap:1rem;"></div>
+        </div>
 
-        <div class="card results-panel" id="resultsPanel" style="display:none;margin-top:2rem;text-align:center;">
-            <h2 data-key="yourScore">📊 Your Score</h2>
-            <div style="font-size:3rem;font-weight:800;" id="scoreDisplay">0%</div>
-            <div style="font-size:1.5rem;" id="starsDisplay"></div>
-            <div class="progress-bar-track" style="margin:0.8rem 0;"><div class="progress-bar-fill" id="progressFill" style="width:0%;"></div></div>
-            <p id="scoreMessage" style="color:var(--text-muted);"></p>
-            <div style="display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;">
-                <button class="btn btn-primary" onclick="checkAllAnswers()">✅ <span data-key="checkAll">Check All</span></button>
-                <button class="btn btn-secondary" onclick="showAllAnswers()">👁️ <span data-key="showAll">Show All</span></button>
+        <div class="card results-panel" id="resultsPanel" style="display:none;">
+            <h3 style="margin-bottom:0.5rem;">📊 Your Score</h3>
+            <div class="score-ring" id="scoreRing">0%</div>
+            <div id="starsDisplay" style="font-size:1.4rem;margin-bottom:0.5rem;"></div>
+            <div class="progress-bar-track"><div class="progress-bar-fill" id="progressFill" style="width:0%;"></div></div>
+            <p id="scoreMessage" style="color:var(--text-muted);margin:0.6rem 0;"></p>
+            <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+                <button class="btn btn-primary" onclick="checkAllAnswers()">✅ Check All</button>
+                <button class="btn btn-secondary" onclick="showAllAnswers()">👁️ Reveal All</button>
+                <button class="btn btn-ghost" onclick="resetAnswers()">🔄 Retry</button>
             </div>
         </div>
     </div>
@@ -329,360 +472,431 @@
     <script>
         const t9n = {
             ar: {
-                pageLabel: 'الصفحة',
-                generate: 'ابدأ',
-                random: 'عشوائي',
-                reset: 'إعادة',
-                enterPage: '📌 اختر صفحة (1–83) واضغط ابدأ.',
-                questionsTitle: '📋 أسئلة التمرين',
-                yourScore: '📊 نتيجتك',
-                checkAll: 'تحقق من الكل',
-                showAll: 'أظهر الكل',
-                ribbonText: 'Touchstone ENG 101 · المستوى 1 · اقرأ ثم املأ الفراغات',
-                correct: '✅ صحيح!',
-                incorrect: '❌ ليس تماماً.',
-                typeAnswer: '❌ اكتب إجابة أولاً.',
                 hint: '💬 خيارات',
                 check: '✓ تحقق',
-                grammar: 'قواعد',
-                vocabulary: 'مفردات',
+                correct: '✅ صحيح!',
+                incorrect: '❌ حاول مجدداً',
+                typeAnswer: '❌ اكتب إجابة',
                 perfect: '🏆 ممتاز!',
                 great: '👍 رائع!',
-                good: '📖 جيد.',
-                keep: '📚 حاول مجدداً.'
+                good: '📖 جيد',
+                keep: '📚 حاول مجدداً',
+                easy: 'سهل',
+                medium: 'متوسط',
+                hard: 'صعب',
+                allLevels: 'كل المستويات',
+                prev: '◀ السابق',
+                next: 'التالي ▶',
+                go: '🔍 اذهب',
+                random: '🎲 عشوائي',
+                lessonPage: 'صفحة الدرس',
+                redirected: '🔀 تم التوجيه إلى'
             },
             en: {
-                pageLabel: 'Page',
-                generate: 'Start',
-                random: 'Random',
-                reset: 'Reset',
-                enterPage: '📌 Choose a page (1–83) and click Start.',
-                questionsTitle: '📋 Practice Questions',
-                yourScore: '📊 Your Score',
-                checkAll: 'Check All',
-                showAll: 'Show All',
-                ribbonText: 'Touchstone ENG 101 · Level 1 · Read, then fill in the blanks',
-                correct: '✅ Correct!',
-                incorrect: '❌ Not quite.',
-                typeAnswer: '❌ Please type an answer first.',
                 hint: '💬 Options',
                 check: '✓ Check',
-                grammar: 'Grammar',
-                vocabulary: 'Vocabulary',
+                correct: '✅ Correct!',
+                incorrect: '❌ Try again',
+                typeAnswer: '❌ Type an answer',
                 perfect: '🏆 Perfect!',
                 great: '👍 Great!',
-                good: '📖 Good.',
-                keep: '📚 Try again.'
+                good: '📖 Good',
+                keep: '📚 Try again',
+                easy: 'Easy',
+                medium: 'Medium',
+                hard: 'Hard',
+                allLevels: 'All levels',
+                prev: '◀ Prev',
+                next: 'Next ▶',
+                go: '🔍 Go',
+                random: '🎲 Random',
+                lessonPage: 'Lesson page',
+                redirected: '🔀 Redirected to'
             }
         };
         let currentLang = localStorage.getItem('shfq-lang') || 'en';
-        function t(k) { return t9n[currentLang][k] || t9n['en'][k] || k; }
-        function updateStaticTexts() {
-            document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelectorAll('[data-key]').forEach(el => { const k = el.getAttribute('data-key'); if (t9n[currentLang][k]) el.textContent = t9n[currentLang][k]; });
-            document.getElementById('ribbonText').textContent = t('ribbonText');
-            document.getElementById('langBtn').textContent = t('switchTo') || (currentLang==='ar'?'🌍 English':'🕌 العربية');
-        }
+
+        function t(k) { return t9n[currentLang]?.[k] || t9n['en'][k] || k; }
+
         function switchLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             localStorage.setItem('shfq-lang', currentLang);
-            updateStaticTexts();
-            if (currentQuestions.length) renderQuestions(currentQuestions);
-            showToast(currentLang === 'ar' ? '🕌 العربية' : '🌍 English', 'info');
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langBtn').textContent = currentLang === 'ar' ? '🌍 English' : '🕌 العربية';
+            if (currentQuestions.length) renderAllQuestions();
+            showToast(currentLang === 'ar' ? '🕌 العربية' : '🌍 English', 'success');
         }
+
         function toggleTheme() {
             const cur = document.documentElement.getAttribute('data-theme');
             const next = cur === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('shfq-theme', next);
         }
+
         function showToast(msg, type) {
             const c = document.getElementById('toastContainer');
-            const t = document.createElement('div');
-            t.className = `toast ${type}`;
-            t.textContent = msg;
-            c.appendChild(t);
-            setTimeout(() => t.remove(), 3000);
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.textContent = msg;
+            c.appendChild(el);
+            setTimeout(() => el.remove(), 2800);
         }
 
-        // ========== COMPLETE TEXTBOOK DATABASE (all 83 pages) ==========
+        // Non-lesson pages redirect map
+        const redirectMap = { 1: 4, 2: 6, 3: 4, 5: 6, 40: 42, 41: 42 };
+        const lessonPages = Object.keys(textbookDB).map(Number).filter(p => !redirectMap[p]).sort((a, b) => a - b);
+
+        function getEffectivePage(p) {
+            while (redirectMap[p]) p = redirectMap[p];
+            return p;
+        }
+
+        function navigateToPage() {
+            let p = parseInt(document.getElementById('pageInput').value);
+            if (isNaN(p) || p < 1 || p > 83) { showToast('Enter 1–83', 'warning'); return; }
+            const orig = p;
+            p = getEffectivePage(p);
+            if (p !== orig) {
+                document.getElementById('pageInput').value = p;
+                showToast(`${t('redirected')} page ${p}`, 'info');
+            }
+            document.getElementById('pageInput').value = p;
+            generateAssessment(p);
+        }
+
+        function nextLessonPage() {
+            let cur = parseInt(document.getElementById('pageInput').value) || 4;
+            cur = getEffectivePage(cur);
+            const idx = lessonPages.indexOf(cur);
+            const next = idx >= 0 && idx < lessonPages.length - 1 ? lessonPages[idx + 1] : lessonPages[0];
+            document.getElementById('pageInput').value = next;
+            generateAssessment(next);
+        }
+
+        function prevLessonPage() {
+            let cur = parseInt(document.getElementById('pageInput').value) || 4;
+            cur = getEffectivePage(cur);
+            const idx = lessonPages.indexOf(cur);
+            const prev = idx > 0 ? lessonPages[idx - 1] : lessonPages[lessonPages.length - 1];
+            document.getElementById('pageInput').value = prev;
+            generateAssessment(prev);
+        }
+
+        function randomLessonPage() {
+            const lp = lessonPages;
+            const rp = lp[Math.floor(Math.random() * lp.length)];
+            document.getElementById('pageInput').value = rp;
+            generateAssessment(rp);
+        }
+
+        // ========== TEXTBOOK DATABASE (abbreviated – full 83 pages maintained) ==========
         const textbookDB = {
-            1: { unit:1, section:'Title', fullText:'ENG 101 GENERAL ENGLISH', grammar:[], vocab:[] },
-            2: { unit:1, section:'Contents', fullText:'1. All about you. 01  2. In class. 11  3. Favorite people. 21  4. Everyday life. 33', grammar:[], vocab:[] },
-            3: { unit:1, section:'Grid', fullText:'[Number grid]', grammar:[], vocab:[] },
-            4: { unit:1, section:'Features', fullText:'Conversation strategy helps you manage conversations. Strategy plus teaches I mean, Well, Anyway. Listening and speaking, Reading, Writing, Vocabulary notebook, On your own, Free talk.', grammar:[], vocab:['conversation strategy','vocabulary notebook','free talk'] },
-            5: { unit:1, section:'Grid', fullText:'[Number grid]', grammar:[], vocab:[] },
-            6: { unit:1, section:'Skills chart', fullText:'Listening: Recognize responses to hello and goodbye. Memberships. Reading: ID cards. Writing: application. Vocabulary: greetings. Free talk: Meet a celebrity.', grammar:[], vocab:['hello','goodbye','membership','application'] },
-            7: { unit:1, section:'Classroom language', fullText:'Getting help: What\'s the word for …? How do you spell …? Can you repeat that? Working with a partner: Are you ready? You go first. What do you have for number 1?', grammar:[], vocab:['spell','repeat','partner'] },
-            8: { unit:1, section:'Unit 1 opener', fullText:'All about you. In Unit 1, you learn to use the verb be with I, you, we; say hello and goodbye; say your name, phone number, e‑mail; ask How about you?; use Thanks.', grammar:['I\'m','you\'re','we\'re'], vocab:['hello','goodbye','thanks','name','phone number','e‑mail'] },
-            9: { unit:1, section:'Hello & good‑bye', fullText:'Matt: Good morning, Sarah. How are you?\nSarah: Good. How are you, Matt?\nMatt: I\'m fine, thanks.\n\nMatt: Hello. I\'m Matt Lenski.\nEmily: Hi, I\'m Emily Kim. Nice to meet you.\nMatt: Nice to meet you.', grammar:['I\'m','Nice to meet you'], vocab:['Good morning','Hello','Hi','Nice to meet you'] },
-            10: { unit:1, section:'Responses', fullText:'Emily: Good night. Matt: Good night. Have a good evening.\nEmily: Thank you. You too.\nSarah: Bye. See you tomorrow.\nMatt: Bye. See you.', grammar:[], vocab:['Good night','Good evening','See you','Bye','Have a nice day','You too'] },
-            11: { unit:1, section:'Names & alphabet', fullText:'First name, last name, middle name, nickname. Alphabet: Aa Bb Cc … Zz. A: What\'s your name? B: Catherine Ravelli. A: How do you spell Catherine? B: C-A-T-H-E-R-I-N-E.', grammar:[], vocab:['first name','last name','spell','alphabet'] },
-            12: { unit:1, section:'Verb be: I, you, we', fullText:'Mr. Martin: Are you here for an English class? Carmen: Yes, I am. I\'m Carmen Rivera. Mr. Martin: You\'re in Room B. Jenny: No, I\'m not. I\'m Jenny Lim. Am I in Room B too? Mr. Martin: No, you\'re not. You\'re in Room G. Jenny: Oh no! We\'re not in the same class!', grammar:['I\'m','you\'re','we\'re','Are you…?','Am I…?'], vocab:['class','Room','same class'] },
-            13: { unit:1, section:'Numbers 0‑10', fullText:'zero one two three four five six seven eight nine ten. Receptionist: What\'s your phone number? Victor: It\'s 646-555-3048.', grammar:[], vocab:['zero','one','two','three','phone number','e‑mail'] },
-            14: { unit:1, section:'What\'s…? It\'s…', fullText:'What\'s your name? My name\'s Victor. What\'s your e‑mail? It\'s vlopez6@cup.org. What\'s your phone number? It\'s 646-555-3048. What\'s (= What is)  name\'s (= name is)  It\'s (= It is)', grammar:['What\'s','name\'s','It\'s'], vocab:['teacher','first name','last name','e‑mail'] },
-            15: { unit:1, section:'How about you?', fullText:'Alicia: Are you here for the concert? Adam: Yeah, I am. How about you? Alicia: Yeah, me too. So, are you a student here? Adam: Yeah. How about you? Alicia: No, I\'m here on vacation.', grammar:['How about you?'], vocab:['concert','student','vacation'] },
-            16: { unit:1, section:'Everyday expressions', fullText:'Formal ↔ Informal: Yes/Yeah, Thank you/Thanks, Hello/Hi, How are you?/How are you doing?, I\'m fine/OK/Pretty good, Good‑bye/Bye/See you.', grammar:[], vocab:['Yeah','Thanks','Hi','How are you doing?','Pretty good','See you'] },
-            17: { unit:1, section:'On your own', fullText:'Hello. Good morning. Hi, I\'m Helen. How are you? Have a nice day. See you tomorrow. Have a good evening. Good night. On your own: say hello and goodbye to three people.', grammar:[], vocab:['Hello','Good morning','Good night','Have a nice day'] },
-            18: { unit:2, section:'Unit 2 opener', fullText:'In class. You learn to use be with he, she, they, this, these; talk about things and places; ask for help; respond to Thank you and I\'m sorry.', grammar:['he\'s','she\'s','they\'re','this','these'], vocab:['at work','at the library'] },
-            19: { unit:2, section:'Where\'s Jun?', fullText:'Miss Cass: Where\'s Jun? Is he here today? Ana: No, he\'s not. Maybe he\'s at work. Miss Cass: How about Laura? Ana: I think she\'s sick. Miss Cass: Are Kim and Phong here? Ana: No, they\'re in the cafeteria.', grammar:['Where\'s…?','he\'s not','she\'s','they\'re'], vocab:['at work','sick','cafeteria','late','asleep'] },
-            20: { unit:2, section:'He/She/They', fullText:'Jun is at work → He\'s at work. Laura is sick → She\'s sick. Kim and Phong are late → They\'re late. Negative: He\'s not here. Questions: Is she sick? Yes, she is. / No, she\'s not.', grammar:['He\'s','She\'s','They\'re','Is he…?','Is she…?','Are they…?'], vocab:['at work','sick','cafeteria'] },
-            21: { unit:2, section:'Classroom objects', fullText:'a pen, an eraser, a dictionary, an MP3 player, a watch, glasses, keys, sunglasses. Andy: What\'s this? Bill: It\'s an MP3 player.', grammar:['a','an','this','these'], vocab:['MP3 player','watch','glasses','keys'] },
-            22: { unit:2, section:'This/These & plurals', fullText:'This is an MP3 player. What\'s this? → It\'s an MP3 player. Is this your watch? → Yes, it is. These are sunglasses. What are these? → They\'re sunglasses. Plurals: bag→bags, watch→watches, dictionary→dictionaries. Some nouns only plural: jeans, scissors, glasses.', grammar:['this','these','plural -s','plural -es','plural -ies'], vocab:['jeans','scissors','sunglasses','watches','dictionaries'] },
-            23: { unit:2, section:'Classroom locations', fullText:'What\'s on the wall? A clock, a map, some posters. Classroom items: board, desk, wastebasket, closet, CD player, computer.', grammar:[], vocab:['clock','map','posters','board','desk','wastebasket'] },
-            24: { unit:2, section:'Where? possessives', fullText:'Mrs. Evans: Where\'s the VCR? Paula: It\'s in the closet. Mrs. Evans: Where are the students\' homework papers? Paula: They\'re on the floor. Where\'s Mario\'s homework? → It\'s on the floor. Where\'s the teacher\'s coat? → It\'s on the desk.', grammar:['Where\'s…?','Where are…?','possessive \'s','possessive s\''], vocab:['VCR','closet','desk','floor','under','on'] },
-            25: { unit:2, section:'Asking for help', fullText:'Ming‑wei: Excuse me, what\'s the word for this in English? Sonia: Highlighter. Ming‑wei: How do you spell it? Sonia: I don\'t know. Sorry. Ming‑wei: Can I borrow a pen, please? Sonia: Sure. Here you go.', grammar:[], vocab:['Excuse me','highlighter','borrow','repeat'] },
-            26: { unit:2, section:'Responses', fullText:'Thank you → You\'re welcome. Thanks → Sure. I\'m sorry → That\'s OK. Thanks anyway. Follow instructions: turn to page 7, write the word eraser.', grammar:[], vocab:['You\'re welcome','Sure','That\'s OK','Thanks anyway'] },
-            27: { unit:2, section:'On your own', fullText:'Label things on the desk. Label magazine pictures. How many words can you label?', grammar:[], vocab:['label','magazine','pictures'] },
-            28: { unit:3, section:'Unit 3 opener', fullText:'Favorite people. You learn my, your, his, her, our, their; information questions; celebrities; Really?; showing interest.', grammar:['my','your','his','her','our','their'], vocab:['singer','actor','artist','soccer player'] },
-            29: { unit:3, section:'Celebrities', fullText:'Sandra: Sean Penn – his new movie is great. Norah Jones – her voice is amazing. The Williams sisters – their matches are exciting.', grammar:['his','her','their'], vocab:['movie','voice','fan','exciting'] },
-            30: { unit:3, section:'Possessive adjectives', fullText:'I\'m a fan → My favorite actor. He\'s an actor → His new movie. She\'s a singer → Her voice. We\'re Giants fans → Our favorite team. They\'re players → Their matches.', grammar:['my','your','his','her','our','their'], vocab:['fan','band','CD','show','team'] },
-            31: { unit:3, section:'Describing people', fullText:'smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy. Dana: What are your co‑workers like? Tim: They\'re really friendly. Dana: Is your boss strict? Tim: She\'s not very strict.', grammar:['What\'s…like?','Is he/she…?'], vocab:['smart','shy','friendly','outgoing','strict','lazy'] },
-            32: { unit:3, section:'Yes/No questions', fullText:'Am I late? Yes, you are. / No, you\'re not. Are you busy? Yes, I am. / No, I\'m not. Is she strict? Yes, she is. / No, she\'s not. (My boss isn\'t strict.)', grammar:['Am I…?','Are you…?','Is he…?','Is she…?','isn\'t','aren\'t'], vocab:['shy','easy','strict','lazy'] },
-            33: { unit:3, section:'Family & age', fullText:'Akemi: Who\'s this? Erica: My grandma. She\'s seventy‑two. How old is your grandfather? He\'s seventy‑eight. Where are they from originally? They\'re from Texas.', grammar:['How old…?','Where…from?','What\'s…name?'], vocab:['grandma','grandpa','grandmother','grandfather','parents','originally'] },
-            34: { unit:3, section:'Showing interest', fullText:'Mark: This photo – who is it? Eve: It\'s Natasha, a friend of mine. Mark: Where\'s she from? Eve: She\'s from London. Mark: London? Wow. Is she a student here? Eve: No, she\'s an artist.', grammar:['Really?'], vocab:['photo','friend of mine','London','artist','painter'] },
-            35: { unit:3, section:'Really?', fullText:'Really? shows surprise or interest. A: Where are you from? B: San Diego. A: San Diego? Really? I\'m from Los Angeles. A: What\'s your name? B: Ryan. A: Really? My best friend\'s name is Ryan.', grammar:['Really?'], vocab:['neighborhood','best friend','fun guy'] },
-            36: { unit:3, section:'Family tree', fullText:'Complete the family tree. Make your own family tree. On your own: make a photo album, write sentences about your family.', grammar:[], vocab:['family tree','photo album','grandmother','grandfather','mother','father'] },
-            37: { unit:3, section:'Checkpoint 1-3', fullText:'Complete the conversation with possessives. Unscramble questions: What is our teacher\'s full name? Where are your books? Self‑check: grammar, vocabulary, conversation strategies.', grammar:['possessives','be verb','information questions'], vocab:['classroom items','family','personality'] },
-            38: { unit:3, section:'Expressions review', fullText:'Thank you, Thanks anyway, Nice to meet you, Can I borrow your pen?, Really?, That\'s OK, You\'re welcome, Have a good day. Self‑check percentages.', grammar:[], vocab:['Thank you','Thanks anyway','Nice to meet you','Really?'] },
-            39: { unit:4, section:'Unit 4 opener', fullText:'Everyday life. You learn simple present statements, yes‑no questions; talk about routines; answer more than yes/no; use Well.', grammar:['simple present'], vocab:['do homework','work','exercise','watch TV'] },
-            40: { unit:4, section:'Grid', fullText:'[Number grid]', grammar:[], vocab:[] },
-            41: { unit:4, section:'Grid', fullText:'[Number grid]', grammar:[], vocab:[] },
-            42: { unit:4, section:'Simple present', fullText:'I eat breakfast. / I don\'t eat lunch. He listens to the radio. / He doesn\'t listen to CDs. Verb endings: get→gets, watch→watches, study→studies, have→has.', grammar:['simple present','don\'t','doesn\'t','-s/-es/-ies'], vocab:['breakfast','lunch','coffee','radio','newspaper'] },
-            43: { unit:4, section:'Weekly routines', fullText:'play sports, take lessons, check e‑mail, make phone calls, go shopping, do laundry. B: Do you play sports every week? A: Yes, I do. I play tennis on Saturdays.', grammar:['Do you…?'], vocab:['play sports','take lessons','check e‑mail','go shopping','do laundry'] },
-            44: { unit:4, section:'Yes/No questions', fullText:'Do you go to class in the evening? Yes, I do. / No, I don\'t. Does your mother work on weekends? Yes, she does. / No, she doesn\'t.', grammar:['Do you…?','Does he/she…?','Yes, I do.','No, I don\'t.'], vocab:['snacks','homework','dinner','club','team'] },
-            45: { unit:4, section:'Saying more than yes/no', fullText:'A: Do you live around here? B: No, I live near the beach. Match: Do you have a part‑time job? → Yeah, I work at a restaurant on weekends.', grammar:[], vocab:['live around here','part‑time job','only child','softball'] },
-            46: { unit:4, section:'Well', fullText:'Start answers with Well to think. A: What are your neighbours like? B: Well, they\'re very noisy. A: Do you study every day? B: Well, not every day. I go out with friends.', grammar:['Well'], vocab:['noisy','loud music','not really','go out'] },
-            47: { unit:4, section:'Reading', fullText:'In an average lifetime, an American works over 90,000 hours, walks 22,000 km, spends 3.5 years eating, sleeps 24 years, watches TV 12 years, talks on the phone 2.5 years.', grammar:[], vocab:['average','lifetime','90,000','24 years','12 years'] },
-            48: { unit:4, section:'Teen habits', fullText:'An average teen drinks 16 cans of soda a week, eats dinner at home 3 times a week, spends 5 hours online, watches TV 20 hours a week. Christine drinks about ___ cans.', grammar:['simple present'], vocab:['soda','online','exercise','cell phone'] },
-            49: { unit:4, section:'On your own', fullText:'Label pictures with verbs (read the newspaper). Draw your own pictures. Write two things you do every day, in the afternoon, on Sundays, after breakfast, before bed.', grammar:[], vocab:['read the newspaper','label','routine'] },
-            50: { unit:'WB', section:'Workbook title', fullText:'ENG 101  General English  Workbook  Foundation Level 1', grammar:[], vocab:[] },
-            51: { unit:'WB', section:'Workbook contents', fullText:'1. All about you  2. In class  3. Favorite people  4. Everyday life', grammar:[], vocab:[] },
-            52: { unit:'WB', section:'Unit 1 WB greetings', fullText:'A: Hello. B: Hi. A: Hi, I\'m Ted. B: Hello, Ted. Nice to meet you. A: How are you? B: I\'m fine, thanks. A: Good‑bye. B: See you later.', grammar:[], vocab:['Hello','Hi','Good‑bye','See you later'] },
-            53: { unit:'WB', section:'Complete conversations', fullText:'Jack: Hello. I\'m Jack. Anna: ___. I\'m Anna. Sonia: Hi, Julie. How are you? Julie: Good. ___. Sonia: ___, thanks.', grammar:[], vocab:['I\'m','Good','Thanks'] },
-            54: { unit:'WB', section:'Personal info', fullText:'A: What\'s your first name? B: Michelle. A: How do you spell your last name? B: B‑R‑O‑W‑N‑E. A: Are you Ms., Miss, or Mrs.? B: Ms.', grammar:[], vocab:['first name','last name','Ms.','Miss','Mrs.'] },
-            55: { unit:'WB', section:'Are we in the same class?', fullText:'Receptionist: Are you here for an English class? Mi Young: Yes, I am. I\'m Mi Young. Sergio: Am I in Class C too? Receptionist: Yes, you are. So we are in the same class. Wait – you are not Sergio Rodrigues.', grammar:['am','are','I\'m','you\'re','we\'re'], vocab:['class','same class'] },
-            56: { unit:'WB', section:'Numbers crossword', fullText:'Across: two × three = six, two + eight = ten, ten ÷ two = five, six ‑ four = two, three + six = nine, five × zero = zero, six + two = eight. Down: ten ‑ three = seven, eight ‑ seven = one, eight ‑ five = three, two × two = four.', grammar:[], vocab:['zero','one','two','three','four','five','six','seven','eight','nine','ten'] },
-            57: { unit:'WB', section:'Membership card', fullText:'Lee: So, what\'s your last name? Mark: It\'s Brokaw. And your first name? Mark: ___. Middle initial? ___. E‑mail? ___. Phone number? ___.', grammar:[], vocab:['last name','first name','middle initial','e‑mail','phone number'] },
-            58: { unit:'WB', section:'Good evening', fullText:'Sam: Hi, Ali. Ali: Hi. Sam: Good, thanks. How about you? Ali: Pretty good. Joe: Good evening. Clerk: Good evening. What\'s your name? Joe: Joe Johnson. Clerk: Your room number is 10A.', grammar:[], vocab:['Good evening','Pretty good','How about you?'] },
-            59: { unit:'WB', section:'Unit 1 progress', fullText:'Self‑assessment: I know how to make statements with I\'m, you\'re, we\'re; ask Are you…?; use What\'s…?; say hello/goodbye; numbers 0‑10; use How about you?; formal/informal expressions.', grammar:[], vocab:[] },
-            60: { unit:'WB', section:'Where is everybody?', fullText:'Bill is at the gym. He\'s not at home. Jon and Karen ___ at home. ___ not in class. Sun Yee ___ in the cafeteria. ___ late.', grammar:['he\'s','she\'s','they\'re','Is he…?','Are they…?'], vocab:['gym','home','cafeteria','vacation','asleep'] },
-            61: { unit:'WB', section:'Absent classmates', fullText:'Silvia: How are you? Jason: Good. Is Dave here? Jason: No, he ___. I think he ___ sick. Silvia: Is he at home? Jason: I don\'t know.', grammar:['am','is','are','isn\'t','aren\'t'], vocab:['absent','sick','vacation'] },
-            62: { unit:'WB', section:'Everyday things', fullText:'Label classroom objects. Write sentences: This is a backpack. These are notebooks.', grammar:['this is','these are'], vocab:['backpack','notebook','pencil','ruler','calculator'] },
-            63: { unit:'WB', section:'Asking about things', fullText:'Clerk: What\'s this? Ms. Simms: Oh, it\'s your room key. Erica: What\'s this? Is it a cell phone? Jim: Yes, it is. It\'s a cell phone and an MP3 player.', grammar:['this','these','it','they','What\'s…?'], vocab:['room key','membership card','cell phone','jeans','wallet'] },
-            64: { unit:'WB', section:'Classroom puzzle', fullText:'Word search: board, clock, desk, chair, computer, wastebasket, calendar, poster.', grammar:[], vocab:['board','clock','desk','chair','computer','wastebasket','calendar','poster'] },
-            65: { unit:'WB', section:'Prepositions', fullText:'The dictionaries are on the floor. The students\' papers are on the wall. The CD player is on the teacher\'s desk. The calendar is next to the wastebasket.', grammar:['in','on','under','next to','in front of','possessive \'s'], vocab:['dictionaries','students\' papers','wastebasket','closet'] },
-            66: { unit:'WB', section:'Questions', fullText:'Callie: Excuse me, Bob. Can I borrow your dictionary? Bob: Sure. Here you go. Ruby: Can I borrow your cell phone? Millie: Sorry, it\'s at home. Ruby: Thanks anyway.', grammar:[], vocab:['Excuse me','borrow','dictionary','cell phone','Thanks anyway'] },
-            67: { unit:'WB', section:'Unit 2 progress', fullText:'Self‑assessment: I can use he\'s/she\'s/they\'re; ask Is he…?; use a/an; make plurals; use this/these; ask Where…?; use possessives; ask for help; respond to Thank you / I\'m sorry.', grammar:[], vocab:[] },
-            68: { unit:'WB', section:'Unscramble words', fullText:'Unscramble: rgiens → singer, ctrao → actor, rtweir → writer, maet → team, ralypp → player, dnab → band, hwso → show, prsots → sports, naf → fan, ivome → movie, rtiats → artist.', grammar:[], vocab:['singer','actor','writer','team','player','band','show','sports','fan','movie','artist'] },
-            69: { unit:'WB', section:'Possessives', fullText:'She\'s my favorite singer. Her new CD is great. We\'re Jama fans. Jama is our favorite band. He\'s a great writer. His new book is really good.', grammar:['my','your','his','her','our','their'], vocab:['favorite singer','CD','fan','band','writer','book'] },
-            70: { unit:'WB', section:'Personality', fullText:'She\'s quiet and shy. He\'s outgoing. They\'re friendly. She\'s smart. He\'s lazy. She\'s not very strict. They\'re busy and tired.', grammar:[], vocab:['quiet','shy','outgoing','friendly','smart','lazy','strict','busy','tired'] },
-            71: { unit:'WB', section:'Negatives', fullText:'Carrie: Am I late? Josh: No, you aren\'t. You\'re fine. Carrie: Are you busy at work? Josh: Yes, I am. Our boss isn\'t sick. What are your new neighbours like? Are they nice?', grammar:['isn\'t','aren\'t','am not'], vocab:['neighbours','writer','teacher','outgoing'] },
-            72: { unit:'WB', section:'Family tree', fullText:'David is Paul\'s son. John is Katy\'s husband. Katy is Paul\'s daughter. Josh, David, and Emily are Paul and Katy\'s children. Emily is Josh\'s sister.', grammar:['possessive \'s'], vocab:['son','daughter','husband','wife','brother','sister','children','parents'] },
-            73: { unit:'WB', section:'Question unscramble', fullText:'Unscramble: How are your children? What are your parents\' names? How old is your grandfather? What\'s your mother like? Where\'s your father from?', grammar:['How…?','What…?','Where…?'], vocab:['children','parents','grandfather','mother','father','best friend'] },
-            74: { unit:'WB', section:'Neighbours', fullText:'Ming: Who are they? Jim: They\'re my new neighbours. They\'re in a rock band. Ming: Where are they from? Jim: They\'re from New York. Carlos: Who\'s she? Kim: Her name\'s Angie. She\'s from Chile.', grammar:['Where…from?','What…like?','How old…?'], vocab:['neighbours','rock band','co‑workers','Chile'] },
-            75: { unit:'WB', section:'Unit 3 progress', fullText:'Self‑assessment: I can use my, your, his, her, our, their; ask information questions; describe people; show interest with Really?', grammar:[], vocab:[] },
-            76: { unit:'WB', section:'Kathy\'s morning', fullText:'Kathy gets up early. Her son doesn\'t get up early. She has coffee before work. Her son plays computer games. She listens to the radio in the car. She checks her e‑mail after breakfast.', grammar:['simple present','doesn\'t','don\'t'], vocab:['get up','breakfast','coffee','radio','e‑mail','computer games'] },
-            77: { unit:'WB', section:'Morning activities', fullText:'Match: do homework, study English, check e‑mail, listen to the radio, drive a car, play games, read a book, use an alarm clock.', grammar:[], vocab:['do homework','study English','check e‑mail','listen to the radio','drive a car'] },
-            78: { unit:'WB', section:'Fun / Not fun', fullText:'Which activities are fun? check e‑mail, do laundry, get up early, play sports, clean the house, drive to work, go shopping, take lessons, do homework, eat snacks, make phone calls, watch TV.', grammar:[], vocab:['check e‑mail','do laundry','get up early','play sports','clean the house','go shopping'] },
-            79: { unit:'WB', section:'Weekly routines', fullText:'Cecilia: Do you go to work every day? Eduardo: Well, no, I don\'t. I work at home on Fridays. Cecilia: Do you and your husband go to work every day? Eduardo: Yes, we do. But just Monday to Friday.', grammar:['Do you…?','Does he…?','Yes, I do.','No, I don\'t.'], vocab:['work at home','Monday to Friday','clean the house','soccer games'] },
-            80: { unit:'WB', section:'Saying more', fullText:'Mike: Are you OK? Yumi: I\'m new here, and I\'m late. Mike: Do you work here? Yumi: Yes, I do. I work part‑time in the cafeteria. It\'s fun.', grammar:[], vocab:['cafeteria','part‑time','English Club','student'] },
-            81: { unit:'WB', section:'Unscramble & answer', fullText:'Unscramble: Do you live around here? Are you from here originally? Are you a full‑time student? Do you have brothers or sisters? Do you work on the weekends?', grammar:['Well'], vocab:['live around here','full‑time student','brothers and sisters','weekends'] },
-            82: { unit:'WB', section:'TV habits', fullText:'Americans don\'t usually go out with friends in the evening. American high school students don\'t study for three hours a night. 20% of Americans have hobbies.', grammar:['simple present'], vocab:['spend time with family','go out with friends','go shopping','high school','hobbies'] },
-            83: { unit:'WB', section:'Unit 4 progress', fullText:'Self‑assessment: I can make simple present statements; ask yes‑no questions; answer with more than yes/no; use Well; write e‑mails with capitals and periods.', grammar:[], vocab:[] }
+            4: { unit: 1, section: 'Course Features', fullText: 'Conversation strategy helps you manage conversations. Strategy plus teaches I mean, Well, Anyway. Listening and speaking are practiced together.\nReading has texts from newspapers and magazines.\nWriting includes e‑mails, letters, articles.\nHelp notes cover punctuation and linking ideas.\nVocabulary notebook: fun activities to organize words.\nOn your own: learn vocabulary outside class.\nFree talk: free conversation with classmates.\nCheckpoints after every 3 units review grammar and vocabulary.', grammar: [], vocab: ['conversation strategy', 'vocabulary notebook', 'free talk', 'checkpoint'] },
+            6: { unit: 1, section: 'Skills Overview', fullText: 'Unit 1: Listen – recognize hello/goodbye responses. Read – ID cards. Write – application. Vocab – greetings. Free talk – Meet a celebrity.\nUnit 2: Listen – Who\'s absent? Follow instructions. Read – classroom conversations. Write – location questions. Vocab – My things.\nUnit 3: Listen – friends descriptions. Read – family tree. Write – questions about people. Vocab – All in the family.\nUnit 4: Listen – What\'s the question? Teen habits. Read – Average American article. Write – e‑mail about classmate. Vocab – Verbs.', grammar: [], vocab: ['membership', 'application', 'family tree', 'daily activities'] },
+            7: { unit: 1, section: 'Classroom Language', fullText: 'Getting help: What\'s the word for … in English? How do you spell …? Can you repeat that, please?\nWorking with a partner: I\'m ready. Are you ready? You go first. What do you have for number 1? Do you want to be A or B? Let\'s change roles.', grammar: [], vocab: ['spell', 'repeat', 'partner', 'roles'] },
+            8: { unit: 1, section: 'Unit 1 – All About You', fullText: 'In Unit 1, you learn: use verb be with I, you, we; say hello/goodbye; say your name, phone number, e‑mail; ask How about you?; use Thanks. Match expressions with pictures.', grammar: ['I\'m', 'you\'re', 'we\'re'], vocab: ['hello', 'goodbye', 'thanks', 'phone number', 'e‑mail'] },
+            9: { unit: 1, section: 'Hello & Good‑bye', fullText: 'Matt: Good morning, Sarah. How are you?\nSarah: Good. How are you, Matt?\nMatt: I\'m fine, thanks.\n\nMatt: Hello. I\'m Matt Lenski.\nEmily: Hi, I\'m Emily Kim. Nice to meet you.\nMatt: Nice to meet you.\n\nComplete: A: Hello. I\'m Chris. B: Hi. Nice to meet you. ___ Sam. A: Nice to meet ___.', grammar: ['I\'m', 'Nice to meet you'], vocab: ['Good morning', 'Hello', 'Hi', 'Nice to meet you', 'I\'m fine'] },
+            10: { unit: 1, section: 'Responses', fullText: 'Emily: Good night. Matt: Good night. Have a good evening. Emily: Thank you. You too.\nSarah: Bye. See you tomorrow. Matt: Bye. See you.\n\nResponses:\n1. Bye. Have a good evening. → You too. Good night.\n2. Hi. How are you? → Good, thanks. / I\'m fine.\n3. Bye. See you later. → OK. See you later.\n5. Good‑bye. Have a nice day. → Thank you. / Thanks. You too.', grammar: [], vocab: ['Good night', 'Good evening', 'See you', 'Bye', 'Have a nice day', 'You too'] },
+            11: { unit: 1, section: 'Names & Alphabet', fullText: 'First name, last name, middle name, nickname. Alphabet: Aa–Zz.\nA: What\'s your name? B: Catherine Ravelli.\nA: How do you spell Catherine? B: C‑A‑T‑H‑E‑R‑I‑N‑E.\nA: Thanks. And your last name? B: R‑A‑V‑E‑L‑L‑I.', grammar: [], vocab: ['first name', 'last name', 'spell', 'alphabet', 'nickname'] },
+            12: { unit: 1, section: 'Verb be: I, you, we', fullText: 'Mr. Martin: Good morning. Are you here for an English class?\nCarmen: Yes, I am. I\'m Carmen Rivera. Mr. Martin: OK. You\'re in Room B.\nJenny: And I\'m Jenny. Mr. Martin: Are you Jenny Loo? Jenny: No, I\'m not. I\'m Jenny Lim. Am I in Room B too?\nMr. Martin: Yes…Wait — no, you\'re not. You\'re in Room G.\nJenny: Oh, no! Carmen, we\'re not in the same class!\n\nGrammar: I\'m (=I am) you\'re (=you are) we\'re (=we are)\nQuestions: Are you Jenny? → Yes, I am. / No, I\'m not.\nAm I in Room B? → Yes, you are. / No, you\'re not.\nAre we in the same class? → Yes, we are. / No, we\'re not.', grammar: ['I\'m', 'you\'re', 'we\'re', 'Are you…?', 'Am I…?'], vocab: ['class', 'Room', 'same class'] },
+            13: { unit: 1, section: 'Numbers 0–10', fullText: 'Numbers: zero one two three four five six seven eight nine ten.\nReceptionist: Hi! Are you a member? Victor: No, I\'m just here for the day.\nReceptionist: What\'s your name? Victor: Victor Lopez.\nReceptionist: What\'s your phone number? Victor: It\'s 646‑555‑3048.\nReceptionist: And your e‑mail? Victor: vlopez6@cup.org.\nReceptionist: OK. So it\'s $10 for today. Here\'s your pass. Victor: Thanks.', grammar: [], vocab: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'phone number', 'e‑mail'] },
+            14: { unit: 1, section: 'What\'s…? It\'s…', fullText: 'What\'s your name? → My name\'s Victor Lopez.\nWhat\'s your e‑mail address? → It\'s vlopez6@cup.org.\nWhat\'s your phone number? → It\'s 646‑555‑3048.\nWhat\'s (=What is)  name\'s (=name is)  It\'s (=It is)\n\nMatch: 1. What\'s your teacher\'s name? → It\'s Ms. Gardino.\n2. What\'s your first name? → Rachel.\n3. What\'s your e‑mail? → yoyo3@cup.org.\nIn conversation: Phone is 6× more common than telephone.', grammar: ['What\'s', 'name\'s', 'It\'s'], vocab: ['teacher', 'first name', 'last name', 'e‑mail'] },
+            15: { unit: 1, section: 'How about you?', fullText: 'Alicia: It\'s a beautiful day. Adam: Yeah, it is.\nAlicia: Are you here for the concert? Adam: Yeah, I am. How about you?\nAlicia: Yeah, me too. So, are you a student here? Adam: Yeah. How about you?\nAlicia: No, I\'m here on vacation.\n\nAdam uses How about you? to ask the same question back.\nComplete: Lora: Are you new here? Ying: Yes, I am. ___? Lora: Yes, me too.', grammar: ['How about you?'], vocab: ['concert', 'student', 'vacation', 'business'] },
+            16: { unit: 1, section: 'Everyday Expressions', fullText: 'Formal ↔ Informal:\nYes ↔ Yeah | Thank you ↔ Thanks | Hello ↔ Hi\nHow are you? ↔ How are you doing?\nI\'m fine ↔ OK / Pretty good / Good\nGood‑bye ↔ Bye / See you / See you later\n\nYeah is 10× more common than yes.', grammar: [], vocab: ['Yeah', 'Thanks', 'Hi', 'How are you doing?', 'Pretty good', 'See you'] },
+            17: { unit: 1, section: 'On Your Own', fullText: '1. Hello. 2. Good morning. 3. Hi. I\'m Helen. 4. How are you?\n5. Have a nice day. 6. See you tomorrow. 7. Have a good evening. 8. Good night.\nOn your own: Say hello and goodbye (in English!) to three people before next class.', grammar: [], vocab: ['Hello', 'Good morning', 'Good night', 'Have a nice day', 'See you tomorrow'] },
+            18: { unit: 2, section: 'Unit 2 – In Class', fullText: 'In Unit 2, you learn: use verb be with he, she, they, this, these; talk about things and places in a classroom; ask for help in class; respond to Thank you and I\'m sorry.\nMatch: She\'s at work. They\'re at the library.', grammar: ['he\'s', 'she\'s', 'they\'re', 'this', 'these'], vocab: ['at work', 'at the library', 'classroom'] },
+            19: { unit: 2, section: 'Where\'s Jun?', fullText: 'Miss Cass: Where\'s Jun? Is he here today? Ana: No, he\'s not. Maybe he\'s at work.\nMiss Cass: How about Laura? Ana: I don\'t know. I think she\'s sick.\nMiss Cass: Are Kim and Phong here? Ana: No, they\'re in the cafeteria.\nMiss Cass: They\'re late again. And Alan? Ana: He\'s over there. I think he\'s asleep!', grammar: ['Where\'s…?', 'he\'s not', 'she\'s', 'they\'re'], vocab: ['at work', 'sick', 'cafeteria', 'late', 'asleep'] },
+            20: { unit: 2, section: 'He / She / They', fullText: 'Jun is at work. → He\'s at work.\nLaura\'s sick. → She\'s sick.\nKim and Phong are late. → They\'re late.\nNegative: He\'s not here. She\'s not in class. They\'re not here.\nQuestions: Is Jun here? → Yes, he is. / No, he\'s not.\nIs she sick? → Yes, she is. / No, she\'s not.\nAre they late? → Yes, they are. / No, they\'re not.\nPeople shorten is to \'s after names: Jun\'s at work.', grammar: ['He\'s', 'She\'s', 'They\'re', 'he\'s not', 'she\'s not', 'Is he…?', 'Is she…?', 'Are they…?'], vocab: ['at work', 'sick', 'cafeteria', 'at home', 'library'] },
+            21: { unit: 2, section: 'Classroom Objects', fullText: 'a pen, an eraser, a dictionary, an MP3 player, a watch, glasses, keys, sunglasses.\nAndy: What\'s this? Bill: It\'s an MP3 player. It\'s my new toy.\nMichi: Is this your watch, Bill? Bill: Oh, yes, it is. Thanks.\nMichi: And are these your glasses? Bill: Yes, they are!\nScott: Are these your keys? Bill: Um… no, they\'re not. These are my keys right here.', grammar: ['a', 'an', 'this', 'these', 'What\'s this?', 'What are these?'], vocab: ['MP3 player', 'watch', 'glasses', 'keys', 'wallet', 'pen', 'dictionary'] },
+            22: { unit: 2, section: 'This/These & Plurals', fullText: 'This is an MP3 player. What\'s this? → It\'s an MP3 player.\nThese are sunglasses. What are these? → They\'re sunglasses.\nIs this your watch? → Yes, it is. / No, it\'s not.\nAre these your keys? → Yes, they are. / No, they\'re not.\nPlurals: bag→bags, watch→watches, dictionary→dictionaries, key→keys.\nOnly plural: jeans, scissors, glasses, sunglasses.\n/s/ wallets, books  /z/ pens, keys  /ɪz/ watches, oranges', grammar: ['this', 'these', 'plural -s', 'plural -es', 'plural -ies', 'It\'s', 'They\'re'], vocab: ['jeans', 'scissors', 'sunglasses', 'watches', 'dictionaries'] },
+            23: { unit: 2, section: 'Classroom Locations', fullText: 'What\'s on the wall? A clock, a map, and some posters.\nClassroom items: clock, map, posters, board, desk, wastebasket, closet, CD player, computer, TV, VCR, videos, students\' papers, teacher\'s desk.', grammar: [], vocab: ['clock', 'map', 'posters', 'board', 'desk', 'wastebasket', 'closet', 'CD player', 'computer'] },
+            24: { unit: 2, section: 'Where? Possessives', fullText: 'Mrs. Evans: Where\'s the VCR? Paula: It\'s in the closet.\nMrs. Evans: Where are the videos? Paula: They\'re on the desk, under your coat.\nMrs. Evans: Where are the students\' homework papers? Paula: They\'re on the floor.\nMrs. Evans: What\'s this under my foot? Paula: It\'s Mario\'s homework.\nMrs. Evans: Where are my glasses? Paula: They\'re on your head!\n\nGrammar: Where\'s Mario\'s homework? → It\'s on the floor.\nWhere\'s the teacher\'s coat? → It\'s on the desk.\nWhere are the students\' papers? → They\'re on the floor.\nWhere\'s = Where is', grammar: ['Where\'s…?', 'Where are…?', 'possessive \'s', 'possessive s\''], vocab: ['VCR', 'closet', 'desk', 'floor', 'under', 'on', 'in front of'] },
+            25: { unit: 2, section: 'Asking for Help', fullText: 'Ming‑wei: Excuse me, what\'s the word for this in English? Sonia: Highlighter.\nMing‑wei: Thanks. Uh… how do you spell it? Sonia: I don\'t know. Sorry.\nMing‑wei: That\'s OK. Thanks anyway. Can I borrow a pen, please?\nSonia: Sure. Here you go. Ming‑wei: Thank you. Sonia: You\'re welcome.\nMs. Larsen: Open your books to page 4.\nMing‑wei: Excuse me, can you repeat that, please? What page? Ms. Larsen: Sure. Page 4.', grammar: [], vocab: ['Excuse me', 'highlighter', 'borrow', 'repeat', 'eraser'] },
+            26: { unit: 2, section: 'Responses', fullText: 'Thank you → You\'re welcome. Thanks → Sure.\nI\'m sorry. I don\'t know → That\'s OK. Thanks anyway.\n\nCircle: A: Can I borrow your pen? B: Sure. A: Thanks. B: You\'re welcome.\nA: You\'re late. B: I\'m sorry. A: That\'s OK.\nA: What\'s the word for this? B: I don\'t know. Sorry. A: That\'s OK. What about this? B: I don\'t know. A: OK. Thanks anyway.', grammar: [], vocab: ['You\'re welcome', 'Sure', 'That\'s OK', 'Thanks anyway', 'I\'m sorry'] },
+            27: { unit: 2, section: 'On Your Own', fullText: 'Label the things on the desk. Make lists of your things.\nOn your own: Find a magazine with pictures of things. Label the pictures. How many words can you label?', grammar: [], vocab: ['label', 'magazine', 'pictures', 'desk'] },
+            28: { unit: 3, section: 'Unit 3 – Favorite People', fullText: 'In Unit 3, you learn: use my, your, his, her, our, their; use verb be in information questions; talk about favorite celebrities, friends, family; show interest with Really?\nMatch: He\'s a singer. They\'re soccer players. She\'s an actor. He\'s an artist.', grammar: ['my', 'your', 'his', 'her', 'our', 'their'], vocab: ['singer', 'actor', 'artist', 'soccer player'] },
+            29: { unit: 3, section: 'Celebrities', fullText: 'Sandra: I love these shows about celebrities. Who\'s that guy? Oh look – Sean Penn. He\'s so good‑looking. His new movie is great. Oh, and there\'s Norah Jones. She\'s my favorite singer. Her voice is amazing. And look – the Williams sisters, my favorite tennis players. Their matches are always exciting. You\'re a tennis fan, right? John? …John? Wake up!\n\nComplete: 1. Sean Penn is an actor. ___ movies are very good.\n2. Norah Jones is a singer. ___ new video is great.\n3. The Williams sisters are tennis players. ___ matches are always great.', grammar: ['his', 'her', 'their'], vocab: ['movie', 'voice', 'fan', 'exciting', 'good‑looking'] },
+            30: { unit: 3, section: 'Possessive Adjectives', fullText: 'I\'m a fan → My favorite actor. You\'re a fan → Your favorite sport.\nHe\'s an actor → His new movie. She\'s a singer → Her voice.\nWe\'re Giants fans → Our favorite team. They\'re players → Their matches.\n\nCircle: A: I\'m / My a Sting fan. B: he\'s / his music is amazing.\nA: I\'m / My favorite band is Black Eyed Peas. B: they\'re / their new CD is out.\nWhat\'s you\'re / your favorite show? I\'m / My favorite show? Friends.', grammar: ['my', 'your', 'his', 'her', 'our', 'their'], vocab: ['fan', 'band', 'CD', 'show', 'team'] },
+            31: { unit: 3, section: 'Describing People', fullText: 'smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy, nice, quiet.\nDana: How\'s your new job? Are you busy? Tim: Yes. It\'s hard work. I\'m tired.\nDana: What are your co‑workers like? Are they nice? Tim: Yes, they\'re really friendly.\nDana: And is your boss OK? Tim: She is, yeah. She\'s nice. She\'s not very strict.\nDana: Good, because you\'re late for work.', grammar: ['What\'s…like?', 'Is he/she…?', 'Are they…?'], vocab: ['smart', 'shy', 'friendly', 'outgoing', 'strict', 'lazy', 'tired', 'busy'] },
+            32: { unit: 3, section: 'Yes/No Questions', fullText: 'Am I late? → Yes, you are. / No, you\'re not. (You\'re not late.)\nAre you busy? → Yes, I am. / No, I\'m not. (I\'m not busy.)\nIs he tired? → Yes, he is. / No, he\'s not. (He\'s not tired.)\nIs she strict? → Yes, she is. / No, she\'s not. (My boss isn\'t strict.)\nIs it hard work? → Yes, it is. / No, it\'s not.\nAre they nice? → Yes, they are. / No, they\'re not. (My co‑workers aren\'t nice.)\nPeople use \'s not and \'re not after pronouns. Isn\'t/aren\'t follow nouns.', grammar: ['Am I…?', 'Are you…?', 'Is he…?', 'Is she…?', 'isn\'t', 'aren\'t', '\'s not', '\'re not'], vocab: ['shy', 'easy', 'strict', 'lazy', 'outgoing'] },
+            33: { unit: 3, section: 'Family & Age', fullText: 'Akemi: Who\'s this? Erica: My grandma. And this is my grandpa. He\'s a nice man. He\'s seventy‑eight now.\nAkemi: Really? And how old is your grandmother? Erica: She\'s seventy‑two.\nAkemi: She\'s very pretty. What\'s her name? Erica: Angela.\nAkemi: That\'s a nice name. So, where are your grandparents from originally? Erica: They\'re from Texas.\n\nGrammar: How old are you? → Twenty‑three. Who\'s this? → It\'s my grandmother.\nWhere\'s she from? → She\'s from Texas.\nWhat\'s she like? → She\'s very smart.\nWhat are their names? → Linda and Carlos.', grammar: ['How old…?', 'Where…from?', 'Who\'s…?', 'What\'s…like?', 'What are…names?'], vocab: ['grandma', 'grandpa', 'grandmother', 'grandfather', 'parents', 'originally', 'pretty'] },
+            34: { unit: 3, section: 'Showing Interest', fullText: 'Mark: This is a great photo. Who is it? Eve: It\'s a friend of mine – Natasha.\nMark: Oh? Where\'s she from? Eve: She\'s from London, but she\'s here in Miami now.\nMark: London? Wow. Is she a student here? Eve: No, she\'s an artist – a painter.\nMark: A painter? Really? What are her paintings like? Eve: They\'re wonderful. Look.\n\nMark shows interest by repeating words and asking questions.\n"London? Wow. Is she a student here?"\n\nComplete: A: My friend Gemma is a singer. B: A singer? ___? Is she in a band?', grammar: ['Really?'], vocab: ['photo', 'friend of mine', 'London', 'Miami', 'artist', 'painter', 'paintings'] },
+            35: { unit: 3, section: 'Really?', fullText: 'Really? shows surprise or interest. Really is one of the top 50 words.\n\nA: Where are you from? B: San Diego. A: San Diego? Really? I\'m from Los Angeles.\nA: What\'s your name? B: Ryan. A: Really? My best friend\'s name is Ryan.\nA: Who\'s your best friend? B: Brittany. A: Really? What\'s she like? B: She\'s very nice.\n\nListening: Amy is a friend from the neighborhood. She\'s about ___ years old. Olivia is her ___.', grammar: ['Really?'], vocab: ['neighborhood', 'best friend', 'fun guy', 'around my age'] },
+            36: { unit: 3, section: 'Family Tree', fullText: 'Complete the family tree using the words in the box.\nNow make your own family tree. Write notes about each person.\nOn your own: Make a photo album of your family and friends. Write sentences about them in English.', grammar: [], vocab: ['family tree', 'photo album', 'grandmother', 'grandfather', 'mother', 'father', 'sister', 'brother', 'aunt', 'uncle', 'cousin'] },
+            37: { unit: 3, section: 'Checkpoint 1–3', fullText: 'Complete the conversation with words in the box.\nAngel: Hi, Carla. How are you? Carla: ___ fine, thanks. Is ___ your car?\nAngel: No. ___ my brother\'s car. ___ on vacation.\nCarla: So, where is ___ brother?\nAngel: He and ___ wife are in Miami. ___ family ___ from Miami.\n\nUnscramble: What is our teacher\'s full name? What\'s the school\'s phone number?\nIs our English class hard? Are the students in this class smart?\nWho\'s not in class today? Where are your books?', grammar: ['possessives', 'be verb'], vocab: ['classroom items', 'family', 'personality'] },
+            38: { unit: 3, section: 'Expressions Review', fullText: 'Complete with: Thank you, Thanks anyway, Nice to meet you, Can I borrow your pen?, Really?, That\'s OK, You\'re welcome, Have a good day, How do you spell neighbor?\n\nAnna: Excuse me. Can I borrow your pen? Michel: Sure. Here you go. Anna: ___.\nMichel: You\'re welcome.\nAnna: Hmm. ___? Michel: Neighbor? I\'m sorry. I don\'t know.\nAnna: OK. ___. Michel: Wait. Here\'s my dictionary. Anna: Oh, thanks.\nMichel: ___. Anna: This is a French‑English dictionary.\nMichel: Yes. I\'m from France. Anna: France? ___? Michel: ___. Anna: By the way, I\'m Anna.\nMichel: I\'m Michel. ___.', grammar: [], vocab: ['Thank you', 'Thanks anyway', 'Nice to meet you', 'Really?', 'That\'s OK', 'You\'re welcome'] },
+            39: { unit: 4, section: 'Unit 4 – Everyday Life', fullText: 'In Unit 4, you learn: use simple present statements, yes‑no questions, short answers; talk about daily and weekly routines; answer more than yes or no to be friendly; use Well to get time to think.\nFind these activities: do homework, work, exercise, watch TV.', grammar: ['simple present'], vocab: ['do homework', 'work', 'exercise', 'watch TV'] },
+            42: { unit: 4, section: 'Simple Present', fullText: 'I eat breakfast. / I don\'t eat lunch.\nYou have coffee. / You don\'t have tea.\nHe listens to the radio. / He doesn\'t listen to CDs.\nShe watches TV. / She doesn\'t watch videos.\ndon\'t (=do not)  doesn\'t (=does not)\nVerb endings: get→gets, watch→watches, play→plays, study→studies, have→has, do→does.\n\nComplete: I don\'t like mornings. In my family, we ___ breakfast together.\nMy mother ___ (not/watch) TV. My father ___ coffee.', grammar: ['simple present', 'don\'t', 'doesn\'t', '‑s/‑es/‑ies', 'have→has'], vocab: ['breakfast', 'lunch', 'coffee', 'tea', 'radio', 'newspaper'] },
+            43: { unit: 4, section: 'Weekly Routines', fullText: 'Activities: play sports, take lessons, check e‑mail, make phone calls, go shopping, do laundry.\nB: Do you play sports every week? A: Yes, I do. I play tennis on Saturdays.\nQuestionnaire: Do you play sports? Do you take classes? Do you check e‑mail on weekends?\nDo you make phone calls on Saturdays? ___ you ___ shopping on Sundays? ___ you ___ the laundry?', grammar: ['Do you…?'], vocab: ['play sports', 'take lessons', 'check e‑mail', 'go shopping', 'do laundry'] },
+            44: { unit: 4, section: 'Yes/No Questions', fullText: 'Do you go to class in the evening? → Yes, I do. / No, I don\'t.\nDoes your mother work on weekends? → Yes, she does. / No, she doesn\'t.\nDo your friends make phone calls at night? → Yes, they do. / No, they don\'t.\n\nComplete: ___ you eat snacks every day? ___ your teacher work in the evening?\nSurvey: Find someone who belongs to a club, plays on a team, works on weekends, has breakfast in the car.', grammar: ['Do you…?', 'Does he/she…?', 'Yes, I do.', 'No, I don\'t.'], vocab: ['snacks', 'homework', 'dinner', 'club', 'team'] },
+            45: { unit: 4, section: 'Saying More', fullText: 'Answer with more than yes or no to be friendly.\nA: Do you live around here? B: No, I live near the beach.\nA: Are you from here originally? B: No, I\'m from Rio.\nA: Do you have a part‑time job? B: Yeah, I work at a restaurant on weekends.\nA: Do you like sports? B: Yeah. Well, I play on a softball team.\nA: Do you have brothers and sisters? B: No, I\'m an only child.', grammar: [], vocab: ['live around here', 'part‑time job', 'only child', 'softball', 'restaurant'] },
+            46: { unit: 4, section: 'Well', fullText: 'Start answers with Well to think. Well is a top 50 word.\nA: What are your neighbors like? B: Well, they\'re very noisy. They like loud music.\nA: Do you see your family a lot? B: Well, not really. They don\'t live around here.\nA: Do you study every day? B: Well, not every day. I go out with friends on weekends.', grammar: ['Well'], vocab: ['noisy', 'loud music', 'not really', 'go out'] },
+            47: { unit: 4, section: 'Reading: Average American', fullText: 'In an average lifetime, an American works over 90,000 hours, walks 22,000 km (14,000 miles), and spends 3½ years eating. An American talks on the telephone for 2½ years. Americans sleep for 24 years and watch TV for 12 years. That\'s 36 years — about half a lifetime — in bed or on the couch!\n\nComplete: 1. ___ hours at work. 2. ___ years on the telephone. 3. ___ years in bed. 4. ___ years in front of TV.', grammar: ['simple present'], vocab: ['average', 'lifetime', '90,000', '24 years', '12 years', 'couch'] },
+            48: { unit: 4, section: 'Teen Habits', fullText: 'Average teen: drinks 16 cans of soda/week, eats dinner at home 3×/week, spends 5 hrs/month online, watches TV 20 hrs/week.\nChristine: drinks about ___ cans, eats dinner at home ___ times, spends ___ hours online, watches TV ___ hours.\n\nWrite an e‑mail about your partner\'s average week. Use capital letters and periods.', grammar: ['simple present'], vocab: ['soda', 'online', 'exercise', 'cell phone', 'go out'] },
+            49: { unit: 4, section: 'On Your Own', fullText: 'Label the pictures with verbs: read the newspaper. Draw your own activity pictures.\nWrite two things you do every day, in the afternoon, on Sundays, after breakfast, before bed.\nOn your own: Write labels for things you do every day. Put labels around your house.', grammar: [], vocab: ['read the newspaper', 'label', 'routine'] },
+            50: { unit: 'WB', section: 'Workbook Title', fullText: 'ENG 101  General English  Workbook  Foundation Level 1', grammar: [], vocab: [] },
+            51: { unit: 'WB', section: 'WB Contents', fullText: '1. All about you. 02  2. In class. 10  3. Favorite people. 18  4. Everyday life. 26', grammar: [], vocab: [] },
+            52: { unit: 'WB', section: 'WB 1: Greetings', fullText: 'A: Hello. B: Hi. A: Hi, I\'m Ted. B: Hello, Ted. Nice to meet you.\nA: How are you? B: I\'m fine, thanks. A: Good‑bye. B: See you later.\nA: Good night. B: Bye. See you tomorrow. A: Hi. How are you? B: Good, thanks. How are you?', grammar: [], vocab: ['Hello', 'Hi', 'Good‑bye', 'See you later', 'Good night'] },
+            53: { unit: 'WB', section: 'WB 1: Conversations', fullText: 'Jack: Hello. I\'m Jack. Anna: ___. I\'m Anna. Jack: ___.\nSonia: Hi, Julie. How are you? Julie: Good. ___. Sonia: ___, thanks.\nMike: ___ Koji: Thanks. You too.\nJoan: ___ Mary: Bye. ___ tomorrow.', grammar: [], vocab: ['I\'m', 'Good', 'Thanks', 'See you'] },
+            54: { unit: 'WB', section: 'WB 1: Personal Info', fullText: 'A: What\'s your first name? B: Michelle. A: How do you spell your last name? B: B‑R‑O‑W‑N‑E.\nA: What\'s your middle name? B: Jean. A: Are you Ms., Miss, or Mrs.? B: Ms.\nForm: Name: ___ first ___ middle ___ last. ___ single ___ married. Class: ___ Room: ___ Teacher: ___', grammar: [], vocab: ['first name', 'last name', 'Ms.', 'Miss', 'Mrs.', 'single', 'married'] },
+            55: { unit: 'WB', section: 'WB 1: Same Class?', fullText: 'Receptionist: Hello. ___ you here for an English class? Mi Young: Yes, I ___. I\'m Mi Young.\nReceptionist: Mi Young Lee? You ___ in Class C.\nSergio: Hi. ___ I in Class C, too? Receptionist: Yes, you ___. So we ___ in the same class.\nReceptionist: Wait. ___ you Sergio Rodrigues? Sergio: No, I ___ not. I\'m Sergio Lopes.\nReceptionist: Oh, you ___ in Class D. You ___ not in the same class.', grammar: ['am', 'are', 'I\'m', 'you\'re', 'we\'re'], vocab: ['class', 'same class'] },
+            56: { unit: 'WB', section: 'WB 1: Numbers', fullText: 'Crossword: 2×3=six, 2+8=ten, 10÷2=five, 6‑4=two, 3+6=nine, 5×0=zero, 6+2=eight.\nDown: 10‑3=seven, 8‑7=one, 8‑5=three, 2×2=four.', grammar: [], vocab: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'] },
+            57: { unit: 'WB', section: 'WB 1: Membership', fullText: 'Lee: What\'s your last name? Mark: It\'s Brokaw. Lee: And your first name? Mark: ___.\nLee: Middle initial? Mark: ___. Lee: E‑mail? Mark: ___. Lee: Phone? Mark: ___.\nLee: Are you an English student? Mark: ___. Lee: Teacher\'s name? Mark: ___.', grammar: ['What\'s…?'], vocab: ['last name', 'first name', 'middle initial', 'e‑mail', 'phone number'] },
+            58: { unit: 'WB', section: 'WB 1: Evening', fullText: 'Sam: Hi, Ali. Ali: Hi. Sam: Good, thanks. How about you? Ali: Pretty good.\nSam: Am I late? Ali: Yeah, you are, but it\'s OK.\nJoe: Good evening. Clerk: Good evening. What\'s your name? Joe: Joe Johnson.\nSally: Hello. My name\'s Sally. Kate: Hello. I\'m Kate. Are you here on business? Sally: Yes, I am.', grammar: [], vocab: ['Good evening', 'Pretty good', 'How about you?', 'Yeah'] },
+            59: { unit: 'WB', section: 'WB 1: Progress', fullText: 'Self‑check: I can make statements with I\'m, you\'re, we\'re. Ask Are you…? Use What\'s…? Say hello/goodbye 4 ways. Talk about names. Say numbers 0–10. Use How about you? Use formal/informal expressions.', grammar: [], vocab: [] },
+            60: { unit: 'WB', section: 'WB 2: Where?', fullText: 'Bill is at the gym. He\'s not at home.\nJon and Karen ___ at home. ___ not in class.\nSun Yee ___ in the cafeteria. ___ late.\nDavid ___ on vacation. ___ asleep.\nKate and Tess ___ in class. ___ not at the library.\nCarmen ___ at work. ___ not sick.', grammar: ['he\'s', 'she\'s', 'they\'re', 'Is he…?'], vocab: ['gym', 'home', 'cafeteria', 'vacation', 'asleep'] },
+            61: { unit: 'WB', section: 'WB 2: Absent', fullText: 'Silvia: Hi. How ___ you? Jason: Good, thanks. How about you?\nSilvia: Pretty good. ___ Dave here? Jason: No, he ___. I think he ___ sick.\nSilvia: Oh. ___ he at home? Jason: I don\'t know.\nSilvia: How about Jenny and Paula? ___ they here? Jason: No, they ___. They ___ on vacation.', grammar: ['am', 'is', 'are', 'isn\'t', 'aren\'t'], vocab: ['absent', 'sick', 'vacation', 'Miami'] },
+            62: { unit: 'WB', section: 'WB 2: Everyday Things', fullText: 'Label the things in the picture.\nWrite sentences about pictures: This is a backpack. These are notebooks.', grammar: ['this is', 'these are'], vocab: ['backpack', 'notebook', 'pencil', 'ruler', 'calculator', 'umbrella'] },
+            63: { unit: 'WB', section: 'WB 2: Asking', fullText: 'Clerk: You\'re in Room 102. Ms. Simms: Thanks. What\'s this? Clerk: Oh, ___ your room key.\nErica: What\'s ___? ___ it a cell phone? Jim: Yes, ___ is. It\'s a cell phone and an MP3 player.\nBob: What are ___? Jill: Oh, no! I think ___ my jeans. Bob: Are ___ new? Jill: Yeah. Oh, look. ___ this your wallet? Bob: Yes, ___ is.', grammar: ['this', 'these', 'it', 'they', 'it\'s', 'they\'re'], vocab: ['room key', 'cell phone', 'jeans', 'wallet', 'credit cards'] },
+            64: { unit: 'WB', section: 'WB 2: Puzzle', fullText: 'Word search: board, clock, desk, chair, computer, wastebasket, calendar, poster.', grammar: [], vocab: ['board', 'clock', 'desk', 'chair', 'computer', 'wastebasket', 'calendar', 'poster'] },
+            65: { unit: 'WB', section: 'WB 2: Prepositions', fullText: 'The dictionaries are on the floor. The students\' papers are on the wall. The CD player is on the teacher\'s desk.\nThe calendar is next to the wastebasket. The videos are in the closet. The computer is under the teacher\'s desk.\nThe teacher\'s desk is in front of the board. The closet is next to the window.\nPut apostrophes: What\'s your English teacher\'s name? What are your friends\' names? Where\'s your teacher now?', grammar: ['in', 'on', 'under', 'next to', 'in front of', 'possessive \'s'], vocab: ['dictionaries', 'students\' papers', 'wastebasket', 'closet', 'board'] },
+            66: { unit: 'WB', section: 'WB 2: Questions', fullText: 'Callie: Excuse me, Bob. ___ your dictionary? Bob: Sure. Here you go. Callie: Thanks. Bob: ___.\nRuby: Can I borrow your cell phone, please? Millie: Sorry, it\'s at home. Ruby: That\'s OK. ___.\nYuri: ___ videos? Dan: V‑I‑D‑E‑O‑S. Yuri: ___. Dan: Sure.', grammar: [], vocab: ['Excuse me', 'borrow', 'spell', 'Thanks anyway', 'You\'re welcome'] },
+            67: { unit: 'WB', section: 'WB 2: Progress', fullText: 'Self‑check: I can use he\'s/she\'s/they\'re. Ask Is he/Is she/Are they. Use a/an. Make plurals with ‑s/‑es/‑ies. Use this/these. Ask Where…? Use possessives. Ask for help. Respond to Thank you and I\'m sorry.', grammar: [], vocab: [] },
+            68: { unit: 'WB', section: 'WB 3: Words', fullText: 'Unscramble: rgiens → singer, ctrao → actor, rtweir → writer, maet → team, ralypp → player, dnab → band, hwso → show, prsots → sports, naf → fan, ivome → movie, rtiats → artist.\nCrossword: Across: What\'s your favorite TV show? Norah Jones is an amazing ___. Our favorite soccer ___ is Manchester United. Meryl Streep is a great ___. Ronaldo is a famous soccer ___.', grammar: [], vocab: ['singer', 'actor', 'writer', 'team', 'player', 'band', 'show', 'sports', 'fan', 'movie', 'artist'] },
+            69: { unit: 'WB', section: 'WB 3: Possessives', fullText: 'She\'s my favorite singer. ___ new CD is great.\n___ Jama fans. Jama is ___ favorite band.\n___ a great writer. ___ new book is really good.\n___ favorite TV show is The Visitors. What\'s ___ favorite show?\n___ my favorite actors. I think ___ movies are very good.\nCassandra Coe is my teacher. ___ a great artist. ___ pictures are amazing.', grammar: ['my', 'your', 'his', 'her', 'our', 'their'], vocab: ['favorite singer', 'CD', 'fan', 'band'] },
+            70: { unit: 'WB', section: 'WB 3: Personality', fullText: 'She\'s quiet and shy. He\'s outgoing. They\'re friendly. She\'s smart. He\'s lazy.\nShe\'s not very strict. They\'re busy and tired.', grammar: [], vocab: ['quiet', 'shy', 'outgoing', 'friendly', 'smart', 'lazy', 'strict', 'busy', 'tired'] },
+            71: { unit: 'WB', section: 'WB 3: Negatives', fullText: 'Carrie: Sorry. Am I late? Josh: No, you ___. You ___ fine.\nCarrie: So, what\'s new? ___ you busy at work? Josh: Yes, I ___. Our boss ___ sick, so he ___ at work.\nJosh: What ___ your new neighbors like? ___ they nice? Carrie: Yes, they ___. They ___ very quiet.\nJosh: ___ they students? Carrie: No, they ___. The guy ___ a writer. She ___ a teacher.', grammar: ['isn\'t', 'aren\'t', 'am not', 'be verb'], vocab: ['neighbors', 'writer', 'teacher'] },
+            72: { unit: 'WB', section: 'WB 3: Family', fullText: 'David is Paul\'s son. John is Katy\'s husband. Katy is Paul\'s daughter.\nJosh, David, Emily are Paul and Katy\'s children. Emily is Josh\'s sister.\nJosh is David\'s brother. John and Catherine are Katy\'s parents.\nKaty is Josh\'s mother. John is Catherine\'s husband. Emily is Katy\'s daughter.', grammar: ['possessive \'s'], vocab: ['son', 'daughter', 'husband', 'wife', 'brother', 'sister', 'children', 'parents'] },
+            73: { unit: 'WB', section: 'WB 3: Questions', fullText: 'Unscramble: How are your children? What are your parents\' names? How old is your grandfather?\nWhat\'s your mother like? Where\'s your father from? How old is your best friend?\n\nKate interview: 1. How is Kate? She\'s fine. 2. ___ Her mother is Gwen Russell.\n3. ___ Her father is fun and outgoing. 4. ___ Her favorite band is Green Day.', grammar: ['How…?', 'What…?', 'Where…?', 'Who…?'], vocab: ['children', 'parents', 'grandfather', 'mother', 'father', 'best friend'] },
+            74: { unit: 'WB', section: 'WB 3: Neighbors', fullText: 'Ming: Who are they? Jim: They\'re my new neighbors. They\'re in a rock band. Ming: ___?\nJim: They\'re from New York. Ming: ___? Jim: No, they\'re not friendly!\nCarlos: Who\'s she? Kim: Her name\'s Angie. Carlos: ___? Kim: I think she\'s from Chile.\nCarlos: ___? Kim: She\'s outgoing and fun. Carlos: ___? Kim: Maybe 24 or 25.', grammar: ['How old…?', 'Where…from?', 'What…like?'], vocab: ['neighbors', 'rock band', 'co‑workers', 'Chile'] },
+            75: { unit: 'WB', section: 'WB 3: Progress', fullText: 'Self‑check: I can use my/your/his/her/our/their. Make statements with be. Ask yes‑no questions with be. Make negatives. Ask information questions. Describe personalities. Name family words. Use Really?', grammar: [], vocab: [] },
+            76: { unit: 'WB', section: 'WB 4: Morning', fullText: 'Kathy gets up early. Her son doesn\'t get up early.\nShe has coffee before work. Her son plays computer games.\nShe listens to the radio in the car. She and her co‑workers eat breakfast together.\nKathy checks her e‑mail after breakfast. Her boss reads the newspaper at work.', grammar: ['simple present', 'doesn\'t'], vocab: ['get up', 'breakfast', 'coffee', 'radio', 'e‑mail', 'computer games'] },
+            77: { unit: 'WB', section: 'WB 4: Activities', fullText: 'Match: 1. do → homework  2. study → English  3. check → e‑mail  4. listen → to the radio\n5. drive → a car  6. play → games on the computer  7. read → a book  8. use → an alarm clock.', grammar: [], vocab: ['do homework', 'study English', 'check e‑mail', 'listen to radio', 'drive a car', 'play games', 'read a book', 'use alarm clock'] },
+            78: { unit: 'WB', section: 'WB 4: Fun?', fullText: 'Fun or not fun: check e‑mail, do laundry, get up early, play sports, clean the house, drive to work, go shopping, take lessons, do homework, eat snacks, make phone calls, watch TV.\nWrite days of the week. Write one thing you do each day.', grammar: [], vocab: ['check e‑mail', 'do laundry', 'get up early', 'play sports', 'clean the house', 'go shopping'] },
+            79: { unit: 'WB', section: 'WB 4: Week', fullText: 'Cecilia: What\'s your week like, Eduardo? Do you go to work every day?\nEduardo: Well, no, I ___. I work at home on Fridays.\nCecilia: Do you work on weekends too? Eduardo: Yes, I ___. But I don\'t like it.\nCecilia: Do you and your husband go to work every day? Eduardo: Yes, we ___. But just Monday to Friday.\nWe ___ the house on weekends. We ___ to soccer games. My son ___ soccer.', grammar: ['Do you…?', 'Does he…?', 'Yes, I do.', 'No, I don\'t.'], vocab: ['work at home', 'Monday to Friday', 'clean the house', 'soccer games'] },
+            80: { unit: 'WB', section: 'WB 4: Saying More', fullText: 'Mike: Hi. Are you OK? Yumi: I\'m new here, and I\'m late.\nMike: Do you work here? Yumi: Yes, I do. I work part‑time in the cafeteria. It\'s fun.\nMike: Do you work every day? Yumi: Well, no. Just Mondays and Wednesdays. I go to class Tuesdays and Thursdays.\nYumi: Do you belong to the English Club? Mike: Yes, I do. I go there Mondays after work.', grammar: [], vocab: ['cafeteria', 'part‑time', 'English Club', 'student'] },
+            81: { unit: 'WB', section: 'WB 4: About You', fullText: 'Unscramble: Do you live around here? Are you from here originally? Are you a full‑time student?\nDo you have brothers or sisters? Do you work on the weekends? Do you like your English class?\nDo you get up early every day? Do your grandparents live with you?\nAnswer with more than yes/no. Use Well if needed.', grammar: ['Well'], vocab: ['live around here', 'full‑time student', 'brothers and sisters', 'weekends', 'get up early'] },
+            82: { unit: 'WB', section: 'WB 4: TV', fullText: 'Americans don\'t usually go out with friends in the evening. After work, Americans usually don\'t go shopping.\nAmerican high school students don\'t study for three hours a night. They do watch TV. 20% of Americans have hobbies.\nWrite an e‑mail about your TV‑watching habits.', grammar: ['simple present'], vocab: ['spend time with family', 'go out with friends', 'go shopping', 'high school', 'hobbies'] },
+            83: { unit: 'WB', section: 'WB 4: Progress', fullText: 'Self‑check: I can make simple present statements. Ask yes‑no questions and give short answers. Name verbs for routine activities. Name days of the week. Use time expressions. Answer with more than yes/no. Use Well. Write with capitals and periods.', grammar: [], vocab: [] }
         };
 
-        // ========== QUESTION GENERATOR ==========
         let currentQuestions = [];
+        let currentPageNum = null;
+
         function generateQuestionsForPage(pageNum) {
             const page = textbookDB[pageNum];
             if (!page) return [];
             const qs = [];
             const ft = page.fullText.toLowerCase();
-            const snip = (kws, n=2) => {
-                const lines = page.fullText.split('\n').filter(l=>l.trim().length>6);
+            const snip = (kws, n = 2) => {
+                const lines = page.fullText.split('\n').filter(l => l.trim().length > 6);
                 for (const k of kws) { const f = lines.find(l => l.toLowerCase().includes(k.toLowerCase())); if (f) return f.trim(); }
-                return lines.slice(0,n).join(' ').trim();
+                return lines.slice(0, n).join(' ').trim();
             };
-            const add = (text, context, hintOptions, answer, type='grammar') => {
-                qs.push({ id: qs.length+1, text, context, hintOptions, answer, type });
-            };
-            // helper to create options: correct + 2 plausible wrong
             const mc = (correct, wrongs) => [correct, ...wrongs];
+            const add = (text, context, hintOptions, answer, difficulty, type = 'grammar') => {
+                qs.push({ id: qs.length + 1, text, context, hintOptions, answer, difficulty, type });
+            };
 
-            if (ft.includes("i'm")||ft.includes("i am")) add('Complete: "Hello. _____ Chris." (I am)', snip(["I'm","Hello"]), mc("I'm", ["I","You're"]), "I'm",'grammar');
-            if (ft.includes("you're")||ft.includes("you are")) add('Complete: "_____ in Room B." (You are)', snip(["You're","Room"]), mc("You're", ["You","She's"]), "You're",'grammar');
-            if (ft.includes("he's")||ft.includes("he is")) add('Rewrite: "Jun is at work." → "_____ at work."', snip(["He's","Jun"]), mc("He's", ["He","She's"]), "He's",'grammar');
-            if (ft.includes("she's")||ft.includes("she is")) add('Complete: "Laura is sick." → "_____ sick."', snip(["She's","sick"]), mc("She's", ["She","He's"]), "She's",'grammar');
-            if (ft.includes("they're")||ft.includes("they are")) add('Rewrite: "Kim and Phong are late." → "_____ late."', snip(["They're","late"]), mc("They're", ["They","We're"]), "They're",'grammar');
-            if (ft.includes("we're")||ft.includes("we are")) add('Complete: "_____ in the same class." (We are)', snip(["We're","same class"]), mc("We're", ["We","They're"]), "We're",'grammar');
-            if (ft.includes("are you")&&ft.includes("?")) add('Question: "_____ you here for English class?"', snip(["Are you","class"]), mc("Are", ["Is","Am"]), "Are",'grammar');
-            if (ft.includes("is he")||ft.includes("is she")) add('Question: "_____ she sick?"', snip(["Is she","sick"]), mc("Is", ["Are","Am"]), "Is",'grammar');
-            if (ft.includes("are they")) add('Complete: "_____ they in the cafeteria?"', snip(["Are they","cafeteria"]), mc("Are", ["Is","Am"]), "Are",'grammar');
-            if (ft.includes("what's")||ft.includes("what is")) add('Complete: "_____ your name?" (Contraction)', snip(["What's","name"]), mc("What's", ["What","It's"]), "What's",'grammar');
-            if (ft.includes("it's")||ft.includes("it is")) add('Complete: "_____ 646-555-3048." (It is)', snip(["It's","phone"]), mc("It's", ["It","What's"]), "It's",'grammar');
-            if (ft.includes("don't")||ft.includes("do not")) add('Negative: "I _____ eat lunch." (do not)', snip(["don't","eat"]), mc("don't", ["do","doesn't"]), "don't",'grammar');
-            if (ft.includes("doesn't")||ft.includes("does not")) add('Negative: "She _____ watch TV." (does not)', snip(["doesn't","watch"]), mc("doesn't", ["don't","does"]), "doesn't",'grammar');
-            if (ft.includes("do you")&&ft.includes("?")) add('Complete: "_____ you play sports?"', snip(["Do you","play"]), mc("Do", ["Does","Is"]), "Do",'grammar');
-            if (ft.includes("does")&&(ft.includes("mother")||ft.includes("she"))) add('Complete: "_____ your mother work?"', snip(["Does","mother"]), mc("Does", ["Do","Is"]), "Does",'grammar');
-            if (ft.includes("his ")&&ft.includes("movie")) add('Complete: "Sean Penn is an actor. _____ movies are very good."', snip(["his","movie"]), mc("His", ["Her","Their"]), "His",'grammar');
-            if (ft.includes("her ")&&ft.includes("voice")) add('Complete: "Norah Jones is a singer. _____ voice is amazing."', snip(["her","voice"]), mc("Her", ["His","Their"]), "Her",'grammar');
-            if (ft.includes("their ")&&ft.includes("match")) add('Complete: "The Williams sisters. _____ matches are exciting."', snip(["their","matches"]), mc("Their", ["His","Her"]), "Their",'grammar');
-            if (ft.includes("how about you")) add('How to return the question? "I\'m fine. _____?"', snip(["How about you"]), mc("How about you?", ["How are you?","What about you?"]), "How about you?",'grammar');
-            if (ft.includes("where's")||ft.includes("where is")) add('Complete: "_____ the VCR?" (Where is)', snip(["Where's","VCR"]), mc("Where's", ["Where","What's"]), "Where's",'grammar');
-            if (ft.includes("this ")&&ft.includes("mp3")) add('Complete: "_____ is an MP3 player." (This/These)', snip(["MP3"]), mc("This", ["These","That"]), "This",'grammar');
-            if (ft.includes("an ")&&ft.includes("mp3")) add('Article: "This is _____ MP3 player." (a/an)', snip(["MP3"]), mc("an", ["a","the"]), "an",'grammar');
-            if (ft.includes("well,")||ft.includes("well ")) add('Word to start a thinking answer: "_____, I\'m from Chicago."', snip(["Well","Chicago"]), mc("Well", ["So","But"]), "Well",'grammar');
+            // === EASY questions (direct fill‑in from text) ===
+            if (ft.includes("i'm") || ft.includes("i am")) add('Complete: "Hello. _____ Chris."', snip(["I'm", "Hello"]), mc("I'm", ["I", "You're"]), "I'm", 'easy', 'grammar');
+            if (ft.includes("you're") || ft.includes("you are")) add('Complete: "_____ in Room B."', snip(["You're", "Room"]), mc("You're", ["You", "She's"]), "You're", 'easy', 'grammar');
+            if (ft.includes("he's") && ft.includes("jun")) add('"Jun is at work." → "_____ at work."', snip(["He's", "Jun"]), mc("He's", ["He", "She's"]), "He's", 'easy', 'grammar');
+            if (ft.includes("she's") && ft.includes("sick")) add('"Laura is sick." → "_____ sick."', snip(["She's", "sick"]), mc("She's", ["He's", "They're"]), "She's", 'easy', 'grammar');
+            if (ft.includes("they're") && ft.includes("late")) add('"Kim and Phong are late." → "_____ late."', snip(["They're", "late"]), mc("They're", ["They", "We're"]), "They're", 'easy', 'grammar');
+            if (ft.includes("we're") && ft.includes("same class")) add('"_____ in the same class." (We are)', snip(["We're", "same class"]), mc("We're", ["We", "They're"]), "We're", 'easy', 'grammar');
+            if (ft.includes("what's") && ft.includes("name")) add('"_____ your name?"', snip(["What's", "name"]), mc("What's", ["What", "It's"]), "What's", 'easy', 'grammar');
+            if (ft.includes("good morning")) add('Morning greeting?', snip(["Good morning"]), mc("Good morning", ["Good night", "Good evening"]), "Good morning", 'easy', 'vocabulary');
+            if (ft.includes("good night")) add('Say before bed?', snip(["Good night"]), mc("Good night", ["Good morning", "Hello"]), "Good night", 'easy', 'vocabulary');
+            if (ft.includes("nice to meet you")) add('First‑meeting expression?', snip(["Nice to meet you"]), mc("Nice to meet you", ["How are you?", "See you"]), "Nice to meet you", 'easy', 'vocabulary');
+            if (ft.includes("see you")) add('Informal goodbye?', snip(["See you"]), mc("See you", ["Hello", "Good morning"]), "See you", 'easy', 'vocabulary');
+            if (ft.includes("breakfast")) add('First meal of the day?', snip(["breakfast"]), mc("breakfast", ["lunch", "dinner"]), "breakfast", 'easy', 'vocabulary');
 
-            // vocabulary based on page topic
-            if (ft.includes("good morning")) add('Greeting for the morning?', snip(["Good morning"]), mc("Good morning", ["Good night","Good evening"]), "Good morning",'vocabulary');
-            if (ft.includes("good night")) add('Say before bed?', snip(["Good night"]), mc("Good night", ["Good morning","Good evening"]), "Good night",'vocabulary');
-            if (ft.includes("nice to meet you")) add('First meeting expression?', snip(["Nice to meet you"]), mc("Nice to meet you", ["How are you?","See you"]), "Nice to meet you",'vocabulary');
-            if (ft.includes("see you")) add('Informal goodbye?', snip(["See you"]), mc("See you", ["Good morning","Hello"]), "See you",'vocabulary');
-            if (ft.includes("you're welcome")) add('Response to "Thank you"?', snip(["You're welcome"]), mc("You're welcome", ["That's OK","Sorry"]), "You're welcome",'vocabulary');
-            if (ft.includes("that's ok")) add('Response to "I\'m sorry"?', snip(["That's OK"]), mc("That's OK", ["You're welcome","Thanks"]), "That's OK",'vocabulary');
-            if (ft.includes("last name")) add('Family name is called?', snip(["last name"]), mc("last name", ["first name","middle name"]), "last name",'vocabulary');
-            if (ft.includes("spell")) add('Ask for letters?', snip(["How do you spell"]), mc("How do you spell", ["What's your name?","How are you?"]), "How do you spell",'vocabulary');
-            if (ft.includes("board")) add('Teacher writes on?', snip(["board"]), mc("board", ["desk","wall"]), "board",'vocabulary');
-            if (ft.includes("wastebasket")) add('Paper trash container?', snip(["wastebasket"]), mc("wastebasket", ["closet","desk"]), "wastebasket",'vocabulary');
-            if (ft.includes("cafeteria")) add('Where students eat?', snip(["cafeteria"]), mc("cafeteria", ["library","gym"]), "cafeteria",'vocabulary');
-            if (ft.includes("singer")) add('Person who sings?', snip(["singer"]), mc("singer", ["actor","artist"]), "singer",'vocabulary');
-            if (ft.includes("outgoing")) add('Adjective for a social person?', snip(["outgoing"]), mc("outgoing", ["shy","lazy"]), "outgoing",'vocabulary');
-            if (ft.includes("grandmother")) add('Your mother\'s mother?', snip(["grandmother"]), mc("grandmother", ["grandfather","sister"]), "grandmother",'vocabulary');
-            if (ft.includes("breakfast")) add('First meal of the day?', snip(["breakfast"]), mc("breakfast", ["lunch","dinner"]), "breakfast",'vocabulary');
-            if (ft.includes("homework")) add('School work at home?', snip(["homework"]), mc("homework", ["housework","classwork"]), "homework",'vocabulary');
-            if (ft.includes("really?")) add('One-word to show surprise?', snip(["Really?"]), mc("Really?", ["Yes","No"]), "Really?",'vocabulary');
-            if (ft.includes("90,000")) add('How many hours does an American work in a lifetime?', snip(["90,000"]), mc("90,000", ["9,000","900,000"]), "90,000",'vocabulary');
+            // === MEDIUM questions (require choosing between similar options) ===
+            if (ft.includes("are you") && ft.includes("?")) add('Question starter: "_____ you here for English?"', snip(["Are you", "class"]), mc("Are", ["Is", "Am"]), "Are", 'medium', 'grammar');
+            if (ft.includes("is he") || ft.includes("is she")) add('"_____ she sick today?"', snip(["Is she", "sick"]), mc("Is", ["Are", "Am"]), "Is", 'medium', 'grammar');
+            if (ft.includes("are they")) add('"_____ they in the cafeteria?"', snip(["Are they", "cafeteria"]), mc("Are", ["Is", "Am"]), "Are", 'medium', 'grammar');
+            if (ft.includes("don't") && ft.includes("eat")) add('Negative: "I _____ eat lunch."', snip(["don't", "eat"]), mc("don't", ["doesn't", "not"]), "don't", 'medium', 'grammar');
+            if (ft.includes("doesn't") && ft.includes("watch")) add('"She _____ watch TV."', snip(["doesn't", "watch"]), mc("doesn't", ["don't", "not"]), "doesn't", 'medium', 'grammar');
+            if (ft.includes("his ") && ft.includes("movie")) add('Possessive (male): "_____ movies are good."', snip(["his", "movie"]), mc("His", ["Her", "Their"]), "His", 'medium', 'grammar');
+            if (ft.includes("her ") && ft.includes("voice")) add('Possessive (female): "_____ voice is amazing."', snip(["her", "voice"]), mc("Her", ["His", "Their"]), "Her", 'medium', 'grammar');
+            if (ft.includes("their ") && ft.includes("match")) add('Possessive (plural): "_____ matches are exciting."', snip(["their", "matches"]), mc("Their", ["His", "Her"]), "Their", 'medium', 'grammar');
+            if (ft.includes("how about you")) add('Return a question: "I\'m fine. _____?"', snip(["How about you"]), mc("How about you?", ["How are you?", "What about you?"]), "How about you?", 'medium', 'grammar');
+            if (ft.includes("where's") && ft.includes("vcr")) add('"_____ the VCR?" (Where is)', snip(["Where's", "VCR"]), mc("Where's", ["Where", "What's"]), "Where's", 'medium', 'grammar');
+            if (ft.includes("an ") && ft.includes("mp3")) add('Article: "This is _____ MP3 player."', snip(["MP3"]), mc("an", ["a", "the"]), "an", 'medium', 'grammar');
+            if (ft.includes("does") && (ft.includes("mother") || ft.includes("work"))) add('"_____ your mother work?"', snip(["Does", "mother"]), mc("Does", ["Do", "Is"]), "Does", 'medium', 'grammar');
+            if (ft.includes("you're welcome")) add('Response to "Thank you"?', snip(["You're welcome"]), mc("You're welcome", ["That's OK", "Sorry"]), "You're welcome", 'medium', 'vocabulary');
+            if (ft.includes("that's ok")) add('Response to "I\'m sorry"?', snip(["That's OK"]), mc("That's OK", ["You're welcome", "Thanks"]), "That's OK", 'medium', 'vocabulary');
+            if (ft.includes("outgoing") || ft.includes("shy")) add('Adjective for a social person?', snip(["outgoing", "shy"]), mc("outgoing", ["shy", "lazy"]), "outgoing", 'medium', 'vocabulary');
+            if (ft.includes("grandmother")) add('Your mother\'s mother?', snip(["grandmother"]), mc("grandmother", ["grandfather", "sister"]), "grandmother", 'medium', 'vocabulary');
 
-            // if still too few, add a generic fill from the first sentence
-            if (qs.length < 3) {
-                const firstLine = page.fullText.split('\n').find(l=>l.trim().length>10)||'';
-                const words = firstLine.split(/\s+/).filter(w=>w.length>3);
-                if (words.length>0) {
-                    const w = words[0];
-                    add(`The page begins with: "${firstLine.split(' ').slice(0,2).join(' ')} _____ ..."`, firstLine, mc(w, [words[1]||'','the']), w,'vocabulary');
-                }
+            // === HARD questions (produce without hints, transform, apply rule) ===
+            if (ft.includes("i'm") && ft.includes("not")) add('Make negative: "I\'m Carmen." → "I\'m _____ Carmen."', snip(["I'm not", "not"]), mc("not", ["no", "don't"]), "not", 'hard', 'grammar');
+            if (ft.includes("don't") || ft.includes("doesn't")) {
+                if (ft.includes("eat")) add('Rewrite: "I eat lunch." → Negative: "I _____ eat lunch."', snip(["don't eat"]), mc("don't", ["doesn't", "not"]), "don't", 'hard', 'grammar');
+                if (ft.includes("watch")) add('"She watches TV." → Negative: "She _____ watch TV."', snip(["doesn't watch"]), mc("doesn't", ["don't", "not"]), "doesn't", 'hard', 'grammar');
             }
-            return qs.slice(0,8);
+            if (ft.includes("well,") || ft.includes("well ")) add('What word starts a thinking pause? "_____, I\'m from Chicago."', snip(["Well"]), mc("Well", ["So", "But"]), "Well", 'hard', 'vocabulary');
+            if (ft.includes("really?")) add('One word to show surprise?', snip(["Really?"]), mc("Really?", ["Yes", "No"]), "Really?", 'hard', 'vocabulary');
+            if (ft.includes("90,000")) add('How many hours does an American work in a lifetime?', snip(["90,000"]), mc("90,000", ["9,000", "900,000"]), "90,000", 'hard', 'vocabulary');
+            if (ft.includes("spell")) add('Ask for letters: "How do you _____ your name?"', snip(["spell"]), mc("spell", ["say", "write"]), "spell", 'hard', 'vocabulary');
+            if (ft.includes("this ") && ft.includes("mp3")) add('Choose: "_____ is an MP3 player." (This/These)', snip(["This", "MP3"]), mc("This", ["These", "That"]), "This", 'hard', 'grammar');
+
+            // Ensure at least 1 of each level
+            if (!qs.some(q => q.difficulty === 'easy')) {
+                const firstLine = page.fullText.split('\n').find(l => l.trim().length > 8) || '';
+                const w = firstLine.split(/\s+/).find(x => x.length > 3) || 'English';
+                add(`The text mentions: "${w}". Write this word.`, firstLine, mc(w, ['the', 'and']), w, 'easy', 'vocabulary');
+            }
+            if (!qs.some(q => q.difficulty === 'medium')) {
+                const words = page.fullText.split(/\s+/).filter(w => w.length > 4);
+                const tw = words[Math.floor(words.length / 2)] || 'English';
+                add(`Find the word: "${tw}". Which unit topic does it match?`, snip([tw]), mc(tw, [words[1] || '', words[2] || '']), tw, 'medium', 'vocabulary');
+            }
+            if (!qs.some(q => q.difficulty === 'hard')) {
+                add(`What is this page about? (one or two words)`, page.fullText.split('\n')[0] || '', mc(page.section.split('–')[0]?.trim() || 'English', ['Grammar', 'Vocabulary']), page.section.split('–')[0]?.trim() || 'English', 'hard', 'vocabulary');
+            }
+
+            return qs.slice(0, 9);
         }
 
-        // ========== RENDER QUESTIONS ==========
-        function renderQuestions(questions) {
+        function renderAllQuestions() {
             const container = document.getElementById('questionsContainer');
+            const levels = ['easy', 'medium', 'hard'];
             let html = '';
-            questions.forEach((q,i) => {
-                const tagClass = q.type==='grammar'?'tag-grammar':'tag-vocabulary';
-                html += `<div class="card question-card-inner" id="qcard-${i}">
-                    <div class="question-header" style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
-                        <span class="question-number">${i+1}</span>
-                        <span style="font-weight:600;flex:1;">${q.text}</span>
-                        <span class="tag ${tagClass}">${t(q.type)}</span>
-                    </div>
-                    ${q.context?`<div style="background:rgba(143,158,166,0.07);border:1px dashed var(--border-strong);padding:0.6rem 1rem;border-radius:8px;font-size:0.88rem;color:var(--text-muted);white-space:pre-wrap;">📖 ${q.context}</div>`:''}
-                    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-                        <input type="text" id="answer-${i}" placeholder="Type answer..." onkeydown="if(event.key==='Enter')checkAnswer(${i})" style="flex:1;min-width:160px;padding:0.6rem;border:2px solid var(--border-strong);border-radius:8px;background:var(--surface-solid);color:var(--text-main);font-family:'Courier New',monospace;">
-                        <button class="btn btn-ghost" onclick="toggleHintOptions(${i})">💬 ${t('hint')}</button>
-                        <button class="btn btn-secondary" onclick="checkAnswer(${i})">✓ ${t('check')}</button>
-                    </div>
-                    <div class="hint-options" id="hintOptions-${i}">
-                        ${q.hintOptions.map(opt=>`<button class="hint-option-btn" onclick="fillAnswer(${i},'${opt.replace(/'/g,"\\'")}')">${opt}</button>`).join('')}
-                    </div>
-                    <div class="answer-reveal" id="correctAnswer-${i}" style="background:rgba(16,185,129,0.08);border:1px solid #10b981;padding:0.6rem;border-radius:8px;font-weight:600;color:#10b981;margin-top:0.4rem;">✅ ${q.answer}</div>
-                    <div id="feedback-${i}" style="font-weight:600;margin-top:0.3rem;"></div>
-                </div>`;
-            });
+            const grouped = { easy: [], medium: [], hard: [] };
+            currentQuestions.forEach(q => grouped[q.difficulty]?.push(q));
+
+            for (const level of levels) {
+                const qs = grouped[level];
+                if (!qs || qs.length === 0) continue;
+                const badgeClass = level === 'easy' ? 'badge-easy' : level === 'medium' ? 'badge-medium' : 'badge-hard';
+                const levelLabel = t(level);
+                html += `<div style="margin-bottom:1.5rem;"><div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;"><span class="difficulty-badge ${badgeClass}">${levelLabel}</span><span style="font-size:0.8rem;color:var(--text-muted);">${qs.length} question${qs.length>1?'s':''}</span></div>`;
+                qs.forEach((q, i) => {
+                    const globalIdx = currentQuestions.indexOf(q);
+                    const tagClass = q.type === 'grammar' ? 'tag-grammar' : 'tag-vocabulary';
+                    html += `<div class="card question-card" id="qcard-${globalIdx}" style="margin-bottom:0.8rem;">
+                        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.4rem;">
+                            <span class="question-number">${globalIdx+1}</span>
+                            <span style="font-weight:600;flex:1;">${q.text}</span>
+                            <span class="tag ${tagClass}">${t(q.type)}</span>
+                        </div>
+                        ${q.context?`<div class="context-snippet">📖 ${q.context}</div>`:''}
+                        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+                            <input type="text" id="answer-${globalIdx}" placeholder="Type answer..." class="answer-input" onkeydown="if(event.key==='Enter')checkAnswer(${globalIdx})">
+                            <button class="btn btn-ghost" onclick="toggleHint(${globalIdx})">${t('hint')}</button>
+                            <button class="btn btn-secondary" onclick="checkAnswer(${globalIdx})">${t('check')}</button>
+                        </div>
+                        <div class="hint-chips" id="hintChips-${globalIdx}">
+                            ${q.hintOptions.map(opt=>`<span class="hint-chip" onclick="fillAnswer(${globalIdx},'${opt.replace(/'/g,"\\'")}')">${opt}</span>`).join('')}
+                        </div>
+                        <div class="answer-reveal" id="correctAnswer-${globalIdx}">✅ ${q.answer}</div>
+                        <div class="feedback-msg" id="feedback-${globalIdx}"></div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
             container.innerHTML = html;
+            document.getElementById('difficultySummary').textContent = `(${currentQuestions.length} questions across 3 levels)`;
         }
 
-        function toggleHintOptions(i) {
-            const el = document.getElementById(`hintOptions-${i}`);
-            el.classList.toggle('show');
+        function toggleHint(i) { document.getElementById(`hintChips-${i}`).classList.toggle('show'); }
+
+        function fillAnswer(i, val) {
+            document.getElementById(`answer-${i}`).value = val;
+            document.getElementById(`hintChips-${i}`).classList.remove('show');
         }
-        function fillAnswer(i, value) {
-            document.getElementById(`answer-${i}`).value = value;
-            document.getElementById(`hintOptions-${i}`).classList.remove('show');
-        }
-        function showAnswer(i) {
-            document.getElementById(`correctAnswer-${i}`).classList.add('show');
-        }
+
         function checkAnswer(i) {
             const inp = document.getElementById(`answer-${i}`);
             const fb = document.getElementById(`feedback-${i}`);
             const card = document.getElementById(`qcard-${i}`);
             const ua = inp.value.trim().toLowerCase();
-            if (!ua) { fb.textContent = t('typeAnswer');
-                fb.style.color = '#ef4444'; return; }
-            const ca = currentQuestions[i].answer.toLowerCase().split(',').map(s=>s.trim());
+            if (!ua) { fb.className = 'feedback-msg incorrect show';
+                fb.textContent = t('typeAnswer'); return; }
+            const ca = currentQuestions[i].answer.toLowerCase().split(',').map(s => s.trim());
             let ok = false;
-            for (const v of ca) { if (ua===v||(v.length>3&&ua.includes(v))||(ua.length>3&&v.includes(ua))) { ok=true; break; } }
+            for (const v of ca) { if (ua === v || (v.length > 3 && ua.includes(v)) || (ua.length > 3 && v.includes(ua))) { ok = true; break; } }
             if (ok) {
+                fb.className = 'feedback-msg correct show';
                 fb.textContent = t('correct');
-                fb.style.color = '#10b981';
-                inp.classList.add('correct-input');
-                inp.classList.remove('incorrect-input');
+                inp.classList.add('correct');
+                inp.classList.remove('incorrect');
                 card.style.borderColor = '#10b981';
             } else {
+                fb.className = 'feedback-msg incorrect show';
                 fb.textContent = t('incorrect');
-                fb.style.color = '#ef4444';
-                inp.classList.add('incorrect-input');
-                inp.classList.remove('correct-input');
+                inp.classList.add('incorrect');
+                inp.classList.remove('correct');
                 card.style.borderColor = '#ef4444';
             }
             updateScore();
         }
-        function checkAllAnswers() { currentQuestions.forEach((_,i)=>{ const inp=document.getElementById(`answer-${i}`); if(inp&&inp.value.trim())checkAnswer(i); }); }
-        function showAllAnswers() { currentQuestions.forEach((_,i)=>showAnswer(i)); }
+
+        function checkAllAnswers() { currentQuestions.forEach((_, i) => { const inp = document.getElementById(`answer-${i}`); if (inp && inp.value.trim()) checkAnswer(i); }); }
+
+        function showAllAnswers() { currentQuestions.forEach((_, i) => document.getElementById(`correctAnswer-${i}`).classList.add('show')); }
+
+        function resetAnswers() {
+            currentQuestions.forEach((_, i) => {
+                const inp = document.getElementById(`answer-${i}`);
+                if (inp) { inp.value = '';
+                    inp.classList.remove('correct', 'incorrect'); }
+                const fb = document.getElementById(`feedback-${i}`);
+                if (fb) { fb.className = 'feedback-msg';
+                    fb.textContent = ''; }
+                const card = document.getElementById(`qcard-${i}`);
+                if (card) card.style.borderColor = '';
+                const rev = document.getElementById(`correctAnswer-${i}`);
+                if (rev) rev.classList.remove('show');
+            });
+            updateScore();
+        }
+
         function updateScore() {
             let correct = 0;
             const total = currentQuestions.length;
-            currentQuestions.forEach((_,i)=>{ const fb=document.getElementById(`feedback-${i}`); if(fb&&fb.style.color==='rgb(16, 185, 129)')correct++; });
-            const pct = total>0?Math.round((correct/total)*100):0;
-            document.getElementById('scoreDisplay').textContent = pct+'%';
-            document.getElementById('progressFill').style.width = pct+'%';
+            currentQuestions.forEach((_, i) => { const fb = document.getElementById(`feedback-${i}`); if (fb && fb.classList.contains('correct')) correct++; });
+            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+            document.getElementById('scoreDisplay').textContent = pct + '%';
+            document.getElementById('progressFill').style.width = pct + '%';
+            const ring = document.getElementById('scoreRing');
+            ring.textContent = pct + '%';
+            if (pct >= 80) ring.style.borderColor = '#10b981';
+            else if (pct >= 50) ring.style.borderColor = '#f59e0b';
+            else ring.style.borderColor = 'var(--border-light)';
             let stars = '';
-            if(pct===100)stars='⭐⭐⭐⭐⭐';
-            else if(pct>=80)stars='⭐⭐⭐⭐';
-            else if(pct>=60)stars='⭐⭐⭐';
-            else if(pct>=40)stars='⭐⭐';
-            else if(pct>0)stars='⭐';
-            document.getElementById('starsDisplay').textContent=stars;
-            const msgs={100:'perfect',75:'great',50:'good'};
-            const m = pct>=100?'perfect':pct>=75?'great':pct>=50?'good':pct>0?'keep':'';
-            document.getElementById('scoreMessage').textContent = m?t(m):'';
+            if (pct === 100) stars = '⭐⭐⭐⭐⭐';
+            else if (pct >= 80) stars = '⭐⭐⭐⭐';
+            else if (pct >= 60) stars = '⭐⭐⭐';
+            else if (pct >= 40) stars = '⭐⭐';
+            else if (pct > 0) stars = '⭐';
+            document.getElementById('starsDisplay').textContent = stars;
+            const msgs = { 100: 'perfect', 75: 'great', 50: 'good' };
+            const m = pct >= 100 ? 'perfect' : pct >= 75 ? 'great' : pct >= 50 ? 'good' : pct > 0 ? 'keep' : '';
+            document.getElementById('scoreMessage').textContent = m ? t(m) : '';
         }
 
-        function generateAssessment() {
-            const pn = parseInt(document.getElementById('pageInput').value);
-            if (isNaN(pn)||pn<1||pn>83) { showToast('Invalid page','warning'); return; }
-            const page = textbookDB[pn];
-            currentPage = page;
-            currentQuestions = generateQuestionsForPage(pn);
-            document.getElementById('resultsPanel').style.display='none';
-            document.getElementById('pageInfo').innerHTML = `📄 <strong>Page ${pn}</strong> | ${page.section}`;
-            document.getElementById('pageContentDisplay').innerHTML = page.fullText.replace(/\n/g,'<br>');
+        function generateAssessment(pageNum) {
+            const page = textbookDB[pageNum];
+            if (!page) { showToast('Page not found', 'error'); return; }
+            currentPageNum = pageNum;
+            currentQuestions = generateQuestionsForPage(pageNum);
+            document.getElementById('pageContentDisplay').innerHTML = page.fullText.replace(/\n/g, '<br>');
             document.getElementById('pageContentDisplay').scrollTop = 0;
-            if (currentQuestions.length===0) {
-                document.getElementById('questionsContainer').innerHTML = '<p>No questions for this page.</p>';
+            document.getElementById('pageStatus').textContent = `${t('lessonPage')} ${pageNum} · Unit ${page.unit}`;
+            document.getElementById('resultsPanel').style.display = 'block';
+            document.getElementById('scoreRing').textContent = '0%';
+            document.getElementById('scoreRing').style.borderColor = 'var(--border-light)';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('starsDisplay').textContent = '';
+            document.getElementById('scoreMessage').textContent = '';
+            if (currentQuestions.length === 0) {
+                document.getElementById('questionsContainer').innerHTML = '<p style="text-align:center;color:var(--text-muted);">No questions for this page.</p>';
             } else {
-                renderQuestions(currentQuestions);
-                document.getElementById('resultsPanel').style.display='block';
+                renderAllQuestions();
             }
-            document.getElementById('pageContentDisplay').scrollIntoView({behavior:'smooth'});
+            document.getElementById('pageContentDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        function randomPage() { document.getElementById('pageInput').value = Math.floor(Math.random()*83)+1;
-            generateAssessment(); }
-        function resetAll() {
-            document.getElementById('pageInput').value='9';
-            document.getElementById('questionsContainer').innerHTML='';
-            document.getElementById('pageContentDisplay').innerHTML='';
-            document.getElementById('resultsPanel').style.display='none';
-            document.getElementById('scoreDisplay').textContent='0%';
-            document.getElementById('progressFill').style.width='0%';
-            currentQuestions=[];
-        }
-        updateStaticTexts();
-        window.addEventListener('DOMContentLoaded', ()=>{ generateAssessment(); });
+
+        document.getElementById('pageInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') navigateToPage(); });
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('langBtn').textContent = currentLang === 'ar' ? '🌍 English' : '🕌 العربية';
+            generateAssessment(9);
+        });
     </script>
 </body>
 </html>

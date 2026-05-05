@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Touchstone ENG 101 – Continuous Assessment Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #e8edf5 0%, #f0f4fa 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1a2a3f;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+        .assessment-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2.5rem 2rem 3rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #e2e8f0;
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            color: #1e466e;
+            margin-bottom: 0.3rem;
+        }
+        .header .subtitle {
+            color: #5a6c7d;
+            font-size: 0.95rem;
+        }
+        .page-selector {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-selector label {
+            font-weight: 700;
+            color: #1e466e;
+            font-size: 1.1rem;
+        }
+        .page-selector input {
+            width: 100px;
+            padding: 0.7rem 1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 600;
+            transition: border-color 0.2s;
+        }
+        .page-selector input:focus {
+            outline: none;
+            border-color: #1e466e;
+            box-shadow: 0 0 0 3px rgba(30, 70, 110, 0.15);
+        }
+        .btn {
+            background: #1e466e;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+        }
+        .btn:hover {
+            background: #163554;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(30, 70, 110, 0.3);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn-outline {
+            background: white;
+            color: #1e466e;
+            border: 2px solid #1e466e;
+        }
+        .btn-outline:hover {
+            background: #e8edf5;
+        }
+        .btn-hint {
+            background: #f4a261;
+            color: #1a2a3f;
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+        .btn-hint:hover {
+            background: #e8923c;
+            transform: scale(1.03);
+        }
+        .btn-check {
+            background: #2c8c5a;
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+        .btn-check:hover {
+            background: #237a4b;
+            transform: scale(1.03);
+        }
+        .page-info {
+            background: #e0f2fe;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #0f67b3;
+            font-weight: 600;
+            color: #1a4a6e;
+        }
+        .question-card {
+            background: #fafcff;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .question-card:hover {
+            border-color: #bccde0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+        .question-number {
+            display: inline-block;
+            background: #1e466e;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 0.8rem;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: inline;
+            color: #1a2a3f;
+        }
+        .answer-area {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .answer-area input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.6rem 1rem;
+            border: 2px solid #dee4ed;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            transition: border-color 0.2s;
+        }
+        .answer-area input[type="text"]:focus {
+            outline: none;
+            border-color: #1e466e;
+            box-shadow: 0 0 0 3px rgba(30, 70, 110, 0.1);
+        }
+        .answer-area select {
+            padding: 0.6rem 1rem;
+            border: 2px solid #dee4ed;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+        }
+        .hint-box {
+            background: #fff8e7;
+            border: 1px dashed #e9b35f;
+            border-radius: 12px;
+            padding: 0.7rem 1rem;
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+            color: #6b4f1a;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .hint-box.show {
+            display: block;
+        }
+        .feedback {
+            margin-top: 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .feedback.correct {
+            display: block;
+            color: #2c8c5a;
+        }
+        .feedback.incorrect {
+            display: block;
+            color: #c0392b;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .results-panel {
+            background: #eef2fa;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .results-panel h3 {
+            color: #1e466e;
+            margin-bottom: 0.5rem;
+        }
+        .score-display {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e466e;
+        }
+        .no-questions {
+            text-align: center;
+            padding: 2rem;
+            color: #7a8b9e;
+            font-style: italic;
+        }
+        .page-content-preview {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+        }
+        .page-content-preview h4 {
+            color: #1e466e;
+            margin-bottom: 0.5rem;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8edf5;
+            color: #1e466e;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.4rem;
+        }
+        @media (max-width: 680px) {
+            .assessment-container {
+                padding: 1.5rem 1rem;
+            }
+            .page-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .page-selector input {
+                width: 100%;
+            }
+            .answer-area {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e466e, #2c8c5a);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="assessment-container">
+        <div class="header">
+            <h1>📝 Continuous Assessment Tool</h1>
+            <p class="subtitle">Touchstone ENG 101 · General English · Level 1</p>
+            <p class="subtitle">Specify a page number to generate practice questions with embedded hints</p>
+        </div>
+
+        <!-- Page Selector -->
+        <div class="page-selector">
+            <label for="pageInput">📄 Page Number:</label>
+            <input type="number" id="pageInput" min="1" max="83" value="1" placeholder="1–83">
+            <button class="btn" onclick="generateAssessment()">🔍 Generate Questions</button>
+            <button class="btn btn-outline" onclick="randomPage()">🎲 Random Page</button>
+            <button class="btn btn-outline" onclick="resetAll()">🔄 Reset</button>
+        </div>
+
+        <!-- Page Info -->
+        <div class="page-info" id="pageInfo">
+            📌 Enter a page number (1–83) and click <strong>Generate Questions</strong> to start your assessment.
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer">
+            <div class="no-questions">
+                <p>✨ Select a page to generate assessment questions.</p>
+                <p style="font-size:0.8rem; margin-top:0.5rem;">Pages cover Units 1–4 (Student's Book & Workbook)</p>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="results-panel" id="resultsPanel" style="display:none;">
+            <h3>📊 Your Score</h3>
+            <div class="score-display" id="scoreDisplay">0%</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="checkAllAnswers()">✅ Check All Answers</button>
+        </div>
+
+        <!-- Page Content Preview -->
+        <div class="page-content-preview" id="pagePreview" style="display:none;">
+            <h4>📖 Page Content Preview</h4>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== TEXTBOOK DATABASE ====================
+        // Complete page-by-page content mapping based on extracted text
+        const textbookDB = {
+            // UNIT 1: All about you (Pages 1–17)
+            1: { unit: 1, section: "Title Page", topic: "ENG 101 GENERAL ENGLISH", content: "Course title page for General English 101.", grammar: [], vocabulary: [] },
+            2: { unit: 1, section: "Contents", topic: "Unit overview: All about you, In class, Favorite people, Everyday life", content: "Four main units listed with page numbers.", grammar: [], vocabulary: [] },
+            3: { unit: 1, section: "Number Grid", topic: "Page number reference grid", content: "Grid pattern of numbers for page indexing.", grammar: [], vocabulary: [] },
+            4: { unit: 1, section: "Course Features", topic: "Conversation strategy, Strategy plus, Listening & speaking, Reading, Writing, Help notes, Vocabulary notebook, On your own, Free talk, Touchstone checkpoint, Self-study Audio CD/CD-ROM, Class Audio Program, Workbook", content: "Overview of all course components and features.", grammar: [], vocabulary: ["conversation strategy", "vocabulary notebook", "free talk", "checkpoint"] },
+            5: { unit: 1, section: "Number Grid", topic: "Page number reference grid continued", content: "Continuation of grid pattern.", grammar: [], vocabulary: [] },
+            6: { unit: 1, section: "Unit Overview Chart", topic: "Listening, Reading, Writing, Vocabulary notebook, Free talk activities for Units 1-4", content: "Chart showing all skills and activities across the four units.", grammar: [], vocabulary: ["membership", "application form", "family tree", "daily activities"] },
+            7: { unit: 1, section: "Classroom Language", topic: "Getting help phrases, Working with a partner phrases", content: "Useful classroom expressions for asking help and partner work.", grammar: [], vocabulary: ["repeat", "explain", "spell", "partner", "roles", "paragraph"] },
+            8: { unit: 1, section: "Unit 1 Opener", topic: "All about you – verb be with I/you/we; hello/goodbye; names; numbers; How about you?; Thanks", content: "Unit objectives and picture matching activity.", grammar: ["verb be (I, you, we)"], vocabulary: ["hello", "goodbye", "thanks", "name", "telephone number", "email address"] },
+            9: { unit: 1, section: "Lesson A – Hello and good-bye", topic: "Conversations: Good morning, Hello, I'm Matt Lenski, Nice to meet you", content: "Getting started with greetings and introductions.", grammar: ["I'm", "Nice to meet you"], vocabulary: ["Good morning", "Hello", "Hi", "Nice to meet you"] },
+            10: { unit: 1, section: "Building vocabulary – responses", topic: "Good night, Have a good evening, Bye, See you, responses to hello/goodbye", content: "Vocabulary building with listening and speaking practice.", grammar: [], vocabulary: ["Good night", "Good evening", "See you", "Bye", "Have a nice day", "You too"] },
+            11: { unit: 1, section: "Lesson B – Saying names", topic: "Alphabet, spelling names, first/last/middle/nickname", content: "Saying names and spelling practice.", grammar: [], vocabulary: ["first name", "last name", "middle name", "nickname", "alphabet", "spell"] },
+            12: { unit: 1, section: "Building language – classrooms", topic: "Are you here for English class? Verb be: I/you/we", content: "Conversation about classroom placement and grammar chart.", grammar: ["I'm", "you're", "we're", "Are you...?", "Am I...?", "Are we...?"], vocabulary: ["class", "Room", "same class"] },
+            13: { unit: 1, section: "Lesson C – Numbers 0-10 & personal info", topic: "Numbers, phone numbers, email addresses, membership conversations", content: "Numbers and personal information practice.", grammar: [], vocabulary: ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "phone number", "email address"] },
+            14: { unit: 1, section: "Grammar – What's...? It's...", topic: "What's your name/phone number/email address? Match questions and answers.", content: "Grammar chart and practice for What's questions.", grammar: ["What's (= What is)", "name's (= name is)", "It's (= It is)"], vocabulary: ["teacher", "first name", "last name"] },
+            15: { unit: 1, section: "Lesson D – Conversation strategy: How about you?", topic: "Adam and Alicia conversation; using How about you? to return questions", content: "Strategy for keeping conversations going.", grammar: ["How about you?"], vocabulary: ["concert", "student", "vacation", "business"] },
+            16: { unit: 1, section: "Strategy plus – Everyday expressions", topic: "Formal vs informal: Yes/Yeah, Thank you/Thanks, Hello/Hi, How are you?/How are you doing?, I'm fine/OK/Pretty good/Good, Good-bye/Bye/See you", content: "Formal and informal expression comparison.", grammar: [], vocabulary: ["Yeah", "Thanks", "Hi", "How are you doing?", "Pretty good", "See you later"] },
+            17: { unit: 1, section: "Vocabulary notebook – On your own", topic: "Hello, Good morning, Hi, How are you?, Have a nice day, See you tomorrow, Good night", content: "Review of greetings and farewells for self-study.", grammar: [], vocabulary: ["Hello", "Good morning", "Good night", "Have a nice day", "See you tomorrow"] },
+            // UNIT 2: In class (Pages 18–27)
+            18: { unit: 2, section: "Unit 2 Opener", topic: "In class – verb be with he/she/they; classroom items; this/these; where questions; asking for help; Thank you/I'm sorry", content: "Unit objectives and picture matching.", grammar: ["he's", "she's", "they're", "this", "these"], vocabulary: ["at work", "at the library", "classroom"] },
+            19: { unit: 2, section: "Lesson A – Where's Jun?", topic: "Where are the students? He's at work, she's sick, they're in the cafeteria", content: "Conversation about absent students.", grammar: ["Where's...?", "he's not", "she's", "they're"], vocabulary: ["absent", "work", "sick", "cafeteria", "late", "asleep"] },
+            20: { unit: 2, section: "Grammar – he/she/they", topic: "He's/She's/They're; negative forms; yes-no questions", content: "Grammar chart with possessive and contraction rules.", grammar: ["He's (= He is)", "She's (= She is)", "They're (= They are)", "he's not", "she's not", "they're not", "Is he...?", "Is she...?", "Are they...?"], vocabulary: [] },
+            21: { unit: 2, section: "Lesson B – Classroom objects", topic: "a/an before items; this/these; What's this? It's an MP3 player; Are these your keys?", content: "Vocabulary for classroom items and grammar for this/these.", grammar: ["a", "an", "this", "these", "What's this?", "What are these?"], vocabulary: ["MP3 player", "watch", "glasses", "keys", "wallet", "pen", "dictionary", "eraser"] },
+            22: { unit: 2, section: "Grammar – this/these; noun plurals", topic: "Regular plurals (bag→bags, watch→watches, dictionary→dictionaries); nouns only plural (jeans, scissors, glasses)", content: "Plural rules and pronunciation.", grammar: ["plural -s", "plural -es", "plural -ies", "this is", "these are"], vocabulary: ["jeans", "scissors", "sunglasses", "watches", "dictionaries"] },
+            23: { unit: 2, section: "Lesson C – Classroom locations", topic: "What's on the wall? A clock, a map, posters. Classroom vocabulary.", content: "Classroom object vocabulary building.", grammar: [], vocabulary: ["clock", "map", "posters", "board", "desk", "wastebasket", "closet", "CD player", "computer"] },
+            24: { unit: 2, section: "Building language – Where questions", topic: "Where's the VCR? It's in the closet. Where are the students' papers? They're on the floor. Possessives 's and s'.", content: "Conversation and grammar for location questions.", grammar: ["Where's...?", "Where are...?", "possessive 's", "possessive s'"], vocabulary: ["VCR", "closet", "desk", "floor", "under", "on", "in front of"] },
+            25: { unit: 2, section: "Lesson D – Asking for help", topic: "What's the word for this in English? How do you spell it? Can I borrow your pen? Can you repeat that?", content: "Ming-wei conversation demonstrating help requests.", grammar: [], vocabulary: ["Excuse me", "highlighter", "borrow", "repeat", "page"] },
+            26: { unit: 2, section: "Strategy plus – Responses to Thank you & I'm sorry", topic: "You're welcome, Sure, That's OK, Thanks anyway. Following instructions.", content: "Common responses and classroom instruction following.", grammar: [], vocabulary: ["You're welcome", "Sure", "That's OK", "Thanks anyway", "instructions"] },
+            27: { unit: 2, section: "Vocabulary notebook – On your own", topic: "Label things on the desk; make lists of your things; label magazine pictures.", content: "Self-study vocabulary activities.", grammar: [], vocabulary: ["label", "magazine", "pictures"] },
+            // UNIT 3: Favorite people (Pages 28–38)
+            28: { unit: 3, section: "Unit 3 Opener", topic: "Favorite people – my/your/his/her/our/their; information questions; celebrities; Really?; showing interest", content: "Unit objectives and picture matching (singer, soccer players, actor, artist).", grammar: ["my", "your", "his", "her", "our", "their"], vocabulary: ["singer", "actor", "artist", "soccer player", "celebrity"] },
+            29: { unit: 3, section: "Lesson A – Celebrities", topic: "Sean Penn, Norah Jones, Williams sisters; possessive adjectives in context", content: "Sandra and John conversation about celebrities on TV.", grammar: ["his", "her", "their"], vocabulary: ["good-looking", "movie", "voice", "amazing", "matches", "exciting", "fan"] },
+            30: { unit: 3, section: "Grammar – Be in statements; possessive adjectives", topic: "I'm/You're/He's/She's/We're/They're + my/your/his/her/our/their; circle correct words exercises", content: "Grammar chart and conversation completion.", grammar: ["I'm", "my", "you're", "your", "he's", "his", "she's", "her", "we're", "our", "they're", "their"], vocabulary: ["fan", "band", "CD", "actor", "show"] },
+            31: { unit: 3, section: "Lesson B – Describing people", topic: "smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy; What's your boss like?", content: "Personality adjectives and conversation about co-workers.", grammar: ["What's...like?", "Is he/she...?"], vocabulary: ["smart", "shy", "friendly", "outgoing", "strict", "lazy", "interesting", "fun", "tired", "busy", "hard work", "co-workers", "boss"] },
+            32: { unit: 3, section: "Grammar – Yes-No questions; negatives", topic: "Am I/Are you/Is he/Is she/Is it/Are we/Are they; isn't/aren't; 's not/'re not", content: "Grammar chart with negative forms.", grammar: ["Am I...?", "Are you...?", "Is he...?", "Is she...?", "Is it...?", "Are we...?", "Are they...?", "isn't", "aren't", "'s not", "'re not"], vocabulary: ["shy", "easy", "strict", "lazy", "outgoing"] },
+            33: { unit: 3, section: "Lesson C – Family & age", topic: "Grandma, grandpa; How old is she? She's 72. Where are they from originally? They're from Texas.", content: "Erica and Akemi conversation about grandparents.", grammar: ["How old...?", "Where...from?", "What's...name?", "Who's...?"], vocabulary: ["grandma", "grandpa", "grandmother", "grandfather", "parents", "pretty", "originally"] },
+            34: { unit: 3, section: "Lesson D – Showing interest", topic: "Mark and Eve conversation; repeating words and asking questions; Really?", content: "Strategy for showing interest by echoing and asking follow-ups.", grammar: ["Really?"], vocabulary: ["photo", "friend of mine", "London", "Miami", "artist", "painter", "paintings"] },
+            35: { unit: 3, section: "Strategy plus – Really?; Listening – Friends", topic: "Really? top 50 word; listening about Amy, Anton, Gary; describing friends", content: "Practice with Really? and friend descriptions.", grammar: ["Really?"], vocabulary: ["neighborhood", "best friend", "fun guy", "around my age"] },
+            36: { unit: 3, section: "Family tree & On your own", topic: "Complete family tree; make photo album; write sentences about family", content: "Family vocabulary review and project.", grammar: [], vocabulary: ["family tree", "photo album", "grandmother", "grandfather", "mother", "father", "sister", "brother", "aunt", "uncle", "cousin"] },
+            37: { unit: 3, section: "Checkpoint Units 1-3", topic: "Complete conversation (possessives); unscramble questions; remember vocabulary; self-check", content: "Review exercises for grammar, vocabulary, and conversation strategies.", grammar: ["possessives", "be verb", "information questions"], vocabulary: ["classroom items", "locations", "family", "personality adjectives"] },
+            38: { unit: 3, section: "Do you know these expressions? / Who has the same answer?", topic: "Thank you, Thanks anyway, Nice to meet you, Can I borrow your pen?, Really?, That's OK, You're welcome, Have a good day; self-check and study plan", content: "Expression review and self-assessment.", grammar: [], vocabulary: ["Thank you", "Thanks anyway", "Nice to meet you", "Can I borrow...?", "Really?", "That's OK", "You're welcome", "Have a good day"] },
+            // UNIT 4: Everyday life (Pages 39–49)
+            39: { unit: 4, section: "Unit 4 Opener", topic: "Everyday life – simple present; routines; saying more than yes/no; Well", content: "Unit objectives and activities checklist.", grammar: ["simple present"], vocabulary: ["do homework", "work", "exercise", "watch TV", "every day"] },
+            40: { unit: 4, section: "Number Grid", topic: "Page number reference grid", content: "Grid pattern.", grammar: [], vocabulary: [] },
+            41: { unit: 4, section: "Number Grid", topic: "Page number reference grid continued", content: "Grid pattern continuation.", grammar: [], vocabulary: [] },
+            42: { unit: 4, section: "Lesson A – Simple present statements", topic: "I eat breakfast/I don't eat lunch; He listens/She watches; verb endings; don't/doesn't", content: "Grammar chart and sentence completion.", grammar: ["simple present", "don't", "doesn't", "verb endings -s/-es/-ies"], vocabulary: ["breakfast", "lunch", "coffee", "tea", "radio", "newspaper", "e-mail", "get up"] },
+            43: { unit: 4, section: "Lesson B – Weekly routines", topic: "play sports, take lessons, check email, make phone calls, go shopping, do laundry; Do you...? questionnaire", content: "Weekly activity vocabulary and pair work.", grammar: ["Do you...?"], vocabulary: ["play sports", "take lessons", "check email", "make phone calls", "go shopping", "do laundry", "weekends", "Saturdays", "Sundays"] },
+            44: { unit: 4, section: "Grammar – Yes-No questions & short answers", topic: "Do you...? Yes, I do./No, I don't. Does she...? Yes, she does./No, she doesn't.; survey activity", content: "Grammar chart and class survey.", grammar: ["Do you...?", "Does he/she...?", "Yes, I do.", "No, I don't.", "Yes, she does.", "No, she doesn't."], vocabulary: ["club", "team", "snacks", "homework", "dinner"] },
+            45: { unit: 4, section: "Lesson C – Saying more than yes or no", topic: "Ray and Tina conversation; answering with more information; matching questions and answers", content: "Strategy for friendly, extended answers.", grammar: [], vocabulary: ["live around here", "part-time job", "originally", "only child", "softball team", "restaurant"] },
+            46: { unit: 4, section: "Strategy plus – Well; Listening – What's the question?", topic: "Using Well to think; listening for questions from answers", content: "Well practice and listening activity.", grammar: ["Well"], vocabulary: ["noisy", "loud music", "not really", "go out"] },
+            47: { unit: 4, section: "Lesson D – Reading: Average American", topic: "Lifetime statistics: 90,000 hours work, 24 years sleep, 12 years TV, 2.5 years phone; article comprehension", content: "Reading about American habits.", grammar: ["simple present"], vocabulary: ["average", "lifetime", "kilometers", "miles", "couch", "telephone"] },
+            48: { unit: 4, section: "Listening – Teen habits; Writing – average week", topic: "Christine's habits vs average teen; write e-mail about partner's week", content: "Listening comprehension and writing task.", grammar: ["simple present"], vocabulary: ["soda", "online", "exercise", "cell phone", "go out", "weekends"] },
+            49: { unit: 4, section: "Vocabulary notebook – On your own", topic: "Label pictures with verbs; draw activities; write daily routine labels around house", content: "Self-study vocabulary activities.", grammar: [], vocabulary: ["read the newspaper", "label", "routine"] },
+            // WORKBOOK PAGES (Pages 50–83)
+            50: { unit: "WB", section: "Workbook Title Page", topic: "ENG 101 General English Workbook Foundation Level 1", content: "Workbook title page.", grammar: [], vocabulary: [] },
+            51: { unit: "WB", section: "Workbook Contents", topic: "All about you (02), In class (10), Favorite people (18), Everyday life (26)", content: "Workbook unit listing.", grammar: [], vocabulary: [] },
+            52: { unit: "WB", section: "Unit 1 WB – Lesson A: Hello and good-bye", topic: "Choose correct response; meetings and greetings vocabulary", content: "Multiple choice conversation completion.", grammar: [], vocabulary: ["Hello", "Hi", "Good-bye", "See you later", "Good night", "How are you?"] },
+            53: { unit: "WB", section: "Unit 1 WB – Complete conversations; instant message", topic: "Fill in blanks for greetings conversations", content: "Conversation completion practice.", grammar: [], vocabulary: ["I'm", "How are you?", "Good", "Thanks", "Bye", "See you"] },
+            54: { unit: "WB", section: "Unit 1 WB – My name's Michelle; personal information form", topic: "Spell names; first/middle/last name; Ms./Miss/Mrs.; complete form", content: "Personal information vocabulary and form filling.", grammar: [], vocabulary: ["first name", "middle name", "last name", "Ms.", "Miss", "Mrs.", "single", "married"] },
+            55: { unit: "WB", section: "Unit 1 WB – Are we in the same class?; About you", topic: "Complete with am/are/'m/'re; answer personal questions", content: "Grammar practice with be verb.", grammar: ["am", "are", "'m", "'re", "am not", "are not"], vocabulary: ["English class", "French class", "married", "same class"] },
+            56: { unit: "WB", section: "Unit 1 WB – What's the number?; crossword", topic: "Write numbers; math crossword (×, +, ÷, -)", content: "Number practice with math operations.", grammar: [], vocabulary: ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"] },
+            57: { unit: "WB", section: "Unit 1 WB – Membership card; About you", topic: "Complete application conversation; answer What's questions", content: "Real-life form filling practice.", grammar: ["What's...?"], vocabulary: ["membership card", "application form", "middle initial", "student ID"] },
+            58: { unit: "WB", section: "Unit 1 WB – Good evening; expressions", topic: "Complete conversations with box expressions (Good evening, Hi, How about you?, etc.)", content: "Expression usage in context.", grammar: [], vocabulary: ["Good evening", "How about you?", "How are you doing?", "Pretty good", "Yeah", "Nice to meet you"] },
+            59: { unit: "WB", section: "Unit 1 WB – How are you doing?; Unit 1 Progress chart", topic: "Rewrite formal to informal; number conversation lines; self-assessment", content: "Formal/informal conversion and progress check.", grammar: [], vocabulary: ["Hi", "How are you doing?", "Pretty good", "OK", "Yeah", "See you"] },
+            60: { unit: "WB", section: "Unit 2 WB – Where is everybody today?", topic: "Complete sentences with he's/she's/they're; make questions", content: "Grammar practice for be verb with he/she/they.", grammar: ["he's", "she's", "they're", "Is he...?", "Are they...?"], vocabulary: ["gym", "home", "cafeteria", "vacation", "asleep", "library", "work"] },
+            61: { unit: "WB", section: "Unit 2 WB – Absent classmates; About you", topic: "Complete conversation with be verb; ask about classmates", content: "Grammar and personalized practice.", grammar: ["am", "is", "are", "isn't", "aren't"], vocabulary: ["absent", "sick", "vacation", "Miami", "late"] },
+            62: { unit: "WB", section: "Unit 2 WB – Everyday things; What are these things?", topic: "Label classroom objects; write sentences about pictures", content: "Vocabulary labeling and sentence writing.", grammar: ["this is", "these are"], vocabulary: ["backpack", "notebook", "pencil", "ruler", "calculator", "umbrella"] },
+            63: { unit: "WB", section: "Unit 2 WB – Asking about things", topic: "Complete conversations with this/these/it/they; room key, cell phone, wallet, credit cards", content: "Grammar practice with demonstratives.", grammar: ["this", "these", "it", "they", "it's", "they're", "What's...?"], vocabulary: ["room key", "membership card", "cell phone", "MP3 player", "jeans", "wallet", "credit cards"] },
+            64: { unit: "WB", section: "Unit 2 WB – Classroom things; word puzzle", topic: "Write words under pictures; circle words in puzzle", content: "Vocabulary reinforcement.", grammar: [], vocabulary: ["board", "clock", "desk", "chair", "computer", "wastebasket", "calendar", "poster"] },
+            65: { unit: "WB", section: "Unit 2 WB – A classroom; prepositions; missing apostrophes", topic: "Complete with in/on/under/next to/in front of; write Where questions; add apostrophes", content: "Preposition and possessive practice.", grammar: ["Where's...?", "Where are...?", "possessive 's", "possessive s'"], vocabulary: ["in", "on", "under", "next to", "in front of", "dictionaries", "students' papers"] },
+            66: { unit: "WB", section: "Unit 2 WB – Questions, questions", topic: "Complete conversations with excuse me, borrow, spell, thanks, sorry", content: "Classroom language practice.", grammar: [], vocabulary: ["Excuse me", "Can I borrow...?", "How do you spell...?", "What's the word for...?", "Thanks anyway", "You're welcome"] },
+            67: { unit: "WB", section: "Unit 2 WB – Scrambled conversations; Unit 2 Progress chart", topic: "Number conversation lines in order; self-assessment", content: "Conversation ordering and progress check.", grammar: [], vocabulary: ["You're late", "That's OK", "I'm sorry", "Can I borrow...?", "Sure", "Here you go"] },
+            68: { unit: "WB", section: "Unit 3 WB – Unscramble words; crossword", topic: "singer, actor, writer, team, player, band, show, sports, fan, movie, artist", content: "Celebrity and entertainment vocabulary.", grammar: [], vocabulary: ["singer", "actor", "writer", "team", "player", "band", "show", "sports", "fan", "movie", "artist"] },
+            69: { unit: "WB", section: "Unit 3 WB – She's my favorite singer; They're great!", topic: "Complete with possessive adjectives; be verb conversation", content: "Possessive adjective and be verb practice.", grammar: ["my", "your", "his", "her", "our", "their", "be verb"], vocabulary: ["favorite singer", "CD", "fan", "voice", "good-looking"] },
+            70: { unit: "WB", section: "Unit 3 WB – What are they like?", topic: "Personality adjectives: quiet, shy, outgoing, friendly, fun, interesting, lazy, smart, strict, tired, busy", content: "Vocabulary practice with pictures.", grammar: [], vocabulary: ["quiet", "shy", "outgoing", "friendly", "fun", "interesting", "lazy", "smart", "strict", "tired", "busy"] },
+            71: { unit: "WB", section: "Unit 3 WB – What's new?; I'm not, you're not; About you", topic: "Complete conversation with be verb; rewrite negative sentences; answer questions", content: "Grammar and personalized practice.", grammar: ["be verb", "isn't", "aren't", "negative sentences"], vocabulary: ["new neighbors", "writer", "teacher", "outgoing", "lazy", "smart", "fun", "tired"] },
+            72: { unit: "WB", section: "Unit 3 WB – Who's who?; What's the number?", topic: "Family tree sentences; write numbers 10-101", content: "Family vocabulary and number writing.", grammar: ["possessive 's"], vocabulary: ["Paul", "Katy", "John", "Catherine", "Josh", "David", "Emily", "son", "daughter", "wife", "husband", "brother", "sister"] },
+            73: { unit: "WB", section: "Unit 3 WB – How about your children?; A famous family", topic: "Unscramble questions; write questions for interview answers", content: "Question formation practice.", grammar: ["How...?", "What...?", "Where...?", "Who...?"], vocabulary: ["children", "parents", "grandfather", "mother", "father", "best friend", "interview", "actress"] },
+            74: { unit: "WB", section: "Unit 3 WB – New neighbors and co-workers", topic: "Complete conversations with questions (How old is she? Where is she from? What are they like? etc.)", content: "Question practice in context.", grammar: ["How old...?", "Where...from?", "What...like?"], vocabulary: ["neighbors", "rock band", "co-workers", "server", "actress", "Chile"] },
+            75: { unit: "WB", section: "Unit 3 WB – Really? I'm surprised!; Unit 3 Progress chart", topic: "Write interested/surprised responses; self-assessment", content: "Conversation strategy and progress check.", grammar: ["Really?"], vocabulary: ["surprised", "interested"] },
+            76: { unit: "WB", section: "Unit 4 WB – What's Kathy's morning like?", topic: "Complete sentences with correct verbs; rewrite negative", content: "Simple present practice.", grammar: ["simple present", "doesn't", "don't"], vocabulary: ["get up", "eat breakfast", "listen to radio", "check email", "read newspaper", "play computer games"] },
+            77: { unit: "WB", section: "Unit 4 WB – Guess what!; Typical morning activities", topic: "Complete email with verbs; match verbs to phrases (do homework, study English, check email, listen to radio, drive car, play games, read book, use alarm clock)", content: "Verb-noun collocation practice.", grammar: ["simple present"], vocabulary: ["do homework", "study English", "check email", "listen to radio", "drive a car", "play games", "read a book", "use an alarm clock"] },
+            78: { unit: "WB", section: "Unit 4 WB – What's fun? What's not?; About you 1", topic: "Fun/Not fun chart; write routines with time expressions", content: "Personalized routine vocabulary.", grammar: ["simple present"], vocabulary: ["check email", "do laundry", "get up early", "play sports", "clean house", "drive to work", "go shopping", "take lessons", "do homework", "eat snacks", "make phone calls", "watch TV"] },
+            79: { unit: "WB", section: "Unit 4 WB – What's your week like?; About you 2", topic: "Complete conversation with Do/Does; answer questions about routines", content: "Yes-no question practice.", grammar: ["Do...?", "Does...?", "Yes, I do.", "No, I don't.", "Yes, she does.", "No, she doesn't."], vocabulary: ["work at home", "Monday to Friday", "clean the house", "soccer games", "school team"] },
+            80: { unit: "WB", section: "Unit 4 WB – Saying more than yes or no", topic: "Complete conversation with extended answers; true/false comprehension", content: "Conversation strategy practice.", grammar: ["saying more than yes/no"], vocabulary: ["cafeteria", "part-time", "English Club", "student"] },
+            81: { unit: "WB", section: "Unit 4 WB – About you", topic: "Unscramble questions; answer with more than yes/no using Well", content: "Question formation and extended answer practice.", grammar: ["Well"], vocabulary: ["live around here", "full-time student", "brothers and sisters", "weekends", "get up early", "grandparents"] },
+            82: { unit: "WB", section: "Unit 4 WB – Watching TV", topic: "Reading about American habits; correct false sentences", content: "Reading comprehension and correction.", grammar: ["simple present"], vocabulary: ["spend time with family", "go out with friends", "go shopping", "high school", "hobbies"] },
+            83: { unit: "WB", section: "Unit 4 WB – TV shows; Unit 4 Progress chart", topic: "Rewrite email with capitals/periods; write about TV habits; self-assessment", content: "Writing practice and progress check.", grammar: ["capital letters", "periods"], vocabulary: ["TV shows", "email", "watch"] }
+        };
+
+        // ==================== QUESTION GENERATOR ====================
+        function generateQuestionsForPage(pageNum) {
+            const page = textbookDB[pageNum];
+            if (!page) return [];
+
+            const questions = [];
+            let qNum = 0;
+
+            // Helper to add a question
+            const addQ = (text, hint, answer, type = 'text') => {
+                qNum++;
+                questions.push({ id: qNum, text, hint, answer, type });
+            };
+
+            // Generate questions based on page content and topic
+            const topic = page.topic.toLowerCase();
+            const grammar = page.grammar;
+            const vocab = page.vocabulary;
+
+            // Grammar-based questions
+            if (grammar.length > 0 && grammar[0].length > 0) {
+                const g = grammar[0];
+                if (g.includes("I'm") || g.includes("I am")) {
+                    addQ(`Complete: "Hello. _____ Chris." (Use contraction)`, "I'm = I am", "I'm", "text");
+                }
+                if (g.includes("you're") || g.includes("you are")) {
+                    addQ(`Complete: "_____ in Room B." (You are)`, "Contraction of 'you are'", "You're", "text");
+                }
+                if (g.includes("he's") || g.includes("he is")) {
+                    addQ(`Complete: "Jun is at work. → _____ at work." (Use contraction)`, "Contraction of 'he is'", "He's", "text");
+                }
+                if (g.includes("she's") || g.includes("she is")) {
+                    addQ(`Complete: "Laura is sick. → _____ sick."`, "Contraction of 'she is'", "She's", "text");
+                }
+                if (g.includes("they're") || g.includes("they are")) {
+                    addQ(`Complete: "Kim and Phong are late. → _____ late."`, "Contraction of 'they are'", "They're", "text");
+                }
+                if (g.includes("we're") || g.includes("we are")) {
+                    addQ(`Complete: "_____ in the same class." (We are)`, "Contraction of 'we are'", "We're", "text");
+                }
+                if (g.includes("Are you") || g.includes("Are we")) {
+                    addQ(`Form a question: "_____ you here for an English class?"`, "Use 'Are' at the beginning", "Are", "text");
+                }
+                if (g.includes("Is he") || g.includes("Is she") || g.includes("Is it")) {
+                    addQ(`Form a question: "_____ she sick?"`, "Use 'Is' for he/she/it", "Is", "text");
+                }
+                if (g.includes("Are they")) {
+                    addQ(`Form a question: "_____ they in the cafeteria?"`, "Use 'Are' for they", "Are", "text");
+                }
+                if (g.includes("What's") || g.includes("What is")) {
+                    addQ(`Complete: "_____ your name?" (What is)`, "Contraction of 'What is'", "What's", "text");
+                }
+                if (g.includes("It's") || g.includes("It is")) {
+                    addQ(`Complete: "_____ 646-555-3048." (It is)`, "Contraction of 'It is'", "It's", "text");
+                }
+                if (g.includes("don't") || g.includes("do not")) {
+                    addQ(`Make negative: "I _____ eat lunch." (do not)`, "Contraction of 'do not'", "don't", "text");
+                }
+                if (g.includes("doesn't") || g.includes("does not")) {
+                    addQ(`Make negative: "She _____ watch TV." (does not)`, "Contraction of 'does not'", "doesn't", "text");
+                }
+                if (g.includes("Do you") || g.includes("Does")) {
+                    addQ(`Complete: "_____ you play sports every week?"`, "Use 'Do' for you/they/we", "Do", "text");
+                }
+                if (g.includes("Does he") || g.includes("Does she")) {
+                    addQ(`Complete: "_____ your mother work on weekends?"`, "Use 'Does' for he/she/it", "Does", "text");
+                }
+                if (g.includes("my") || g.includes("your") || g.includes("his") || g.includes("her")) {
+                    addQ(`Complete: "This is John. _____ favorite actor is Sean Penn." (possessive)`, "Possessive for male: his", "His", "text");
+                }
+                if (g.includes("our") || g.includes("their")) {
+                    addQ(`Complete: "The Williams sisters play tennis. _____ matches are exciting."`, "Possessive for plural: their", "Their", "text");
+                }
+                if (g.includes("How about you?")) {
+                    addQ(`What question do you use to return a question? "I'm fine. _____?"`, "Three words", "How about you", "text");
+                }
+                if (g.includes("Where's") || g.includes("Where are")) {
+                    addQ(`Complete: "_____ the teacher's desk?" (Where is)`, "Contraction of 'Where is'", "Where's", "text");
+                }
+                if (g.includes("this") || g.includes("these")) {
+                    addQ(`Singular: "What's _____?" Plural: "What are _____?"`, "Near: this/these", "this, these", "text");
+                }
+                if (g.includes("a") || g.includes("an")) {
+                    addQ(`Choose: "This is _____ MP3 player." (a or an?)`, "Use 'an' before vowel sounds", "an", "text");
+                }
+                if (g.includes("Well")) {
+                    addQ(`What word can start an answer when you need time to think? "_____, I'm from Chicago originally."`, "One of the top 50 words", "Well", "text");
+                }
+            }
+
+            // Vocabulary-based questions
+            if (vocab.length > 0) {
+                const v = vocab[0];
+                if (v && v.length > 0) {
+                    addQ(`Which vocabulary word from this page means "${v}"? (Write the word)`, `It appears in the vocabulary list for this page`, v, "text");
+                }
+                if (vocab.length > 1) {
+                    const v2 = vocab[Math.floor(vocab.length / 2)];
+                    addQ(`Which vocabulary word means "${v2}"?`, `Found in the vocabulary list`, v2, "text");
+                }
+                if (vocab.length > 2) {
+                    const v3 = vocab[vocab.length - 1];
+                    addQ(`Which vocabulary word means "${v3}"?`, `Check the last vocabulary item`, v3, "text");
+                }
+            }
+
+            // Topic-based questions
+            if (topic.includes("hello") || topic.includes("goodbye") || topic.includes("greeting")) {
+                addQ(`What is a common response to "How are you?"`, "Think: I'm fine, thanks", "I'm fine", "text");
+                addQ(`How do you say goodbye to someone you will see the next day?`, "Two words starting with 'See'", "See you", "text");
+            }
+            if (topic.includes("name") || topic.includes("spell")) {
+                addQ(`What question do you ask to know how to write someone's name?`, "Starts with 'How do you...'", "How do you spell", "text");
+            }
+            if (topic.includes("number") || topic.includes("phone")) {
+                addQ(`What's the number after seven?`, "It's 8", "eight", "text");
+                addQ(`How do you ask for someone's phone number?`, "Starts with 'What's...'", "What's your phone number", "text");
+            }
+            if (topic.includes("classroom") || topic.includes("class")) {
+                addQ(`Where does a teacher usually write? (classroom item)`, "It's on the wall", "board", "text");
+                addQ(`What do you call the container for paper waste?`, "Combination of 'waste' and 'basket'", "wastebasket", "text");
+            }
+            if (topic.includes("absent") || topic.includes("where")) {
+                addQ(`Where might a student be if they are not in class and not at home?`, "They might be earning money", "at work", "text");
+            }
+            if (topic.includes("celebrity") || topic.includes("favorite")) {
+                addQ(`Who is the person that sings songs?`, "Not an actor", "singer", "text");
+                addQ(`If you really like a band, you are a _____.`, "Short word: f _ _", "fan", "text");
+            }
+            if (topic.includes("family")) {
+                addQ(`What do you call your mother's mother?`, "Grand _ _ _ _ _ _", "grandmother", "text");
+                addQ(`What do you call your father's father?`, "Grand _ _ _ _ _ _", "grandfather", "text");
+            }
+            if (topic.includes("personality") || topic.includes("describe")) {
+                addQ(`What adjective describes a person who talks a lot and makes friends easily?`, "Opposite of shy", "outgoing", "text");
+                addQ(`What adjective describes a person who doesn't talk much?`, "Opposite of outgoing", "shy", "text");
+            }
+            if (topic.includes("routine") || topic.includes("daily") || topic.includes("morning")) {
+                addQ(`What is the first meal of the day called?`, "You eat it in the morning", "breakfast", "text");
+                addQ(`Complete: "I _____ up at 7 AM every day." (verb)`, "To leave bed", "get", "text");
+            }
+            if (topic.includes("average") || topic.includes("american") || topic.includes("lifetime")) {
+                addQ(`How many hours does an average American work in a lifetime?`, "It's over 90,000", "90,000", "text");
+                addQ(`How many years does an American sleep in a lifetime?`, "It's 24", "24", "text");
+            }
+            if (topic.includes("thank") || topic.includes("sorry")) {
+                addQ(`What is the response to "Thank you"?`, "Two words: You're _____", "You're welcome", "text");
+                addQ(`What is the response to "I'm sorry"?`, "Two words: That's _____", "That's OK", "text");
+            }
+            if (topic.includes("really")) {
+                addQ(`What word shows surprise or interest? "_____? That's amazing!"`, "Starts with R", "Really", "text");
+            }
+            if (topic.includes("well")) {
+                addQ(`What word can you use to pause when answering? "_____, let me think..."`, "Starts with W, 4 letters", "Well", "text");
+            }
+
+            // Ensure at least 3 questions per page
+            if (questions.length < 3) {
+                if (page.content.length > 20) {
+                    const words = page.content.split(' ');
+                    const keyWord = words.find(w => w.length > 5 && !['about', 'these', 'their', 'there', 'which'].includes(w.toLowerCase()));
+                    if (keyWord) {
+                        addQ(`This page discusses "${keyWord}". What unit topic does it relate to?`, `Unit ${page.unit} themes`, `Unit ${page.unit}`, "text");
+                    }
+                }
+                addQ(`What is the main topic of this page?`, `Look at the section title: "${page.section}"`, page.topic.split(',')[0].trim(), "text");
+                addQ(`Which unit does this page belong to? (Write the number)`, `Unit number appears in the database`, `${page.unit}`, "text");
+            }
+
+            // Limit to 8 questions max
+            return questions.slice(0, 8);
+        }
+
+        // ==================== UI FUNCTIONS ====================
+        let currentQuestions = [];
+        let currentPage = null;
+
+        function generateAssessment() {
+            const pageInput = document.getElementById('pageInput');
+            const pageNum = parseInt(pageInput.value);
+
+            if (isNaN(pageNum) || pageNum < 1 || pageNum > 83) {
+                alert('Please enter a valid page number between 1 and 83.');
+                return;
+            }
+
+            const page = textbookDB[pageNum];
+            if (!page) {
+                alert('No data available for this page yet. Try another page (1–83).');
+                return;
+            }
+
+            currentPage = page;
+            currentQuestions = generateQuestionsForPage(pageNum);
+
+            document.getElementById('resultsPanel').style.display = 'none';
+            document.getElementById('scoreDisplay').textContent = '0%';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('scoreMessage').textContent = '';
+
+            // Update page info
+            const unitLabel = page.unit === 'WB' ? 'Workbook' : `Unit ${page.unit}`;
+            document.getElementById('pageInfo').innerHTML = `
+                📄 <strong>Page ${pageNum}</strong> | ${unitLabel} | <strong>${page.section}</strong><br>
+                📝 <strong>Topic:</strong> ${page.topic}<br>
+                <span class="tag">Grammar: ${page.grammar.length > 0 ? page.grammar.join(', ') : 'Review'}</span>
+                <span class="tag">Vocabulary: ${page.vocabulary.length > 0 ? page.vocabulary.slice(0, 5).join(', ') : 'General'}</span>
+            `;
+
+            // Render questions
+            const container = document.getElementById('questionsContainer');
+            if (currentQuestions.length === 0) {
+                container.innerHTML = '<div class="no-questions"><p>😕 No questions could be generated for this page. Try another page.</p></div>';
+                document.getElementById('resultsPanel').style.display = 'none';
+            } else {
+                let html = '';
+                currentQuestions.forEach((q, index) => {
+                    html += `
+                        <div class="question-card" id="qcard-${index}">
+                            <span class="question-number">${index + 1}</span>
+                            <span class="question-text">${q.text}</span>
+                            <div class="answer-area">
+                                <input type="text" id="answer-${index}" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')checkAnswer(${index})">
+                                <button class="btn-hint" onclick="toggleHint(${index})">💡 Hint</button>
+                                <button class="btn-check" onclick="checkAnswer(${index})">✓ Check</button>
+                            </div>
+                            <div class="hint-box" id="hint-${index}">
+                                💬 <strong>Hint:</strong> ${q.hint}
+                            </div>
+                            <div class="feedback" id="feedback-${index}"></div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+                document.getElementById('resultsPanel').style.display = 'block';
+                document.getElementById('pagePreview').style.display = 'block';
+                document.getElementById('previewContent').innerHTML = `
+                    <p>${page.content}</p>
+                    ${page.grammar.length > 0 ? `<p><strong>Grammar points:</strong> ${page.grammar.join(', ')}</p>` : ''}
+                    ${page.vocabulary.length > 0 ? `<p><strong>Key vocabulary:</strong> ${page.vocabulary.join(', ')}</p>` : ''}
+                `;
+            }
+
+            // Scroll to questions
+            document.getElementById('questionsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function toggleHint(index) {
+            const hintBox = document.getElementById(`hint-${index}`);
+            if (hintBox) {
+                hintBox.classList.toggle('show');
+            }
+        }
+
+        function checkAnswer(index) {
+            const answerInput = document.getElementById(`answer-${index}`);
+            const feedback = document.getElementById(`feedback-${index}`);
+            const userAnswer = answerInput.value.trim().toLowerCase();
+            const correctAnswer = currentQuestions[index].answer.toLowerCase();
+
+            if (!userAnswer) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '❌ Please type an answer first.';
+                feedback.style.display = 'block';
+                return;
+            }
+
+            // Flexible matching
+            let isCorrect = false;
+            const correctVariants = correctAnswer.split(',').map(a => a.trim());
+            for (const variant of correctVariants) {
+                if (userAnswer === variant || userAnswer.includes(variant) || variant.includes(userAnswer)) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✅ Correct! Well done!';
+                answerInput.style.borderColor = '#2c8c5a';
+                answerInput.style.background = '#f0faf5';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = `❌ Not quite. The answer is: "${correctAnswer}"`;
+                answerInput.style.borderColor = '#c0392b';
+                answerInput.style.background = '#fef5f5';
+            }
+            feedback.style.display = 'block';
+            updateScore();
+        }
+
+        function checkAllAnswers() {
+            currentQuestions.forEach((q, index) => {
+                const answerInput = document.getElementById(`answer-${index}`);
+                if (answerInput && answerInput.value.trim()) {
+                    checkAnswer(index);
+                }
+            });
+        }
+
+        function updateScore() {
+            let correct = 0;
+            let total = currentQuestions.length;
+            currentQuestions.forEach((q, index) => {
+                const feedback = document.getElementById(`feedback-${index}`);
+                if (feedback && feedback.classList.contains('correct')) {
+                    correct++;
+                }
+            });
+
+            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+            document.getElementById('scoreDisplay').textContent = percentage + '%';
+            document.getElementById('progressFill').style.width = percentage + '%';
+
+            if (percentage === 100) {
+                document.getElementById('scoreMessage').textContent = '🏆 Perfect score! Excellent work!';
+            } else if (percentage >= 75) {
+                document.getElementById('scoreMessage').textContent = '👍 Great job! Keep practicing.';
+            } else if (percentage >= 50) {
+                document.getElementById('scoreMessage').textContent = '📖 Good effort. Review the hints and try again.';
+            } else if (total > 0 && percentage > 0) {
+                document.getElementById('scoreMessage').textContent = '📚 Keep studying! Use the hints to help you.';
+            } else {
+                document.getElementById('scoreMessage').textContent = 'Start answering questions to see your score.';
+            }
+        }
+
+        function randomPage() {
+            const randomNum = Math.floor(Math.random() * 83) + 1;
+            document.getElementById('pageInput').value = randomNum;
+            generateAssessment();
+        }
+
+        function resetAll() {
+            document.getElementById('pageInput').value = '1';
+            document.getElementById('questionsContainer').innerHTML = `
+                <div class="no-questions">
+                    <p>✨ Select a page to generate assessment questions.</p>
+                    <p style="font-size:0.8rem; margin-top:0.5rem;">Pages cover Units 1–4 (Student's Book & Workbook)</p>
+                </div>`;
+            document.getElementById('resultsPanel').style.display = 'none';
+            document.getElementById('pagePreview').style.display = 'none';
+            document.getElementById('pageInfo').innerHTML = '📌 Enter a page number (1–83) and click <strong>Generate Questions</strong> to start your assessment.';
+            document.getElementById('scoreDisplay').textContent = '0%';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('scoreMessage').textContent = '';
+            currentQuestions = [];
+            currentPage = null;
+        }
+
+        // Initialize with page 1 on load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('pageInput').value = '8';
+            generateAssessment();
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touchstone ENG 101 – Assessment Tool</title>
+    <title>Touchstone ENG 101 – Beginner Assessment Tool</title>
     <script>
         (function() {
             const saved = localStorage.getItem('shfq-theme');
@@ -77,84 +77,40 @@
             z-index: -1;
             animation: float 22s infinite alternate;
         }
-        .orb-1 {
-            width: 480px;
+        .orb-1 { width: 480px;
             height: 480px;
             background: var(--brand-peach);
             top: -120px;
-            right: -120px;
-        }
-        .orb-2 {
-            width: 380px;
+            right: -120px; }
+        .orb-2 { width: 380px;
             height: 380px;
             background: var(--brand-ice);
             bottom: -100px;
             left: -100px;
-            animation-delay: -7s;
-        }
-        .orb-3 {
-            width: 260px;
+            animation-delay: -7s; }
+        .orb-3 { width: 260px;
             height: 260px;
             background: var(--brand-apricot);
             top: 45%;
             left: 40%;
-            animation-delay: -14s;
-        }
-        @keyframes float {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(40px, -30px);
-            }
-        }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.4;
-                transform: scale(0.8);
-            }
-        }
-        @keyframes shimmer {
-            from {
-                background-position: 200% 0;
-            }
-            to {
-                background-position: -200% 0;
-            }
-        }
-        .skeleton {
-            background: linear-gradient(90deg, var(--border-light) 25%, var(--brand-ice) 50%, var(--border-light) 75%);
+            animation-delay: -14s; }
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(40px, -30px); } }
+        @keyframes toastIn { from { opacity: 0;
+                transform: translateY(20px); } to { opacity: 1;
+                transform: translateY(0); } }
+        @keyframes toastOut { from { opacity: 1;
+                transform: translateY(0); } to { opacity: 0;
+                transform: translateY(-10px); } }
+        @keyframes pulse-dot { 0%,
+        100% { opacity: 1;
+                transform: scale(1); } 50% { opacity: 0.4;
+                transform: scale(0.8); } }
+        @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+        .skeleton { background: linear-gradient(90deg, var(--border-light) 25%, var(--brand-ice) 50%, var(--border-light) 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
-            border-radius: var(--radius-sm);
-        }
-        .btn {
-            font-family: inherit;
+            border-radius: var(--radius-sm); }
+        .btn { font-family: inherit;
             font-size: 0.95rem;
             font-weight: 600;
             padding: 0.7rem 1.5rem;
@@ -164,94 +120,60 @@
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            letter-spacing: 0.2px;
-        }
-        .btn:active {
-            transform: scale(0.96);
-        }
-        .btn:focus-visible {
-            outline: 3px solid var(--brand-ice);
-            outline-offset: 2px;
-        }
-        .btn::after {
-            content: '';
+            letter-spacing: 0.2px; }
+        .btn:active { transform: scale(0.96); }
+        .btn:focus-visible { outline: 3px solid var(--brand-ice);
+            outline-offset: 2px; }
+        .btn::after { content: '';
             position: absolute;
             inset: 0;
             background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
             opacity: 0;
-            transition: opacity 0.15s;
-        }
-        .btn:active::after {
-            opacity: 1;
-        }
-        .btn-primary {
-            background: var(--brand-charcoal);
+            transition: opacity 0.15s; }
+        .btn:active::after { opacity: 1; }
+        .btn-primary { background: var(--brand-charcoal);
             color: white;
-            box-shadow: 0 4px 12px rgba(143, 158, 166, 0.1);
-        }
-        .btn-primary:hover {
-            background: #1a1a1a;
+            box-shadow: 0 4px 12px rgba(143, 158, 166, 0.1); }
+        .btn-primary:hover { background: #1a1a1a;
             box-shadow: 0 8px 28px rgba(143, 158, 166, 0.15);
-            transform: translateY(-1px);
-        }
-        [data-theme="dark"] .btn-primary {
-            background: var(--brand-gold);
-            color: #1a1a1a;
-        }
-        [data-theme="dark"] .btn-primary:hover {
-            background: #d4b04e;
-        }
-        .btn-secondary {
-            background: transparent;
+            transform: translateY(-1px); }
+        [data-theme="dark"] .btn-primary { background: var(--brand-gold);
+            color: #1a1a1a; }
+        [data-theme="dark"] .btn-primary:hover { background: #d4b04e; }
+        .btn-secondary { background: transparent;
             color: var(--brand-slate);
-            border: 2px solid var(--brand-slate);
-        }
-        .btn-secondary:hover {
-            background: var(--brand-ice);
+            border: 2px solid var(--brand-slate); }
+        .btn-secondary:hover { background: var(--brand-ice);
             border-color: var(--brand-charcoal);
-            color: var(--brand-charcoal);
-        }
-        .btn-ghost {
-            background: transparent;
+            color: var(--brand-charcoal); }
+        .btn-ghost { background: transparent;
             color: var(--text-muted);
             border: 2px solid transparent;
-            padding: 0.5rem 0.9rem;
-        }
-        .btn-ghost:hover {
-            background: var(--border-light);
+            padding: 0.5rem 0.9rem; }
+        .btn-ghost:hover { background: var(--border-light);
             color: var(--text-main);
-            border-color: var(--border-strong);
-        }
-        .btn-icon {
-            width: 40px;
+            border-color: var(--border-strong); }
+        .btn-icon { width: 40px;
             height: 40px;
             padding: 0;
             border-radius: 50%;
             font-size: 1.15rem;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-        }
-        .card {
-            background: var(--surface);
+            justify-content: center; }
+        .card { background: var(--surface);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
             padding: 1.75rem;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card:hover {
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card:hover { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
             border-color: var(--border-strong);
-            transform: translateY(-2px);
-        }
-        .card:focus-within {
-            border-color: var(--brand-slate);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-        }
-        .toast-container {
-            position: fixed;
+            transform: translateY(-2px); }
+        .card:focus-within { border-color: var(--brand-slate);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08); }
+        .toast-container { position: fixed;
             bottom: 1.5rem;
             left: 50%;
             transform: translateX(-50%);
@@ -259,10 +181,8 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            pointer-events: none;
-        }
-        .toast {
-            padding: 0.85rem 1.4rem;
+            pointer-events: none; }
+        .toast { padding: 0.85rem 1.4rem;
             border-radius: var(--radius-md);
             background: var(--surface-solid);
             border: 1px solid var(--border-strong);
@@ -271,45 +191,29 @@
             font-size: 0.9rem;
             color: var(--text-main);
             animation: toastIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), toastOut 0.3s ease 2.5s forwards;
-            pointer-events: auto;
-        }
-        .toast.success {
-            border-left: 4px solid #10b981;
-        }
-        .toast.warning {
-            border-left: 4px solid #f59e0b;
-        }
-        .toast.error {
-            border-left: 4px solid #ef4444;
-        }
-        .toast.info {
-            border-left: 4px solid #3b82f6;
-        }
-        .progress-bar-track {
-            height: 7px;
+            pointer-events: auto; }
+        .toast.success { border-left: 4px solid #10b981; }
+        .toast.warning { border-left: 4px solid #f59e0b; }
+        .toast.error { border-left: 4px solid #ef4444; }
+        .toast.info { border-left: 4px solid #3b82f6; }
+        .progress-bar-track { height: 7px;
             background: var(--border-light);
             border-radius: 20px;
             overflow: hidden;
-            width: 100%;
-        }
-        .progress-bar-fill {
-            height: 100%;
+            width: 100%; }
+        .progress-bar-fill { height: 100%;
             border-radius: 20px;
             background: linear-gradient(90deg, var(--brand-slate), var(--brand-charcoal));
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .theme-toggle {
-            width: 50px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .theme-toggle { width: 50px;
             height: 28px;
             border-radius: 28px;
             border: 2px solid var(--border-strong);
             background: var(--border-light);
             position: relative;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        .theme-toggle::after {
-            content: '';
+            transition: all 0.3s; }
+        .theme-toggle::after { content: '';
             width: 18px;
             height: 18px;
             border-radius: 50%;
@@ -317,22 +221,16 @@
             position: absolute;
             top: 3px;
             left: 3px;
-            transition: all 0.3s;
-        }
-        [data-theme="dark"] .theme-toggle::after {
-            left: 25px;
-            background: #fff;
-        }
-        .status-dot {
-            width: 10px;
+            transition: all 0.3s; }
+        [data-theme="dark"] .theme-toggle::after { left: 25px;
+            background: #fff; }
+        .status-dot { width: 10px;
             height: 10px;
             border-radius: 50%;
             background: #10b981;
             display: inline-block;
-            animation: pulse-dot 2s infinite;
-        }
-        .data-ribbon {
-            background: var(--surface);
+            animation: pulse-dot 2s infinite; }
+        .data-ribbon { background: var(--surface);
             border: 1px solid var(--border-light);
             padding: 0.65rem 1.75rem;
             border-radius: var(--radius-sm);
@@ -342,34 +240,24 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .header-row {
-            display: flex;
+            margin-bottom: 1.5rem; }
+        .container { max-width: 1100px;
+            margin: 0 auto; }
+        .header-row { display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .header-row h1 {
-            font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+            margin-bottom: 2rem; }
+        .header-row h1 { font-size: clamp(1.8rem, 5.5vw, 2.6rem);
             font-weight: 800;
-            color: var(--text-main);
-        }
-        .controls-bar {
-            display: flex;
+            color: var(--text-main); }
+        .controls-bar { display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
             align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .controls-bar input[type="number"] {
-            width: 90px;
+            margin-bottom: 1.5rem; }
+        .controls-bar input[type="number"] { width: 90px;
             padding: 0.7rem 1rem;
             border: 2px solid var(--border-strong);
             border-radius: var(--radius-sm);
@@ -379,81 +267,36 @@
             font-family: inherit;
             background: var(--surface-solid);
             color: var(--text-main);
-            transition: border-color 0.2s;
-        }
-        .controls-bar input[type="number"]:focus {
-            outline: none;
+            transition: border-color 0.2s; }
+        .controls-bar input[type="number"]:focus { outline: none;
             border-color: var(--brand-slate);
-            box-shadow: 0 0 0 3px rgba(143, 158, 166, 0.15);
-        }
-        .page-info-card {
-            margin-bottom: 1.5rem;
+            box-shadow: 0 0 0 3px rgba(143, 158, 166, 0.15); }
+        .page-info-card { margin-bottom: 1.5rem;
             padding: 1rem 1.5rem;
-            border-left: 6px solid var(--brand-ice);
-        }
-        .page-content {
-            max-height: 420px;
+            border-left: 6px solid var(--brand-ice); }
+        .page-content { max-height: 420px;
             overflow-y: auto;
             padding: 1.5rem;
             margin-bottom: 2rem;
             font-size: 0.95rem;
             line-height: 1.7;
             white-space: pre-wrap;
-            font-family: 'Inter', sans-serif;
-        }
-        .page-content .conversation-line {
-            background: rgba(205, 224, 229, 0.15);
-            padding: 0.8rem 1.2rem;
-            border-radius: var(--radius-sm);
-            margin: 0.6rem 0;
-            border-left: 4px solid var(--brand-slate);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-        .page-content .grammar-line {
-            background: rgba(250, 232, 212, 0.25);
-            padding: 0.8rem 1.2rem;
-            border-radius: var(--radius-sm);
-            margin: 0.6rem 0;
-            border-left: 4px solid var(--brand-apricot);
-        }
-        .page-content .vocab-line {
-            background: rgba(205, 224, 229, 0.2);
-            padding: 0.8rem 1.2rem;
-            border-radius: var(--radius-sm);
-            margin: 0.6rem 0;
-            border-left: 4px solid var(--brand-ice);
-        }
-        .section-title {
-            font-size: 1.5rem;
+            font-family: 'Inter', sans-serif; }
+        .section-title { font-size: 1.5rem;
             font-weight: 700;
             margin: 1.5rem 0 0.75rem;
-            color: var(--text-main);
-        }
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-        .question-list {
-            display: flex;
+            color: var(--text-main); }
+        .question-list { display: flex;
             flex-direction: column;
-            gap: 1.25rem;
-        }
-        .question-card-inner {
-            display: flex;
+            gap: 1.25rem; }
+        .question-card-inner { display: flex;
             flex-direction: column;
-            gap: 0.6rem;
-        }
-        .question-header {
-            display: flex;
+            gap: 0.6rem; }
+        .question-header { display: flex;
             align-items: center;
             gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-        .question-number {
-            display: inline-flex;
+            flex-wrap: wrap; }
+        .question-number { display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 32px;
@@ -463,64 +306,38 @@
             color: white;
             font-weight: 700;
             font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-        [data-theme="dark"] .question-number {
-            background: var(--brand-gold);
-            color: #1a1a1a;
-        }
-        .question-text {
-            font-weight: 600;
+            flex-shrink: 0; }
+        [data-theme="dark"] .question-number { background: var(--brand-gold);
+            color: #1a1a1a; }
+        .question-text { font-weight: 600;
             font-size: 1.05rem;
             color: var(--text-main);
-            flex: 1;
-        }
-        .tag {
-            display: inline-block;
+            flex: 1; }
+        .tag { display: inline-block;
             padding: 0.2rem 0.7rem;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .tag-grammar {
-            background: rgba(250, 232, 212, 0.4);
-            color: #8b6914;
-        }
-        .tag-vocabulary {
-            background: rgba(205, 224, 229, 0.4);
-            color: #1a5c3a;
-        }
-        .tag-comprehension {
-            background: rgba(205, 224, 229, 0.5);
-            color: #0f67b3;
-        }
-        .tag-conversation {
-            background: rgba(242, 205, 174, 0.3);
-            color: #6b21a8;
-        }
-        .context-snippet {
-            background: rgba(143, 158, 166, 0.07);
+            letter-spacing: 0.5px; }
+        .tag-grammar { background: rgba(250, 232, 212, 0.4);
+            color: #8b6914; }
+        .tag-vocabulary { background: rgba(205, 224, 229, 0.4);
+            color: #1a5c3a; }
+        .context-snippet { background: rgba(143, 158, 166, 0.07);
             border: 1px dashed var(--border-strong);
             border-radius: var(--radius-sm);
             padding: 0.8rem 1rem;
             font-size: 0.88rem;
             color: var(--text-muted);
-            white-space: pre-wrap;
-        }
-        .context-snippet .highlight {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-        .answer-row {
-            display: flex;
+            white-space: pre-wrap; }
+        .context-snippet .highlight { color: var(--text-main);
+            font-weight: 600; }
+        .answer-row { display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            align-items: center;
-        }
-        .answer-row input[type="text"] {
-            flex: 1;
+            align-items: center; }
+        .answer-row input[type="text"] { flex: 1;
             min-width: 180px;
             padding: 0.6rem 1rem;
             border: 2px solid var(--border-strong);
@@ -529,121 +346,66 @@
             font-family: 'Courier New', monospace;
             background: var(--surface-solid);
             color: var(--text-main);
-            transition: border-color 0.2s;
-        }
-        .answer-row input[type="text"]:focus {
-            outline: none;
-            border-color: var(--brand-slate);
-            box-shadow: 0 0 0 3px rgba(143, 158, 166, 0.1);
-        }
-        .answer-row input.correct-input {
-            border-color: #10b981;
-        }
-        .answer-row input.incorrect-input {
-            border-color: #ef4444;
-        }
+            transition: border-color 0.2s; }
+        .answer-row input[type="text"]:focus { outline: none;
+            border-color: var(--brand-slate); }
+        .answer-row input.correct-input { border-color: #10b981; }
+        .answer-row input.incorrect-input { border-color: #ef4444; }
         .hint-box,
-        .answer-reveal {
-            padding: 0.7rem 1rem;
+        .answer-reveal { padding: 0.7rem 1rem;
             border-radius: var(--radius-sm);
             font-size: 0.88rem;
             display: none;
-            margin-top: 0.4rem;
-        }
-        .hint-box {
-            background: rgba(250, 232, 212, 0.3);
+            margin-top: 0.4rem; }
+        .hint-box { background: rgba(250, 232, 212, 0.3);
             border: 1px dashed var(--brand-apricot);
-            color: #6b4f1a;
-        }
-        .hint-box.show {
-            display: block;
-        }
-        .answer-reveal {
-            background: rgba(16, 185, 129, 0.08);
+            color: #6b4f1a; }
+        .hint-box.show { display: block; }
+        .answer-reveal { background: rgba(16, 185, 129, 0.08);
             border: 1px solid #10b981;
             color: #10b981;
-            font-weight: 600;
-        }
-        .answer-reveal.show {
-            display: block;
-        }
-        .feedback-text {
-            font-weight: 600;
+            font-weight: 600; }
+        .answer-reveal.show { display: block; }
+        .feedback-text { font-weight: 600;
             font-size: 0.88rem;
             display: none;
-            margin-top: 0.3rem;
-        }
-        .feedback-text.correct {
-            display: block;
-            color: #10b981;
-        }
-        .feedback-text.incorrect {
-            display: block;
-            color: #ef4444;
-        }
-        .results-panel {
-            margin-top: 2rem;
-            text-align: center;
-        }
-        .score-display {
-            font-size: 3rem;
+            margin-top: 0.3rem; }
+        .feedback-text.correct { display: block;
+            color: #10b981; }
+        .feedback-text.incorrect { display: block;
+            color: #ef4444; }
+        .results-panel { margin-top: 2rem;
+            text-align: center; }
+        .score-display { font-size: 3rem;
             font-weight: 800;
-            color: var(--text-main);
-        }
-        .stars-display {
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-        }
-        .empty-state {
-            text-align: center;
+            color: var(--text-main); }
+        .stars-display { font-size: 1.5rem;
+            margin: 0.5rem 0; }
+        .empty-state { text-align: center;
             padding: 3rem 1rem;
-            color: var(--text-muted);
-        }
-        .modal-overlay {
-            position: fixed;
+            color: var(--text-muted); }
+        .modal-overlay { position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.45);
             z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(4px);
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-card {
-            background: var(--surface-solid);
+            backdrop-filter: blur(4px); }
+        .modal-overlay.active { display: flex; }
+        .modal-card { background: var(--surface-solid);
             border-radius: var(--radius-xl);
             padding: 2rem;
             max-width: 500px;
             width: 90%;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
-            animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.85) translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        @media (max-width: 680px) {
-            body {
-                padding: 1.2rem 0.6rem;
-            }
-            .page-content {
-                max-height: 280px;
-                font-size: 0.85rem;
-            }
-            .answer-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
+            animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes modalIn { from { opacity: 0;
+                transform: scale(0.85) translateY(30px); } to { opacity: 1;
+                transform: scale(1) translateY(0); } }
+        @media (max-width: 680px) { body { padding: 1.2rem 0.6rem; } .page-content { max-height: 280px;
+                font-size: 0.85rem; } .answer-row { flex-direction: column;
+                align-items: stretch; } }
     </style>
 </head>
 <body>
@@ -651,12 +413,12 @@
     <div class="ambient-orb orb-2"></div>
     <div class="ambient-orb orb-3"></div>
     <div class="toast-container" id="toastContainer"></div>
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-card" id="modalCard"></div>
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-card" id="modalCard" onclick="event.stopPropagation()"></div>
     </div>
     <div class="container">
         <div class="header-row">
-            <h1>📝 Continuous Assessment</h1>
+            <h1>📝 Beginner English Assessment</h1>
             <div style="display:flex;align-items:center;gap:0.8rem;">
                 <button class="btn btn-ghost" onclick="switchLanguage()" id="langBtn">🌍 English</button>
                 <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
@@ -664,33 +426,37 @@
         </div>
         <div class="data-ribbon">
             <span class="status-dot"></span>
-            <span id="ribbonText">Touchstone ENG 101 · Level 1 · Read the text, then answer the questions</span>
+            <span id="ribbonText">Touchstone ENG 101 · Level 1 · Read, then fill in the blanks</span>
         </div>
+
         <div class="controls-bar">
             <label for="pageInput" style="font-weight:700;color:var(--text-main);">📄 <span data-key="pageLabel">Page</span>:</label>
             <input type="number" id="pageInput" min="1" max="83" value="9" placeholder="1–83">
-            <button class="btn btn-primary" onclick="generateAssessment()">🔍 <span data-key="generate">Generate</span></button>
+            <button class="btn btn-primary" onclick="generateAssessment()">🔍 <span data-key="generate">Start</span></button>
             <button class="btn btn-secondary" onclick="randomPage()">🎲 <span data-key="random">Random</span></button>
             <button class="btn btn-ghost" onclick="resetAll()">🔄 <span data-key="reset">Reset</span></button>
         </div>
+
         <div class="card page-info-card" id="pageInfo">
-            <span data-key="enterPage">📌 Enter a page number (1–83) and click Generate to see content and questions.</span>
+            <span data-key="enterPage">📌 Choose a page (1–83) and click Start. You'll see the text and simple questions that help you practice the key words and grammar.</span>
         </div>
+
         <div class="card page-content" id="pageContentDisplay">
             <div class="empty-state">
                 <p>📖</p>
-                <p><strong data-key="selectPage">Select a page to display its full text here</strong></p>
-                <p style="font-size:0.85rem;margin-top:0.5rem;" data-key="selectPageDesc">The textbook content will appear, followed by assessment questions</p>
+                <p><strong data-key="selectPage">Pick a page to see its text here</strong></p>
+                <p style="font-size:0.85rem;margin-top:0.5rem;" data-key="selectPageDesc">Then answer questions that focus on the main points of the lesson</p>
             </div>
         </div>
-        <h2 class="section-title" data-key="questionsTitle">📋 Assessment Questions</h2>
-        <p style="color:var(--text-muted);margin-bottom:1rem;text-align:center;" data-key="answerBased">Answer based on the text shown above</p>
+
+        <h2 class="section-title" data-key="questionsTitle">📋 Practice Questions</h2>
+        <p style="color:var(--text-muted);margin-bottom:1rem;text-align:center;" data-key="answerBased">Each question comes from the text above. Fill in the blank.</p>
         <div class="question-list" id="questionsContainer">
             <div class="empty-state">
-                <p data-key="generatePrompt">✨ Select a page to generate assessment questions.</p>
-                <p style="font-size:0.8rem;margin-top:0.5rem;" data-key="pagesCover">Pages cover Units 1–4 (Student's Book & Workbook)</p>
+                <p data-key="generatePrompt">✨ Select a page to get started.</p>
             </div>
         </div>
+
         <div class="card results-panel" id="resultsPanel" style="display:none;">
             <h2 class="card-title" data-key="yourScore">📊 Your Score</h2>
             <div class="score-display" id="scoreDisplay">0%</div>
@@ -705,97 +471,86 @@
             </div>
         </div>
     </div>
+
     <script>
         const t9n = {
             ar: {
                 pageLabel: 'الصفحة',
-                generate: 'توليد',
+                generate: 'ابدأ',
                 random: 'عشوائي',
                 reset: 'إعادة',
-                enterPage: '📌 أدخل رقم الصفحة (1–83) وانقر على "توليد" لعرض المحتوى والأسئلة.',
-                selectPage: 'اختر صفحة لعرض نصها الكامل هنا',
-                selectPageDesc: 'سيظهر محتوى الكتاب المدرسي متبوعاً بأسئلة التقييم',
-                questionsTitle: '📋 أسئلة التقييم',
-                answerBased: 'أجب بناءً على النص الموضح أعلاه',
-                generatePrompt: '✨ اختر صفحة لتوليد أسئلة التقييم.',
-                pagesCover: 'تغطي الصفحات الوحدات 1–4 (كتاب الطالب وكتاب التمارين)',
+                enterPage: '📌 اختر صفحة (1–83) واضغط ابدأ. ستظهر الأسئلة التي تركز على الكلمات والقواعد الأساسية.',
+                selectPage: 'اختر صفحة لعرض النص هنا',
+                selectPageDesc: 'ثم أجب عن الأسئلة التي تركز على النقاط الرئيسية للدرس',
+                questionsTitle: '📋 أسئلة التمرين',
+                answerBased: 'كل سؤال مأخوذ من النص أعلاه. املأ الفراغ.',
+                generatePrompt: '✨ اختر صفحة للبدء.',
                 yourScore: '📊 نتيجتك',
                 checkAll: 'تحقق من الكل',
                 showAll: 'أظهر الكل',
-                ribbonText: 'Touchstone ENG 101 · المستوى 1 · اقرأ النص ثم أجب عن الأسئلة',
-                correct: '✅ صحيح! أحسنت!',
-                incorrect: '❌ ليس تماماً. حاول مرة أخرى أو انقر "إظهار" لرؤية الإجابة.',
-                typeAnswer: '❌ يرجى كتابة إجابة أولاً.',
+                ribbonText: 'Touchstone ENG 101 · المستوى 1 · اقرأ ثم املأ الفراغات',
+                correct: '✅ صحيح!',
+                incorrect: '❌ ليس تماماً. جرب مرة أخرى.',
+                typeAnswer: '❌ اكتب إجابة أولاً.',
                 hint: '💬 تلميح',
                 show: '👁️ إظهار',
                 check: '✓ تحقق',
                 grammar: 'قواعد',
                 vocabulary: 'مفردات',
-                comprehension: 'فهم',
-                conversation: 'محادثة',
-                perfect: '🏆 نتيجة كاملة! عمل ممتاز!',
-                great: '👍 عمل رائع! استمر في التدريب.',
-                good: '📖 جهد جيد. راجع محتوى الصفحة وحاول مرة أخرى.',
-                keep: '📚 اقرأ محتوى الصفحة بعناية وحاول مرة أخرى.',
-                start: 'ابدأ بالإجابة على الأسئلة لرؤية نتيجتك.',
+                perfect: '🏆 ممتاز!',
+                great: '👍 عمل رائع!',
+                good: '📖 جيد. راجع النص وحاول مرة أخرى.',
+                keep: '📚 اقرأ النص جيداً وحاول مجدداً.',
+                start: 'ابدأ بالإجابة لترى نتيجتك.',
                 switchTo: '🕌 العربية',
-                toastFillRequired: '⚠️ يرجى ملء جميع الحقول المطلوبة.',
-                toastError: '⚠️ حدث خطأ بسيط. حاول مرة أخرى.'
+                toastFillRequired: '⚠️ يرجى إدخال رقم صفحة صحيح.',
+                toastError: '⚠️ حدث خطأ. حاول مرة أخرى.'
             },
             en: {
                 pageLabel: 'Page',
-                generate: 'Generate',
+                generate: 'Start',
                 random: 'Random',
                 reset: 'Reset',
-                enterPage: '📌 Enter a page number (1–83) and click Generate to see content and questions.',
-                selectPage: 'Select a page to display its full text here',
-                selectPageDesc: 'The textbook content will appear, followed by assessment questions',
-                questionsTitle: '📋 Assessment Questions',
-                answerBased: 'Answer based on the text shown above',
-                generatePrompt: '✨ Select a page to generate assessment questions.',
-                pagesCover: 'Pages cover Units 1–4 (Student\'s Book & Workbook)',
+                enterPage: '📌 Choose a page (1–83) and click Start. You\'ll see the text and simple questions that help you practice the key words and grammar.',
+                selectPage: 'Pick a page to see its text here',
+                selectPageDesc: 'Then answer questions that focus on the main points of the lesson',
+                questionsTitle: '📋 Practice Questions',
+                answerBased: 'Each question comes from the text above. Fill in the blank.',
+                generatePrompt: '✨ Select a page to get started.',
                 yourScore: '📊 Your Score',
                 checkAll: 'Check All',
                 showAll: 'Show All',
-                ribbonText: 'Touchstone ENG 101 · Level 1 · Read the text, then answer the questions',
-                correct: '✅ Correct! Well done!',
-                incorrect: '❌ Not quite. Try again or click "Show" to see the answer.',
+                ribbonText: 'Touchstone ENG 101 · Level 1 · Read, then fill in the blanks',
+                correct: '✅ Correct!',
+                incorrect: '❌ Not quite. Try again.',
                 typeAnswer: '❌ Please type an answer first.',
                 hint: '💬 Hint',
                 show: '👁️ Show',
                 check: '✓ Check',
                 grammar: 'Grammar',
                 vocabulary: 'Vocabulary',
-                comprehension: 'Comprehension',
-                conversation: 'Conversation',
-                perfect: '🏆 Perfect score! Excellent work!',
-                great: '👍 Great job! Keep practicing.',
-                good: '📖 Good effort. Review the page content and try again.',
-                keep: '📚 Read the page content carefully and try the questions again.',
-                start: 'Start answering questions to see your score.',
+                perfect: '🏆 Perfect!',
+                great: '👍 Great job!',
+                good: '📖 Good. Review the text and try again.',
+                keep: '📚 Read the text carefully and try again.',
+                start: 'Start answering to see your score.',
                 switchTo: '🌍 English',
-                toastFillRequired: '⚠️ Please fill in all required fields.',
-                toastError: '⚠️ Something small went wrong. Please try again.'
+                toastFillRequired: '⚠️ Please enter a valid page number.',
+                toastError: '⚠️ Something went wrong. Please try again.'
             }
         };
         let currentLang = localStorage.getItem('shfq-lang') || 'en';
+
         function t(key) { return t9n[currentLang][key] || t9n['en'][key] || key; }
+
         function updateStaticTexts() {
             document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.querySelectorAll('[data-key]').forEach(el => { const k = el.getAttribute('data-key'); if (t9n[currentLang][k]) el.textContent = t9n[currentLang][k]; });
             document.getElementById('ribbonText').textContent = t('ribbonText');
             document.getElementById('langBtn').textContent = t('switchTo');
-            const infoEl = document.getElementById('pageInfo');
-            if (infoEl && !infoEl.querySelector('[data-key]')) infoEl.innerHTML = `<span data-key="enterPage">${t('enterPage')}</span>`;
-            updateStaticTextsDeep(document.getElementById('questionsContainer'));
-            updateStaticTextsDeep(document.getElementById('resultsPanel'));
-            updateStaticTextsDeep(document.getElementById('pageContentDisplay'));
         }
-        function updateStaticTextsDeep(container) {
-            if (!container) return;
-            container.querySelectorAll('[data-key]').forEach(el => { const k = el.getAttribute('data-key'); if (t9n[currentLang][k]) el.textContent = t9n[currentLang][k]; });
-        }
+
         function switchLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             localStorage.setItem('shfq-lang', currentLang);
@@ -803,348 +558,129 @@
             if (currentQuestions.length > 0) renderQuestions(currentQuestions);
             showToast(currentLang === 'ar' ? '🕌 العربية' : '🌍 English', 'info');
         }
+
         function toggleTheme() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
+            const cur = document.documentElement.getAttribute('data-theme');
+            const next = cur === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('shfq-theme', next);
         }
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            container.appendChild(toast);
-            setTimeout(() => { if (toast.parentNode) toast.remove(); }, 3000);
+
+        function showToast(msg, type) {
+            const c = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.textContent = msg;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
         }
-        function showModal(content) {
-            const overlay = document.getElementById('modalOverlay');
-            const card = document.getElementById('modalCard');
-            card.innerHTML = content;
-            overlay.classList.add('active');
-        }
+
         function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
-        document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+        // Textbook database (only essential pages with full text, others generic)
         const textbookDB = {
-            9: {
-                unit: 1,
-                section: 'Lesson A – Hello and Good-bye',
-                topic: 'Conversations: Greetings & Introductions',
-                fullText: `CONVERSATION 1:
-Matt: Good morning, Sarah. How are you?
-Sarah: Good. How are you, Matt?
-Matt: I'm fine, thanks.
-
-CONVERSATION 2:
-Matt: Hello. I'm Matt Lenski.
-Emily: Hi, I'm Emily Kim. Nice to meet you.
-Matt: Nice to meet you.
-
-GETTING STARTED:
-A. Listen. Matt and Sarah are friends. Are Matt and Emily friends? Practice the conversations.
-
-B. Can you complete these conversations? Then practice with a partner. Use your own names.
-A: Hello. I'm Chris. B: Hi. Nice to meet you. ___ Sam. A: Nice to meet ___.`,
-                grammar: ["I'm", "Nice to meet you", "How are you?"],
-                vocabulary: ["Good morning", "Hello", "Hi", "Nice to meet you", "I'm fine", "thanks"]
-            },
-            10: {
-                unit: 1,
-                section: 'Building Vocabulary – Responses',
-                topic: 'Responses to Hello & Good-bye',
-                fullText: `BUILDING VOCABULARY:
-Emily: Good night. Matt: Good night. Have a good evening. Emily: Thank you. You too.
-Sarah: Bye. See you tomorrow. Matt: Bye. See you.
-
-LISTENING – Check the responses you hear:
-1. Bye. Have a good evening. → You too. Good night.
-2. Hi. How are you? → Good, thanks. / I'm fine.
-3. Bye. See you later. → OK. See you later.
-4. Hey, Oscar! → Hi. How are you?
-5. Good-bye. Have a nice day. → Thank you. / Thanks. You too.
-
-C. Write three expressions for saying hello and good-bye. Compare with a partner.
-D. Class activity: Say hello and good-bye to five classmates.`,
-                grammar: [],
-                vocabulary: ["Good night", "Good evening", "See you", "Bye", "Have a nice day", "You too", "See you tomorrow"]
-            },
-            12: {
-                unit: 1,
-                section: 'Building Language – Classrooms',
-                topic: 'Verb be: I, you, we',
-                fullText: `Mr. Martin: Good morning. Are you here for an English class?
-Carmen: Yes, I am. I'm Carmen Rivera.
-Mr. Martin: OK. You're in Room B.
-Jenny: And I'm Jenny.
-Mr. Martin: Are you Jenny Loo? Jenny: No, I'm not. I'm Jenny Lim. Am I in Room B too?
-Mr. Martin: Yes...Wait — no, you're not. You're in Room G.
-Jenny: Oh, no! Carmen, we're not in the same class!
-
-GRAMMAR: The verb be — I, you, and we
-I'm Jenny. / I'm not Carmen. You're in Room G. / You're not in Room B.
-We're in different classes. / We're not in the same class.
-I'm (= I am) | you're (= you are) | we're (= we are)
-Questions: Are you Jenny? → Yes, I am. / No, I'm not.`,
-                grammar: ["I'm", "you're", "we're", "Are you...?", "Am I...?", "Are we...?"],
-                vocabulary: ["class", "Room", "same class", "English class"]
-            },
-            14: {
-                unit: 1,
-                section: 'Grammar – What\'s...? & It\'s...',
-                topic: 'Asking for Personal Information',
-                fullText: `GRAMMAR: What's...? / It's...
-What's your name? → My name's Victor Lopez.
-What's your e-mail address? → It's vlopez6@cup.org.
-What's your phone number? → It's 646-555-3048.
-What's (= What is) | name's (= name is) | It's (= It is)
-
-Match: 1. What's your teacher's name? → It's Ms. Gardino.
-2. What's your first name? → Rachel. 3. What's your e-mail? → yoyo3@cup.org.
-IN CONVERSATION: Phone is 6 times more common than telephone.`,
-                grammar: ["What's (= What is)", "name's (= name is)", "It's (= It is)"],
-                vocabulary: ["teacher", "first name", "last name", "phone number", "email address"]
-            },
-            15: {
-                unit: 1,
-                section: 'Conversation Strategy – How about you?',
-                topic: 'Returning Questions in Conversation',
-                fullText: `Alicia: It's a beautiful day. Adam: Yeah, it is.
-Alicia: Are you here for the concert? Adam: Yeah, I am. How about you?
-Alicia: Yeah, me too. So, are you a student here? Adam: Yeah. How about you?
-Alicia: No, I'm here on vacation. Adam: Nice. By the way, I'm Adam.
-Alicia: Hi, Adam. I'm Alicia.
-
-Notice how Adam uses "How about you?" to ask the same questions as Alicia.
-"Are you here for the concert?" → "Yeah, I am. How about you?"
-
-Complete: Lora: Are you new here? Ying: Yes, I am. ___? Lora: Yes, me too.`,
-                grammar: ["How about you?"],
-                vocabulary: ["concert", "student", "vacation", "business", "new here"]
-            },
-            19: {
-                unit: 2,
-                section: 'Lesson A – Where\'s Jun?',
-                topic: 'Asking About Absent Students',
-                fullText: `Miss Cass: Where's Jun? Is he here today? Ana: No, he's not. Maybe he's at work.
-Miss Cass: OK. How about Laura? Ana: I don't know. I think she's sick.
-Miss Cass: Oh. OK. Are Kim and Phong here? Ana: No, they're in the cafeteria.
-Miss Cass: They're late again. OK. And Alan? Ana: He's over there. I think he's asleep!`,
-                grammar: ["Where's...?", "he's not", "she's", "they're"],
-                vocabulary: ["absent", "at work", "sick", "cafeteria", "late", "asleep"]
-            },
-            20: {
-                unit: 2,
-                section: 'Grammar – He, She, They',
-                topic: 'Verb be: Third Person',
-                fullText: `GRAMMAR: he, she, and they
-Jun is at work. → He's at work. Laura's sick. → She's sick.
-Kim and Phong are late. → They're late.
-Negative: Jun is not here. → He's not here. Laura's not in class. → She's not in class.
-Questions: Is Jun here? → Yes, he is. / No, he's not.
-Are they late? → Yes, they are. / No, they're not.
-IN CONVERSATION: People shorten "is" to "'s" after names. Jun's at work.`,
-                grammar: ["He's", "She's", "They're", "he's not", "she's not", "they're not"],
-                vocabulary: ["at work", "sick", "cafeteria", "at home", "at the library"]
-            },
-            24: {
-                unit: 2,
-                section: 'Building Language – Where Questions',
-                topic: 'Location Questions & Possessives',
-                fullText: `Mrs. Evans: OK, so... where's the VCR? Paula: It's in the closet.
-Mrs. Evans: And the videos? Where are they? Paula: They're on the desk, under your coat.
-Mrs. Evans: And where are the students' homework papers? Paula: They're on the floor.
-Mrs. Evans: Uh-oh, what's this under my foot? Paula: It's Mario's homework.
-Mrs. Evans: Where are my glasses? They're not on my desk. Paula: They're on your head!
-
-GRAMMAR: Where's Mario's homework? → It's on the floor.
-Where's the teacher's coat? → It's on the desk.
-Where are the students' papers? → They're on the floor. Where's (= Where is)`,
-                grammar: ["Where's...?", "Where are...?", "possessive 's", "possessive s'"],
-                vocabulary: ["VCR", "closet", "desk", "floor", "under", "on", "in front of"]
-            },
-            29: {
-                unit: 3,
-                section: 'Lesson A – Celebrities',
-                topic: 'Possessive Adjectives in Context',
-                fullText: `Sandra: I love these shows about celebrities. Who's that guy? Oh, look. It's Sean Penn. He's so good-looking. His new movie is great. Oh, and there's Norah Jones. She's my favorite singer. Her voice is amazing. And look — the Williams sisters, my favorite tennis players. Their matches are always exciting. You're a tennis fan, right? John? ... John? Wake up!
-
-Complete: 1. Sean Penn is an actor. ___ movies are very good.
-2. Norah Jones is a famous singer. ___ new video is great.
-3. The Williams sisters are tennis players. ___ matches are always great.`,
-                grammar: ["his", "her", "their"],
-                vocabulary: ["good-looking", "movie", "voice", "amazing", "matches", "exciting", "fan"]
-            },
-            30: {
-                unit: 3,
-                section: 'Grammar – Be & Possessive Adjectives',
-                topic: 'Possessive Adjectives Practice',
-                fullText: `GRAMMAR: I'm a fan → My favorite actor. He's an actor → His new movie.
-She's a singer → Her voice. We're fans → Our team. They're players → Their matches.
-
-Circle: A: I'm / My a Sting fan. B: he's / his music is amazing.
-A: I'm / My favorite band is Black Eyed Peas. B: they're / their new CD is out.
-"What's you're / your favorite show?" "I'm / My favorite show? Friends."
-"It's we're / our favorite show too. In our family, we're / our all Friends fans."`,
-                grammar: ["I'm", "my", "you're", "your", "he's", "his", "she's", "her", "we're", "our", "they're", "their"],
-                vocabulary: ["fan", "band", "CD", "actor", "show", "team"]
-            },
-            34: {
-                unit: 3,
-                section: 'Lesson D – Showing Interest',
-                topic: 'Conversation Strategy: Echo Questions',
-                fullText: `Mark: This is a great photo. Who is it? Eve: It's a friend of mine — Natasha.
-Mark: Oh? Where's she from? Eve: She's from London, but she's here in Miami now.
-Mark: London? Wow. Is she a student here? Eve: No, she's an artist — a painter. She's an amazing woman.
-Mark: A painter? Really? What are her paintings like? Eve: They're wonderful. Look.
-
-Mark shows interest by repeating words and asking questions.
-"She's from London." → "London? Wow. Is she a student here?"
-
-Complete: A: My friend Gemma is a singer. B: A singer? ___? Is she in a band?`,
-                grammar: ["Really?"],
-                vocabulary: ["photo", "friend of mine", "London", "Miami", "artist", "painter", "paintings"]
-            },
-            35: {
-                unit: 3,
-                section: 'Strategy Plus – Really? & Listening',
-                topic: 'Using Really? & Describing Friends',
-                fullText: `People say "Really?" to show surprise or interest. IN CONVERSATION: Really is top 50 words.
-
-Practice: A: Where are you from? B: San Diego. A: San Diego? Really? I'm from Los Angeles.
-A: What's your name? B: Ryan. A: Really? My best friend's name is Ryan.
-A: Who's your best friend? B: Brittany. A: Really? What's she like? B: She's very nice.
-
-Listening: "Amy is a friend from the neighborhood. She's about ___ years old. Olivia is her ___."`,
-                grammar: ["Really?"],
-                vocabulary: ["neighborhood", "best friend", "fun guy", "around my age"]
-            },
-            42: {
-                unit: 4,
-                section: 'Lesson A – Simple Present Statements',
-                topic: 'Simple Present Grammar',
-                fullText: `GRAMMAR: Simple present statements
-I eat breakfast. / I don't eat lunch. He listens to the radio. / He doesn't listen to CDs.
-She watches TV. / She doesn't watch videos.
-don't (= do not) | doesn't (= does not)
-Verb endings: get→gets, watch→watches, play→plays, study→studies, have→has, do→does.
-
-Complete: I don't like mornings. In my family, we ___ breakfast together.
-My mother ___ (not/watch) TV. My father ___ coffee. My parents ___ a lot.`,
-                grammar: ["simple present", "don't", "doesn't", "verb endings -s/-es/-ies"],
-                vocabulary: ["breakfast", "lunch", "coffee", "tea", "radio", "newspaper", "e-mail"]
-            },
-            44: {
-                unit: 4,
-                section: 'Grammar – Yes-No Questions',
-                topic: 'Question & Answer Patterns',
-                fullText: `Do you go to class in the evening? → Yes, I do. / No, I don't.
-Does your mother work on weekends? → Yes, she does. / No, she doesn't.
-Do your friends make phone calls at night? → Yes, they do. / No, they don't.
-
-Complete: ___ you eat snacks every day? ___ your teacher work in the evening?
-___ your best friend ___ a class on Saturdays?`,
-                grammar: ["Do you...?", "Does he/she...?", "Yes, I do.", "No, I don't."],
-                vocabulary: ["club", "team", "snacks", "homework", "dinner"]
-            },
-            46: {
-                unit: 4,
-                section: 'Strategy Plus – Well',
-                topic: 'Using Well to Think',
-                fullText: `Start your answer with "Well" to get time to think. Well is a top 50 word.
-Practice: A: What are your neighbors like? B: Well, they're very noisy.
-A: Do you see your family a lot? B: Well, not really. They don't live around here.
-A: Do you study every day? B: Well, not every day. I go out with friends on weekends.`,
-                grammar: ["Well"],
-                vocabulary: ["noisy", "loud music", "not really", "go out"]
-            }
+            9: { unit:1, section:'Hello & Good-bye', topic:'Greetings', fullText:`Matt: Good morning, Sarah. How are you?\nSarah: Good. How are you, Matt?\nMatt: I'm fine, thanks.\n\nMatt: Hello. I'm Matt Lenski.\nEmily: Hi, I'm Emily Kim. Nice to meet you.\nMatt: Nice to meet you.` },
+            10: { unit:1, section:'Responses', topic:'Good night, Bye', fullText:`Emily: Good night. Matt: Good night. Have a good evening.\nEmily: Thank you. You too.\nSarah: Bye. See you tomorrow.\nMatt: Bye. See you.` },
+            12: { unit:1, section:'Verb be: I, you, we', topic:'Classrooms', fullText:`Mr. Martin: Good morning. Are you here for an English class?\nCarmen: Yes, I am. I'm Carmen Rivera.\nMr. Martin: OK. You're in Room B.\nJenny: And I'm Jenny.\nMr. Martin: Are you Jenny Loo? Jenny: No, I'm not. I'm Jenny Lim. Am I in Room B too?\nMr. Martin: Yes...Wait — no, you're not. You're in Room G.\nJenny: Oh, no! Carmen, we're not in the same class!` },
+            14: { unit:1, section:'What\'s...? It\'s...', topic:'Info questions', fullText:`What's your name? → My name's Victor Lopez.\nWhat's your phone number? → It's 646-555-3048.\nWhat's your e‑mail address? → It's vlopez6@cup.org.\nWhat's (= What is)   name's (= name is)   It's (= It is)` },
+            15: { unit:1, section:'How about you?', topic:'Return questions', fullText:`Alicia: Are you here for the concert?\nAdam: Yeah, I am. How about you?\nAlicia: Yeah, me too. So, are you a student here?\nAdam: Yeah. How about you?\nAlicia: No, I'm here on vacation.` },
+            19: { unit:2, section:'Where\'s Jun?', topic:'Absent students', fullText:`Miss Cass: Where's Jun? Is he here today?\nAna: No, he's not. Maybe he's at work.\nMiss Cass: How about Laura? Ana: I think she's sick.\nMiss Cass: Are Kim and Phong here? Ana: No, they're in the cafeteria.` },
+            20: { unit:2, section:'He/She/They', topic:'3rd person be', fullText:`Jun is at work. → He's at work.\nLaura's sick. → She's sick.\nKim and Phong are late. → They're late.\nNegative: He's not here. / They're not in class.\nQuestions: Is she sick? Yes, she is. / Are they late? Yes, they are.` },
+            24: { unit:2, section:'Where? possessives', topic:'Classroom', fullText:`Mrs. Evans: Where's the VCR? Paula: It's in the closet.\nMrs. Evans: Where are the videos? Paula: They're on the desk, under your coat.\nMrs. Evans: Where are the students' homework papers? Paula: They're on the floor.` },
+            29: { unit:3, section:'Celebrities', topic:'his/her/their', fullText:`Sandra: Sean Penn – his new movie is great. Norah Jones – her voice is amazing. The Williams sisters – their matches are exciting.` },
+            30: { unit:3, section:'Possessive adjectives', topic:'my/your/his', fullText:`I'm a fan → my favorite actor. He's an actor → his new movie. She's a singer → her voice. We're fans → our team. They're players → their matches.` },
+            34: { unit:3, section:'Showing interest', topic:'Really?', fullText:`Mark: This photo – who is it? Eve: It's Natasha, a friend of mine.\nMark: Where's she from? Eve: She's from London, but she's here in Miami now.\nMark: London? Wow. Is she a student here? Eve: No, she's an artist.` },
+            35: { unit:3, section:'Really? top 50', topic:'Surprise', fullText:`Really? shows surprise. A: Where are you from? B: San Diego. A: San Diego? Really? I'm from Los Angeles.` },
+            42: { unit:4, section:'Simple present', topic:'Daily habits', fullText:`I eat breakfast. / I don't eat lunch.\nHe listens to the radio. / He doesn't listen to CDs.\ndon't = do not   doesn't = does not\nVerb endings: get→gets, watch→watches, study→studies, have→has.` },
+            44: { unit:4, section:'Yes/No questions', topic:'Do/Does', fullText:`Do you go to class in the evening? Yes, I do. / No, I don't.\nDoes your mother work on weekends? Yes, she does. / No, she doesn't.` },
+            46: { unit:4, section:'Well (thinking)', topic:'Pausing', fullText:`Start your answer with Well to think. A: What are your neighbours like? B: Well, they're very noisy.` }
         };
-        for (let i = 1; i <= 83; i++) {
-            if (!textbookDB[i]) {
-                textbookDB[i] = {
-                    unit: i <= 17 ? 1 : i <= 27 ? 2 : i <= 38 ? 3 : i <= 49 ? 4 : 'WB',
-                    section: `Page ${i}`,
-                    topic: `Content from page ${i}`,
-                    fullText: `[Content from page ${i} of Touchstone Level 1.]
-
-This page contains material related to English language learning. Please refer to the complete textbook for full content.`,
-                    grammar: [],
-                    vocabulary: []
-                };
-            }
-        }
+        for (let i=1;i<=83;i++) if(!textbookDB[i]) textbookDB[i]={unit:Math.ceil(i/20),section:`Page ${i}`,topic:'',fullText:`[Page ${i} content]`};
 
         let currentQuestions = [];
         let currentPage = null;
 
         function generateQuestionsForPage(pageNum) {
             const page = textbookDB[pageNum];
-            if (!page) return [];
-            const questions = [];
-            let qNum = 0;
+            if(!page) return [];
+            const qs = [];
             const ft = page.fullText.toLowerCase();
-            const getSnippet = (keywords, lines = 2) => {
-                const sentences = page.fullText.split(/\n/).filter(s => s.trim().length > 10);
-                for (const kw of keywords) { const f = sentences.find(s => s.toLowerCase().includes(kw.toLowerCase())); if (f) return f.trim(); }
-                return sentences.slice(0, lines).join('\n').trim();
+            const snip = (kws,n=2)=>{
+                const lines=page.fullText.split('\n').filter(l=>l.trim().length>8);
+                for(const k of kws){const f=lines.find(l=>l.toLowerCase().includes(k.toLowerCase()));if(f)return f.trim();}
+                return lines.slice(0,n).join(' ').trim();
             };
-            const addQ = (text, context, hint, answer, type = 'grammar') => { qNum++;
-                questions.push({ id: qNum, text, context, hint, answer, type }); };
-            if (ft.includes("i'm") || ft.includes("i am")) addQ('Complete: "Hello. _____ Chris." (Use contraction)', getSnippet(["I'm", "Hello"]), 'I + am = I\'m', 'I\'m', 'grammar');
-            if (ft.includes("you're") || ft.includes("you are")) addQ('Complete: "_____ in Room B." (You are)', getSnippet(["you're", "Room"]), 'You + are = You\'re', 'You\'re', 'grammar');
-            if (ft.includes("he's") || ft.includes("he is")) addQ('Rewrite: "Jun is at work." → "_____ at work."', getSnippet(["he's", "Jun", "work"]), 'He + is = He\'s', 'He\'s', 'grammar');
-            if (ft.includes("she's") || ft.includes("she is")) addQ('Complete: "Laura is sick." → "_____ sick."', getSnippet(["she's", "sick", "Laura"]), 'She + is = She\'s', 'She\'s', 'grammar');
-            if (ft.includes("they're") || ft.includes("they are")) addQ('Rewrite: "Kim and Phong are late." → "_____ late."', getSnippet(["they're", "late"]), 'They + are = They\'re', 'They\'re', 'grammar');
-            if (ft.includes("we're") || ft.includes("we are")) addQ('Complete: "_____ in the same class." (We are)', getSnippet(["we're", "same class"]), 'We + are = We\'re', 'We\'re', 'grammar');
-            if (ft.includes("are you") && ft.includes("?")) addQ('Question: "_____ you here for an English class?"', getSnippet(["Are you", "class"]), 'Start with Are', 'Are', 'grammar');
-            if (ft.includes("is he") || ft.includes("is she")) addQ('Question: "_____ she sick today?"', getSnippet(["Is she", "sick"]), 'Use Is for he/she', 'Is', 'grammar');
-            if (ft.includes("are they")) addQ('Complete: "_____ they in the cafeteria?"', getSnippet(["Are they", "cafeteria"]), 'Use Are for plural', 'Are', 'grammar');
-            if (ft.includes("what's") || ft.includes("what is")) addQ('Complete: "_____ your name?" (Contraction)', getSnippet(["What's", "name"]), 'What + is = What\'s', 'What\'s', 'grammar');
-            if (ft.includes("it's") || ft.includes("it is")) addQ('Complete: "_____ 646-555-3048." (It is)', getSnippet(["It's", "phone"]), 'It + is = It\'s', 'It\'s', 'grammar');
-            if (ft.includes("don't") || ft.includes("do not")) addQ('Negative: "I _____ eat lunch." (do not)', getSnippet(["don't", "eat"]), 'do + not = don\'t', 'don\'t', 'grammar');
-            if (ft.includes("doesn't") || ft.includes("does not")) addQ('Negative: "She _____ watch TV." (does not)', getSnippet(["doesn't", "watch"]), 'does + not = doesn\'t', 'doesn\'t', 'grammar');
-            if (ft.includes("do you") && ft.includes("?")) addQ('Complete: "_____ you play sports?"', getSnippet(["Do you", "play"]), 'Use Do at start', 'Do', 'grammar');
-            if (ft.includes("does") && (ft.includes("mother") || ft.includes("she"))) addQ('Complete: "_____ your mother work?"', getSnippet(["Does", "mother"]), 'Use Does for she', 'Does', 'grammar');
-            if (ft.includes("his ") && ft.includes("movie")) addQ('Complete: "Sean Penn is an actor. _____ movies are very good."', getSnippet(["his", "movie"]), 'Possessive for male', 'His', 'grammar');
-            if (ft.includes("her ") && ft.includes("voice")) addQ('Complete: "Norah Jones is a singer. _____ voice is amazing."', getSnippet(["her", "voice"]), 'Possessive for female', 'Her', 'grammar');
-            if (ft.includes("their ") && ft.includes("match")) addQ('Complete: "The Williams sisters. _____ matches are exciting."', getSnippet(["their", "matches"]), 'Possessive for plural', 'Their', 'grammar');
-            if (ft.includes("how about you")) addQ('What phrase returns a question? "I\'m fine. _____?"', getSnippet(["How about you"]), 'Three words', 'How about you', 'grammar');
-            if (ft.includes("where's") || ft.includes("where is")) addQ('Complete: "_____ the VCR?" (Where is)', getSnippet(["Where's", "VCR"]), 'Where + is = Where\'s', 'Where\'s', 'grammar');
-            if (ft.includes("this ") && ft.includes("mp3")) addQ('Complete: "_____ is an MP3 player." (This/These)', getSnippet(["What's this", "MP3"]), 'Singular near', 'This', 'grammar');
-            if (ft.includes("an ") && ft.includes("mp3")) addQ('Article: "This is _____ MP3 player." (a/an)', getSnippet(["MP3 player"]), 'Use an before vowel sound', 'an', 'grammar');
-            if (ft.includes("well,") || ft.includes("well ")) addQ('What word starts an answer when thinking? "_____, I\'m from Chicago."', getSnippet(["Well", "Chicago"]), 'Top 50 word', 'Well', 'grammar');
-            if (ft.includes("good morning")) addQ('What greeting for the morning?', getSnippet(["Good morning"]), 'Two words', 'Good morning', 'vocabulary');
-            if (ft.includes("good night")) addQ('What do you say before bed?', getSnippet(["Good night"]), 'Two words', 'Good night', 'vocabulary');
-            if (ft.includes("nice to meet you")) addQ('What expression when meeting first time?', getSnippet(["Nice to meet you"]), 'Four words', 'Nice to meet you', 'vocabulary');
-            if (ft.includes("see you") || ft.includes("bye")) addQ('Informal goodbye to a friend?', getSnippet(["See you", "Bye"]), 'Two words', 'See you', 'vocabulary');
-            if (ft.includes("thank you") || ft.includes("you're welcome")) addQ('Response to "Thank you"?', getSnippet(["You're welcome"]), 'Two words', 'You\'re welcome', 'vocabulary');
-            if (ft.includes("sorry") && ft.includes("that's ok")) addQ('Response to "I\'m sorry"?', getSnippet(["That's OK"]), 'Two words', 'That\'s OK', 'vocabulary');
-            if (ft.includes("first name") || ft.includes("last name")) addQ('What is your family name called?', getSnippet(["last name"]), 'Two words', 'last name', 'vocabulary');
-            if (ft.includes("spell")) addQ('Question to know letters of a word?', getSnippet(["spell"]), 'How do you...', 'How do you spell', 'vocabulary');
-            if (ft.includes("classroom") || ft.includes("board")) addQ('What surface does a teacher write on?', getSnippet(["board", "classroom"]), 'Starts with b', 'board', 'vocabulary');
-            if (ft.includes("wastebasket")) addQ('Container for paper waste?', getSnippet(["wastebasket"]), 'waste + basket', 'wastebasket', 'vocabulary');
-            if (ft.includes("cafeteria")) addQ('Where do students eat?', getSnippet(["cafeteria"]), 'Starts with c', 'cafeteria', 'vocabulary');
-            if (ft.includes("singer")) addQ('Person who performs songs?', getSnippet(["singer"]), '_____ songs', 'singer', 'vocabulary');
-            if (ft.includes("outgoing") || ft.includes("shy")) addQ('Adjective for a social person?', getSnippet(["outgoing", "shy"]), 'Opposite of shy', 'outgoing', 'vocabulary');
-            if (ft.includes("grandmother") || ft.includes("grandma")) addQ('Your mother\'s mother?', getSnippet(["grandmother"]), 'Grand...', 'grandmother', 'vocabulary');
-            if (ft.includes("breakfast")) addQ('First meal of the day?', getSnippet(["breakfast"]), 'Morning meal', 'breakfast', 'vocabulary');
-            if (ft.includes("homework")) addQ('School work done at home?', getSnippet(["homework"]), 'home + work', 'homework', 'vocabulary');
-            if (ft.includes("really?")) addQ('One-word question showing surprise?', getSnippet(["Really?"]), 'Top 50 word', 'Really', 'vocabulary');
-            if (ft.includes("average") && ft.includes("90,000")) addQ('How many hours does an American work in a lifetime?', getSnippet(["90,000"]), 'Over 90 thousand', '90,000', 'vocabulary');
-            if (questions.length < 4) {
-                addQ('What is the main topic of this page?', getSnippet([page.topic.split(' ')[0]]), `Section: ${page.section}`, page.topic.split(',')[0].trim(), 'comprehension');
-                addQ('Which unit does this page belong to?', getSnippet(['Unit']), `Unit ${page.unit}`, `Unit ${page.unit}`, 'comprehension');
+            const add=(text,context,hint,answer,type='grammar')=>qs.push({id:qs.length+1,text,context,hint,answer,type});
+
+            if(ft.includes("i'm")||ft.includes("i am")) add('Complete: "Hello. _____ Chris." (I am)',snip(["I'm","Hello"]),'I + am = I\'m','I\'m','grammar');
+            if(ft.includes("you're")||ft.includes("you are")) add('Complete: "_____ in Room B." (You are)',snip(["You're","Room"]),'You + are = You\'re','You\'re','grammar');
+            if(ft.includes("he's")||ft.includes("he is")) add('Rewrite: "Jun is at work." → "_____ at work."',snip(["He's","Jun"]),'He + is = He\'s','He\'s','grammar');
+            if(ft.includes("she's")||ft.includes("she is")) add('Complete: "Laura is sick." → "_____ sick."',snip(["She's","sick"]),'She + is = She\'s','She\'s','grammar');
+            if(ft.includes("they're")||ft.includes("they are")) add('Rewrite: "Kim and Phong are late." → "_____ late."',snip(["They're","late"]),'They + are = They\'re','They\'re','grammar');
+            if(ft.includes("we're")||ft.includes("we are")) add('Complete: "_____ in the same class." (We are)',snip(["We're","same class"]),'We + are = We\'re','We\'re','grammar');
+            if(ft.includes("are you")&&ft.includes("?")) add('Question: "_____ you here for English class?"',snip(["Are you","class"]),'Start with Are','Are','grammar');
+            if(ft.includes("is he")||ft.includes("is she")) add('Question: "_____ she sick?"',snip(["Is she","sick"]),'Use Is for he/she','Is','grammar');
+            if(ft.includes("are they")) add('Complete: "_____ they in the cafeteria?"',snip(["Are they","cafeteria"]),'Use Are for they','Are','grammar');
+            if(ft.includes("what's")||ft.includes("what is")) add('Complete: "_____ your name?" (Contraction)',snip(["What's","name"]),'What + is = What\'s','What\'s','grammar');
+            if(ft.includes("it's")||ft.includes("it is")) add('Complete: "_____ 646-555-3048." (It is)',snip(["It's","phone"]),'It + is = It\'s','It\'s','grammar');
+            if(ft.includes("don't")||ft.includes("do not")) add('Negative: "I _____ eat lunch." (do not)',snip(["don't","eat"]),'do + not = don\'t','don\'t','grammar');
+            if(ft.includes("doesn't")||ft.includes("does not")) add('Negative: "She _____ watch TV." (does not)',snip(["doesn't","watch"]),'does + not = doesn\'t','doesn\'t','grammar');
+            if(ft.includes("do you")&&ft.includes("?")) add('Complete: "_____ you play sports?"',snip(["Do you","play"]),'Use Do at start','Do','grammar');
+            if(ft.includes("does")&&(ft.includes("mother")||ft.includes("she"))) add('Complete: "_____ your mother work?"',snip(["Does","mother"]),'Use Does for she','Does','grammar');
+            if(ft.includes("his ")&&ft.includes("movie")) add('Complete: "Sean Penn is an actor. _____ movies are very good."',snip(["his","movie"]),'Possessive for male','His','grammar');
+            if(ft.includes("her ")&&ft.includes("voice")) add('Complete: "Norah Jones is a singer. _____ voice is amazing."',snip(["her","voice"]),'Possessive for female','Her','grammar');
+            if(ft.includes("their ")&&ft.includes("match")) add('Complete: "The Williams sisters. _____ matches are exciting."',snip(["their","matches"]),'Possessive for plural','Their','grammar');
+            if(ft.includes("how about you")) add('How do you return the same question? "I\'m fine. _____?"',snip(["How about you"]),'Three words','How about you','grammar');
+            if(ft.includes("where's")||ft.includes("where is")) add('Complete: "_____ the VCR?" (Where is)',snip(["Where's","VCR"]),'Where + is = Where\'s','Where\'s','grammar');
+            if(ft.includes("this ")&&ft.includes("mp3")) add('Complete: "_____ is an MP3 player." (This/These)',snip(["What's this","MP3"]),'Singular near','This','grammar');
+            if(ft.includes("an ")&&ft.includes("mp3")) add('Article: "This is _____ MP3 player." (a/an)',snip(["MP3 player"]),'Use an before vowel sound','an','grammar');
+            if(ft.includes("well,")||ft.includes("well ")) add('What word starts an answer when you need to think? "_____, I\'m from Chicago."',snip(["Well","Chicago"]),'Top 50 word','Well','grammar');
+
+            // Vocabulary focus – pick a key word from the page
+            const vocabWords = page.vocabulary || [];
+            if(vocabWords.length>0){
+                const v = vocabWords[0];
+                add(`Which word means "${v}"? (Write the word)`,snip([v]),`It's a key word on this page`,v,'vocabulary');
             }
-            return questions.slice(0, 8);
+            if(ft.includes("good morning")) add('Greeting in the morning?',snip(["Good morning"]),'Two words','Good morning','vocabulary');
+            if(ft.includes("good night")) add('What do you say before bed?',snip(["Good night"]),'Two words','Good night','vocabulary');
+            if(ft.includes("nice to meet you")) add('What do you say when you meet someone new?',snip(["Nice to meet you"]),'Four words','Nice to meet you','vocabulary');
+            if(ft.includes("see you")) add('Informal goodbye?',snip(["See you"]),'Two words','See you','vocabulary');
+            if(ft.includes("you're welcome")) add('Response to "Thank you"?',snip(["You're welcome"]),'Two words','You\'re welcome','vocabulary');
+            if(ft.includes("that's ok")) add('Response to "I\'m sorry"?',snip(["That's OK"]),'Two words','That\'s OK','vocabulary');
+            if(ft.includes("last name")) add('Family name?',snip(["last name"]),'Two words','last name','vocabulary');
+            if(ft.includes("spell")) add('How to ask for letters?',snip(["spell"]),'How do you...','How do you spell','vocabulary');
+            if(ft.includes("board")) add('Teacher writes on it?',snip(["board"]),'Classroom item','board','vocabulary');
+            if(ft.includes("wastebasket")) add('Paper trash container?',snip(["wastebasket"]),'waste + basket','wastebasket','vocabulary');
+            if(ft.includes("cafeteria")) add('Where students eat?',snip(["cafeteria"]),'Place','cafeteria','vocabulary');
+            if(ft.includes("singer")) add('Person who sings?',snip(["singer"]),'Job','singer','vocabulary');
+            if(ft.includes("outgoing")) add('Adjective for a social person?',snip(["outgoing"]),'Opposite of shy','outgoing','vocabulary');
+            if(ft.includes("grandmother")) add('Your mother\'s mother?',snip(["grandmother"]),'Family','grandmother','vocabulary');
+            if(ft.includes("breakfast")) add('First meal of the day?',snip(["breakfast"]),'Morning','breakfast','vocabulary');
+            if(ft.includes("homework")) add('School work at home?',snip(["homework"]),'home + work','homework','vocabulary');
+            if(ft.includes("really?")) add('One-word to show surprise?',snip(["Really?"]),'Top 50 word','Really','vocabulary');
+
+            if(qs.length<4){
+                // fallback: ask a simple fill based on the first line
+                const firstLine = page.fullText.split('\n').find(l=>l.trim().length>10)||'';
+                if(firstLine.includes(':')){
+                    const parts = firstLine.split(':');
+                    if(parts.length>1){
+                        const boldPart = parts[1].trim().split(' ')[0];
+                        add(`The conversation starts with: "${firstLine.trim().split(':')[0]}: _____ ..."`,firstLine,'Look at the first line',boldPart,'vocabulary');
+                    }
+                }
+            }
+            return qs.slice(0,8);
         }
 
-        function renderQuestions(questions) {
+        function renderQuestions(questions){
             const container = document.getElementById('questionsContainer');
-            let html = '';
-            questions.forEach((q, i) => {
-                const tagClass = q.type === 'grammar' ? 'tag-grammar' : q.type === 'vocabulary' ? 'tag-vocabulary' : q.type === 'comprehension' ? 'tag-comprehension' : 'tag-conversation';
-                html += `<div class="card question-card-inner" id="qcard-${i}">
+            let html='';
+            questions.forEach((q,i)=>{
+                const tagClass = q.type==='grammar'?'tag-grammar':'tag-vocabulary';
+                html+=`<div class="card question-card-inner" id="qcard-${i}">
                     <div class="question-header"><span class="question-number">${i+1}</span><span class="question-text">${q.text}</span><span class="tag ${tagClass}">${t(q.type)}</span></div>
                     ${q.context?`<div class="context-snippet">📖 <span class="highlight">${q.context}</span></div>`:''}
                     <div class="answer-row"><input type="text" id="answer-${i}" placeholder="Type answer..." onkeydown="if(event.key==='Enter')checkAnswer(${i})"><button class="btn btn-ghost" onclick="toggleHint(${i})">${t('hint')}</button><button class="btn btn-secondary" onclick="checkAnswer(${i})">${t('check')}</button><button class="btn btn-ghost" onclick="showAnswer(${i})">${t('show')}</button></div>
@@ -1153,100 +689,84 @@ This page contains material related to English language learning. Please refer t
                     <div class="feedback-text" id="feedback-${i}"></div>
                 </div>`;
             });
-            container.innerHTML = html;
+            container.innerHTML=html;
         }
 
-        function generateAssessment() {
-            const pn = parseInt(document.getElementById('pageInput').value);
-            if (isNaN(pn) || pn < 1 || pn > 83) { showToast(t('toastFillRequired'), 'warning'); return; }
-            const page = textbookDB[pn];
-            if (!page) { showToast(t('toastError'), 'error'); return; }
-            currentPage = page;
-            currentQuestions = generateQuestionsForPage(pn);
-            document.getElementById('resultsPanel').style.display = 'none';
-            document.getElementById('pageInfo').innerHTML = `📄 <strong>${t('pageLabel')} ${pn}</strong> | Unit ${page.unit} | ${page.section}<br>📝 ${page.topic}`;
-            const cd = document.getElementById('pageContentDisplay');
-            cd.innerHTML = page.fullText.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-            cd.scrollTop = 0;
-            if (currentQuestions.length === 0) {
-                document.getElementById('questionsContainer').innerHTML = '<div class="empty-state"><p>😕 No questions for this page.</p></div>';
-            } else { renderQuestions(currentQuestions);
-                document.getElementById('resultsPanel').style.display = 'block'; }
-            cd.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function generateAssessment(){
+            const pn=parseInt(document.getElementById('pageInput').value);
+            if(isNaN(pn)||pn<1||pn>83){showToast(t('toastFillRequired'),'warning');return;}
+            const page=textbookDB[pn];
+            if(!page){showToast(t('toastError'),'error');return;}
+            currentPage=page;
+            currentQuestions=generateQuestionsForPage(pn);
+            document.getElementById('resultsPanel').style.display='none';
+            document.getElementById('pageInfo').innerHTML=`📄 <strong>${t('pageLabel')} ${pn}</strong> | Unit ${page.unit} | ${page.section}`;
+            document.getElementById('pageContentDisplay').innerHTML=page.fullText.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+            document.getElementById('pageContentDisplay').scrollTop=0;
+            if(currentQuestions.length===0){
+                document.getElementById('questionsContainer').innerHTML='<div class="empty-state"><p>😕 No questions for this page.</p></div>';
+            }else{
+                renderQuestions(currentQuestions);
+                document.getElementById('resultsPanel').style.display='block';
+            }
+            document.getElementById('pageContentDisplay').scrollIntoView({behavior:'smooth',block:'start'});
         }
 
-        function toggleHint(i) { const e = document.getElementById(`hint-${i}`); if (e) e.classList.toggle('show'); }
-
-        function showAnswer(i) { const e = document.getElementById(`correctAnswer-${i}`); if (e) e.classList.add('show'); }
-
-        function checkAnswer(i) {
-            const inp = document.getElementById(`answer-${i}`);
-            const fb = document.getElementById(`feedback-${i}`);
-            const card = document.getElementById(`qcard-${i}`);
-            const ua = inp.value.trim().toLowerCase();
-            if (!ua) { fb.className = 'feedback-text incorrect';
-                fb.textContent = t('typeAnswer');
-                fb.style.display = 'block'; return; }
-            const ca = currentQuestions[i].answer.toLowerCase().split(',').map(a => a.trim());
-            let ok = false;
-            for (const v of ca) { if (ua === v || (v.length > 3 && ua.includes(v)) || (ua.length > 3 && v.includes(ua))) { ok = true; break; } }
-            if (ok) { fb.className = 'feedback-text correct';
-                fb.textContent = t('correct');
-                inp.classList.add('correct-input');
-                inp.classList.remove('incorrect-input');
-                card.style.borderColor = '#10b981'; } else { fb.className = 'feedback-text incorrect';
-                fb.textContent = t('incorrect');
-                inp.classList.add('incorrect-input');
-                inp.classList.remove('correct-input');
-                card.style.borderColor = '#ef4444'; }
-            fb.style.display = 'block';
+        function toggleHint(i){document.getElementById(`hint-${i}`).classList.toggle('show');}
+        function showAnswer(i){document.getElementById(`correctAnswer-${i}`).classList.add('show');}
+        function checkAnswer(i){
+            const inp=document.getElementById(`answer-${i}`);
+            const fb=document.getElementById(`feedback-${i}`);
+            const card=document.getElementById(`qcard-${i}`);
+            const ua=inp.value.trim().toLowerCase();
+            if(!ua){fb.className='feedback-text incorrect';fb.textContent=t('typeAnswer');fb.style.display='block';return;}
+            const ca=currentQuestions[i].answer.toLowerCase().split(',').map(s=>s.trim());
+            let ok=false;
+            for(const v of ca){if(ua===v||(v.length>3&&ua.includes(v))||(ua.length>3&&v.includes(ua))){ok=true;break;}}
+            if(ok){fb.className='feedback-text correct';fb.textContent=t('correct');inp.classList.add('correct-input');inp.classList.remove('incorrect-input');card.style.borderColor='#10b981';}
+            else{fb.className='feedback-text incorrect';fb.textContent=t('incorrect');inp.classList.add('incorrect-input');inp.classList.remove('correct-input');card.style.borderColor='#ef4444';}
+            fb.style.display='block';
             updateScore();
         }
-
-        function checkAllAnswers() { currentQuestions.forEach((_, i) => { const inp = document.getElementById(`answer-${i}`); if (inp && inp.value.trim()) checkAnswer(i); }); }
-
-        function showAllAnswers() { currentQuestions.forEach((_, i) => showAnswer(i)); }
-
-        function updateScore() {
-            let correct = 0;
-            const total = currentQuestions.length;
-            currentQuestions.forEach((_, i) => { const fb = document.getElementById(`feedback-${i}`); if (fb && fb.classList.contains('correct')) correct++; });
-            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
-            document.getElementById('scoreDisplay').textContent = pct + '%';
-            document.getElementById('progressFill').style.width = pct + '%';
-            let stars = '';
-            if (pct === 100) stars = '⭐⭐⭐⭐⭐';
-            else if (pct >= 80) stars = '⭐⭐⭐⭐';
-            else if (pct >= 60) stars = '⭐⭐⭐';
-            else if (pct >= 40) stars = '⭐⭐';
-            else if (pct > 0) stars = '⭐';
-            document.getElementById('starsDisplay').textContent = stars;
-            const msg = document.getElementById('scoreMessage');
-            if (pct === 100) msg.textContent = t('perfect');
-            else if (pct >= 75) msg.textContent = t('great');
-            else if (pct >= 50) msg.textContent = t('good');
-            else if (total > 0 && pct > 0) msg.textContent = t('keep');
-            else msg.textContent = t('start');
+        function checkAllAnswers(){currentQuestions.forEach((_,i)=>{const inp=document.getElementById(`answer-${i}`);if(inp&&inp.value.trim())checkAnswer(i);});}
+        function showAllAnswers(){currentQuestions.forEach((_,i)=>showAnswer(i));}
+        function updateScore(){
+            let correct=0;
+            const total=currentQuestions.length;
+            currentQuestions.forEach((_,i)=>{const fb=document.getElementById(`feedback-${i}`);if(fb&&fb.classList.contains('correct'))correct++;});
+            const pct=total>0?Math.round((correct/total)*100):0;
+            document.getElementById('scoreDisplay').textContent=pct+'%';
+            document.getElementById('progressFill').style.width=pct+'%';
+            let stars='';
+            if(pct===100)stars='⭐⭐⭐⭐⭐';
+            else if(pct>=80)stars='⭐⭐⭐⭐';
+            else if(pct>=60)stars='⭐⭐⭐';
+            else if(pct>=40)stars='⭐⭐';
+            else if(pct>0)stars='⭐';
+            document.getElementById('starsDisplay').textContent=stars;
+            const msg=document.getElementById('scoreMessage');
+            if(pct===100)msg.textContent=t('perfect');
+            else if(pct>=75)msg.textContent=t('great');
+            else if(pct>=50)msg.textContent=t('good');
+            else if(total>0&&pct>0)msg.textContent=t('keep');
+            else msg.textContent=t('start');
         }
-
-        function randomPage() { document.getElementById('pageInput').value = Math.floor(Math.random() * 83) + 1;
-            generateAssessment(); }
-
-        function resetAll() {
-            document.getElementById('pageInput').value = '9';
-            document.getElementById('questionsContainer').innerHTML = `<div class="empty-state"><p>${t('generatePrompt')}</p><p style="font-size:0.8rem;margin-top:0.5rem;">${t('pagesCover')}</p></div>`;
-            document.getElementById('pageContentDisplay').innerHTML = `<div class="empty-state"><p>📖</p><p><strong>${t('selectPage')}</strong></p><p style="font-size:0.85rem;margin-top:0.5rem;">${t('selectPageDesc')}</p></div>`;
-            document.getElementById('resultsPanel').style.display = 'none';
-            document.getElementById('pageInfo').innerHTML = t('enterPage');
-            document.getElementById('scoreDisplay').textContent = '0%';
-            document.getElementById('progressFill').style.width = '0%';
-            document.getElementById('starsDisplay').textContent = '';
-            document.getElementById('scoreMessage').textContent = '';
-            currentQuestions = [];
-            currentPage = null;
+        function randomPage(){document.getElementById('pageInput').value=Math.floor(Math.random()*83)+1;generateAssessment();}
+        function resetAll(){
+            document.getElementById('pageInput').value='9';
+            document.getElementById('questionsContainer').innerHTML=`<div class="empty-state"><p>${t('generatePrompt')}</p></div>`;
+            document.getElementById('pageContentDisplay').innerHTML=`<div class="empty-state"><p>📖</p><p><strong>${t('selectPage')}</strong></p><p style="font-size:0.85rem;margin-top:0.5rem;">${t('selectPageDesc')}</p></div>`;
+            document.getElementById('resultsPanel').style.display='none';
+            document.getElementById('pageInfo').innerHTML=t('enterPage');
+            document.getElementById('scoreDisplay').textContent='0%';
+            document.getElementById('progressFill').style.width='0%';
+            document.getElementById('starsDisplay').textContent='';
+            document.getElementById('scoreMessage').textContent='';
+            currentQuestions=[];
+            currentPage=null;
         }
         updateStaticTexts();
-        window.addEventListener('DOMContentLoaded', () => { generateAssessment(); });
+        window.addEventListener('DOMContentLoaded',()=>{generateAssessment();});
     </script>
 </body>
 </html>

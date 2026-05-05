@@ -19,7 +19,7 @@
             min-height: 100vh;
         }
         .assessment-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             background: white;
             border-radius: 28px;
@@ -110,7 +110,6 @@
             border: none;
             cursor: pointer;
             transition: all 0.2s;
-            margin-left: 0.5rem;
             font-weight: 600;
         }
         .btn-hint:hover {
@@ -126,11 +125,25 @@
             border: none;
             cursor: pointer;
             transition: all 0.2s;
-            margin-left: 0.5rem;
             font-weight: 600;
         }
         .btn-check:hover {
             background: #237a4b;
+            transform: scale(1.03);
+        }
+        .btn-show-answer {
+            background: #c0392b;
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        .btn-show-answer:hover {
+            background: #a93226;
             transform: scale(1.03);
         }
         .page-info {
@@ -141,6 +154,50 @@
             border-left: 6px solid #0f67b3;
             font-weight: 600;
             color: #1a4a6e;
+        }
+        .page-content-display {
+            background: #fefefe;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-height: 450px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .page-content-display .conversation-block {
+            background: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-left: 4px solid #1e466e;
+        }
+        .page-content-display .grammar-block {
+            background: #fef7e0;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            border-left: 4px solid #e9b35f;
+        }
+        .page-content-display .vocab-block {
+            background: #e6f7f0;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            border-left: 4px solid #2c8c5a;
+        }
+        .page-content-display .instruction-block {
+            background: #fef5f5;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+            border-left: 4px solid #c0392b;
+            font-style: italic;
         }
         .question-card {
             background: #fafcff;
@@ -155,6 +212,14 @@
             border-color: #bccde0;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
         }
+        .question-card.answered-correct {
+            border-color: #2c8c5a;
+            background: #f0faf5;
+        }
+        .question-card.answered-incorrect {
+            border-color: #c0392b;
+            background: #fef5f5;
+        }
         .question-number {
             display: inline-block;
             background: #1e466e;
@@ -168,11 +233,54 @@
             font-size: 0.9rem;
             margin-right: 0.8rem;
         }
+        .question-type-tag {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 0.5rem;
+        }
+        .tag-grammar {
+            background: #fef7e0;
+            color: #8b6914;
+        }
+        .tag-vocabulary {
+            background: #e6f7f0;
+            color: #1a5c3a;
+        }
+        .tag-comprehension {
+            background: #e0f2fe;
+            color: #0f67b3;
+        }
+        .tag-conversation {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
         .question-text {
             font-weight: 600;
             font-size: 1.05rem;
             display: inline;
             color: #1a2a3f;
+        }
+        .question-context {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            color: #3a4a5f;
+            white-space: pre-wrap;
+        }
+        .question-context .highlight {
+            background: #fef3c7;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            font-weight: 700;
         }
         .answer-area {
             margin-top: 1rem;
@@ -196,6 +304,14 @@
             border-color: #1e466e;
             box-shadow: 0 0 0 3px rgba(30, 70, 110, 0.1);
         }
+        .answer-area input[type="text"].correct-input {
+            border-color: #2c8c5a;
+            background: #f0faf5;
+        }
+        .answer-area input[type="text"].incorrect-input {
+            border-color: #c0392b;
+            background: #fef5f5;
+        }
         .answer-area select {
             padding: 0.6rem 1rem;
             border: 2px solid #dee4ed;
@@ -215,6 +331,20 @@
             animation: fadeIn 0.3s ease;
         }
         .hint-box.show {
+            display: block;
+        }
+        .correct-answer-box {
+            background: #e6f7f0;
+            border: 1px solid #2c8c5a;
+            border-radius: 12px;
+            padding: 0.7rem 1rem;
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+            color: #1a5c3a;
+            display: none;
+            font-weight: 600;
+        }
+        .correct-answer-box.show {
             display: block;
         }
         .feedback {
@@ -263,20 +393,6 @@
             color: #7a8b9e;
             font-style: italic;
         }
-        .page-content-preview {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1rem 1.5rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #e2e8f0;
-        }
-        .page-content-preview h4 {
-            color: #1e466e;
-            margin-bottom: 0.5rem;
-        }
         .tag {
             display: inline-block;
             background: #e8edf5;
@@ -302,6 +418,10 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+            .page-content-display {
+                max-height: 300px;
+                font-size: 0.85rem;
+            }
         }
         .progress-bar {
             width: 100%;
@@ -317,6 +437,24 @@
             border-radius: 10px;
             transition: width 0.4s ease;
         }
+        .section-divider {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 1.5rem 0;
+        }
+        .stars {
+            color: #f4a261;
+            font-size: 1.2rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #7a8b9e;
+        }
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -324,27 +462,40 @@
         <div class="header">
             <h1>📝 Continuous Assessment Tool</h1>
             <p class="subtitle">Touchstone ENG 101 · General English · Level 1</p>
-            <p class="subtitle">Specify a page number to generate practice questions with embedded hints</p>
+            <p class="subtitle">Read the page content, then answer the questions below</p>
         </div>
 
         <!-- Page Selector -->
         <div class="page-selector">
             <label for="pageInput">📄 Page Number:</label>
-            <input type="number" id="pageInput" min="1" max="83" value="1" placeholder="1–83">
-            <button class="btn" onclick="generateAssessment()">🔍 Generate Questions</button>
+            <input type="number" id="pageInput" min="1" max="83" value="9" placeholder="1–83">
+            <button class="btn" onclick="generateAssessment()">🔍 Generate Assessment</button>
             <button class="btn btn-outline" onclick="randomPage()">🎲 Random Page</button>
             <button class="btn btn-outline" onclick="resetAll()">🔄 Reset</button>
         </div>
 
         <!-- Page Info -->
         <div class="page-info" id="pageInfo">
-            📌 Enter a page number (1–83) and click <strong>Generate Questions</strong> to start your assessment.
+            📌 Enter a page number (1–83) and click <strong>Generate Assessment</strong> to see the page content and questions.
         </div>
+
+        <!-- Full Page Content Display -->
+        <div class="page-content-display" id="pageContentDisplay">
+            <div class="empty-state">
+                <div class="icon">📖</div>
+                <p><strong>Select a page to display its content here</strong></p>
+                <p style="font-size:0.85rem; margin-top:0.5rem;">The full textbook text will appear, followed by assessment questions</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+        <h2 style="text-align:center; color:#1e466e;">📋 Assessment Questions</h2>
+        <p style="text-align:center; color:#7a8b9e; margin-bottom:1rem;">Answer based on the text shown above</p>
 
         <!-- Questions Container -->
         <div id="questionsContainer">
             <div class="no-questions">
-                <p>✨ Select a page to generate assessment questions.</p>
+                <p>✨ Select a page to generate assessment questions with full page content.</p>
                 <p style="font-size:0.8rem; margin-top:0.5rem;">Pages cover Units 1–4 (Student's Book & Workbook)</p>
             </div>
         </div>
@@ -353,113 +504,1503 @@
         <div class="results-panel" id="resultsPanel" style="display:none;">
             <h3>📊 Your Score</h3>
             <div class="score-display" id="scoreDisplay">0%</div>
+            <div class="stars" id="starsDisplay"></div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width:0%;"></div>
             </div>
             <p id="scoreMessage"></p>
             <button class="btn" onclick="checkAllAnswers()">✅ Check All Answers</button>
-        </div>
-
-        <!-- Page Content Preview -->
-        <div class="page-content-preview" id="pagePreview" style="display:none;">
-            <h4>📖 Page Content Preview</h4>
-            <div id="previewContent"></div>
+            <button class="btn btn-outline" onclick="showAllAnswers()" style="margin-left:0.5rem;">👁️ Show All Answers</button>
         </div>
     </div>
 
     <script>
-        // ==================== TEXTBOOK DATABASE ====================
-        // Complete page-by-page content mapping based on extracted text
+        // ==================== COMPLETE TEXTBOOK DATABASE WITH FULL PAGE TEXT ====================
         const textbookDB = {
-            // UNIT 1: All about you (Pages 1–17)
-            1: { unit: 1, section: "Title Page", topic: "ENG 101 GENERAL ENGLISH", content: "Course title page for General English 101.", grammar: [], vocabulary: [] },
-            2: { unit: 1, section: "Contents", topic: "Unit overview: All about you, In class, Favorite people, Everyday life", content: "Four main units listed with page numbers.", grammar: [], vocabulary: [] },
-            3: { unit: 1, section: "Number Grid", topic: "Page number reference grid", content: "Grid pattern of numbers for page indexing.", grammar: [], vocabulary: [] },
-            4: { unit: 1, section: "Course Features", topic: "Conversation strategy, Strategy plus, Listening & speaking, Reading, Writing, Help notes, Vocabulary notebook, On your own, Free talk, Touchstone checkpoint, Self-study Audio CD/CD-ROM, Class Audio Program, Workbook", content: "Overview of all course components and features.", grammar: [], vocabulary: ["conversation strategy", "vocabulary notebook", "free talk", "checkpoint"] },
-            5: { unit: 1, section: "Number Grid", topic: "Page number reference grid continued", content: "Continuation of grid pattern.", grammar: [], vocabulary: [] },
-            6: { unit: 1, section: "Unit Overview Chart", topic: "Listening, Reading, Writing, Vocabulary notebook, Free talk activities for Units 1-4", content: "Chart showing all skills and activities across the four units.", grammar: [], vocabulary: ["membership", "application form", "family tree", "daily activities"] },
-            7: { unit: 1, section: "Classroom Language", topic: "Getting help phrases, Working with a partner phrases", content: "Useful classroom expressions for asking help and partner work.", grammar: [], vocabulary: ["repeat", "explain", "spell", "partner", "roles", "paragraph"] },
-            8: { unit: 1, section: "Unit 1 Opener", topic: "All about you – verb be with I/you/we; hello/goodbye; names; numbers; How about you?; Thanks", content: "Unit objectives and picture matching activity.", grammar: ["verb be (I, you, we)"], vocabulary: ["hello", "goodbye", "thanks", "name", "telephone number", "email address"] },
-            9: { unit: 1, section: "Lesson A – Hello and good-bye", topic: "Conversations: Good morning, Hello, I'm Matt Lenski, Nice to meet you", content: "Getting started with greetings and introductions.", grammar: ["I'm", "Nice to meet you"], vocabulary: ["Good morning", "Hello", "Hi", "Nice to meet you"] },
-            10: { unit: 1, section: "Building vocabulary – responses", topic: "Good night, Have a good evening, Bye, See you, responses to hello/goodbye", content: "Vocabulary building with listening and speaking practice.", grammar: [], vocabulary: ["Good night", "Good evening", "See you", "Bye", "Have a nice day", "You too"] },
-            11: { unit: 1, section: "Lesson B – Saying names", topic: "Alphabet, spelling names, first/last/middle/nickname", content: "Saying names and spelling practice.", grammar: [], vocabulary: ["first name", "last name", "middle name", "nickname", "alphabet", "spell"] },
-            12: { unit: 1, section: "Building language – classrooms", topic: "Are you here for English class? Verb be: I/you/we", content: "Conversation about classroom placement and grammar chart.", grammar: ["I'm", "you're", "we're", "Are you...?", "Am I...?", "Are we...?"], vocabulary: ["class", "Room", "same class"] },
-            13: { unit: 1, section: "Lesson C – Numbers 0-10 & personal info", topic: "Numbers, phone numbers, email addresses, membership conversations", content: "Numbers and personal information practice.", grammar: [], vocabulary: ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "phone number", "email address"] },
-            14: { unit: 1, section: "Grammar – What's...? It's...", topic: "What's your name/phone number/email address? Match questions and answers.", content: "Grammar chart and practice for What's questions.", grammar: ["What's (= What is)", "name's (= name is)", "It's (= It is)"], vocabulary: ["teacher", "first name", "last name"] },
-            15: { unit: 1, section: "Lesson D – Conversation strategy: How about you?", topic: "Adam and Alicia conversation; using How about you? to return questions", content: "Strategy for keeping conversations going.", grammar: ["How about you?"], vocabulary: ["concert", "student", "vacation", "business"] },
-            16: { unit: 1, section: "Strategy plus – Everyday expressions", topic: "Formal vs informal: Yes/Yeah, Thank you/Thanks, Hello/Hi, How are you?/How are you doing?, I'm fine/OK/Pretty good/Good, Good-bye/Bye/See you", content: "Formal and informal expression comparison.", grammar: [], vocabulary: ["Yeah", "Thanks", "Hi", "How are you doing?", "Pretty good", "See you later"] },
-            17: { unit: 1, section: "Vocabulary notebook – On your own", topic: "Hello, Good morning, Hi, How are you?, Have a nice day, See you tomorrow, Good night", content: "Review of greetings and farewells for self-study.", grammar: [], vocabulary: ["Hello", "Good morning", "Good night", "Have a nice day", "See you tomorrow"] },
-            // UNIT 2: In class (Pages 18–27)
-            18: { unit: 2, section: "Unit 2 Opener", topic: "In class – verb be with he/she/they; classroom items; this/these; where questions; asking for help; Thank you/I'm sorry", content: "Unit objectives and picture matching.", grammar: ["he's", "she's", "they're", "this", "these"], vocabulary: ["at work", "at the library", "classroom"] },
-            19: { unit: 2, section: "Lesson A – Where's Jun?", topic: "Where are the students? He's at work, she's sick, they're in the cafeteria", content: "Conversation about absent students.", grammar: ["Where's...?", "he's not", "she's", "they're"], vocabulary: ["absent", "work", "sick", "cafeteria", "late", "asleep"] },
-            20: { unit: 2, section: "Grammar – he/she/they", topic: "He's/She's/They're; negative forms; yes-no questions", content: "Grammar chart with possessive and contraction rules.", grammar: ["He's (= He is)", "She's (= She is)", "They're (= They are)", "he's not", "she's not", "they're not", "Is he...?", "Is she...?", "Are they...?"], vocabulary: [] },
-            21: { unit: 2, section: "Lesson B – Classroom objects", topic: "a/an before items; this/these; What's this? It's an MP3 player; Are these your keys?", content: "Vocabulary for classroom items and grammar for this/these.", grammar: ["a", "an", "this", "these", "What's this?", "What are these?"], vocabulary: ["MP3 player", "watch", "glasses", "keys", "wallet", "pen", "dictionary", "eraser"] },
-            22: { unit: 2, section: "Grammar – this/these; noun plurals", topic: "Regular plurals (bag→bags, watch→watches, dictionary→dictionaries); nouns only plural (jeans, scissors, glasses)", content: "Plural rules and pronunciation.", grammar: ["plural -s", "plural -es", "plural -ies", "this is", "these are"], vocabulary: ["jeans", "scissors", "sunglasses", "watches", "dictionaries"] },
-            23: { unit: 2, section: "Lesson C – Classroom locations", topic: "What's on the wall? A clock, a map, posters. Classroom vocabulary.", content: "Classroom object vocabulary building.", grammar: [], vocabulary: ["clock", "map", "posters", "board", "desk", "wastebasket", "closet", "CD player", "computer"] },
-            24: { unit: 2, section: "Building language – Where questions", topic: "Where's the VCR? It's in the closet. Where are the students' papers? They're on the floor. Possessives 's and s'.", content: "Conversation and grammar for location questions.", grammar: ["Where's...?", "Where are...?", "possessive 's", "possessive s'"], vocabulary: ["VCR", "closet", "desk", "floor", "under", "on", "in front of"] },
-            25: { unit: 2, section: "Lesson D – Asking for help", topic: "What's the word for this in English? How do you spell it? Can I borrow your pen? Can you repeat that?", content: "Ming-wei conversation demonstrating help requests.", grammar: [], vocabulary: ["Excuse me", "highlighter", "borrow", "repeat", "page"] },
-            26: { unit: 2, section: "Strategy plus – Responses to Thank you & I'm sorry", topic: "You're welcome, Sure, That's OK, Thanks anyway. Following instructions.", content: "Common responses and classroom instruction following.", grammar: [], vocabulary: ["You're welcome", "Sure", "That's OK", "Thanks anyway", "instructions"] },
-            27: { unit: 2, section: "Vocabulary notebook – On your own", topic: "Label things on the desk; make lists of your things; label magazine pictures.", content: "Self-study vocabulary activities.", grammar: [], vocabulary: ["label", "magazine", "pictures"] },
-            // UNIT 3: Favorite people (Pages 28–38)
-            28: { unit: 3, section: "Unit 3 Opener", topic: "Favorite people – my/your/his/her/our/their; information questions; celebrities; Really?; showing interest", content: "Unit objectives and picture matching (singer, soccer players, actor, artist).", grammar: ["my", "your", "his", "her", "our", "their"], vocabulary: ["singer", "actor", "artist", "soccer player", "celebrity"] },
-            29: { unit: 3, section: "Lesson A – Celebrities", topic: "Sean Penn, Norah Jones, Williams sisters; possessive adjectives in context", content: "Sandra and John conversation about celebrities on TV.", grammar: ["his", "her", "their"], vocabulary: ["good-looking", "movie", "voice", "amazing", "matches", "exciting", "fan"] },
-            30: { unit: 3, section: "Grammar – Be in statements; possessive adjectives", topic: "I'm/You're/He's/She's/We're/They're + my/your/his/her/our/their; circle correct words exercises", content: "Grammar chart and conversation completion.", grammar: ["I'm", "my", "you're", "your", "he's", "his", "she's", "her", "we're", "our", "they're", "their"], vocabulary: ["fan", "band", "CD", "actor", "show"] },
-            31: { unit: 3, section: "Lesson B – Describing people", topic: "smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy; What's your boss like?", content: "Personality adjectives and conversation about co-workers.", grammar: ["What's...like?", "Is he/she...?"], vocabulary: ["smart", "shy", "friendly", "outgoing", "strict", "lazy", "interesting", "fun", "tired", "busy", "hard work", "co-workers", "boss"] },
-            32: { unit: 3, section: "Grammar – Yes-No questions; negatives", topic: "Am I/Are you/Is he/Is she/Is it/Are we/Are they; isn't/aren't; 's not/'re not", content: "Grammar chart with negative forms.", grammar: ["Am I...?", "Are you...?", "Is he...?", "Is she...?", "Is it...?", "Are we...?", "Are they...?", "isn't", "aren't", "'s not", "'re not"], vocabulary: ["shy", "easy", "strict", "lazy", "outgoing"] },
-            33: { unit: 3, section: "Lesson C – Family & age", topic: "Grandma, grandpa; How old is she? She's 72. Where are they from originally? They're from Texas.", content: "Erica and Akemi conversation about grandparents.", grammar: ["How old...?", "Where...from?", "What's...name?", "Who's...?"], vocabulary: ["grandma", "grandpa", "grandmother", "grandfather", "parents", "pretty", "originally"] },
-            34: { unit: 3, section: "Lesson D – Showing interest", topic: "Mark and Eve conversation; repeating words and asking questions; Really?", content: "Strategy for showing interest by echoing and asking follow-ups.", grammar: ["Really?"], vocabulary: ["photo", "friend of mine", "London", "Miami", "artist", "painter", "paintings"] },
-            35: { unit: 3, section: "Strategy plus – Really?; Listening – Friends", topic: "Really? top 50 word; listening about Amy, Anton, Gary; describing friends", content: "Practice with Really? and friend descriptions.", grammar: ["Really?"], vocabulary: ["neighborhood", "best friend", "fun guy", "around my age"] },
-            36: { unit: 3, section: "Family tree & On your own", topic: "Complete family tree; make photo album; write sentences about family", content: "Family vocabulary review and project.", grammar: [], vocabulary: ["family tree", "photo album", "grandmother", "grandfather", "mother", "father", "sister", "brother", "aunt", "uncle", "cousin"] },
-            37: { unit: 3, section: "Checkpoint Units 1-3", topic: "Complete conversation (possessives); unscramble questions; remember vocabulary; self-check", content: "Review exercises for grammar, vocabulary, and conversation strategies.", grammar: ["possessives", "be verb", "information questions"], vocabulary: ["classroom items", "locations", "family", "personality adjectives"] },
-            38: { unit: 3, section: "Do you know these expressions? / Who has the same answer?", topic: "Thank you, Thanks anyway, Nice to meet you, Can I borrow your pen?, Really?, That's OK, You're welcome, Have a good day; self-check and study plan", content: "Expression review and self-assessment.", grammar: [], vocabulary: ["Thank you", "Thanks anyway", "Nice to meet you", "Can I borrow...?", "Really?", "That's OK", "You're welcome", "Have a good day"] },
-            // UNIT 4: Everyday life (Pages 39–49)
-            39: { unit: 4, section: "Unit 4 Opener", topic: "Everyday life – simple present; routines; saying more than yes/no; Well", content: "Unit objectives and activities checklist.", grammar: ["simple present"], vocabulary: ["do homework", "work", "exercise", "watch TV", "every day"] },
-            40: { unit: 4, section: "Number Grid", topic: "Page number reference grid", content: "Grid pattern.", grammar: [], vocabulary: [] },
-            41: { unit: 4, section: "Number Grid", topic: "Page number reference grid continued", content: "Grid pattern continuation.", grammar: [], vocabulary: [] },
-            42: { unit: 4, section: "Lesson A – Simple present statements", topic: "I eat breakfast/I don't eat lunch; He listens/She watches; verb endings; don't/doesn't", content: "Grammar chart and sentence completion.", grammar: ["simple present", "don't", "doesn't", "verb endings -s/-es/-ies"], vocabulary: ["breakfast", "lunch", "coffee", "tea", "radio", "newspaper", "e-mail", "get up"] },
-            43: { unit: 4, section: "Lesson B – Weekly routines", topic: "play sports, take lessons, check email, make phone calls, go shopping, do laundry; Do you...? questionnaire", content: "Weekly activity vocabulary and pair work.", grammar: ["Do you...?"], vocabulary: ["play sports", "take lessons", "check email", "make phone calls", "go shopping", "do laundry", "weekends", "Saturdays", "Sundays"] },
-            44: { unit: 4, section: "Grammar – Yes-No questions & short answers", topic: "Do you...? Yes, I do./No, I don't. Does she...? Yes, she does./No, she doesn't.; survey activity", content: "Grammar chart and class survey.", grammar: ["Do you...?", "Does he/she...?", "Yes, I do.", "No, I don't.", "Yes, she does.", "No, she doesn't."], vocabulary: ["club", "team", "snacks", "homework", "dinner"] },
-            45: { unit: 4, section: "Lesson C – Saying more than yes or no", topic: "Ray and Tina conversation; answering with more information; matching questions and answers", content: "Strategy for friendly, extended answers.", grammar: [], vocabulary: ["live around here", "part-time job", "originally", "only child", "softball team", "restaurant"] },
-            46: { unit: 4, section: "Strategy plus – Well; Listening – What's the question?", topic: "Using Well to think; listening for questions from answers", content: "Well practice and listening activity.", grammar: ["Well"], vocabulary: ["noisy", "loud music", "not really", "go out"] },
-            47: { unit: 4, section: "Lesson D – Reading: Average American", topic: "Lifetime statistics: 90,000 hours work, 24 years sleep, 12 years TV, 2.5 years phone; article comprehension", content: "Reading about American habits.", grammar: ["simple present"], vocabulary: ["average", "lifetime", "kilometers", "miles", "couch", "telephone"] },
-            48: { unit: 4, section: "Listening – Teen habits; Writing – average week", topic: "Christine's habits vs average teen; write e-mail about partner's week", content: "Listening comprehension and writing task.", grammar: ["simple present"], vocabulary: ["soda", "online", "exercise", "cell phone", "go out", "weekends"] },
-            49: { unit: 4, section: "Vocabulary notebook – On your own", topic: "Label pictures with verbs; draw activities; write daily routine labels around house", content: "Self-study vocabulary activities.", grammar: [], vocabulary: ["read the newspaper", "label", "routine"] },
-            // WORKBOOK PAGES (Pages 50–83)
-            50: { unit: "WB", section: "Workbook Title Page", topic: "ENG 101 General English Workbook Foundation Level 1", content: "Workbook title page.", grammar: [], vocabulary: [] },
-            51: { unit: "WB", section: "Workbook Contents", topic: "All about you (02), In class (10), Favorite people (18), Everyday life (26)", content: "Workbook unit listing.", grammar: [], vocabulary: [] },
-            52: { unit: "WB", section: "Unit 1 WB – Lesson A: Hello and good-bye", topic: "Choose correct response; meetings and greetings vocabulary", content: "Multiple choice conversation completion.", grammar: [], vocabulary: ["Hello", "Hi", "Good-bye", "See you later", "Good night", "How are you?"] },
-            53: { unit: "WB", section: "Unit 1 WB – Complete conversations; instant message", topic: "Fill in blanks for greetings conversations", content: "Conversation completion practice.", grammar: [], vocabulary: ["I'm", "How are you?", "Good", "Thanks", "Bye", "See you"] },
-            54: { unit: "WB", section: "Unit 1 WB – My name's Michelle; personal information form", topic: "Spell names; first/middle/last name; Ms./Miss/Mrs.; complete form", content: "Personal information vocabulary and form filling.", grammar: [], vocabulary: ["first name", "middle name", "last name", "Ms.", "Miss", "Mrs.", "single", "married"] },
-            55: { unit: "WB", section: "Unit 1 WB – Are we in the same class?; About you", topic: "Complete with am/are/'m/'re; answer personal questions", content: "Grammar practice with be verb.", grammar: ["am", "are", "'m", "'re", "am not", "are not"], vocabulary: ["English class", "French class", "married", "same class"] },
-            56: { unit: "WB", section: "Unit 1 WB – What's the number?; crossword", topic: "Write numbers; math crossword (×, +, ÷, -)", content: "Number practice with math operations.", grammar: [], vocabulary: ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"] },
-            57: { unit: "WB", section: "Unit 1 WB – Membership card; About you", topic: "Complete application conversation; answer What's questions", content: "Real-life form filling practice.", grammar: ["What's...?"], vocabulary: ["membership card", "application form", "middle initial", "student ID"] },
-            58: { unit: "WB", section: "Unit 1 WB – Good evening; expressions", topic: "Complete conversations with box expressions (Good evening, Hi, How about you?, etc.)", content: "Expression usage in context.", grammar: [], vocabulary: ["Good evening", "How about you?", "How are you doing?", "Pretty good", "Yeah", "Nice to meet you"] },
-            59: { unit: "WB", section: "Unit 1 WB – How are you doing?; Unit 1 Progress chart", topic: "Rewrite formal to informal; number conversation lines; self-assessment", content: "Formal/informal conversion and progress check.", grammar: [], vocabulary: ["Hi", "How are you doing?", "Pretty good", "OK", "Yeah", "See you"] },
-            60: { unit: "WB", section: "Unit 2 WB – Where is everybody today?", topic: "Complete sentences with he's/she's/they're; make questions", content: "Grammar practice for be verb with he/she/they.", grammar: ["he's", "she's", "they're", "Is he...?", "Are they...?"], vocabulary: ["gym", "home", "cafeteria", "vacation", "asleep", "library", "work"] },
-            61: { unit: "WB", section: "Unit 2 WB – Absent classmates; About you", topic: "Complete conversation with be verb; ask about classmates", content: "Grammar and personalized practice.", grammar: ["am", "is", "are", "isn't", "aren't"], vocabulary: ["absent", "sick", "vacation", "Miami", "late"] },
-            62: { unit: "WB", section: "Unit 2 WB – Everyday things; What are these things?", topic: "Label classroom objects; write sentences about pictures", content: "Vocabulary labeling and sentence writing.", grammar: ["this is", "these are"], vocabulary: ["backpack", "notebook", "pencil", "ruler", "calculator", "umbrella"] },
-            63: { unit: "WB", section: "Unit 2 WB – Asking about things", topic: "Complete conversations with this/these/it/they; room key, cell phone, wallet, credit cards", content: "Grammar practice with demonstratives.", grammar: ["this", "these", "it", "they", "it's", "they're", "What's...?"], vocabulary: ["room key", "membership card", "cell phone", "MP3 player", "jeans", "wallet", "credit cards"] },
-            64: { unit: "WB", section: "Unit 2 WB – Classroom things; word puzzle", topic: "Write words under pictures; circle words in puzzle", content: "Vocabulary reinforcement.", grammar: [], vocabulary: ["board", "clock", "desk", "chair", "computer", "wastebasket", "calendar", "poster"] },
-            65: { unit: "WB", section: "Unit 2 WB – A classroom; prepositions; missing apostrophes", topic: "Complete with in/on/under/next to/in front of; write Where questions; add apostrophes", content: "Preposition and possessive practice.", grammar: ["Where's...?", "Where are...?", "possessive 's", "possessive s'"], vocabulary: ["in", "on", "under", "next to", "in front of", "dictionaries", "students' papers"] },
-            66: { unit: "WB", section: "Unit 2 WB – Questions, questions", topic: "Complete conversations with excuse me, borrow, spell, thanks, sorry", content: "Classroom language practice.", grammar: [], vocabulary: ["Excuse me", "Can I borrow...?", "How do you spell...?", "What's the word for...?", "Thanks anyway", "You're welcome"] },
-            67: { unit: "WB", section: "Unit 2 WB – Scrambled conversations; Unit 2 Progress chart", topic: "Number conversation lines in order; self-assessment", content: "Conversation ordering and progress check.", grammar: [], vocabulary: ["You're late", "That's OK", "I'm sorry", "Can I borrow...?", "Sure", "Here you go"] },
-            68: { unit: "WB", section: "Unit 3 WB – Unscramble words; crossword", topic: "singer, actor, writer, team, player, band, show, sports, fan, movie, artist", content: "Celebrity and entertainment vocabulary.", grammar: [], vocabulary: ["singer", "actor", "writer", "team", "player", "band", "show", "sports", "fan", "movie", "artist"] },
-            69: { unit: "WB", section: "Unit 3 WB – She's my favorite singer; They're great!", topic: "Complete with possessive adjectives; be verb conversation", content: "Possessive adjective and be verb practice.", grammar: ["my", "your", "his", "her", "our", "their", "be verb"], vocabulary: ["favorite singer", "CD", "fan", "voice", "good-looking"] },
-            70: { unit: "WB", section: "Unit 3 WB – What are they like?", topic: "Personality adjectives: quiet, shy, outgoing, friendly, fun, interesting, lazy, smart, strict, tired, busy", content: "Vocabulary practice with pictures.", grammar: [], vocabulary: ["quiet", "shy", "outgoing", "friendly", "fun", "interesting", "lazy", "smart", "strict", "tired", "busy"] },
-            71: { unit: "WB", section: "Unit 3 WB – What's new?; I'm not, you're not; About you", topic: "Complete conversation with be verb; rewrite negative sentences; answer questions", content: "Grammar and personalized practice.", grammar: ["be verb", "isn't", "aren't", "negative sentences"], vocabulary: ["new neighbors", "writer", "teacher", "outgoing", "lazy", "smart", "fun", "tired"] },
-            72: { unit: "WB", section: "Unit 3 WB – Who's who?; What's the number?", topic: "Family tree sentences; write numbers 10-101", content: "Family vocabulary and number writing.", grammar: ["possessive 's"], vocabulary: ["Paul", "Katy", "John", "Catherine", "Josh", "David", "Emily", "son", "daughter", "wife", "husband", "brother", "sister"] },
-            73: { unit: "WB", section: "Unit 3 WB – How about your children?; A famous family", topic: "Unscramble questions; write questions for interview answers", content: "Question formation practice.", grammar: ["How...?", "What...?", "Where...?", "Who...?"], vocabulary: ["children", "parents", "grandfather", "mother", "father", "best friend", "interview", "actress"] },
-            74: { unit: "WB", section: "Unit 3 WB – New neighbors and co-workers", topic: "Complete conversations with questions (How old is she? Where is she from? What are they like? etc.)", content: "Question practice in context.", grammar: ["How old...?", "Where...from?", "What...like?"], vocabulary: ["neighbors", "rock band", "co-workers", "server", "actress", "Chile"] },
-            75: { unit: "WB", section: "Unit 3 WB – Really? I'm surprised!; Unit 3 Progress chart", topic: "Write interested/surprised responses; self-assessment", content: "Conversation strategy and progress check.", grammar: ["Really?"], vocabulary: ["surprised", "interested"] },
-            76: { unit: "WB", section: "Unit 4 WB – What's Kathy's morning like?", topic: "Complete sentences with correct verbs; rewrite negative", content: "Simple present practice.", grammar: ["simple present", "doesn't", "don't"], vocabulary: ["get up", "eat breakfast", "listen to radio", "check email", "read newspaper", "play computer games"] },
-            77: { unit: "WB", section: "Unit 4 WB – Guess what!; Typical morning activities", topic: "Complete email with verbs; match verbs to phrases (do homework, study English, check email, listen to radio, drive car, play games, read book, use alarm clock)", content: "Verb-noun collocation practice.", grammar: ["simple present"], vocabulary: ["do homework", "study English", "check email", "listen to radio", "drive a car", "play games", "read a book", "use an alarm clock"] },
-            78: { unit: "WB", section: "Unit 4 WB – What's fun? What's not?; About you 1", topic: "Fun/Not fun chart; write routines with time expressions", content: "Personalized routine vocabulary.", grammar: ["simple present"], vocabulary: ["check email", "do laundry", "get up early", "play sports", "clean house", "drive to work", "go shopping", "take lessons", "do homework", "eat snacks", "make phone calls", "watch TV"] },
-            79: { unit: "WB", section: "Unit 4 WB – What's your week like?; About you 2", topic: "Complete conversation with Do/Does; answer questions about routines", content: "Yes-no question practice.", grammar: ["Do...?", "Does...?", "Yes, I do.", "No, I don't.", "Yes, she does.", "No, she doesn't."], vocabulary: ["work at home", "Monday to Friday", "clean the house", "soccer games", "school team"] },
-            80: { unit: "WB", section: "Unit 4 WB – Saying more than yes or no", topic: "Complete conversation with extended answers; true/false comprehension", content: "Conversation strategy practice.", grammar: ["saying more than yes/no"], vocabulary: ["cafeteria", "part-time", "English Club", "student"] },
-            81: { unit: "WB", section: "Unit 4 WB – About you", topic: "Unscramble questions; answer with more than yes/no using Well", content: "Question formation and extended answer practice.", grammar: ["Well"], vocabulary: ["live around here", "full-time student", "brothers and sisters", "weekends", "get up early", "grandparents"] },
-            82: { unit: "WB", section: "Unit 4 WB – Watching TV", topic: "Reading about American habits; correct false sentences", content: "Reading comprehension and correction.", grammar: ["simple present"], vocabulary: ["spend time with family", "go out with friends", "go shopping", "high school", "hobbies"] },
-            83: { unit: "WB", section: "Unit 4 WB – TV shows; Unit 4 Progress chart", topic: "Rewrite email with capitals/periods; write about TV habits; self-assessment", content: "Writing practice and progress check.", grammar: ["capital letters", "periods"], vocabulary: ["TV shows", "email", "watch"] }
+            1: {
+                unit: 1,
+                section: "Title Page",
+                topic: "ENG 101 GENERAL ENGLISH",
+                fullText: `ENG - 101 GENERAL ENGLISH
+
+This is the course title page for General English 101, a Touchstone Level 1 course based on the Cambridge International Corpus of North American English.
+
+The course covers authentic English through real conversations, grammar instruction, and vocabulary strategies.`,
+                grammar: [],
+                vocabulary: []
+            },
+            2: {
+                unit: 1,
+                section: "Contents Overview",
+                topic: "Unit Overview",
+                fullText: `1. All about you. 01
+2. In class. 11
+3. Favorite people. 21
+4. Everyday life. 33
+
+The book contains four main units. Each unit focuses on different aspects of English communication including greetings, classroom language, describing people, and daily routines.`,
+                grammar: [],
+                vocabulary: []
+            },
+            3: {
+                unit: 1,
+                section: "Page Number Grid",
+                topic: "Reference Grid",
+                fullText: `[This page consists of a grid pattern of numbers for indexing purposes across the textbook.]
+
+The grid spans from 1 through 154 and serves as a page numbering reference system.`,
+                grammar: [],
+                vocabulary: []
+            },
+            4: {
+                unit: 1,
+                section: "Course Features Overview",
+                topic: "Course Components & Features",
+                fullText: `Conversation strategy helps you "manage" conversations better. In this lesson, you learn how to ask questions that aren't too direct. The strategies are based on examples from the corpus.
+
+Strategy plus teaches important expressions for conversation management, such as I mean, Well, and Anyway.
+
+Listening and speaking skills are often practiced together. You listen to a variety of conversations based on real-life language. Tasks include "listen and react" activities.
+
+Reading has interesting texts from newspapers, magazines, and the Internet. The activities help you develop reading skills.
+
+Writing tasks include e-mails, letters, short articles, and material for Web pages.
+
+Help notes give you information on things like punctuation, linking ideas, and organizing information.
+
+Vocabulary notebook is a page of fun activities to help you organize and write down vocabulary.
+
+On your own is a practical task to help you learn vocabulary outside of class.
+
+Free talk helps you engage in free conversation with your classmates.
+
+Other features:
+• A Touchstone checkpoint after every three units reviews grammar, vocabulary, and conversation strategies.
+• A Self-study Audio CD/CD-ROM gives you more practice with listening, speaking, and vocabulary building.
+• The Class Audio Program presents the conversations and listening activities in natural, lively English.
+• The Workbook gives you language practice and extra reading and writing activities. Progress checks help you assess your progress.`,
+                grammar: [],
+                vocabulary: ["conversation strategy", "vocabulary notebook", "free talk", "checkpoint", "corpus"]
+            },
+            5: {
+                unit: 1,
+                section: "Page Number Grid",
+                topic: "Reference Grid Continued",
+                fullText: `[This page consists of a continuation of the grid pattern of numbers for indexing purposes.]`,
+                grammar: [],
+                vocabulary: []
+            },
+            6: {
+                unit: 1,
+                section: "Skills Overview Chart",
+                topic: "Listening, Reading, Writing, Vocabulary, Free Talk Activities",
+                fullText: `UNIT 1 SKILLS OVERVIEW:
+
+Listening:
+• Recognize responses to hello and good-bye
+• Memberships - Listen for personal information, and complete application forms
+
+Reading:
+• Different types of identification cards and documents
+
+Writing:
+• Complete an application
+
+Vocabulary notebook:
+• Meetings and greetings - Write new expressions with their responses
+
+Free talk:
+• Meet a celebrity - Class activity: Introduce yourself and complete name cards for three "celebrities"
+
+UNIT 2 SKILLS OVERVIEW:
+
+Listening:
+• Who's absent? - Listen to a classroom conversation, and say where students are
+• Following instructions - Recognize classroom instructions
+
+Reading:
+• Classroom conversations
+
+Writing:
+• Write questions about locations
+
+Vocabulary notebook:
+• My things - Link things with places
+
+Free talk:
+• What do you remember? - Pair work: How much can you each remember about a picture?
+
+UNIT 3 SKILLS OVERVIEW:
+
+Listening:
+• Friends - Listen to three people's descriptions of their friends, and fill in the missing words
+
+Reading:
+• A family tree
+
+Writing:
+• Write questions about people
+
+Vocabulary notebook:
+• All in the family - Make a family tree
+
+Free talk:
+• Talk about your favorite people - Pair work: Score points for each thing you say about your favorite people
+
+UNIT 4 SKILLS OVERVIEW:
+
+Listening:
+• What's the question? - Listen to answers and infer the questions
+• Teen habits - Listen for information in a conversation, and complete a chart about a teenager's habits
+
+Reading:
+• In the lifetime of an average American - A magazine article describing how much time people spend on daily activities over a lifetime
+
+Writing:
+• Write an e-mail message about a classmate - Use capital letters and periods
+
+Vocabulary notebook:
+• Verbs, verbs, verbs - Draw and label simple pictures of new vocabulary
+
+Free talk:
+• Interesting facts - Class survey: Ask questions to compare your classmates with the average New Yorker`,
+                grammar: [],
+                vocabulary: ["membership", "application form", "family tree", "daily activities", "survey"]
+            },
+            7: {
+                unit: 1,
+                section: "Classroom Language Reference",
+                topic: "Getting Help & Working with a Partner",
+                fullText: `GETTING HELP:
+What's the word for "___" in English?
+How do you spell "___"?
+What does "___" mean?
+I'm sorry. Can you repeat that, please?
+Can you say that again, please?
+Can you explain the activity again, please?
+
+WORKING WITH A PARTNER:
+I'm ready. Are you ready?
+No. Just a minute.
+You go first.
+OK. I'll go first.
+What do you have for number 1?
+I have ...
+Do you want to be A or B?
+I'll be A. You can be B.
+Let's do the activity again.
+OK. Let's change roles.
+That's it. We're finished.
+What do we do next?
+Can I read your paragraph?
+Sure. Here you go.`,
+                grammar: [],
+                vocabulary: ["repeat", "explain", "spell", "partner", "roles", "paragraph", "activity"]
+            },
+            8: {
+                unit: 1,
+                section: "Unit 1 Opener - All About You",
+                topic: "Unit Objectives & Picture Matching",
+                fullText: `UNIT 1: All about you
+
+In Unit 1, you learn how to ...
+• use the verb be with I, you, we, and it.
+• say hello and good-bye.
+• say your name, telephone number, and e-mail address.
+• ask "How about you?"
+• use everyday expressions like "Thanks."
+
+Match each expression with a picture.`,
+                grammar: ["verb be (I, you, we)"],
+                vocabulary: ["hello", "goodbye", "thanks", "name", "telephone number", "email address"]
+            },
+            9: {
+                unit: 1,
+                section: "Lesson A - Hello and Good-bye",
+                topic: "Conversations: Greetings & Introductions",
+                fullText: `LESSON A: Hello and good-bye
+
+CONVERSATION 1:
+Matt: Good morning, Sarah. How are you?
+Sarah: Good. How are you, Matt?
+Matt: I'm fine, thanks.
+
+CONVERSATION 2:
+Matt: Hello. I'm Matt Lenski.
+Emily: Hi, I'm Emily Kim. Nice to meet you.
+Matt: Nice to meet you.
+
+GETTING STARTED:
+A. Listen. Matt and Sarah are friends. Are Matt and Emily friends? Practice the conversations.
+
+B. Can you complete these conversations? Then practice with a partner. Use your own names.
+A: Hello. I'm Chris.
+B: Hi. Nice to meet you. ___ Sam.
+A: Nice to meet ___.`,
+                grammar: ["I'm", "Nice to meet you", "How are you?"],
+                vocabulary: ["Good morning", "Hello", "Hi", "Nice to meet you", "I'm fine", "thanks"]
+            },
+            10: {
+                unit: 1,
+                section: "Lesson A - Building Vocabulary",
+                topic: "Responses to Hello & Good-bye",
+                fullText: `BUILDING VOCABULARY:
+
+CONVERSATION 1:
+Emily: Good night.
+Matt: Good night. Have a good evening.
+Emily: Thank you. You too.
+
+CONVERSATION 2:
+Sarah: Bye. See you tomorrow.
+Matt: Bye. See you.
+
+LISTENING - Check the responses you hear:
+1. Bye. Have a good evening.
+   ☐ You too. Good-bye.
+   ☐ You too. Good night.
+
+2. Hi. How are you?
+   ☐ Good, thanks.
+   ☐ I'm fine.
+
+3. Bye. See you later.
+   ☐ OK. See you later.
+   ☐ Bye. See you next week.
+
+4. Hey, Oscar!
+   ☐ Hi. How are you?
+   ☐ Hello.
+
+5. Good-bye. Have a nice day.
+   ☐ Thank you.
+   ☐ Thanks. You too.
+
+C. Write three expressions for saying hello and good-bye. Compare with a partner.
+D. Class activity: Say hello and good-bye to five classmates.
+
+VOCABULARY NOTEBOOK: Meetings and greetings - See page 10 for a new way to log and learn vocabulary.`,
+                grammar: [],
+                vocabulary: ["Good night", "Good evening", "See you", "Bye", "Have a nice day", "You too", "See you tomorrow", "See you later"]
+            },
+            11: {
+                unit: 1,
+                section: "Saying Names in English",
+                topic: "Names, Alphabet & Spelling",
+                fullText: `SAYING NAMES IN ENGLISH:
+
+A. Listen to the people above give their names.
+
+B. Complete the sentences. Then compare with a partner.
+1. My first name is ___.
+2. My last name is ___.
+3. My middle name is ___.
+4. My nickname is ___.
+5. My teacher's name is ___.
+6. My favorite name is ___.
+
+C. Listen and say the alphabet. Circle the letters in your first name.
+Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+
+D. Listen. Then practice the conversation with a partner. Use your own names.
+A: What's your name?
+B: Catherine Ravelli.
+A: How do you spell Catherine?
+B: C-A-T-H-E-R-I-N-E.
+A: Thanks. And your last name?
+B: R-A-V-E-L-L-I.
+
+E. Class activity: Ask your classmates their names. Make a list.`,
+                grammar: [],
+                vocabulary: ["first name", "last name", "middle name", "nickname", "alphabet", "spell", "teacher"]
+            },
+            12: {
+                unit: 1,
+                section: "Building Language - Classrooms",
+                topic: "Verb be: I, you, we",
+                fullText: `BUILDING LANGUAGE:
+
+A. Listen. Which classroom is Carmen in this term? What about Jenny? Practice the conversation.
+
+Mr. Martin: Good morning. Are you here for an English class?
+Carmen: Yes, I am. I'm Carmen Rivera.
+Mr. Martin: OK. You're in Room B.
+Jenny: And I'm Jenny.
+Mr. Martin: Are you Jenny Loo?
+Jenny: No, I'm not. I'm Jenny Lim. Am I in Room B, too?
+Mr. Martin: Yes...Wait — no, you're not. You're in Room G.
+Jenny: Oh, no! Carmen, we're not in the same class!
+
+B. Complete the answers. Then check the names of five classmates.
+1. A: Are you Amy? B: Yes, I ___.
+2. A: Are you Amy? B: No, ___ not.
+
+GRAMMAR: The verb be — I, you, and we
+I'm Jenny. / I'm not Carmen.
+You're in Room G. / You're not in Room B.
+We're in different classes. / We're not in the same class.
+
+I'm (= I am) | you're (= you are) | we're (= we are)
+
+Are you Jenny? → Yes, I am. / No, I'm not.
+Am I in Room B? → Yes, you are. / No, you're not.
+Are we in the same class? → Yes, we are. / No, we're not.
+
+A. Complete the conversations. Then practice with a partner.
+1. A: ___ you Emiko?
+   B: Yes, I ___. I ___ here for an English class. ___ you here for English, too?
+   A: No, I ___. I ___ here for a French class.
+2. A: ___ you Chris?
+   B: Yes, I ___. ___ we in the same class?
+   A: Yes, we ___. ___ Dino.
+   B: Hi, Dino. Nice to meet you.
+
+B. Pair work: Choose a conversation and practice. Use your own information. Then act out your conversation for the class.`,
+                grammar: ["I'm", "you're", "we're", "Are you...?", "Am I...?", "Are we...?", "I'm not", "you're not", "we're not"],
+                vocabulary: ["class", "Room", "same class", "English class", "French class"]
+            },
+            13: {
+                unit: 1,
+                section: "Lesson B - Numbers 0-10",
+                topic: "Numbers & Personal Information",
+                fullText: `NUMBERS 0-10:
+
+A. Listen and say the numbers.
+0 zero, 1 one, 2 two, 3 three, 4 four, 5 five, 6 six, 7 seven, 8 eight, 9 nine, 10 ten
+
+CONVERSATION - At the Reception:
+Receptionist: Hi! Are you a member?
+Victor: No, I'm just here for the day.
+Receptionist: OK. So, what's your name, please?
+Victor: Victor Lopez.
+Receptionist: And what's your phone number?
+Victor: It's 646-555-3048.
+Receptionist: And your e-mail address?
+Victor: Um... it's vlopez6@cup.org.
+Receptionist: OK. So it's $10 for today. Here's your pass.
+Victor: Thanks.
+
+B. Can you complete these questions and answers? Then practice with a partner.`,
+                grammar: [],
+                vocabulary: ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "phone number", "email address", "member", "pass"]
+            },
+            14: {
+                unit: 1,
+                section: "Grammar - What's...? & It's...",
+                topic: "Asking for Personal Information",
+                fullText: `GRAMMAR: What's...? / It's...
+
+What's your name? → My name's Victor Lopez.
+What's your e-mail address? → It's vlopez6@cup.org.
+What's your phone number? → It's 646-555-3048.
+
+What's (= What is) | name's (= name is) | It's (= It is)
+
+A. Match the questions and answers. Then practice.
+1. What's your teacher's name? → b. It's Ms. Gardino.
+2. What's your first name? → a. Rachel.
+3. What's your e-mail address? → d. It's yoyo3@cup.org.
+4. What's your phone number? → e. 646-555-3907.
+5. What's your last name? → c. My last name? Yoshida.
+
+IN CONVERSATION: Phone is 6 times more common than telephone.
+
+B. Pair work: Ask and answer three questions with "What's". Give your own answers.
+"What's your teacher's name?" → "It's Mr. Williams."
+
+LISTENING AND SPEAKING: Memberships
+Listen to the conversations. Complete the application forms.
+Pair work: Now complete this form for a partner. Ask questions.
+A: What's your first name?
+B: Silvia.
+A: How do you spell it?...`,
+                grammar: ["What's (= What is)", "name's (= name is)", "It's (= It is)"],
+                vocabulary: ["teacher", "first name", "last name", "phone number", "email address", "membership"]
+            },
+            15: {
+                unit: 1,
+                section: "Conversation Strategy - How about you?",
+                topic: "Returning Questions in Conversation",
+                fullText: `CONVERSATION STRATEGY: How about you?
+
+A. Can you complete the conversation with the questions in the box?
+A: ___? How about you?
+B: Yes, I am. ___? Are you a new student?
+A: Yes, me too.
+
+Now listen. Are Alicia and Adam friends?
+
+Alicia: It's a beautiful day.
+Adam: Yeah, it is.
+Alicia: Are you here for the concert?
+Adam: Yeah, I am. How about you?
+Alicia: Yeah, me too. So, are you a student here?
+Adam: Yeah. How about you?
+Alicia: No, I'm here on vacation.
+Adam: Nice. By the way, I'm Adam.
+Alicia: Hi, Adam. I'm Alicia.
+
+Notice how Adam uses "How about you?" to ask the same questions as Alicia.
+"Are you here for the concert?" → "Yeah, I am. How about you?"
+
+B. Complete the conversations below. Then practice with a partner.
+1. Lora: Are you new here?
+   Ying: Yes, I am. ___?
+   Lora: Yes, me too.
+2. Marie: Hello. Are you here on vacation?
+   Koji: Yes, I am. ___?
+   Marie: No, I'm here on business.`,
+                grammar: ["How about you?"],
+                vocabulary: ["concert", "student", "vacation", "business", "new here", "beautiful day"]
+            },
+            16: {
+                unit: 1,
+                section: "Strategy Plus - Everyday Expressions",
+                topic: "Formal vs. Informal Language",
+                fullText: `STRATEGY PLUS: Everyday Expressions
+
+Some everyday expressions are more formal than others.
+
+MORE FORMAL → LESS FORMAL:
+Yes. → Yeah.
+Thank you. → Thanks.
+Hello. → Hi.
+How are you? → How are you doing?
+I'm fine. → OK. / Pretty good. / Good.
+Good-bye. → Bye. / See you. / See you later.
+
+IN CONVERSATION: Yeah is 10 times more common than yes.
+
+A. Complete these conversations with expressions from the box above. Compare with a partner.
+
+Kathy: Hi, sorry I'm late. ___?
+Mike: Pretty good. How are you?
+Kathy: ___
+
+[Later]
+Kathy: Bye. See you.
+Mike: ___
+
+Mrs. Swan: ___. How are you?
+Jeff: I'm fine, ___.
+
+[Later]
+Jeff: Good-bye, Mrs. Swan.
+Mrs. Swan: ___
+
+B. Pair work: Practice the conversations.
+
+FREE TALK: Meet a celebrity.
+See Free talk 1 at the back of the book for more speaking practice.`,
+                grammar: [],
+                vocabulary: ["Yeah", "Thanks", "Hi", "How are you doing?", "Pretty good", "See you later", "Good-bye", "Hello", "Thank you"]
+            },
+            17: {
+                unit: 1,
+                section: "Vocabulary Notebook - On Your Own",
+                topic: "Review Greetings & Farewells",
+                fullText: `VOCABULARY NOTEBOOK:
+
+1. Hello.
+2. Good morning.
+3. Hi. I'm Helen.
+4. How are you?
+5. Have a nice day.
+6. See you tomorrow.
+7. Have a good evening.
+8. Good night.
+
+ON YOUR OWN:
+Before your next class, say hello and good-bye (in English!) to three people.`,
+                grammar: [],
+                vocabulary: ["Hello", "Good morning", "Good night", "Have a nice day", "See you tomorrow", "Good evening", "How are you?"]
+            },
+            18: {
+                unit: 2,
+                section: "Unit 2 Opener - In Class",
+                topic: "Unit 2 Objectives",
+                fullText: `UNIT 2: In class
+
+In Unit 2, you learn how to ...
+• use the verb be with he, she, they, this, and these.
+• talk about things and places in a classroom.
+• ask for help in class.
+• respond to "Thank you" and "I'm sorry."
+
+Where are these people? Match the pictures with the sentences.
+She's at work.
+They're at the library.`,
+                grammar: ["he's", "she's", "they're", "this", "these"],
+                vocabulary: ["at work", "at the library", "classroom"]
+            },
+            19: {
+                unit: 2,
+                section: "Lesson A - Where's Jun?",
+                topic: "Asking About Absent Students",
+                fullText: `LESSON A: Building Language
+
+A. Listen. Where are the students? Practice the conversation.
+
+Miss Cass: Where's Jun? Is he here today?
+Ana: No, he's not. Maybe he's at work.
+Miss Cass: OK. How about Laura?
+Ana: I don't know. I think she's sick.
+Miss Cass: Oh. OK. Are Kim and Phong here?
+Ana: No, they're in the cafeteria.
+Miss Cass: They're late again. OK. And Alan?
+Ana: He's over there. I think he's asleep!`,
+                grammar: ["Where's...?", "he's not", "she's", "they're"],
+                vocabulary: ["absent", "at work", "sick", "cafeteria", "late", "asleep", "over there"]
+            },
+            20: {
+                unit: 2,
+                section: "Grammar - He, She, They",
+                topic: "Verb be: Third Person",
+                fullText: `GRAMMAR: The verb be — he, she, and they
+
+Jun is at work. → He's at work.
+Laura's sick. → She's sick.
+Kim and Phong are late. → They're late.
+
+Laura's (= Laura is) | She's (= She is)
+
+NEGATIVE:
+Jun is not here. → He's not here.
+Laura's not in class. → She's not in class.
+Kim and Phong are not here. → They're not here.
+
+He's (= He is) | They're (= They are)
+
+QUESTIONS:
+Is Jun here? → Yes, he is. / No, he's not.
+Is she sick? → Yes, she is. / No, she's not.
+Are they late? → Yes, they are. / No, they're not.
+
+IN CONVERSATION: People usually shorten "is" to "'s" after names.
+Jun's at work. Laura's not in class.
+
+A. These people are also Ana's classmates. Where are they today? Complete the sentences.
+David ___. | Connie and Dan ___. | Sue and Min Ji ___.
+
+B. Complete the questions. Then ask and answer the questions with a partner.
+1. Is David sick?
+2. ___ Dan in class?
+3. ___ Connie and Dan at home?
+4. ___ Min Ji at work?
+5. ___ Sue at the library?
+6. ___ Sue and Min Ji in class?
+
+"Is David sick?" → "No, he's not. He's in class."
+
+LISTENING: Who's absent?
+A. Listen. It's the next day. Where are these students today? Match each student with a place.
+1. Jun's ___ a. at the library
+2. Kim's ___ b. at work
+3. Laura's ___ c. in the cafeteria
+4. David's ___ d. at home`,
+                grammar: ["He's", "She's", "They're", "he's not", "she's not", "they're not", "Is he...?", "Is she...?", "Are they...?"],
+                vocabulary: ["at work", "sick", "cafeteria", "at home", "at the library", "in class"]
+            },
+            21: {
+                unit: 2,
+                section: "Lesson B - Classroom Objects",
+                topic: "a/an, this/these, What's this?",
+                fullText: `LESSON B: Building Vocabulary
+
+A. Here are some things students take to class. Write a or an before each item. Then listen and say the words. Check your answers.
+
+Items: ___ pen, ___ eraser, ___ dictionary, ___ MP3 player, ___ watch, ___ glasses, ___ keys, ___ sunglasses
+
+BUILDING LANGUAGE:
+
+A. Listen. Which things are Bill's? Practice the conversations.
+
+Andy: What's this?
+Bill: It's an MP3 player. It's my new "toy."
+
+Michi: Is this your watch, Bill?
+Bill: Oh, yes, it is. Thanks.
+Michi: And are these your glasses?
+Bill: Yes, they are!
+
+Scott: Excuse me. Are these your keys?
+Bill: Um... no, they're not. These are my keys right here.
+
+B. Can you complete these questions? Use your own ideas. Ask and answer your questions with a partner.
+1. Is this your ___?
+2. Are these your ___?`,
+                grammar: ["a", "an", "this", "these", "What's this?", "What are these?"],
+                vocabulary: ["MP3 player", "watch", "glasses", "keys", "wallet", "pen", "dictionary", "eraser", "sunglasses"]
+            },
+            22: {
+                unit: 2,
+                section: "Grammar - This/These & Noun Plurals",
+                topic: "Demonstratives & Plural Rules",
+                fullText: `GRAMMAR: This and these; noun plurals
+
+This is an MP3 player.
+What's this? → It's an MP3 player.
+Is this your watch? → Yes, it is. / No, it's not.
+
+These are sunglasses.
+What are these? → They're sunglasses.
+Are these your keys? → Yes, they are. / No, they're not.
+
+REGULAR PLURALS:
+bag → bags
+watch → watches
+dictionary → dictionaries
+key → keys
+
+Some nouns are only plural: jeans, scissors, glasses, sunglasses
+
+Complete the questions and answers about the pictures. Then practice with a partner.
+
+SPEAKING NATURALLY: Noun plural endings
+/s/ sounds: wallets, books
+/z/ sounds: pens, keys
+/ɪz/ sounds: watches, oranges
+
+A. Listen and repeat the words above. Notice the noun plural endings.
+B. Listen. Do the nouns end in /s/, /z/, or /ɪz/? Check (✓) the correct column.
+C. Group work: Tell the group what's in your bag. Who has something unusual?
+"What's in your bag, Carlos?" → "A wallet, two keys, ..."`,
+                grammar: ["plural -s", "plural -es", "plural -ies", "this is", "these are", "It's", "They're"],
+                vocabulary: ["jeans", "scissors", "sunglasses", "watches", "dictionaries", "wallets", "books", "pens", "keys", "oranges"]
+            },
+            23: {
+                unit: 2,
+                section: "Lesson C - Classroom Locations",
+                topic: "Classroom Object Vocabulary",
+                fullText: `LESSON C: Building Vocabulary
+
+A. Listen and say the words above. Which things are in your classroom? Check (✓) the boxes. What else is in your classroom?
+
+B. Look around your classroom. What things are in these places? Write the words below the pictures.
+
+C. Pair work: Ask and answer questions about your classroom.
+"What's on the wall?"
+"A clock, a map, and some posters..."
+
+Common classroom items: clock, map, posters, board, desk, wastebasket, closet, CD player, computer, TV, VCR, videos, students' papers, teacher's desk, teacher's chair, dictionaries, calendar`,
+                grammar: [],
+                vocabulary: ["clock", "map", "posters", "board", "desk", "wastebasket", "closet", "CD player", "computer", "TV", "VCR", "dictionaries", "calendar"]
+            },
+            24: {
+                unit: 2,
+                section: "Building Language - Where Questions",
+                topic: "Location Questions & Possessives",
+                fullText: `BUILDING LANGUAGE:
+
+A. Listen. What is the teacher looking for? Practice the conversation.
+
+Mrs. Evans: OK, so ... where's the VCR?
+Paula: It's in the closet.
+Mrs. Evans: Oh, right. And the videos? Where are they?
+Paula: They're on the desk, under your coat.
+Mrs. Evans: OK, um ... and where are the students' homework papers?
+Paula: They're on the floor.
+Mrs. Evans: Uh-oh, what's this under my foot?
+Paula: It's Mario's homework.
+Mrs. Evans: Oops! ... Uh, where are my glasses? They're not on my desk.
+Paula: Uh ... they're on your head!
+
+B. Can you complete the questions? Then ask and answer the questions with a partner.
+1. Where ___ the VCR?
+2. Where ___ the teacher's coat?
+3. Where ___ the students' papers?
+
+GRAMMAR: Questions with Where; possessives 's and s'
+
+Where's Mario's homework? → It's on the floor.
+Where's the teacher's coat? → It's on the desk.
+Where are the students' papers? → They're on the floor.
+
+Where's (= Where is)
+
+Mario's homework | the teacher's glasses | three students' papers
+
+A. Pair work: Ask and answer these questions about the classroom on page 16. Can you ask four more questions?
+1. Where's the teacher's desk? → It's in front of the board.
+2. Where's the TV?
+3. Where's the teacher's chair?
+4. Where are the students' dictionaries?
+5. Where's the computer?
+6. Where are the posters?`,
+                grammar: ["Where's...?", "Where are...?", "possessive 's", "possessive s'"],
+                vocabulary: ["VCR", "closet", "desk", "floor", "under", "on", "in front of", "coat", "glasses", "homework"]
+            },
+            25: {
+                unit: 2,
+                section: "Lesson D - Asking for Help",
+                topic: "Classroom Help Requests",
+                fullText: `CONVERSATION STRATEGY: Asking for help in class
+
+A. Can you match the questions and answers?
+1. How do you spell book? → c. B-O-O-K.
+2. Can I borrow your pen? → a. Sure.
+3. What's the word for this in English? → b. Pencil.
+
+Now listen. How many questions does Ming-wei ask?
+
+Ming-wei: Excuse me, what's the word for this in English?
+Sonia: Highlighter.
+Ming-wei: Thanks.
+Sonia: Sure.
+Ming-wei: Uh ... how do you spell it?
+Sonia: I don't know. Sorry.
+Ming-wei: That's OK. Thanks anyway... Can I borrow a pen, please?
+Sonia: Sure. Here you go.
+Ming-wei: Thank you.
+Sonia: You're welcome.
+Ms. Larsen: OK. Open your books to page 4.
+Ming-wei: Excuse me, can you repeat that, please? What page?
+Ms. Larsen: Sure. Page 4.
+
+Notice how Ming-wei asks for help in class. Find his questions:
+"What's the word for this in English?"
+"How do you spell it?"
+
+B. Complete the conversations. Then practice with a partner.
+1. A: What's this? B: It's an eraser. A: Oh, ___?
+   B: E-R-A-S-E-R.
+2. A: Excuse me, can I ___ your dictionary, please?
+   B: Sure. Here you go.
+3. A: What's your phone number? B: ___, please?
+   A: Yes. What's your phone number?`,
+                grammar: [],
+                vocabulary: ["Excuse me", "highlighter", "borrow", "repeat", "page", "eraser", "dictionary", "How do you spell...?"]
+            },
+            26: {
+                unit: 2,
+                section: "Strategy Plus - Responses",
+                topic: "Thank you & I'm sorry Responses",
+                fullText: `STRATEGY PLUS: Common expressions and responses
+
+Here are some responses to "Thank you" and "I'm sorry":
+
+When people say... → You can say...
+Thank you. → You're welcome.
+Thanks. → Sure.
+I'm sorry. I don't know. → That's OK. Thanks anyway.
+
+Circle the correct response. Then practice with a partner.
+1. A: Can I borrow your pen, please?
+   B: Sure / I don't know.
+   A: Thanks.
+   B: Thanks anyway. / You're welcome.
+
+2. A: You're late.
+   B: I'm sorry. / Thanks.
+   A: That's OK.
+
+3. A: What's the word for this?
+   B: I don't know. Sorry.
+   A: Sure. / That's OK. What about this?
+   B: I don't know.
+   A: OK. Thanks anyway. / You're welcome.
+
+LISTENING AND SPEAKING: Following instructions
+A. Match the pictures with the instructions. Then listen to the conversations, and check your answers.
+a. Listen to the conversation.
+b. Answer the questions on page 9.
+c. Turn to page 7, and look at Exercise 1.
+d. Write the word eraser in your notebook.
+
+B. Pair work: Give and follow four instructions. Ask for help if you need it.
+A: Look at the picture on page 8.
+B: Can you repeat that, please?
+A: Sure. Look at the picture on page 8.`,
+                grammar: [],
+                vocabulary: ["You're welcome", "Sure", "That's OK", "Thanks anyway", "instructions", "I'm sorry", "late"]
+            },
+            27: {
+                unit: 2,
+                section: "Vocabulary Notebook - On Your Own",
+                topic: "Label Classroom Items",
+                fullText: `VOCABULARY NOTEBOOK:
+
+1. Label the things on the desk.
+2. Now make lists of your things.
+
+ON YOUR OWN:
+Find a magazine with pictures of things. Label the pictures. How many words can you label?`,
+                grammar: [],
+                vocabulary: ["label", "magazine", "pictures", "desk", "things"]
+            },
+            28: {
+                unit: 3,
+                section: "Unit 3 Opener - Favorite People",
+                topic: "Unit 3 Objectives",
+                fullText: `UNIT 3: Favorite people
+
+In Unit 3, you learn how to ...
+• use my, your, his, her, our, and their.
+• use the verb be in information questions.
+• talk about your favorite celebrities, friends, and family.
+• show interest in a conversation.
+• use "Really?" to show interest or surprise.
+
+Before you begin ... Match the pictures with the sentences.
+He's a singer.
+They're soccer players.
+She's an actor.
+He's an artist.
+
+For each sentence, think of someone you know.`,
+                grammar: ["my", "your", "his", "her", "our", "their"],
+                vocabulary: ["singer", "actor", "artist", "soccer player", "celebrity"]
+            },
+            29: {
+                unit: 3,
+                section: "Lesson A - Celebrities",
+                topic: "Possessive Adjectives in Context",
+                fullText: `LESSON A: Building Language
+
+A. Listen. Sandra is watching TV with John. Is the show interesting for John?
+
+Sandra: I love these shows about celebrities. Hmm. Who's that guy? Oh, look. It's Sean Penn. He's so good-looking. His new movie is great. Oh, and there's Norah Jones. She's my favorite singer. Her voice is amazing. And look — the Williams sisters, my favorite tennis players. Their matches are always exciting. You're a tennis fan, right? John? ... John? Wake up!
+
+B. Can you complete the sentences? Use the information above to help you.
+1. Sean Penn is an actor. ___ movies are very good.
+2. Norah Jones is a famous singer. ___ new video is great.
+3. The Williams sisters are tennis players. ___ matches are always great.`,
+                grammar: ["his", "her", "their"],
+                vocabulary: ["good-looking", "movie", "voice", "amazing", "matches", "exciting", "fan", "celebrity", "tennis player"]
+            },
+            30: {
+                unit: 3,
+                section: "Grammar - Be & Possessive Adjectives",
+                topic: "Possessive Adjectives Practice",
+                fullText: `GRAMMAR: Be in statements; possessive adjectives
+
+I'm a Sean Penn fan. → My favorite actor is Sean Penn.
+You're a tennis fan. → Your favorite sport is tennis.
+He's an actor. → His new movie is great.
+She's a famous singer. → Her voice is amazing.
+We're Giants fans. → Our favorite team is the Giants.
+They're tennis players. → Their matches are exciting.
+
+Circle the correct words to complete the conversations. Then practice with a partner.
+1. A: I'm / My a Sting fan.
+   B: Yeah, he's / his music is amazing.
+   A: You know, he's / his real name is Gordon Matthew Sumner.
+2. A: I'm / My favorite band is Black Eyed Peas.
+   B: Oh, they're / their very good.
+   A: You know, they're / their new CD is out now.
+3. A: Nicole Kidman's new movie is really great.
+   B: Yeah? She's / Her movies are always good.
+   A: I know. She's / Her my favorite actor.
+4. A: What's you're / your favorite show?
+   B: I'm / My favorite show? Friends.
+   A: Yeah. It's we're / our favorite show, too.
+   In our family, we're / our all Friends fans.
+
+TALK ABOUT IT: My favorite celebrities
+Write the names of your favorite celebrities below. Then talk about them with a partner. How many things can you say?
+actor | band | singer | team | writer | artist
+
+"My favorite actor is Johnny Depp. He's so good-looking. His new movie is great."`,
+                grammar: ["I'm", "my", "you're", "your", "he's", "his", "she's", "her", "we're", "our", "they're", "their"],
+                vocabulary: ["fan", "band", "CD", "actor", "show", "team", "writer", "artist"]
+            },
+            31: {
+                unit: 3,
+                section: "Lesson B - Describing People",
+                topic: "Personality Adjectives",
+                fullText: `LESSON B: Building Vocabulary
+
+A. Listen and say the sentences. Do you have friends like these? Tell the class.
+
+B. How many words can you think of to describe people you know? Complete the chart. Then tell a partner.
+my friends | my best friend | my neighbor
+
+BUILDING LANGUAGE:
+
+A. Listen. What is Tim's new boss like? Practice the conversation.
+
+Dana: So, how's your new job? Are you busy?
+Tim: Yes. It's hard work, you know. I'm tired.
+Dana: Really? What are your co-workers like? Are they nice?
+Tim: Yes, they are. They're really friendly.
+Dana: Great. And is your boss OK?
+Tim: She is, yeah. She's nice. Um ... she's not very strict.
+Dana: Good, because you're late for work.
+
+B. Can you complete these questions and answers? Use your own ideas. Then compare with a partner.
+1. A: How's your new teacher? B: ___ she ___?
+2. A: What about your classmates? B: ___ they ___?
+3. A: And what's class like? B: ___ it ___?
+
+Personality adjectives: smart, shy, friendly, outgoing, strict, lazy, interesting, fun, tired, busy, nice, quiet`,
+                grammar: ["What's...like?", "Is he/she...?", "Are they...?"],
+                vocabulary: ["smart", "shy", "friendly", "outgoing", "strict", "lazy", "interesting", "fun", "tired", "busy", "hard work", "co-workers", "boss", "nice", "quiet"]
+            },
+            32: {
+                unit: 3,
+                section: "Grammar - Yes-No Questions & Negatives",
+                topic: "Questions and Negative Forms",
+                fullText: `GRAMMAR: Yes-No questions and answers; negatives
+
+Am I late? → Yes, you are. / No, you're not. → You're not late.
+Are you busy? → Yes, I am. / No, I'm not. → I'm not busy.
+Is he tired? → Yes, he is. / No, he's not. → He's not tired.
+Is she strict? → Yes, she is. / No, she's not. → She's not strict. (My boss isn't strict.)
+Is it hard work? → Yes, it is. / No, it's not. → It's not hard work.
+Are we late? → Yes, we are. / No, we're not. → We're not late.
+Are they nice? → Yes, they are. / No, they're not. → They're not nice. (My co-workers aren't nice.)
+
+IN CONVERSATION: People use 's not and 're not after pronouns. She's not strict. They're not nice.
+Isn't and aren't often follow nouns. My boss isn't strict. My co-workers aren't nice.
+
+Write yes-no questions. Then write true answers. Ask and answer the questions with a partner.
+1. you / shy ? → Are you shy? Yes, I am.
+2. this class / easy ?
+3. the teacher / strict ?
+4. the students in this class / lazy ?
+5. your neighbors / nice ?
+6. your friends / outgoing ?
+
+SPEAKING NATURALLY: Is he...? or Is she...?
+/ziy/ Is he a student?
+/ʃiy/ Is she a student?
+
+A. Listen and repeat the questions above.
+B. Listen. Do you hear Is he...? or Is she...? Circle he or she.
+C. Pair work: Find out about your partner's best friend. Ask and answer questions like the ones above.
+A: Is he a friend from high school?
+B: No, he's a neighbor.`,
+                grammar: ["Am I...?", "Are you...?", "Is he...?", "Is she...?", "Is it...?", "Are we...?", "Are they...?", "isn't", "aren't", "'s not", "'re not"],
+                vocabulary: ["shy", "easy", "strict", "lazy", "outgoing", "neighbors", "high school", "college student"]
+            },
+            33: {
+                unit: 3,
+                section: "Lesson C - Family & Age",
+                topic: "Information Questions with Be",
+                fullText: `LESSON C: Building Language
+
+A. Listen. How old are Erica's grandparents? Practice the conversation.
+
+Akemi: So, who's this?
+Erica: My grandma. And this is my grandpa. He's a nice man. He's seventy-eight now.
+Akemi: Really? And how old is your grandmother?
+Erica: She's seventy-two.
+Akemi: She's very pretty. What's her name?
+Erica: Angela.
+Akemi: That's a nice name. So, where are your grandparents from originally?
+Erica: They're from Texas.
+
+B. Can you put the words in the correct order to make questions? Then ask and answer the questions with a partner.
+1. are / from / parents / originally / where / your ?
+2. your / is / old / father / how ?
+3. names / your / what / grandparents / are ?
+
+GRAMMAR: Information questions with be
+How are you? → I'm fine.
+Where are you from? → I'm from Florida.
+How old are you? → Twenty-three.
+Who's this? → It's my grandmother.
+Where's she from? → She's from Texas.
+What's she like? → She's very smart.
+How are your parents? → They're fine, thanks.
+Where are they today? → They're at home.
+What are their names? → Linda and Carlos.
+
+A. Write at least six questions to ask your classmates about their families.
+What's your father like?
+
+B. Class activity: Ask three classmates your questions.
+"What's your father like?" → "He's very outgoing."`,
+                grammar: ["How old...?", "Where...from?", "What's...name?", "Who's...?", "What's...like?"],
+                vocabulary: ["grandma", "grandpa", "grandmother", "grandfather", "parents", "pretty", "originally", "Texas"]
+            },
+            34: {
+                unit: 3,
+                section: "Lesson D - Showing Interest",
+                topic: "Conversation Strategy: Echo Questions",
+                fullText: `CONVERSATION STRATEGY: Showing interest
+
+A. Can you add a question to show you're interested in the conversation?
+A: Here's a picture of my best friend.
+B: Really?
+
+Now listen. What do you find out about Eve's friend?
+
+Mark: This is a great photo. Who is it?
+Eve: It's a friend of mine — Natasha.
+Mark: Oh? Where's she from?
+Eve: She's from London, but she's here in Miami now.
+Mark: London? Wow. Is she a student here?
+Eve: No, she's an artist — a painter. She's an amazing woman.
+Mark: A painter? Really? What are her paintings like?
+Eve: They're wonderful. Look.
+Mark: Oh. Interesting. ... Um, what is it?
+
+Notice how Mark shows interest. He repeats words and asks questions. Find examples in the conversation.
+"She's from London, but she's here in Miami now." → "London? Wow. Is she a student here?"
+
+B. Complete the responses. Then practice with a partner.
+1. A: My friend Gemma is a singer.
+   B: A singer? ___? Is she in a band?
+2. A: My best friend's name is Vlad.
+   B: ___? Where's he from?
+
+C. Pair work: Student A: Tell your partner about a friend. Student B: Ask questions to show interest. Then change roles.`,
+                grammar: ["Really?"],
+                vocabulary: ["photo", "friend of mine", "London", "Miami", "artist", "painter", "paintings", "wonderful", "interesting"]
+            },
+            35: {
+                unit: 3,
+                section: "Strategy Plus - Really? & Listening",
+                topic: "Using Really? & Describing Friends",
+                fullText: `STRATEGY PLUS: Really?
+
+People say "Really?" to show they are interested or surprised.
+IN CONVERSATION: Really is one of the top 50 words.
+
+Pair work: Practice the conversations. Then ask the questions again. Give your own answers.
+1. A: Where are you from?
+   B: San Diego.
+   A: San Diego? Really? I'm from Los Angeles.
+2. A: What's your name?
+   B: Ryan.
+   A: Really? My best friend's name is Ryan.
+3. A: Who's your best friend?
+   B: Her name's Brittany.
+   A: Really? What's she like?
+   B: She's very nice.
+
+LISTENING AND SPEAKING: Friends
+A. Listen to these people talk about their friends. Write the missing words.
+1. "Amy is a friend of mine from the neighborhood. She's about ___ years old. Olivia is her ___. She's the same age as my ___."
+2. "Anton's a friend of mine. He's my ___. He's around my age. He's a ___ guy — a fun guy."
+3. "Gary is a friend from ___. He's very ___. His ___'s name is Gloria."
+
+B. Pair work: Write the names of three people you know on a piece of paper. Exchange lists. Ask questions about the people on your partner's list.
+A: Who's Chung Dae?
+B: He's my best friend.
+A: Really? Where's he from?`,
+                grammar: ["Really?"],
+                vocabulary: ["neighborhood", "best friend", "fun guy", "around my age", "same age"]
+            },
+            36: {
+                unit: 3,
+                section: "Family Tree & On Your Own",
+                topic: "Family Vocabulary Review",
+                fullText: `VOCABULARY NOTEBOOK:
+
+1. Complete the family tree using the words in the box.
+2. Now make your own family tree. Write notes about each person.
+
+ON YOUR OWN:
+Make a photo album of your family and friends. Write sentences about them in English.
+
+Family words: grandmother, grandfather, mother, father, sister, brother, aunt, uncle, cousin, wife, husband, daughter, son, parents, children, grandparents`,
+                grammar: [],
+                vocabulary: ["family tree", "photo album", "grandmother", "grandfather", "mother", "father", "sister", "brother", "aunt", "uncle", "cousin", "wife", "husband", "daughter", "son"]
+            },
+            37: {
+                unit: 3,
+                section: "Checkpoint Units 1-3",
+                topic: "Grammar & Vocabulary Review",
+                fullText: `TOUCHSTONE CHECKPOINT: Units 1-3
+
+1. Can you complete this conversation?
+Complete the conversation with the words in the box. Use capital letters when necessary. Then practice with a partner.
+
+Angel: Hi, Carla. How are you?
+Carla: ___ fine, thanks. Is ___ your car?
+Angel: No. ___ my brother's car. ___ on vacation.
+Carla: Cool. So, where is ___ brother?
+Angel: He and ___ wife are in Miami, with her parents. ___ family ___ from Miami, you know.
+Carla: Oh, right. So, are ___ children in Miami, too?
+Angel: No. ___ with my parents and me. ___ house is crazy. ___ all so busy with the kids.
+Carla: I bet ___ tired.
+Angel: Yeah, I really am. ... Uh-oh, I'm late!
+Carla: OK. See you later.
+Angel: Wait! Where are my car keys? I mean, where are ___ brother's car keys?
+Carla: Are ___ his keys? Under the car? Here you go.
+Angel: Oh, thanks, Carla. You're wonderful!
+
+2. Unscramble the questions.
+1. full / teacher's / is / our / name / What ? → What is our teacher's full name?
+2. phone / the / What's / number / school's ?
+3. class / hard / our / English / Is ?
+4. this class / students / Are / smart / the / in ?
+5. today / not / Who's / in class ?
+6. books / are / Where / your ?
+
+3. How many words do you remember? Complete the charts.
+classroom items (clock) | locations in class (on the wall)
+family and other people (neighbors) | words to describe people (friendly)
+
+"Where's the clock?" | "What's on the wall?" | "What are your neighbors like?" | "Are your neighbors friendly?"`,
+                grammar: ["possessives", "be verb", "information questions"],
+                vocabulary: ["classroom items", "locations", "family", "personality adjectives", "neighbors", "friendly"]
+            },
+            38: {
+                unit: 3,
+                section: "Expressions Review & Self-Check",
+                topic: "Key Expressions & Self-Assessment",
+                fullText: `DO YOU KNOW THESE EXPRESSIONS?
+Complete the conversation with expressions from the box. Then practice with a partner.
+
+Expressions: Thank you. Thanks anyway. Nice to meet you. Can I borrow your pen? Really? That's OK. You're welcome. Have a good day. How do you spell neighbor?
+
+Anna: Oh, no! Where's my pen? Excuse me. Can I borrow your pen?
+Michel: Sure. Here you go.
+Anna: ___
+Michel: You're welcome.
+Anna: Hmm. ___?
+Michel: Neighbor? I'm sorry. I don't know.
+Anna: OK. ___
+Michel: Wait. Here's my dictionary.
+Anna: Oh, thanks.
+Michel: ___
+Anna: Oh. This is a French-English dictionary.
+Michel: Yes. I'm from France.
+Anna: France? ___? Uh-oh! My coffee! I'm sorry.
+Michel: ___
+Anna: By the way, I'm Anna.
+Michel: I'm Michel. ___
+Anna: Oh, no. I'm late for work. Sorry. Bye.
+Michel: Thanks. You too. Uh-oh. Where's my pen? And my dictionary?
+
+SELF-CHECK: How sure are you about these areas? Circle the percentages.
+grammar: 20% 40% 60% 80% 100%
+vocabulary: 20% 40% 60% 80% 100%
+conversation strategies: 20% 40% 60% 80% 100%
+
+STUDY PLAN: What do you want to review? Circle the lessons.
+grammar: 1B 1C 2A 2B 2C 3A 3B 3C
+vocabulary: 1A 1C 2A 2B 2C 3A 3B 3C
+conversation strategies: 1D 2D 3D`,
+                grammar: [],
+                vocabulary: ["Thank you", "Thanks anyway", "Nice to meet you", "Can I borrow...?", "Really?", "That's OK", "You're welcome", "Have a good day", "How do you spell...?"]
+            },
+            39: {
+                unit: 4,
+                section: "Unit 4 Opener - Everyday Life",
+                topic: "Unit 4 Objectives",
+                fullText: `UNIT 4: Everyday life
+
+In Unit 4, you learn how to ...
+• use simple present statements, yes-no questions, and short answers.
+• talk about your daily and weekly routines.
+• answer more than yes or no to be friendly.
+• use "Well" to get time to think.
+
+Find these activities in the pictures. Which activities do you do every day? Check (✓) the boxes.
+☐ do homework
+☐ work
+☐ exercise
+☐ watch TV`,
+                grammar: ["simple present"],
+                vocabulary: ["do homework", "work", "exercise", "watch TV", "every day"]
+            },
+            42: {
+                unit: 4,
+                section: "Lesson A - Simple Present Statements",
+                topic: "Simple Present Grammar",
+                fullText: `GRAMMAR: Simple present statements
+
+I eat breakfast. / I don't eat lunch.
+You have coffee. / You don't have tea.
+We get up late. / We don't get up early.
+They read the paper. / They don't read books.
+He listens to the radio. / He doesn't listen to CDs.
+She watches TV. / She doesn't watch videos.
+
+don't (= do not) | doesn't (= does not)
+
+VERB ENDINGS (he, she, it):
+get → gets | watch → watches | play → plays | study → studies | have → has | do → does
+
+IN CONVERSATION: Don't and doesn't are more common than do not and does not.
+
+A. Complete these sentences.
+1. I don't like (not / like) mornings.
+2. In my family, we ___ (have) breakfast together.
+3. My mother ___ (not / watch) TV.
+4. My father ___ (have) coffee.
+5. My parents ___ (talk) a lot.
+6. I ___ (not / read) the newspaper.
+7. I ___ (check) my e-mail after breakfast.
+8. My best friend ___ (not / get up) early in the morning.
+
+B. Now write four sentences about your mornings. Compare with a partner.
+I don't eat breakfast.
+A: I don't eat breakfast. How about you?
+B: I have breakfast every morning.
+
+SPEAKING NATURALLY: -s endings of verbs
+/s/ sounds: likes
+/z/ sounds: listens
+/ɪz/ sounds: relaxes`,
+                grammar: ["simple present", "don't", "doesn't", "verb endings -s/-es/-ies", "have→has", "do→does"],
+                vocabulary: ["breakfast", "lunch", "coffee", "tea", "radio", "newspaper", "e-mail", "get up", "listen", "watch", "read"]
+            },
+            43: {
+                unit: 4,
+                section: "Lesson B - Weekly Routines",
+                topic: "Weekly Activities & Routines",
+                fullText: `LESSON B: Building Vocabulary
+
+A. Listen and say the expressions. Then check (✓) the things you do every week. Can you add more activities?
+
+Activities: play sports, take lessons or classes, check e-mail on the weekends, make phone calls on Saturdays, go shopping on Sundays, do the laundry every week
+
+B. For each day of the week, think of one thing you usually do. Then tell the class.
+Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
+"On Mondays, I play soccer."
+
+BUILDING LANGUAGE:
+
+A. Look at the questionnaire. Can you complete the last two questions? Then listen and check (✓) the answers that are true for you.
+
+Do you have a weekly routine?
+1. Do you play sports every week? ☐ Yes ☐ No
+2. Do you take any lessons or classes? ☐ Yes ☐ No
+3. Do you check your e-mail on the weekends? ☐ Yes ☐ No
+4. Do you make a lot of phone calls on Saturdays? ☐ Yes ☐ No
+5. ___ you ___ shopping on Sundays? ☐ Yes ☐ No
+6. ___ you ___ the laundry every week? ☐ Yes ☐ No
+
+B. Pair work: Ask and answer all the questions. Can you give more information?
+"Do you play sports every week?" → "Yes, I do. I play tennis on Saturdays."`,
+                grammar: ["Do you...?"],
+                vocabulary: ["play sports", "take lessons", "check email", "make phone calls", "go shopping", "do laundry", "weekends", "Saturdays", "Sundays", "weekly routine"]
+            },
+            44: {
+                unit: 4,
+                section: "Grammar - Yes-No Questions & Short Answers",
+                topic: "Question & Answer Patterns",
+                fullText: `GRAMMAR: Yes-No questions and short answers
+
+Do you go to a class in the evening? → Yes, I do. / No, I don't.
+Does your mother work on the weekends? → Yes, she does. / No, she doesn't.
+Do you and your friends play sports after class? → Yes, we do. / No, we don't.
+Do your friends make phone calls at night? → Yes, they do. / No, they don't.
+
+A. Complete the questions. Compare with a partner.
+1. ___ you eat a lot of snacks every day?
+2. ___ you make a lot of phone calls before breakfast?
+3. ___ you clean the house on the weekends?
+4. ___ you ___ your homework late at night?
+5. ___ you ___ TV after dinner?
+6. ___ your friends ___ their e-mail every day?
+7. ___ your teacher ___ work in the evening?
+8. ___ your best friend ___ a class on Saturdays?
+
+B. Pair work: Ask and answer the questions. How many of your answers are the same?
+A: Do you eat a lot of snacks every day?
+B: Yes, I do. I eat two or three snacks in the afternoon.
+
+SURVEY: Find people who do these things. Write their names in the chart. Who has a busy week?
+Find someone who... belongs to a club / plays on a team / works on the weekends / has breakfast in the car / studies English before breakfast / gets up early on Sundays.
+
+"Do you belong to a club?" → "Yes, I do. I belong to a chess club."`,
+                grammar: ["Do you...?", "Does he/she...?", "Yes, I do.", "No, I don't.", "Yes, she does.", "No, she doesn't."],
+                vocabulary: ["club", "team", "snacks", "homework", "dinner", "belong to", "busy week"]
+            },
+            45: {
+                unit: 4,
+                section: "Lesson C - Saying More Than Yes or No",
+                topic: "Extended Answers Strategy",
+                fullText: `CONVERSATION STRATEGY: Saying more than yes or no
+
+A. Can you answer this question with more than yes or no?
+A: Do you live around here?
+B: Yes, ___ No, ___
+
+Now listen. What do you find out about Ray?
+
+Notice how Ray answers Tina's questions. He says more than yes or no. He wants to be friendly. Find examples in the conversation.
+"Oh, are you a student?" → "Yes. I'm a law student."
+
+B. Match the questions and answers. Then ask and answer the questions with a partner. Give your own answers, saying more than yes or no.
+1. Do you live around here? → f. No, I live near the beach.
+2. Are you from here originally? → d. No, I'm from Rio originally.
+3. Do you have a part-time job? → b. Yeah, I work at a restaurant on the weekends.
+4. Do you like sports? → a. Yeah. Well, I play on a softball team.
+5. Do you have brothers and sisters? → e. No, I'm an only child.
+6. Do your parents live around here? → c. No, they live in a small town near the ocean.`,
+                grammar: [],
+                vocabulary: ["live around here", "part-time job", "originally", "only child", "softball team", "restaurant", "small town", "ocean", "beach"]
+            },
+            46: {
+                unit: 4,
+                section: "Strategy Plus - Well & Listening",
+                topic: "Using Well to Think",
+                fullText: `STRATEGY PLUS: Well
+
+Start your answer with "Well" if you need time to think, or if your answer is not a simple yes or no.
+
+Well, I'm from Chicago originally.
+
+IN CONVERSATION: Well is one of the top 50 words.
+
+Pair work: Practice the conversations. Then ask the questions again. Give your own answers.
+1. A: What are your neighbors like?
+   B: Well, they're very noisy. They like loud music.
+2. A: Do you see your family a lot?
+   B: Well, not really. They don't live around here.
+3. A: Do you study every day?
+   B: Well, not every day. I go out with friends on the weekends.
+
+LISTENING AND SPEAKING: What's the question?
+A. Listen to people answer the questions below. Which question is each person answering? Number the questions.
+B. Pair work: Ask and answer the questions above. Be sure to say more than yes or no in your answers. Use "Well" if you need to.
+C. Look at each question again. Change the verb. How many new questions can you make? Then ask a partner your questions.`,
+                grammar: ["Well"],
+                vocabulary: ["noisy", "loud music", "not really", "go out", "neighbors", "study"]
+            },
+            47: {
+                unit: 4,
+                section: "Lesson D - Reading: Average American",
+                topic: "Reading About American Habits",
+                fullText: `READING:
+
+A. How much time do you spend on these activities every day? Tell the class.
+on the phone / two hours / at work or at school / in bed / in the car, or on the bus or train
+
+"I spend two hours a day on the phone."
+
+B. Read the article. How many daily activities does it talk about?
+
+How many hours do you spend in bed? Six or seven hours a night maybe? And how many hours do you spend in front of the TV every week? Nine or ten? That's not a lot, is it? Well, think again. Add together all the hours you spend on these activities in a lifetime, and the total numbers are surprising.
+
+In an average lifetime, an American works over 90,000 hours, walks an amazing 22,000 kilometers (14,000 miles), and spends three and a half years eating.
+
+Do you call your friends a lot? An average American talks on the telephone for two and a half years. On average, Americans sleep for 24 years and watch TV for 12 years. That's 36 years — about half a lifetime — in bed or on the couch!
+
+C. Read the article again, and complete the sentences. Compare answers with a partner. Are any facts surprising?
+In a lifetime, an average American spends ...
+1. ___ hours at work.
+2. ___ years on the telephone.
+3. ___ years in bed.
+4. ___ years in front of the TV.`,
+                grammar: ["simple present"],
+                vocabulary: ["average", "lifetime", "kilometers", "miles", "couch", "telephone", "spend", "sleep", "watch TV", "bed", "work"]
+            },
+            48: {
+                unit: 4,
+                section: "Listening - Teen Habits & Writing",
+                topic: "Comparing Habits & Writing Emails",
+                fullText: `LISTENING: Teen habits
+
+A. Read about the habits of an average American teenager. Then listen to Christine talk about her habits. Complete the chart about Christine.
+
+An average teenager... | Christine...
+drinks 16 cans of soda a week. | drinks about ___ cans of soda a week.
+eats dinner at home 3 times a week. | eats dinner at home ___ times a week.
+spends about 5 hours a month online. | spends about ___ hours a month online.
+watches TV 20 hours a week. | watches TV ___ hours a week.
+
+B. Pair work: Do you have the same habits as an average American teenager? Ask and answer questions.
+"Do you drink 16 cans of soda a week?" → "No, I drink about 2 cans a week. What about you?"
+
+WRITING AND SPEAKING: An average week
+
+A. Complete the sentences. Then tell a partner. Take notes on your partner's activities.
+My week: On average...
+I study/work ___ hour(s) a week.
+I exercise ___ hour(s) a week.
+I use a cell phone ___ time(s) a day.
+I go out with my friends ___ night(s) a week.
+I spend ___ hour(s) with my family on weekends.
+
+B. Write an e-mail message to a friend about your partner. Use your notes to help you.
+C. Group work: Take turns reading your messages aloud. Who has a different or surprising routine?`,
+                grammar: ["simple present"],
+                vocabulary: ["soda", "online", "exercise", "cell phone", "go out", "weekends", "average", "habits", "teenager"]
+            },
+            49: {
+                unit: 4,
+                section: "Vocabulary Notebook - On Your Own",
+                topic: "Label Activities & Daily Routines",
+                fullText: `VOCABULARY NOTEBOOK:
+
+1. Label the pictures. Use a verb to describe each activity.
+Example: read the newspaper
+
+2. Draw and label your own pictures of activities.
+
+3. Complete the chart with your everyday activities.
+Write two things you do...
+• every day: I read the newspaper.
+• in the afternoon: ___
+• on Sundays: ___
+• after breakfast: ___
+• before bed: ___
+
+ON YOUR OWN:
+Write labels for the things you do every day. Put your labels around the house.`,
+                grammar: [],
+                vocabulary: ["read the newspaper", "label", "routine", "every day", "after breakfast", "before bed"]
+            },
+            50: {
+                unit: "WB",
+                section: "Workbook Title Page",
+                topic: "Workbook Introduction",
+                fullText: `ENG 101 · General English · Workbook · Foundation Level 1
+
+This is the companion workbook to the Touchstone Level 1 Student's Book. It provides additional language practice and extra reading and writing activities. Progress checks help you assess your progress throughout each unit.`,
+                grammar: [],
+                vocabulary: []
+            },
+            51: {
+                unit: "WB",
+                section: "Workbook Contents",
+                topic: "Workbook Unit Listing",
+                fullText: `WORKBOOK CONTENTS:
+1. All about you. 02
+2. In class. 10
+3. Favorite people. 18
+4. Everyday life. 26
+
+The workbook contains four units that mirror the Student's Book, providing additional practice for each lesson.`,
+                grammar: [],
+                vocabulary: []
+            },
+            52: {
+                unit: "WB",
+                section: "Unit 1 WB - Hello and Good-bye",
+                topic: "Meetings & Greetings Vocabulary Practice",
+                fullText: `UNIT 1 WORKBOOK: All about you
+Lesson A: Hello and good-bye
+Meetings and greetings — Vocabulary
+
+A. Complete the conversations. Choose the correct response.
+1. A: Hello. B: Hi. → a. Hi. | b. Good-bye.
+2. A: Hi. I'm Ted. B: ___ → a. Hello, Ted. Nice to meet you. | b. See you next week.
+3. A: How are you? B: ___ → a. I'm Kyle. | b. I'm fine, thanks.
+4. A: Good-bye. B: ___ → a. See you later. | b. Thanks.
+5. A: Good night. B: ___ → a. Hello. | b. Bye. See you tomorrow.
+6. A: Hi. How are you? B: ___ → a. Good, thanks. How are you? | b. Have a nice day.`,
+                grammar: [],
+                vocabulary: ["Hello", "Hi", "Good-bye", "See you later", "Good night", "How are you?", "Nice to meet you", "I'm fine"]
+            }
         };
+
+        // ==================== Fill remaining pages with smart defaults ====================
+        for (let i = 1; i <= 83; i++) {
+            if (!textbookDB[i]) {
+                const unitNum = i <= 17 ? 1 : i <= 27 ? 2 : i <= 38 ? 3 : i <= 49 ? 4 : "WB";
+                textbookDB[i] = {
+                    unit: unitNum,
+                    section: `Page ${i}`,
+                    topic: `Content from page ${i}`,
+                    fullText: `[Content from page ${i} of Touchstone Level 1 ${unitNum === "WB" ? "Workbook" : `Unit ${unitNum}`}]
+
+This page contains exercises and activities related to ${unitNum === 1 ? "greetings, introductions, names, and personal information" : unitNum === 2 ? "classroom objects, locations, and asking for help" : unitNum === 3 ? "favorite people, celebrities, family, and personality adjectives" : unitNum === 4 ? "daily routines, simple present tense, and weekly activities" : "the workbook practice section"}.
+
+Please refer to the complete textbook for the full content of this page.`,
+                    grammar: [],
+                    vocabulary: []
+                };
+            }
+        }
 
         // ==================== QUESTION GENERATOR ====================
         function generateQuestionsForPage(pageNum) {
@@ -468,170 +2009,474 @@
 
             const questions = [];
             let qNum = 0;
+            const fullText = page.fullText || '';
+            const textLower = fullText.toLowerCase();
 
-            // Helper to add a question
-            const addQ = (text, hint, answer, type = 'text') => {
+            const addQ = (text, context, hint, answer, type = 'grammar') => {
                 qNum++;
-                questions.push({ id: qNum, text, hint, answer, type });
+                questions.push({ id: qNum, text, context, hint, answer, type });
             };
 
-            // Generate questions based on page content and topic
-            const topic = page.topic.toLowerCase();
-            const grammar = page.grammar;
-            const vocab = page.vocabulary;
+            // Extract a relevant snippet from the full text for context
+            const getSnippet = (keywords, lines = 3) => {
+                const sentences = fullText.split(/\n/).filter(s => s.trim().length > 10);
+                for (const kw of keywords) {
+                    const found = sentences.find(s => s.toLowerCase().includes(kw.toLowerCase()));
+                    if (found) return found.trim();
+                }
+                return sentences.slice(0, lines).join('\n').trim();
+            };
 
-            // Grammar-based questions
-            if (grammar.length > 0 && grammar[0].length > 0) {
-                const g = grammar[0];
-                if (g.includes("I'm") || g.includes("I am")) {
-                    addQ(`Complete: "Hello. _____ Chris." (Use contraction)`, "I'm = I am", "I'm", "text");
-                }
-                if (g.includes("you're") || g.includes("you are")) {
-                    addQ(`Complete: "_____ in Room B." (You are)`, "Contraction of 'you are'", "You're", "text");
-                }
-                if (g.includes("he's") || g.includes("he is")) {
-                    addQ(`Complete: "Jun is at work. → _____ at work." (Use contraction)`, "Contraction of 'he is'", "He's", "text");
-                }
-                if (g.includes("she's") || g.includes("she is")) {
-                    addQ(`Complete: "Laura is sick. → _____ sick."`, "Contraction of 'she is'", "She's", "text");
-                }
-                if (g.includes("they're") || g.includes("they are")) {
-                    addQ(`Complete: "Kim and Phong are late. → _____ late."`, "Contraction of 'they are'", "They're", "text");
-                }
-                if (g.includes("we're") || g.includes("we are")) {
-                    addQ(`Complete: "_____ in the same class." (We are)`, "Contraction of 'we are'", "We're", "text");
-                }
-                if (g.includes("Are you") || g.includes("Are we")) {
-                    addQ(`Form a question: "_____ you here for an English class?"`, "Use 'Are' at the beginning", "Are", "text");
-                }
-                if (g.includes("Is he") || g.includes("Is she") || g.includes("Is it")) {
-                    addQ(`Form a question: "_____ she sick?"`, "Use 'Is' for he/she/it", "Is", "text");
-                }
-                if (g.includes("Are they")) {
-                    addQ(`Form a question: "_____ they in the cafeteria?"`, "Use 'Are' for they", "Are", "text");
-                }
-                if (g.includes("What's") || g.includes("What is")) {
-                    addQ(`Complete: "_____ your name?" (What is)`, "Contraction of 'What is'", "What's", "text");
-                }
-                if (g.includes("It's") || g.includes("It is")) {
-                    addQ(`Complete: "_____ 646-555-3048." (It is)`, "Contraction of 'It is'", "It's", "text");
-                }
-                if (g.includes("don't") || g.includes("do not")) {
-                    addQ(`Make negative: "I _____ eat lunch." (do not)`, "Contraction of 'do not'", "don't", "text");
-                }
-                if (g.includes("doesn't") || g.includes("does not")) {
-                    addQ(`Make negative: "She _____ watch TV." (does not)`, "Contraction of 'does not'", "doesn't", "text");
-                }
-                if (g.includes("Do you") || g.includes("Does")) {
-                    addQ(`Complete: "_____ you play sports every week?"`, "Use 'Do' for you/they/we", "Do", "text");
-                }
-                if (g.includes("Does he") || g.includes("Does she")) {
-                    addQ(`Complete: "_____ your mother work on weekends?"`, "Use 'Does' for he/she/it", "Does", "text");
-                }
-                if (g.includes("my") || g.includes("your") || g.includes("his") || g.includes("her")) {
-                    addQ(`Complete: "This is John. _____ favorite actor is Sean Penn." (possessive)`, "Possessive for male: his", "His", "text");
-                }
-                if (g.includes("our") || g.includes("their")) {
-                    addQ(`Complete: "The Williams sisters play tennis. _____ matches are exciting."`, "Possessive for plural: their", "Their", "text");
-                }
-                if (g.includes("How about you?")) {
-                    addQ(`What question do you use to return a question? "I'm fine. _____?"`, "Three words", "How about you", "text");
-                }
-                if (g.includes("Where's") || g.includes("Where are")) {
-                    addQ(`Complete: "_____ the teacher's desk?" (Where is)`, "Contraction of 'Where is'", "Where's", "text");
-                }
-                if (g.includes("this") || g.includes("these")) {
-                    addQ(`Singular: "What's _____?" Plural: "What are _____?"`, "Near: this/these", "this, these", "text");
-                }
-                if (g.includes("a") || g.includes("an")) {
-                    addQ(`Choose: "This is _____ MP3 player." (a or an?)`, "Use 'an' before vowel sounds", "an", "text");
-                }
-                if (g.includes("Well")) {
-                    addQ(`What word can start an answer when you need time to think? "_____, I'm from Chicago originally."`, "One of the top 50 words", "Well", "text");
+            // ========== GRAMMAR QUESTIONS ==========
+            if (textLower.includes("i'm") || textLower.includes("i am")) {
+                const ctx = getSnippet(["I'm", "I am", "Hello"]);
+                addQ(
+                    `Complete the sentence with the correct form of "be": "Hello. _____ Chris."`,
+                    ctx,
+                    "Use the contraction: I + am = I'm",
+                    "I'm",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("you're") || textLower.includes("you are")) {
+                const ctx = getSnippet(["you're", "You're", "Room"]);
+                addQ(
+                    `Complete: "_____ in Room B." (Use the contraction of 'You are')`,
+                    ctx,
+                    "You + are = You're",
+                    "You're",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("he's") || textLower.includes("he is")) {
+                const ctx = getSnippet(["he's", "He's", "Jun"]);
+                addQ(
+                    `Rewrite using a contraction: "Jun is at work." → "_____ at work."`,
+                    ctx,
+                    "He + is = He's",
+                    "He's",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("she's") || textLower.includes("she is")) {
+                const ctx = getSnippet(["she's", "She's", "Laura", "sick"]);
+                addQ(
+                    `Complete with the contraction: "Laura is sick." → "_____ sick."`,
+                    ctx,
+                    "She + is = She's",
+                    "She's",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("they're") || textLower.includes("they are")) {
+                const ctx = getSnippet(["they're", "They're", "late"]);
+                addQ(
+                    `Rewrite: "Kim and Phong are late." → "_____ late."`,
+                    ctx,
+                    "They + are = They're",
+                    "They're",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("we're") || textLower.includes("we are")) {
+                const ctx = getSnippet(["we're", "We're", "same class"]);
+                addQ(
+                    `Complete: "_____ in the same class." (We are)`,
+                    ctx,
+                    "We + are = We're",
+                    "We're",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("are you") && textLower.includes("?")) {
+                const ctx = getSnippet(["Are you", "class", "student"]);
+                addQ(
+                    `Form a question: "_____ you here for an English class?"`,
+                    ctx,
+                    "Start the question with 'Are'",
+                    "Are",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("is he") || textLower.includes("is she")) {
+                const ctx = getSnippet(["Is he", "Is she", "sick", "student"]);
+                addQ(
+                    `Form a question: "_____ she sick today?"`,
+                    ctx,
+                    "Use 'Is' for he/she/it questions",
+                    "Is",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("are they")) {
+                const ctx = getSnippet(["Are they", "cafeteria", "class"]);
+                addQ(
+                    `Complete the question: "_____ they in the cafeteria?"`,
+                    ctx,
+                    "Use 'Are' for plural questions",
+                    "Are",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("what's") || textLower.includes("what is")) {
+                const ctx = getSnippet(["What's", "name", "phone"]);
+                addQ(
+                    `Complete: "_____ your name?" (Use the contraction)`,
+                    ctx,
+                    "What + is = What's",
+                    "What's",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("it's") || textLower.includes("it is")) {
+                const ctx = getSnippet(["It's", "phone", "number"]);
+                addQ(
+                    `Complete: "_____ 646-555-3048." (It is)`,
+                    ctx,
+                    "It + is = It's",
+                    "It's",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("don't") || textLower.includes("do not")) {
+                const ctx = getSnippet(["don't", "eat", "breakfast"]);
+                addQ(
+                    `Make the sentence negative: "I _____ eat lunch." (do not)`,
+                    ctx,
+                    "Use the contraction: do + not = don't",
+                    "don't",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("doesn't") || textLower.includes("does not")) {
+                const ctx = getSnippet(["doesn't", "watch", "TV"]);
+                addQ(
+                    `Make negative: "She _____ watch TV." (does not)`,
+                    ctx,
+                    "Use the contraction: does + not = doesn't",
+                    "doesn't",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("do you") && textLower.includes("?")) {
+                const ctx = getSnippet(["Do you", "play", "sports"]);
+                addQ(
+                    `Complete: "_____ you play sports every week?"`,
+                    ctx,
+                    "Use 'Do' at the start for you/they/we questions",
+                    "Do",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("does") && (textLower.includes("mother") || textLower.includes("father") || textLower.includes("she"))) {
+                const ctx = getSnippet(["Does", "mother", "work"]);
+                addQ(
+                    `Complete: "_____ your mother work on weekends?"`,
+                    ctx,
+                    "Use 'Does' for he/she/it questions",
+                    "Does",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("his ") || textLower.includes("his movie")) {
+                const ctx = getSnippet(["his", "movie", "Sean"]);
+                addQ(
+                    `Complete: "Sean Penn is an actor. _____ movies are very good."`,
+                    ctx,
+                    "Use the possessive adjective for a male person",
+                    "His",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("her ") || textLower.includes("her voice")) {
+                const ctx = getSnippet(["her", "voice", "Norah"]);
+                addQ(
+                    `Complete: "Norah Jones is a singer. _____ voice is amazing."`,
+                    ctx,
+                    "Use the possessive adjective for a female person",
+                    "Her",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("their ") || textLower.includes("their matches")) {
+                const ctx = getSnippet(["their", "matches", "Williams"]);
+                addQ(
+                    `Complete: "The Williams sisters play tennis. _____ matches are exciting."`,
+                    ctx,
+                    "Use the possessive adjective for plural (they)",
+                    "Their",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("how about you")) {
+                const ctx = getSnippet(["How about you", "Yeah", "concert"]);
+                addQ(
+                    `What question phrase returns a question to the speaker? "I'm fine. _____?"`,
+                    ctx,
+                    "Three words to ask the same question back",
+                    "How about you",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("where's") || textLower.includes("where is")) {
+                const ctx = getSnippet(["Where's", "VCR", "desk"]);
+                addQ(
+                    `Complete: "_____ the teacher's desk?" (Where is)`,
+                    ctx,
+                    "Contraction: Where + is = Where's",
+                    "Where's",
+                    "grammar"
+                );
+            }
+            if ((textLower.includes("this ") || textLower.includes("these ")) && textLower.includes("mp3")) {
+                const ctx = getSnippet(["What's this", "MP3", "these"]);
+                addQ(
+                    `Complete: "_____ is an MP3 player." (Use 'This' or 'These')`,
+                    ctx,
+                    "Use 'This' for singular objects nearby",
+                    "This",
+                    "grammar"
+                );
+            }
+            if (textLower.includes("a ") && textLower.includes("an ") && textLower.includes("mp3")) {
+                const ctx = getSnippet(["MP3 player", "a", "an"]);
+                addQ(
+                    `Choose the correct article: "This is _____ MP3 player." (a or an?)`,
+                    ctx,
+                    "Use 'an' before vowel sounds (M sounds like 'em')",
+                    "an",
+                    "grammar"
+                );
+            }
+            if (textLower.includes(" well,") || textLower.includes("well ")) {
+                const ctx = getSnippet(["Well", "think", "Chicago"]);
+                addQ(
+                    `What word can you use to start an answer when you need time to think? "_____, I'm from Chicago originally."`,
+                    ctx,
+                    "This is one of the top 50 words in conversation",
+                    "Well",
+                    "grammar"
+                );
+            }
+
+            // ========== VOCABULARY QUESTIONS ==========
+            if (textLower.includes("good morning") || textLower.includes("hello")) {
+                const ctx = getSnippet(["Good morning", "Hello", "How are you"]);
+                addQ(
+                    `What greeting do you use in the morning?`,
+                    ctx,
+                    "Two words: Good _____",
+                    "Good morning",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("good night") || textLower.includes("good evening")) {
+                const ctx = getSnippet(["Good night", "Good evening", "Have a good"]);
+                addQ(
+                    `What do you say before going to bed?`,
+                    ctx,
+                    "Two words starting with 'Good'",
+                    "Good night",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("nice to meet you")) {
+                const ctx = getSnippet(["Nice to meet you", "Hello", "I'm"]);
+                addQ(
+                    `What expression do you use when you meet someone for the first time?`,
+                    ctx,
+                    "Four words: Nice to _____ _____",
+                    "Nice to meet you",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("see you") || textLower.includes("bye")) {
+                const ctx = getSnippet(["See you", "Bye", "tomorrow"]);
+                addQ(
+                    `How do you say goodbye informally to a friend?`,
+                    ctx,
+                    "Two words: _____ you",
+                    "See you",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("thank you") || textLower.includes("thanks")) {
+                const ctx = getSnippet(["Thank you", "Thanks", "You're welcome"]);
+                addQ(
+                    `What is the response to "Thank you"?`,
+                    ctx,
+                    "Two words: You're _____",
+                    "You're welcome",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("i'm sorry") || textLower.includes("that's ok")) {
+                const ctx = getSnippet(["I'm sorry", "That's OK", "late"]);
+                addQ(
+                    `What is the common response to "I'm sorry"?`,
+                    ctx,
+                    "Two words: That's _____",
+                    "That's OK",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("first name") || textLower.includes("last name")) {
+                const ctx = getSnippet(["first name", "last name", "middle"]);
+                addQ(
+                    `What do you call your family name? (Example: Smith)`,
+                    ctx,
+                    "Two words: _____ name",
+                    "last name",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("spell")) {
+                const ctx = getSnippet(["How do you spell", "C-A-T", "spell"]);
+                addQ(
+                    `What question do you ask to know the letters of a word?`,
+                    ctx,
+                    "Starts with: How do you _____",
+                    "How do you spell",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("classroom") || textLower.includes("class")) {
+                const ctx = getSnippet(["classroom", "desk", "board", "wall"]);
+                addQ(
+                    `What is the large flat surface on the wall that a teacher writes on?`,
+                    ctx,
+                    "This classroom item starts with 'b'",
+                    "board",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("wastebasket") || textLower.includes("trash")) {
+                const ctx = getSnippet(["wastebasket", "trash", "paper"]);
+                addQ(
+                    `What container is used for paper waste in a classroom?`,
+                    ctx,
+                    "Compound word: waste + basket",
+                    "wastebasket",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("cafeteria")) {
+                const ctx = getSnippet(["cafeteria", "lunch", "eat"]);
+                addQ(
+                    `Where do students eat lunch at school?`,
+                    ctx,
+                    "This place starts with 'c'",
+                    "cafeteria",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("singer") || textLower.includes("actor") || textLower.includes("artist")) {
+                const ctx = getSnippet(["singer", "actor", "artist", "celebrity"]);
+                addQ(
+                    `What do you call a person who performs songs?`,
+                    ctx,
+                    "This person _____ songs",
+                    "singer",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("outgoing") || textLower.includes("shy")) {
+                const ctx = getSnippet(["outgoing", "shy", "friendly"]);
+                addQ(
+                    `What adjective describes a person who is very social and makes friends easily?`,
+                    ctx,
+                    "Opposite of 'shy'",
+                    "outgoing",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("grandmother") || textLower.includes("grandma")) {
+                const ctx = getSnippet(["grandmother", "grandma", "grandpa"]);
+                addQ(
+                    `What do you call your mother's mother?`,
+                    ctx,
+                    "This family word starts with 'grand'",
+                    "grandmother",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("breakfast") || textLower.includes("morning")) {
+                const ctx = getSnippet(["breakfast", "morning", "get up"]);
+                addQ(
+                    `What is the first meal of the day called?`,
+                    ctx,
+                    "You eat this in the morning",
+                    "breakfast",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("homework") || textLower.includes("study")) {
+                const ctx = getSnippet(["homework", "study", "class"]);
+                addQ(
+                    `What school work do you do at home?`,
+                    ctx,
+                    "Compound word: home + work",
+                    "homework",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("really?")) {
+                const ctx = getSnippet(["Really?", "surprised", "interest"]);
+                addQ(
+                    `What one-word question shows surprise or interest?`,
+                    ctx,
+                    "This word is in the top 50 most common words",
+                    "Really",
+                    "vocabulary"
+                );
+            }
+            if (textLower.includes("average") || textLower.includes("lifetime")) {
+                const ctx = getSnippet(["average", "lifetime", "90,000", "24 years"]);
+                addQ(
+                    `According to the article, how many hours does an average American work in a lifetime?`,
+                    ctx,
+                    "The number is over 90,000",
+                    "90,000",
+                    "vocabulary"
+                );
+            }
+
+            // ========== COMPREHENSION QUESTIONS ==========
+            if (fullText.length > 100 && questions.length < 6) {
+                const words = fullText.split(/\s+/).filter(w => w.length > 5);
+                const uniqueWords = [...new Set(words)].slice(0, 10);
+                if (uniqueWords.length > 3) {
+                    const target = uniqueWords[2];
+                    const ctx = getSnippet([target], 2);
+                    addQ(
+                        `The page mentions "${target}". What is the main topic discussed in relation to this word?`,
+                        ctx,
+                        `Look at the full text for context about "${target}"`,
+                        page.topic.split(',')[0].trim(),
+                        "comprehension"
+                    );
                 }
             }
 
-            // Vocabulary-based questions
-            if (vocab.length > 0) {
-                const v = vocab[0];
-                if (v && v.length > 0) {
-                    addQ(`Which vocabulary word from this page means "${v}"? (Write the word)`, `It appears in the vocabulary list for this page`, v, "text");
-                }
-                if (vocab.length > 1) {
-                    const v2 = vocab[Math.floor(vocab.length / 2)];
-                    addQ(`Which vocabulary word means "${v2}"?`, `Found in the vocabulary list`, v2, "text");
-                }
-                if (vocab.length > 2) {
-                    const v3 = vocab[vocab.length - 1];
-                    addQ(`Which vocabulary word means "${v3}"?`, `Check the last vocabulary item`, v3, "text");
-                }
+            // Ensure at least 4 questions
+            if (questions.length < 4) {
+                addQ(
+                    `What is the main subject of this page?`,
+                    getSnippet([page.topic.split(' ')[0]], 2),
+                    `The section is titled "${page.section}"`,
+                    page.topic.split(',')[0].trim(),
+                    "comprehension"
+                );
+                addQ(
+                    `Which unit of the textbook does this page belong to?`,
+                    getSnippet(["Unit", "unit"], 2),
+                    `Check the unit number in the header`,
+                    `Unit ${page.unit}`,
+                    "comprehension"
+                );
             }
 
-            // Topic-based questions
-            if (topic.includes("hello") || topic.includes("goodbye") || topic.includes("greeting")) {
-                addQ(`What is a common response to "How are you?"`, "Think: I'm fine, thanks", "I'm fine", "text");
-                addQ(`How do you say goodbye to someone you will see the next day?`, "Two words starting with 'See'", "See you", "text");
-            }
-            if (topic.includes("name") || topic.includes("spell")) {
-                addQ(`What question do you ask to know how to write someone's name?`, "Starts with 'How do you...'", "How do you spell", "text");
-            }
-            if (topic.includes("number") || topic.includes("phone")) {
-                addQ(`What's the number after seven?`, "It's 8", "eight", "text");
-                addQ(`How do you ask for someone's phone number?`, "Starts with 'What's...'", "What's your phone number", "text");
-            }
-            if (topic.includes("classroom") || topic.includes("class")) {
-                addQ(`Where does a teacher usually write? (classroom item)`, "It's on the wall", "board", "text");
-                addQ(`What do you call the container for paper waste?`, "Combination of 'waste' and 'basket'", "wastebasket", "text");
-            }
-            if (topic.includes("absent") || topic.includes("where")) {
-                addQ(`Where might a student be if they are not in class and not at home?`, "They might be earning money", "at work", "text");
-            }
-            if (topic.includes("celebrity") || topic.includes("favorite")) {
-                addQ(`Who is the person that sings songs?`, "Not an actor", "singer", "text");
-                addQ(`If you really like a band, you are a _____.`, "Short word: f _ _", "fan", "text");
-            }
-            if (topic.includes("family")) {
-                addQ(`What do you call your mother's mother?`, "Grand _ _ _ _ _ _", "grandmother", "text");
-                addQ(`What do you call your father's father?`, "Grand _ _ _ _ _ _", "grandfather", "text");
-            }
-            if (topic.includes("personality") || topic.includes("describe")) {
-                addQ(`What adjective describes a person who talks a lot and makes friends easily?`, "Opposite of shy", "outgoing", "text");
-                addQ(`What adjective describes a person who doesn't talk much?`, "Opposite of outgoing", "shy", "text");
-            }
-            if (topic.includes("routine") || topic.includes("daily") || topic.includes("morning")) {
-                addQ(`What is the first meal of the day called?`, "You eat it in the morning", "breakfast", "text");
-                addQ(`Complete: "I _____ up at 7 AM every day." (verb)`, "To leave bed", "get", "text");
-            }
-            if (topic.includes("average") || topic.includes("american") || topic.includes("lifetime")) {
-                addQ(`How many hours does an average American work in a lifetime?`, "It's over 90,000", "90,000", "text");
-                addQ(`How many years does an American sleep in a lifetime?`, "It's 24", "24", "text");
-            }
-            if (topic.includes("thank") || topic.includes("sorry")) {
-                addQ(`What is the response to "Thank you"?`, "Two words: You're _____", "You're welcome", "text");
-                addQ(`What is the response to "I'm sorry"?`, "Two words: That's _____", "That's OK", "text");
-            }
-            if (topic.includes("really")) {
-                addQ(`What word shows surprise or interest? "_____? That's amazing!"`, "Starts with R", "Really", "text");
-            }
-            if (topic.includes("well")) {
-                addQ(`What word can you use to pause when answering? "_____, let me think..."`, "Starts with W, 4 letters", "Well", "text");
-            }
-
-            // Ensure at least 3 questions per page
-            if (questions.length < 3) {
-                if (page.content.length > 20) {
-                    const words = page.content.split(' ');
-                    const keyWord = words.find(w => w.length > 5 && !['about', 'these', 'their', 'there', 'which'].includes(w.toLowerCase()));
-                    if (keyWord) {
-                        addQ(`This page discusses "${keyWord}". What unit topic does it relate to?`, `Unit ${page.unit} themes`, `Unit ${page.unit}`, "text");
-                    }
-                }
-                addQ(`What is the main topic of this page?`, `Look at the section title: "${page.section}"`, page.topic.split(',')[0].trim(), "text");
-                addQ(`Which unit does this page belong to? (Write the number)`, `Unit number appears in the database`, `${page.unit}`, "text");
-            }
-
-            // Limit to 8 questions max
-            return questions.slice(0, 8);
+            return questions.slice(0, 10);
         }
 
         // ==================== UI FUNCTIONS ====================
@@ -656,10 +2501,12 @@
             currentPage = page;
             currentQuestions = generateQuestionsForPage(pageNum);
 
+            // Reset results
             document.getElementById('resultsPanel').style.display = 'none';
             document.getElementById('scoreDisplay').textContent = '0%';
             document.getElementById('progressFill').style.width = '0%';
             document.getElementById('scoreMessage').textContent = '';
+            document.getElementById('starsDisplay').innerHTML = '';
 
             // Update page info
             const unitLabel = page.unit === 'WB' ? 'Workbook' : `Unit ${page.unit}`;
@@ -668,27 +2515,52 @@
                 📝 <strong>Topic:</strong> ${page.topic}<br>
                 <span class="tag">Grammar: ${page.grammar.length > 0 ? page.grammar.join(', ') : 'Review'}</span>
                 <span class="tag">Vocabulary: ${page.vocabulary.length > 0 ? page.vocabulary.slice(0, 5).join(', ') : 'General'}</span>
+                <span class="tag">Questions: ${currentQuestions.length}</span>
             `;
+
+            // Display full page content
+            const contentDisplay = document.getElementById('pageContentDisplay');
+            const rawText = page.fullText;
+            let formattedText = rawText
+                .replace(/CONVERSATION \d:/g, '<br><strong>CONVERSATION $&</strong>')
+                .replace(/GRAMMAR:/g, '<br><strong>📖 GRAMMAR:</strong>')
+                .replace(/VOCABULARY NOTEBOOK:/g, '<br><strong>📒 VOCABULARY NOTEBOOK:</strong>')
+                .replace(/STRATEGY PLUS:/g, '<br><strong>💬 STRATEGY PLUS:</strong>')
+                .replace(/IN CONVERSATION:/g, '<br><strong>✨ IN CONVERSATION:</strong>')
+                .replace(/LISTENING AND SPEAKING:/g, '<br><strong>🎧 LISTENING AND SPEAKING:</strong>')
+                .replace(/ON YOUR OWN:/g, '<br><strong>📓 ON YOUR OWN:</strong>')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+
+            contentDisplay.innerHTML = formattedText;
+            contentDisplay.scrollTop = 0;
 
             // Render questions
             const container = document.getElementById('questionsContainer');
             if (currentQuestions.length === 0) {
                 container.innerHTML = '<div class="no-questions"><p>😕 No questions could be generated for this page. Try another page.</p></div>';
-                document.getElementById('resultsPanel').style.display = 'none';
             } else {
                 let html = '';
                 currentQuestions.forEach((q, index) => {
+                    const tagClass = q.type === 'grammar' ? 'tag-grammar' : q.type === 'vocabulary' ? 'tag-vocabulary' : q.type === 'comprehension' ? 'tag-comprehension' : 'tag-conversation';
+                    const tagLabel = q.type.charAt(0).toUpperCase() + q.type.slice(1);
                     html += `
                         <div class="question-card" id="qcard-${index}">
                             <span class="question-number">${index + 1}</span>
                             <span class="question-text">${q.text}</span>
+                            <span class="question-type-tag ${tagClass}">${tagLabel}</span>
+                            ${q.context ? `<div class="question-context">📖 <em>From the text:</em> <span class="highlight">${q.context}</span></div>` : ''}
                             <div class="answer-area">
                                 <input type="text" id="answer-${index}" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')checkAnswer(${index})">
                                 <button class="btn-hint" onclick="toggleHint(${index})">💡 Hint</button>
                                 <button class="btn-check" onclick="checkAnswer(${index})">✓ Check</button>
+                                <button class="btn-show-answer" onclick="showAnswer(${index})">👁️ Show</button>
                             </div>
                             <div class="hint-box" id="hint-${index}">
                                 💬 <strong>Hint:</strong> ${q.hint}
+                            </div>
+                            <div class="correct-answer-box" id="correctAnswer-${index}">
+                                ✅ <strong>Correct answer:</strong> ${q.answer}
                             </div>
                             <div class="feedback" id="feedback-${index}"></div>
                         </div>
@@ -696,28 +2568,26 @@
                 });
                 container.innerHTML = html;
                 document.getElementById('resultsPanel').style.display = 'block';
-                document.getElementById('pagePreview').style.display = 'block';
-                document.getElementById('previewContent').innerHTML = `
-                    <p>${page.content}</p>
-                    ${page.grammar.length > 0 ? `<p><strong>Grammar points:</strong> ${page.grammar.join(', ')}</p>` : ''}
-                    ${page.vocabulary.length > 0 ? `<p><strong>Key vocabulary:</strong> ${page.vocabulary.join(', ')}</p>` : ''}
-                `;
             }
 
-            // Scroll to questions
-            document.getElementById('questionsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Scroll to content
+            document.getElementById('pageContentDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function toggleHint(index) {
             const hintBox = document.getElementById(`hint-${index}`);
-            if (hintBox) {
-                hintBox.classList.toggle('show');
-            }
+            if (hintBox) hintBox.classList.toggle('show');
+        }
+
+        function showAnswer(index) {
+            const answerBox = document.getElementById(`correctAnswer-${index}`);
+            if (answerBox) answerBox.classList.add('show');
         }
 
         function checkAnswer(index) {
             const answerInput = document.getElementById(`answer-${index}`);
             const feedback = document.getElementById(`feedback-${index}`);
+            const questionCard = document.getElementById(`qcard-${index}`);
             const userAnswer = answerInput.value.trim().toLowerCase();
             const correctAnswer = currentQuestions[index].answer.toLowerCase();
 
@@ -728,11 +2598,10 @@
                 return;
             }
 
-            // Flexible matching
-            let isCorrect = false;
             const correctVariants = correctAnswer.split(',').map(a => a.trim());
+            let isCorrect = false;
             for (const variant of correctVariants) {
-                if (userAnswer === variant || userAnswer.includes(variant) || variant.includes(userAnswer)) {
+                if (userAnswer === variant || (variant.length > 3 && userAnswer.includes(variant)) || (userAnswer.length > 3 && variant.includes(userAnswer))) {
                     isCorrect = true;
                     break;
                 }
@@ -741,13 +2610,17 @@
             if (isCorrect) {
                 feedback.className = 'feedback correct';
                 feedback.textContent = '✅ Correct! Well done!';
-                answerInput.style.borderColor = '#2c8c5a';
-                answerInput.style.background = '#f0faf5';
+                answerInput.classList.add('correct-input');
+                answerInput.classList.remove('incorrect-input');
+                questionCard.classList.add('answered-correct');
+                questionCard.classList.remove('answered-incorrect');
             } else {
                 feedback.className = 'feedback incorrect';
-                feedback.textContent = `❌ Not quite. The answer is: "${correctAnswer}"`;
-                answerInput.style.borderColor = '#c0392b';
-                answerInput.style.background = '#fef5f5';
+                feedback.textContent = `❌ Not quite. Try again or click "Show" to see the answer.`;
+                answerInput.classList.add('incorrect-input');
+                answerInput.classList.remove('correct-input');
+                questionCard.classList.add('answered-incorrect');
+                questionCard.classList.remove('answered-correct');
             }
             feedback.style.display = 'block';
             updateScore();
@@ -762,28 +2635,40 @@
             });
         }
 
+        function showAllAnswers() {
+            currentQuestions.forEach((q, index) => {
+                showAnswer(index);
+            });
+        }
+
         function updateScore() {
             let correct = 0;
-            let total = currentQuestions.length;
+            const total = currentQuestions.length;
             currentQuestions.forEach((q, index) => {
                 const feedback = document.getElementById(`feedback-${index}`);
-                if (feedback && feedback.classList.contains('correct')) {
-                    correct++;
-                }
+                if (feedback && feedback.classList.contains('correct')) correct++;
             });
 
             const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
             document.getElementById('scoreDisplay').textContent = percentage + '%';
             document.getElementById('progressFill').style.width = percentage + '%';
 
+            let stars = '';
+            if (percentage === 100) stars = '⭐⭐⭐⭐⭐';
+            else if (percentage >= 80) stars = '⭐⭐⭐⭐';
+            else if (percentage >= 60) stars = '⭐⭐⭐';
+            else if (percentage >= 40) stars = '⭐⭐';
+            else if (percentage > 0) stars = '⭐';
+            document.getElementById('starsDisplay').textContent = stars;
+
             if (percentage === 100) {
                 document.getElementById('scoreMessage').textContent = '🏆 Perfect score! Excellent work!';
             } else if (percentage >= 75) {
                 document.getElementById('scoreMessage').textContent = '👍 Great job! Keep practicing.';
             } else if (percentage >= 50) {
-                document.getElementById('scoreMessage').textContent = '📖 Good effort. Review the hints and try again.';
+                document.getElementById('scoreMessage').textContent = '📖 Good effort. Review the page content and try again.';
             } else if (total > 0 && percentage > 0) {
-                document.getElementById('scoreMessage').textContent = '📚 Keep studying! Use the hints to help you.';
+                document.getElementById('scoreMessage').textContent = '📚 Read the page content carefully and try the questions again.';
             } else {
                 document.getElementById('scoreMessage').textContent = 'Start answering questions to see your score.';
             }
@@ -796,25 +2681,30 @@
         }
 
         function resetAll() {
-            document.getElementById('pageInput').value = '1';
+            document.getElementById('pageInput').value = '9';
             document.getElementById('questionsContainer').innerHTML = `
                 <div class="no-questions">
-                    <p>✨ Select a page to generate assessment questions.</p>
+                    <p>✨ Select a page to generate assessment questions with full page content.</p>
                     <p style="font-size:0.8rem; margin-top:0.5rem;">Pages cover Units 1–4 (Student's Book & Workbook)</p>
                 </div>`;
+            document.getElementById('pageContentDisplay').innerHTML = `
+                <div class="empty-state">
+                    <div class="icon">📖</div>
+                    <p><strong>Select a page to display its content here</strong></p>
+                    <p style="font-size:0.85rem; margin-top:0.5rem;">The full textbook text will appear, followed by assessment questions</p>
+                </div>`;
             document.getElementById('resultsPanel').style.display = 'none';
-            document.getElementById('pagePreview').style.display = 'none';
-            document.getElementById('pageInfo').innerHTML = '📌 Enter a page number (1–83) and click <strong>Generate Questions</strong> to start your assessment.';
+            document.getElementById('pageInfo').innerHTML = '📌 Enter a page number (1–83) and click <strong>Generate Assessment</strong> to see the page content and questions.';
             document.getElementById('scoreDisplay').textContent = '0%';
             document.getElementById('progressFill').style.width = '0%';
             document.getElementById('scoreMessage').textContent = '';
+            document.getElementById('starsDisplay').innerHTML = '';
             currentQuestions = [];
             currentPage = null;
         }
 
-        // Initialize with page 1 on load
+        // Initialize
         window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('pageInput').value = '8';
             generateAssessment();
         });
     </script>
